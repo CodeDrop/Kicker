@@ -13,4 +13,13 @@ Public Class Team
     Public Property Player1 As String
     Public Property Player2 As String
 
+    Public Overrides Function Equals(obj As Object) As Boolean
+        Dim otherTeam As Team = obj
+        Return Me.Name.Equals(otherTeam.Name)
+    End Function
+
+    Public Overrides Function GetHashCode() As Integer
+        Return Name.GetHashCode()
+    End Function
+
 End Class
