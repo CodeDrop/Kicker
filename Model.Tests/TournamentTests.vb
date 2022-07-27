@@ -18,8 +18,8 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     <TestMethod()> Public Sub GetStandingsTest()
         ' Arrange
         Dim testClass = New Tournament()
-        Dim team1 = New Team()
-        Dim team2 = New Team()
+        Dim team1 = New Team(1)
+        Dim team2 = New Team(2)
         testClass.AddTeam(team1)
         testClass.AddTeam(team2)
         testClass.MatchManager.Generate({team1, team2})
