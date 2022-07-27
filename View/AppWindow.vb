@@ -21,6 +21,7 @@ Public Class AppWindow
 
         ' Actions
         AddHandler FormClosing, Sub() ViewModel.Save()
+        AddHandler CopyToolStripMenuItem.Click, Sub() ViewModel.CopyToClipboard()
         AddHandler SaveToolStripMenuItem.Click, Sub() ViewModel.Save()
         AddHandler ExitToolStripMenuItem.Click, Sub() Close()
     End Sub

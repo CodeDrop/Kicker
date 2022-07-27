@@ -65,4 +65,8 @@ Public Class AppWindowViewModel
         Tournament.Save()
     End Sub
 
+    Public Sub CopyToClipboard()
+        Tournament.CopyStandingsHtmlToClipboard()
+    End Sub
+
 End Class
