@@ -1,0 +1,78 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "View", "View\View.vbproj", "{651F7F0C-936B-4713-BD88-1E8075AE16B4}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Model", "Model\Model.vbproj", "{754227CF-2288-4008-A461-A824160CDD57}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Model.Tests", "Model.Tests\Model.Tests.vbproj", "{F3371A9E-1852-482B-96A7-F7832B8E6889}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ViewModel", "ViewModel\ViewModel.vbproj", "{3EC0C22C-1A79-432B-9AD6-C463D76125DE}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ViewModel.Tests", "ViewModel.Tests\ViewModel.Tests.vbproj", "{ACCFE1EE-417A-499D-88E3-87554FF2C08A}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "View.IntegrationTest", "View.IntegrationTest\View.IntegrationTest.vbproj", "{456701D5-0D6A-43BD-A090-0EA3392681D3}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://netsolutions.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = View\\View.vbproj
+		SccProjectName1 = View
+		SccLocalPath1 = View
+		SccProjectUniqueName2 = Model\\Model.vbproj
+		SccProjectName2 = Model
+		SccLocalPath2 = Model
+		SccProjectUniqueName3 = Model.Tests\\Model.Tests.vbproj
+		SccProjectName3 = Model.Tests
+		SccLocalPath3 = Model.Tests
+		SccProjectUniqueName4 = ViewModel\\ViewModel.vbproj
+		SccProjectName4 = ViewModel
+		SccLocalPath4 = ViewModel
+		SccProjectUniqueName5 = ViewModel.Tests\\ViewModel.Tests.vbproj
+		SccProjectName5 = ViewModel.Tests
+		SccLocalPath5 = ViewModel.Tests
+		SccProjectUniqueName6 = View.IntegrationTest\\View.IntegrationTest.vbproj
+		SccProjectName6 = View.IntegrationTest
+		SccLocalPath6 = View.IntegrationTest
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{651F7F0C-936B-4713-BD88-1E8075AE16B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{651F7F0C-936B-4713-BD88-1E8075AE16B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{651F7F0C-936B-4713-BD88-1E8075AE16B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{651F7F0C-936B-4713-BD88-1E8075AE16B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{754227CF-2288-4008-A461-A824160CDD57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{754227CF-2288-4008-A461-A824160CDD57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{754227CF-2288-4008-A461-A824160CDD57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{754227CF-2288-4008-A461-A824160CDD57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3371A9E-1852-482B-96A7-F7832B8E6889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3371A9E-1852-482B-96A7-F7832B8E6889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3371A9E-1852-482B-96A7-F7832B8E6889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3371A9E-1852-482B-96A7-F7832B8E6889}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EC0C22C-1A79-432B-9AD6-C463D76125DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EC0C22C-1A79-432B-9AD6-C463D76125DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EC0C22C-1A79-432B-9AD6-C463D76125DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EC0C22C-1A79-432B-9AD6-C463D76125DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACCFE1EE-417A-499D-88E3-87554FF2C08A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACCFE1EE-417A-499D-88E3-87554FF2C08A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACCFE1EE-417A-499D-88E3-87554FF2C08A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACCFE1EE-417A-499D-88E3-87554FF2C08A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{456701D5-0D6A-43BD-A090-0EA3392681D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{456701D5-0D6A-43BD-A090-0EA3392681D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{456701D5-0D6A-43BD-A090-0EA3392681D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{456701D5-0D6A-43BD-A090-0EA3392681D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		ObjectiFSystem = C:\temp\Temper
+	EndGlobalSection
+EndGlobal
