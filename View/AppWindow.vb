@@ -67,7 +67,7 @@ Public Class AppWindow
         MatchListView.Items.Clear()
 
         For Each match In Me.ViewModel.Tournament.MatchManager.GetMatches()
-            MatchListView.Items.Add(New MatchListViewItem(match))
+            DirectCast(MatchListView.Items.Add(New MatchListViewItem(match)), MatchListViewItem).RefreshNumber()
         Next match
     End Sub
 

@@ -38,6 +38,7 @@
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AppWindow))
         Me.AppTabControl = New System.Windows.Forms.TabControl()
         Me.TeamsTabPage = New System.Windows.Forms.TabPage()
+        Me.TeamsScreenContent = New POFF.Kicker.View.Screens.TeamsScreen()
         Me.MatchesTabPage = New System.Windows.Forms.TabPage()
         Me.MatchListView = New System.Windows.Forms.ListView()
         Me.MatchStatusColumnHeader = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -57,11 +58,11 @@
         Me.TournamentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewTeamToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CreatePlaylistToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TeamsScreenContent = New POFF.Kicker.View.Screens.TeamsScreen()
+        Me.MatchNumberColumnHeader = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.AppTabControl.SuspendLayout()
         Me.TeamsTabPage.SuspendLayout()
         Me.MatchesTabPage.SuspendLayout()
@@ -90,26 +91,34 @@
         Me.TeamsTabPage.TabIndex = 0
         Me.TeamsTabPage.Text = "Mannschaften"
         '
+        'TeamsScreenContent
+        '
+        Me.TeamsScreenContent.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TeamsScreenContent.Location = New System.Drawing.Point(0, 0)
+        Me.TeamsScreenContent.Name = "TeamsScreenContent"
+        Me.TeamsScreenContent.Size = New System.Drawing.Size(656, 298)
+        Me.TeamsScreenContent.TabIndex = 0
+        '
         'MatchesTabPage
         '
         Me.MatchesTabPage.Controls.Add(Me.MatchListView)
-        Me.MatchesTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.MatchesTabPage.Location = New System.Drawing.Point(4, 27)
         Me.MatchesTabPage.Name = "MatchesTabPage"
-        Me.MatchesTabPage.Size = New System.Drawing.Size(656, 303)
+        Me.MatchesTabPage.Size = New System.Drawing.Size(656, 298)
         Me.MatchesTabPage.TabIndex = 1
         Me.MatchesTabPage.Text = "Spiele"
         '
         'MatchListView
         '
         Me.MatchListView.BackColor = System.Drawing.Color.LightSteelBlue
-        Me.MatchListView.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.MatchStatusColumnHeader, Me.Team1ColumnHeader, Me.Team2ColumnHeader, Me.ResultColumnHeader})
+        Me.MatchListView.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.MatchStatusColumnHeader, Me.MatchNumberColumnHeader, Me.Team1ColumnHeader, Me.Team2ColumnHeader, Me.ResultColumnHeader})
         Me.MatchListView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.MatchListView.FullRowSelect = True
         Me.MatchListView.HideSelection = False
         Me.MatchListView.HoverSelection = True
         Me.MatchListView.Location = New System.Drawing.Point(0, 0)
         Me.MatchListView.Name = "MatchListView"
-        Me.MatchListView.Size = New System.Drawing.Size(656, 303)
+        Me.MatchListView.Size = New System.Drawing.Size(656, 298)
         Me.MatchListView.SmallImageList = Me.MatchImageList
         Me.MatchListView.TabIndex = 2
         Me.MatchListView.UseCompatibleStateImageBehavior = False
@@ -230,6 +239,14 @@
         Me.CreatePlaylistToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.CreatePlaylistToolStripMenuItem.Text = "Spiel&plan erstellen"
         '
+        'CopyToolStripMenuItem
+        '
+        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
+        Me.CopyToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.CopyToolStripMenuItem.Text = "Kopieren (HTML)"
+        '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
@@ -248,21 +265,9 @@
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExitToolStripMenuItem.Text = "Be&enden"
         '
-        'CopyToolStripMenuItem
+        'MatchNumberColumnHeader
         '
-        Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
-        Me.CopyToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
-            Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
-        Me.CopyToolStripMenuItem.Text = "Kopieren (HTML)"
-        '
-        'TeamsScreenContent
-        '
-        Me.TeamsScreenContent.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TeamsScreenContent.Location = New System.Drawing.Point(0, 0)
-        Me.TeamsScreenContent.Name = "TeamsScreenContent"
-        Me.TeamsScreenContent.Size = New System.Drawing.Size(656, 298)
-        Me.TeamsScreenContent.TabIndex = 0
+        Me.MatchNumberColumnHeader.Text = "N°"
         '
         'AppWindow
         '
@@ -293,4 +298,5 @@
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TeamsScreenContent As POFF.Kicker.View.Screens.TeamsScreen
     Friend WithEvents CopyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MatchNumberColumnHeader As ColumnHeader
 End Class

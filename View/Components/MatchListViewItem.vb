@@ -7,6 +7,7 @@ Namespace Components
 
         Public Sub New(ByVal match As Match)
             MyBase.New("", match.Status)
+            Me.SubItems.Add("?")
             Me.SubItems.Add(match.Team1.Name)
             Me.SubItems.Add(match.Team2.Name)
             Me.SubItems.Add(match.Result.ToString)
@@ -20,6 +21,10 @@ Namespace Components
                 Return MatchValue
             End Get
         End Property
+
+        Friend Sub RefreshNumber()
+            SubItems(1).Text = $"{Index + 1}"
+        End Sub
 
     End Class
 
