@@ -1,7 +1,7 @@
 Public Class Standing
     Implements IComparable
 
-    Public Sub New(ByVal team As Team)
+    Public Sub New(team As Team)
         Me.Team = team
     End Sub
 
@@ -13,7 +13,7 @@ Public Class Standing
     Public Property MatchCount As Integer
     Public Property WonSetCount As Integer
 
-    Public Function CompareTo(ByVal obj As Object) As Integer Implements System.IComparable.CompareTo
+    Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
         Dim standing As Standing = CType(obj, Standing)
 
         If Me.Points <> standing.Points Then Return standing.Points.CompareTo(Points)
@@ -24,7 +24,7 @@ Public Class Standing
         Return 0
     End Function
 
-    Public Overloads Function Equals(ByVal obj As Team) As Boolean
+    Public Overloads Function Equals(obj As Team) As Boolean
         Return CType(obj, Team).Equals(Team)
     End Function
 

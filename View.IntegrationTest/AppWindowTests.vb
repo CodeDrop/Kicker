@@ -1,6 +1,4 @@
-﻿Imports System.Text
-Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports TestStack.White
+﻿Imports TestStack.White
 Imports TestStack.White.Factory
 Imports TestStack.White.UIItems
 Imports TestStack.White.UIItems.Finders

@@ -1,7 +1,4 @@
-﻿Imports System.Text
-Imports Microsoft.VisualStudio.TestTools.UnitTesting
-
-<TestClass()>
+﻿<TestClass()>
 Public Class MatchTests
 
     <TestMethod()>

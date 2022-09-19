@@ -1,7 +1,4 @@
-﻿Imports System.Text
-Imports Microsoft.VisualStudio.TestTools.UnitTesting
-
-<TestClass()> _
+﻿<TestClass()> _
 Public Class SetResultTests
 
     <TestMethod()> _

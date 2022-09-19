@@ -28,11 +28,11 @@ Public Class AppWindow
 
     Private ReadOnly ViewModel As AppWindowViewModel
 
-    Private Sub AppWindow_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub AppWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateGui()
     End Sub
 
-    Private Sub NewTeamMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NewTeamToolStripMenuItem.Click
+    Private Sub NewTeamMenuItem_Click(sender As Object, e As EventArgs) Handles NewTeamToolStripMenuItem.Click
         SwitchToTab(TeamsTabPage)                   ' Switch to teams tab
 
         ' Ask user for acknoledge, if there are already matches played
@@ -46,14 +46,14 @@ Public Class AppWindow
         End With
     End Sub
 
-    Private Sub CreateAgendaMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CreatePlaylistToolStripMenuItem.Click
+    Private Sub CreateAgendaMenuItem_Click(sender As Object, e As EventArgs) Handles CreatePlaylistToolStripMenuItem.Click
         SwitchToTab(MatchesTabPage)                 ' Show matches tab page
 
         ' Ask user for acknoledge, if there are already matches played
         If CheckDeleteResults("Die Ergebnisse der bereits durchgeführten Spiele{0}werden gelöscht, wenn Sie den Spielplan neu erstellen.{0}{0}Wollen Sie die Ergebnisse verwerfen und den Spielplan erstellen?", vbCrLf) = DialogResult.No Then Return
 
         ' Generate match list 
-        ViewModel.Tournament.MatchManager.Generate(ViewModel.Tournament.GetTeams())
+        ViewModel.Tournament.Start()
         UpdateMatchList()
         UpdateStandingList()
     End Sub
@@ -69,6 +69,9 @@ Public Class AppWindow
         For Each match In Me.ViewModel.Tournament.MatchManager.GetMatches()
             DirectCast(MatchListView.Items.Add(New MatchListViewItem(match)), MatchListViewItem).RefreshNumber()
         Next match
+
+        TotalMatchesCountToolStripStatusLabel.Text = ViewModel.Tournament.TotalMatchCount.ToString()
+        PlayedMatchesCountToolStripStatusLabel.Text = ViewModel.Tournament.PlayedMatchCount().ToString()
     End Sub
 
     Private Sub UpdateStandingList()
@@ -78,7 +81,7 @@ Public Class AppWindow
         Next standing
     End Sub
 
-    Private Sub MatchListView_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles MatchListView.DoubleClick
+    Private Sub MatchListView_DoubleClick(sender As Object, e As EventArgs) Handles MatchListView.DoubleClick
         If Not MatchListView.SelectedItems.Count = 1 Then Return
 
         Dim match As Match = CType(MatchListView.SelectedItems(0), MatchListViewItem).Match
@@ -91,31 +94,31 @@ Public Class AppWindow
         End With
     End Sub
 
-    Private Sub ShowInformation(ByVal text As String)
+    Private Sub ShowInformation(text As String)
         ShowInformation("{0}", text)
     End Sub
 
-    Private Sub ShowInformation(ByVal format As String, ByVal ParamArray args As Object())
+    Private Sub ShowInformation(format As String, ParamArray args As Object())
         Dim message As String = String.Format(format, args)
         MessageBox.Show(message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
-    Private Function ShowQuestion(ByVal text As String) As DialogResult
+    Private Function ShowQuestion(text As String) As DialogResult
         Return ShowQuestion("{0}", text)
     End Function
 
-    Private Function ShowQuestion(ByVal format As String, ByVal ParamArray args As Object()) As DialogResult
+    Private Function ShowQuestion(format As String, ParamArray args As Object()) As DialogResult
         Return MessageBox.Show(String.Format(format, args), Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
     End Function
 
-    Private Function CheckDeleteResults(ByVal format As String, ByVal ParamArray args As Object()) As DialogResult
+    Private Function CheckDeleteResults(format As String, ParamArray args As Object()) As DialogResult
         Dim finishedMatchCount As Integer = ViewModel.Tournament.MatchManager.GetMatches(MatchStatus.Finished).Length
 
         If finishedMatchCount > 0 Then Return ShowQuestion(format, args)
         Return DialogResult.Yes
     End Function
 
-    Private Sub SwitchToTab(ByVal tabPage As TabPage)
+    Private Sub SwitchToTab(tabPage As TabPage)
         AppTabControl.SelectedTab = tabPage
         AppTabControl.Refresh()
     End Sub

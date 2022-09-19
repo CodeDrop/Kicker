@@ -1,7 +1,4 @@
-﻿Imports System.Text
-Imports Microsoft.VisualStudio.TestTools.UnitTesting
-
-<TestClass()> Public Class TournamentTests
+﻿<TestClass()> Public Class TournamentTests
 
     <TestMethod()> Public Sub TournamentTest()
         ' Arrange

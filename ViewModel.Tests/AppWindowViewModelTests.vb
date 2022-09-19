@@ -1,6 +1,4 @@
-﻿Imports System.Text
-Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports POFF.Kicker.ViewModel.Screens
+﻿Imports POFF.Kicker.ViewModel.Screens
 
 <TestClass()> Public Class AppWindowViewModelTests
 

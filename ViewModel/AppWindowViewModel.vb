@@ -7,7 +7,7 @@ Public Class AppWindowViewModel
     Inherits ViewModelBase
 
     Private Sub New()
-        TournamentValue = New Model.Tournament()
+        TournamentValue = New Tournament()
         TeamsScreenValue = New TeamsScreenViewModel(TournamentValue)
     End Sub
 
@@ -27,7 +27,7 @@ Public Class AppWindowViewModel
         End Get
     End Property
 
-    Private TournamentValue As Model.Tournament
+    Private TournamentValue As Tournament
     Public ReadOnly Property Tournament As Tournament
         Get
             Return TournamentValue

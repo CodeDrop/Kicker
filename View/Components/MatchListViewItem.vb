@@ -5,7 +5,7 @@ Namespace Components
     Public Class MatchListViewItem
         Inherits ListViewItem
 
-        Public Sub New(ByVal match As Match)
+        Public Sub New(match As Match)
             MyBase.New("", match.Status)
             Me.SubItems.Add("?")
             Me.SubItems.Add(match.Team1.Name)

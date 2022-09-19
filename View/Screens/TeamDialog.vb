@@ -1,16 +1,15 @@
-Imports POFF.Kicker.Model
 Imports POFF.Kicker.ViewModel.Screens
 Imports POFF.Kicker.ViewModel.Types
 
 Namespace Screens
 
     Public Class TeamDialog
-        Inherits System.Windows.Forms.Form
+        Inherits Form
 
 #Region " Windows Form Designer generated code "
 
         'Form overrides dispose to clean up the component list.
-        Protected Overloads Overrides Sub Dispose(ByVal disposing As Boolean)
+        Protected Overloads Overrides Sub Dispose(disposing As Boolean)
             If disposing Then
                 If Not (components Is Nothing) Then
                     components.Dispose()
@@ -25,23 +24,23 @@ Namespace Screens
         'NOTE: The following procedure is required by the Windows Form Designer
         'It can be modified using the Windows Form Designer.  
         'Do not modify it using the code editor.
-        Friend WithEvents Label1 As System.Windows.Forms.Label
-        Friend WithEvents Label2 As System.Windows.Forms.Label
-        Friend WithEvents Label3 As System.Windows.Forms.Label
-        Friend WithEvents TeamTextBox As System.Windows.Forms.TextBox
-        Friend WithEvents Player1TextBox As System.Windows.Forms.TextBox
-        Friend WithEvents Player2TextBox As System.Windows.Forms.TextBox
-        Friend WithEvents AbortButton As System.Windows.Forms.Button
-        Friend WithEvents OKButton As System.Windows.Forms.Button
-        <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
-            Me.TeamTextBox = New System.Windows.Forms.TextBox()
-            Me.Label1 = New System.Windows.Forms.Label()
-            Me.Label2 = New System.Windows.Forms.Label()
-            Me.Player1TextBox = New System.Windows.Forms.TextBox()
-            Me.Label3 = New System.Windows.Forms.Label()
-            Me.Player2TextBox = New System.Windows.Forms.TextBox()
-            Me.AbortButton = New System.Windows.Forms.Button()
-            Me.OKButton = New System.Windows.Forms.Button()
+        Friend WithEvents Label1 As Label
+        Friend WithEvents Label2 As Label
+        Friend WithEvents Label3 As Label
+        Friend WithEvents TeamTextBox As TextBox
+        Friend WithEvents Player1TextBox As TextBox
+        Friend WithEvents Player2TextBox As TextBox
+        Friend WithEvents AbortButton As Button
+        Friend WithEvents OKButton As Button
+        <DebuggerStepThrough()> Private Sub InitializeComponent()
+            Me.TeamTextBox = New TextBox()
+            Me.Label1 = New Label()
+            Me.Label2 = New Label()
+            Me.Player1TextBox = New TextBox()
+            Me.Label3 = New Label()
+            Me.Player2TextBox = New TextBox()
+            Me.AbortButton = New Button()
+            Me.OKButton = New Button()
             Me.SuspendLayout()
             '
             'TeamTextBox
@@ -49,25 +48,25 @@ Namespace Screens
             Me.TeamTextBox.Anchor = ((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                         Or System.Windows.Forms.AnchorStyles.Right)
             Me.TeamTextBox.BackColor = System.Drawing.Color.NavajoWhite
-            Me.TeamTextBox.Location = New System.Drawing.Point(120, 16)
+            Me.TeamTextBox.Location = New Point(120, 16)
             Me.TeamTextBox.Name = "TeamTextBox"
-            Me.TeamTextBox.Size = New System.Drawing.Size(246, 31)
+            Me.TeamTextBox.Size = New Size(246, 31)
             Me.TeamTextBox.TabIndex = 1
             Me.TeamTextBox.Text = ""
             '
             'Label1
             '
-            Me.Label1.Location = New System.Drawing.Point(8, 20)
+            Me.Label1.Location = New Point(8, 20)
             Me.Label1.Name = "Label1"
-            Me.Label1.Size = New System.Drawing.Size(104, 23)
+            Me.Label1.Size = New Size(104, 23)
             Me.Label1.TabIndex = 0
             Me.Label1.Text = "&Mannschaft"
             '
             'Label2
             '
-            Me.Label2.Location = New System.Drawing.Point(8, 68)
+            Me.Label2.Location = New Point(8, 68)
             Me.Label2.Name = "Label2"
-            Me.Label2.Size = New System.Drawing.Size(104, 23)
+            Me.Label2.Size = New Size(104, 23)
             Me.Label2.TabIndex = 2
             Me.Label2.Text = "Spieler &1"
             '
@@ -76,17 +75,17 @@ Namespace Screens
             Me.Player1TextBox.Anchor = ((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                         Or System.Windows.Forms.AnchorStyles.Right)
             Me.Player1TextBox.BackColor = System.Drawing.Color.BlanchedAlmond
-            Me.Player1TextBox.Location = New System.Drawing.Point(120, 64)
+            Me.Player1TextBox.Location = New Point(120, 64)
             Me.Player1TextBox.Name = "Player1TextBox"
-            Me.Player1TextBox.Size = New System.Drawing.Size(246, 31)
+            Me.Player1TextBox.Size = New Size(246, 31)
             Me.Player1TextBox.TabIndex = 3
             Me.Player1TextBox.Text = ""
             '
             'Label3
             '
-            Me.Label3.Location = New System.Drawing.Point(8, 108)
+            Me.Label3.Location = New Point(8, 108)
             Me.Label3.Name = "Label3"
-            Me.Label3.Size = New System.Drawing.Size(104, 23)
+            Me.Label3.Size = New Size(104, 23)
             Me.Label3.TabIndex = 4
             Me.Label3.Text = "Spieler &2"
             '
@@ -95,9 +94,9 @@ Namespace Screens
             Me.Player2TextBox.Anchor = ((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                         Or System.Windows.Forms.AnchorStyles.Right)
             Me.Player2TextBox.BackColor = System.Drawing.Color.BlanchedAlmond
-            Me.Player2TextBox.Location = New System.Drawing.Point(120, 104)
+            Me.Player2TextBox.Location = New Point(120, 104)
             Me.Player2TextBox.Name = "Player2TextBox"
-            Me.Player2TextBox.Size = New System.Drawing.Size(246, 31)
+            Me.Player2TextBox.Size = New Size(246, 31)
             Me.Player2TextBox.TabIndex = 5
             Me.Player2TextBox.Text = ""
             '
@@ -106,9 +105,9 @@ Namespace Screens
             Me.AbortButton.Anchor = (System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right)
             Me.AbortButton.BackColor = System.Drawing.SystemColors.Control
             Me.AbortButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
-            Me.AbortButton.Location = New System.Drawing.Point(272, 150)
+            Me.AbortButton.Location = New Point(272, 150)
             Me.AbortButton.Name = "AbortButton"
-            Me.AbortButton.Size = New System.Drawing.Size(96, 23)
+            Me.AbortButton.Size = New Size(96, 23)
             Me.AbortButton.TabIndex = 7
             Me.AbortButton.Text = "Abbre&chen"
             '
@@ -117,21 +116,21 @@ Namespace Screens
             Me.OKButton.Anchor = (System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right)
             Me.OKButton.BackColor = System.Drawing.SystemColors.Control
             Me.OKButton.DialogResult = System.Windows.Forms.DialogResult.OK
-            Me.OKButton.Location = New System.Drawing.Point(168, 150)
+            Me.OKButton.Location = New Point(168, 150)
             Me.OKButton.Name = "OKButton"
-            Me.OKButton.Size = New System.Drawing.Size(96, 23)
+            Me.OKButton.Size = New Size(96, 23)
             Me.OKButton.TabIndex = 6
             Me.OKButton.Text = "&OK"
             '
             'TeamDialog
             '
             Me.AcceptButton = Me.OKButton
-            Me.AutoScaleBaseSize = New System.Drawing.Size(8, 24)
+            Me.AutoScaleBaseSize = New Size(8, 24)
             Me.CancelButton = Me.AbortButton
-            Me.ClientSize = New System.Drawing.Size(378, 182)
+            Me.ClientSize = New Size(378, 182)
             Me.ControlBox = False
-            Me.Controls.AddRange(New System.Windows.Forms.Control() {Me.AbortButton, Me.OKButton, Me.Label3, Me.Player2TextBox, Me.Label2, Me.Player1TextBox, Me.Label1, Me.TeamTextBox})
-            Me.Font = New System.Drawing.Font("Lucida Sans Unicode", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+            Me.Controls.AddRange(New Control() {Me.AbortButton, Me.OKButton, Me.Label3, Me.Player2TextBox, Me.Label2, Me.Player1TextBox, Me.Label1, Me.TeamTextBox})
+            Me.Font = New Font("Lucida Sans Unicode", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
             Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
             Me.Name = "TeamDialog"
             Me.ShowInTaskbar = False
@@ -142,7 +141,7 @@ Namespace Screens
 
 #End Region
 
-        Public Sub New(ByVal team As TeamInfo)
+        Public Sub New(team As TeamInfo)
 
             'This call is required by the Windows Form Designer.
             InitializeComponent()

@@ -5,7 +5,7 @@ Namespace Components
     Public Class TeamListViewItem
         Inherits ListViewItem
 
-        Public Sub New(ByVal team As Team)
+        Public Sub New(team As Team)
             MyBase.New("0")
             Me.SubItems.Add(team.Name)
             Me.SubItems.Add(team.Player1)

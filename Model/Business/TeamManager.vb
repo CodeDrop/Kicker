@@ -1,6 +1,3 @@
-Imports System.Xml.Serialization
-Imports POFF.Kicker.Model
-
 Public Class TeamManager
 
     Public Sub New()
@@ -13,7 +10,7 @@ Public Class TeamManager
         Return New Team(Teams.Length + 1)
     End Function
 
-    Public Sub AddTeam(ByVal team As Team)
+    Public Sub AddTeam(team As Team)
         Dim index As Integer
 
         index = Teams.Length
@@ -21,7 +18,7 @@ Public Class TeamManager
         Teams(index) = team
     End Sub
 
-    Public Sub RemoveTeam(ByVal teamToRemove As Team)
+    Public Sub RemoveTeam(teamToRemove As Team)
         Dim index As Integer
 
         For Each team In Teams

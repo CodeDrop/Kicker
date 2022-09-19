@@ -22,23 +22,23 @@ Namespace Screens
 
         Private ReadOnly ViewModel As TeamsScreenViewModel
 
-        Private Sub TeamsDataGridView_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles TeamsDataGridView.DoubleClick
+        Private Sub TeamsDataGridView_DoubleClick(sender As Object, e As EventArgs) Handles TeamsDataGridView.DoubleClick
             With TeamsDataGridView.SelectedRows
                 If .Count > 0 Then EditTeam(CType(.Item(0).DataBoundItem, Team))
             End With
         End Sub
 
-        Private Sub TeamContextMenu_Popup(ByVal sender As Object, ByVal e As System.EventArgs) Handles TeamContextMenuStrip.Opening
+        Private Sub TeamContextMenu_Popup(sender As Object, e As EventArgs) Handles TeamContextMenuStrip.Opening
             DeleteTeamMenuItem.Enabled = TeamsDataGridView.SelectedRows.Count > 0
         End Sub
 
-        Private Sub DeleteTeamMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteTeamMenuItem.Click
+        Private Sub DeleteTeamMenuItem_Click(sender As System.Object, e As EventArgs) Handles DeleteTeamMenuItem.Click
             With TeamsDataGridView.SelectedRows
                 If .Count > 0 Then ViewModel.RemoveTeam(CType(.Item(0).DataBoundItem, Team))
             End With
         End Sub
 
-        Private Sub EditTeam(ByVal team As Team)
+        Private Sub EditTeam(team As Team)
             Using dialog = New TeamDialog(New TeamInfo(team))
                 dialog.ShowDialog(Me)
             End Using

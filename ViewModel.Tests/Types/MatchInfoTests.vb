@@ -1,6 +1,4 @@
-﻿Imports System.Text
-Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports POFF.Kicker.Model
+﻿Imports POFF.Kicker.Model
 
 <TestClass()> Public Class MatchInfoTests
 

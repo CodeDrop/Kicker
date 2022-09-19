@@ -6,7 +6,7 @@ Namespace Screens
 
     Public Class ResultDialogViewModel
 
-        Public Sub New(ByVal match As Match)
+        Public Sub New(match As Match)
             If match Is Nothing Then Throw New ArgumentNullException("match")
 
             Team1Value = match.Team1.Name

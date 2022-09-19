@@ -2,7 +2,7 @@ Imports System.Xml.Serialization
 
 Friend Class Database
 
-    Public Shared Function Load(ByVal type As System.Type) As Object
+    Public Shared Function Load(type As Type) As Object
         If Not IO.File.Exists(GetDataFileName(type)) Then Return Nothing
 
         Dim reader = New IO.StreamReader(GetDataFileName(type))
@@ -15,7 +15,7 @@ Friend Class Database
         End Try
     End Function
 
-    Public Shared Sub Save(ByVal type As System.Type, ByVal data As Object)
+    Public Shared Sub Save(type As Type, data As Object)
         Dim writer = New IO.StreamWriter(GetDataFileName(type), False)
 
         Try
@@ -26,7 +26,7 @@ Friend Class Database
         End Try
     End Sub
 
-    Private Shared Function GetDataFileName(ByVal type As System.Type) As String
+    Private Shared Function GetDataFileName(type As Type) As String
         Return String.Format(".\{0}.xml", type.Name)
     End Function
 

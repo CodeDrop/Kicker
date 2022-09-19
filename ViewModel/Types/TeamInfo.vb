@@ -41,7 +41,7 @@ Namespace Types
             Get
                 Return Current.Name
             End Get
-            Set(ByVal value As String)
+            Set(value As String)
                 If value = Current.Name Then Return
                 Current.Name = value
                 OnPropertyChanged()
@@ -52,7 +52,7 @@ Namespace Types
             Get
                 Return Current.Player1
             End Get
-            Set(ByVal value As String)
+            Set(value As String)
                 If value = Current.Player1 Then Return
                 Current.Player1 = value
                 OnPropertyChanged()
@@ -64,7 +64,7 @@ Namespace Types
             Get
                 Return Current.Player2
             End Get
-            Set(ByVal value As String)
+            Set(value As String)
                 If value = Current.Player2 Then Return
                 Current.Player2 = value
                 OnPropertyChanged()

@@ -5,7 +5,7 @@ Public Class Team
         ' Default constructor needed for serialization
     End Sub
 
-    Public Sub New(ByVal number As Integer)
+    Public Sub New(number As Integer)
         Name = String.Format("Team N°{0}", number)
     End Sub
 

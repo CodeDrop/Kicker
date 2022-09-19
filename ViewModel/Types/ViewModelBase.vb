@@ -1,7 +1,4 @@
-﻿Imports System.ComponentModel
-Imports System.Runtime.CompilerServices
-
-Namespace Types
+﻿Namespace Types
 
     Public Class ViewModelBase
         Inherits notificationObject

@@ -5,7 +5,7 @@ Namespace Components
     Public Class StandingListViewItem
         Inherits ListViewItem
 
-        Public Sub New(ByVal standing As Standing)
+        Public Sub New(standing As Standing)
             MyBase.New(standing.Place.ToString)
             With standing
                 Me.SubItems.Add(.Team.Name)

@@ -3,7 +3,7 @@ Public Class Result
 
     Public SetResults(-1) As SetResult
 
-    Public Sub AddSetResult(ByVal setResult As SetResult)
+    Public Sub AddSetResult(setResult As SetResult)
         If setResult Is Nothing Then Throw New ArgumentNullException("setResultRow")
 
         Dim goalCount1, goalCount2 As Integer
@@ -24,7 +24,7 @@ Public Class Result
     Public Overrides Function ToString() As String
         If SetResults.Length = 0 Then Return ""
 
-        Dim resultString = New System.Text.StringBuilder()
+        Dim resultString = New Text.StringBuilder()
 
         For Each setResult In SetResults
             resultString.AppendFormat("/{0}", setResult)

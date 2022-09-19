@@ -8,11 +8,17 @@ Public Class MatchManager
 
     Private Matches(-1) As Match
 
+    Public ReadOnly Property TotalMatchCount
+        Get
+            Return Matches.Length
+        End Get
+    End Property
+
     Public Sub Clear()
         ReDim Matches(-1)
     End Sub
 
-    Public Sub Generate(ByVal teams As Team())
+    Public Sub Generate(teams As Team())
         If teams Is Nothing Then Return
 
         Dim startIndex As Integer
@@ -63,7 +69,7 @@ Public Class MatchManager
     End Function
 
     ' Get matches depending on running status
-    Public Function GetMatches(ByVal matchStatus As MatchStatus) As Match()
+    Public Function GetMatches(matchStatus As MatchStatus) As Match()
         Dim matchesInStatus = New List(Of Match)
 
         For index = 0 To Matches.Length - 1
@@ -75,17 +81,17 @@ Public Class MatchManager
         Return matchesInStatus.ToArray()
     End Function
 
-    Public Sub SetStatus(ByVal matchNo As Integer, ByVal result As Result)
+    Public Sub SetStatus(matchNo As Integer, result As Result)
         SetStatus(matchNo, MatchStatus.Finished)
         Matches(matchNo - 1).Result = result
     End Sub
 
-    Private Sub SetStatus(ByVal matchNo As Integer, ByVal matchStatus As MatchStatus)
+    Private Sub SetStatus(matchNo As Integer, matchStatus As MatchStatus)
         If matchNo < 1 Or matchNo > Matches.Length Then Throw New IndexOutOfRangeException("matchNo may only have values between 1 and number of matches")
         Matches(matchNo - 1).Status = matchStatus
     End Sub
 
-    Private Sub FindNextSectionMatch(ByVal startIndex As Integer, ByVal groupCount As Integer)
+    Private Sub FindNextSectionMatch(startIndex As Integer, groupCount As Integer)
         Dim team1Index, team2Index As Integer ' "real" index culculated from "circular" index (identical while cIndex<length)
 
         For team1CIndex = startIndex To startIndex + groupCount - 2
@@ -104,7 +110,7 @@ Public Class MatchManager
         Next team1CIndex
     End Sub
 
-    Private Function GetTeamIndex(ByVal teams As Team(), ByVal circularIndex As Integer) As Integer
+    Private Function GetTeamIndex(teams As Team(), circularIndex As Integer) As Integer
         Dim index As Integer = circularIndex
 
         Do While Not index < teams.Length
@@ -114,7 +120,7 @@ Public Class MatchManager
         Return index
     End Function
 
-    Private Function MatchExists(ByVal team1Index As Integer, ByVal team2Index As Integer) As Boolean
+    Private Function MatchExists(team1Index As Integer, team2Index As Integer) As Boolean
         For Each item In Matches
             If (Teams(team1Index).Equals(item.Team1) And Teams(team2Index).Equals(item.Team2)) _
                Or

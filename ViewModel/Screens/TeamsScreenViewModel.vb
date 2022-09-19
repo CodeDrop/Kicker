@@ -37,7 +37,7 @@ Namespace Screens
             Get
                 Return ConfirmationMessageHandlerValue
             End Get
-            Set(ByVal value As IConfirmationMessage)
+            Set(value As IConfirmationMessage)
                 If value Is Nothing Then Throw New ArgumentException("ConfirmationMessageHandler must not be null")
                 ConfirmationMessageHandlerValue = value
             End Set

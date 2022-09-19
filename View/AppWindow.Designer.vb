@@ -42,6 +42,7 @@
         Me.MatchesTabPage = New System.Windows.Forms.TabPage()
         Me.MatchListView = New System.Windows.Forms.ListView()
         Me.MatchStatusColumnHeader = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.MatchNumberColumnHeader = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Team1ColumnHeader = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Team2ColumnHeader = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ResultColumnHeader = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -60,14 +61,20 @@
         Me.CreatePlaylistToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AppToolStripMenuItem = New System.Windows.Forms.ToolStripSeparator()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MatchNumberColumnHeader = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.AppStatusStrip = New System.Windows.Forms.StatusStrip()
+        Me.SpacerStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.TotalMatchesToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.TotalMatchesCountToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.PlayedMatchesToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.PlayedMatchesCountToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.AppTabControl.SuspendLayout()
         Me.TeamsTabPage.SuspendLayout()
         Me.MatchesTabPage.SuspendLayout()
         Me.ResultsTabPage.SuspendLayout()
         Me.AppMainMenuStrip.SuspendLayout()
+        Me.AppStatusStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'AppTabControl
@@ -102,9 +109,9 @@
         'MatchesTabPage
         '
         Me.MatchesTabPage.Controls.Add(Me.MatchListView)
-        Me.MatchesTabPage.Location = New System.Drawing.Point(4, 27)
+        Me.MatchesTabPage.Location = New System.Drawing.Point(4, 22)
         Me.MatchesTabPage.Name = "MatchesTabPage"
-        Me.MatchesTabPage.Size = New System.Drawing.Size(656, 298)
+        Me.MatchesTabPage.Size = New System.Drawing.Size(656, 303)
         Me.MatchesTabPage.TabIndex = 1
         Me.MatchesTabPage.Text = "Spiele"
         '
@@ -118,7 +125,7 @@
         Me.MatchListView.HoverSelection = True
         Me.MatchListView.Location = New System.Drawing.Point(0, 0)
         Me.MatchListView.Name = "MatchListView"
-        Me.MatchListView.Size = New System.Drawing.Size(656, 298)
+        Me.MatchListView.Size = New System.Drawing.Size(656, 303)
         Me.MatchListView.SmallImageList = Me.MatchImageList
         Me.MatchListView.TabIndex = 2
         Me.MatchListView.UseCompatibleStateImageBehavior = False
@@ -128,6 +135,10 @@
         '
         Me.MatchStatusColumnHeader.Text = ""
         Me.MatchStatusColumnHeader.Width = 50
+        '
+        'MatchNumberColumnHeader
+        '
+        Me.MatchNumberColumnHeader.Text = "N°"
         '
         'Team1ColumnHeader
         '
@@ -220,7 +231,7 @@
         '
         'TournamentToolStripMenuItem
         '
-        Me.TournamentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewTeamToolStripMenuItem, Me.CreatePlaylistToolStripMenuItem, Me.CopyToolStripMenuItem, Me.SaveToolStripMenuItem, Me.ToolStripMenuItem1, Me.ExitToolStripMenuItem})
+        Me.TournamentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewTeamToolStripMenuItem, Me.CreatePlaylistToolStripMenuItem, Me.CopyToolStripMenuItem, Me.SaveToolStripMenuItem, Me.AppToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.TournamentToolStripMenuItem.Name = "TournamentToolStripMenuItem"
         Me.TournamentToolStripMenuItem.Size = New System.Drawing.Size(56, 20)
         Me.TournamentToolStripMenuItem.Text = "&Turnier"
@@ -254,10 +265,10 @@
         Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.SaveToolStripMenuItem.Text = "&Speichern"
         '
-        'ToolStripMenuItem1
+        'AppToolStripMenuItem
         '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(288, 6)
+        Me.AppToolStripMenuItem.Name = "AppToolStripMenuItem"
+        Me.AppToolStripMenuItem.Size = New System.Drawing.Size(288, 6)
         '
         'ExitToolStripMenuItem
         '
@@ -265,14 +276,51 @@
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExitToolStripMenuItem.Text = "Be&enden"
         '
-        'MatchNumberColumnHeader
+        'AppStatusStrip
         '
-        Me.MatchNumberColumnHeader.Text = "N°"
+        Me.AppStatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SpacerStripStatusLabel, Me.TotalMatchesToolStripStatusLabel, Me.TotalMatchesCountToolStripStatusLabel, Me.PlayedMatchesToolStripStatusLabel, Me.PlayedMatchesCountToolStripStatusLabel})
+        Me.AppStatusStrip.Location = New System.Drawing.Point(0, 331)
+        Me.AppStatusStrip.Name = "AppStatusStrip"
+        Me.AppStatusStrip.Size = New System.Drawing.Size(664, 22)
+        Me.AppStatusStrip.TabIndex = 2
+        Me.AppStatusStrip.Text = "StatusStrip1"
+        '
+        'SpacerStripStatusLabel
+        '
+        Me.SpacerStripStatusLabel.Name = "SpacerStripStatusLabel"
+        Me.SpacerStripStatusLabel.Size = New System.Drawing.Size(505, 17)
+        Me.SpacerStripStatusLabel.Spring = True
+        '
+        'TotalMatchesToolStripStatusLabel
+        '
+        Me.TotalMatchesToolStripStatusLabel.Name = "TotalMatchesToolStripStatusLabel"
+        Me.TotalMatchesToolStripStatusLabel.Size = New System.Drawing.Size(41, 17)
+        Me.TotalMatchesToolStripStatusLabel.Text = "Spiele:"
+        '
+        'TotalMatchesCountToolStripStatusLabel
+        '
+        Me.TotalMatchesCountToolStripStatusLabel.Name = "TotalMatchesCountToolStripStatusLabel"
+        Me.TotalMatchesCountToolStripStatusLabel.Size = New System.Drawing.Size(10, 17)
+        Me.TotalMatchesCountToolStripStatusLabel.Text = "."
+        '
+        'PlayedMatchesToolStripStatusLabel
+        '
+        Me.PlayedMatchesToolStripStatusLabel.Name = "PlayedMatchesToolStripStatusLabel"
+        Me.PlayedMatchesToolStripStatusLabel.Size = New System.Drawing.Size(52, 17)
+        Me.PlayedMatchesToolStripStatusLabel.Text = "Gespielt:"
+        '
+        'PlayedMatchesCountToolStripStatusLabel
+        '
+        Me.PlayedMatchesCountToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner
+        Me.PlayedMatchesCountToolStripStatusLabel.Name = "PlayedMatchesCountToolStripStatusLabel"
+        Me.PlayedMatchesCountToolStripStatusLabel.Size = New System.Drawing.Size(10, 17)
+        Me.PlayedMatchesCountToolStripStatusLabel.Text = "."
         '
         'AppWindow
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(8, 24)
         Me.ClientSize = New System.Drawing.Size(664, 353)
+        Me.Controls.Add(Me.AppStatusStrip)
         Me.Controls.Add(Me.AppTabControl)
         Me.Controls.Add(Me.AppMainMenuStrip)
         Me.Font = New System.Drawing.Font("Lucida Sans Unicode", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -285,6 +333,8 @@
         Me.ResultsTabPage.ResumeLayout(False)
         Me.AppMainMenuStrip.ResumeLayout(False)
         Me.AppMainMenuStrip.PerformLayout()
+        Me.AppStatusStrip.ResumeLayout(False)
+        Me.AppStatusStrip.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -294,9 +344,15 @@
     Friend WithEvents NewTeamToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CreatePlaylistToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents AppToolStripMenuItem As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TeamsScreenContent As POFF.Kicker.View.Screens.TeamsScreen
     Friend WithEvents CopyToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MatchNumberColumnHeader As ColumnHeader
+    Private WithEvents AppStatusStrip As StatusStrip
+    Private WithEvents TotalMatchesToolStripStatusLabel As ToolStripStatusLabel
+    Private WithEvents PlayedMatchesToolStripStatusLabel As ToolStripStatusLabel
+    Private WithEvents SpacerStripStatusLabel As ToolStripStatusLabel
+    Private WithEvents PlayedMatchesCountToolStripStatusLabel As ToolStripStatusLabel
+    Private WithEvents TotalMatchesCountToolStripStatusLabel As ToolStripStatusLabel
 End Class

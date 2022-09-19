@@ -1,8 +1,6 @@
-Imports POFF.Kicker.Model
-
 Public Class StandingManager
 
-    Public Function GetStandings(ByVal finishedMatches As Match()) As Standing()
+    Public Function GetStandings(finishedMatches As Match()) As Standing()
         Dim list = New Dictionary(Of Team, Standing)
         Dim setsWon(-1), points(-1), goals(-1) As Integer
 
