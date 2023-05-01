@@ -11,13 +11,19 @@ Public Class HtmlExport
     Public Overrides Function ToString() As String
         Dim builder As New StringBuilder(My.Resources.HtmlExportTemplate)
 
-        AddStandings(builder)
+        SetSubtitel(builder)
+        SetStandings(builder)
 
         My.Computer.Clipboard.SetText(builder.ToString())
         Return builder.ToString()
     End Function
 
-    Private Sub AddStandings(builder As StringBuilder)
+    Private Sub SetSubtitel(builder As StringBuilder)
+        Dim subtitle = $"Stand {Now:dd.M.yyyy} nach {Tournament.PlayedMatchCount()} von 153 Spielen"
+        builder.Replace("<!-- Stand -->", subtitle)
+    End Sub
+
+    Private Sub SetStandings(builder As StringBuilder)
         Dim standingsBuilder As New StringBuilder()
 
         For Each standing As Standing In Tournament.GetStandings()
@@ -34,4 +40,5 @@ Public Class HtmlExport
 
         builder.Replace("<!-- Tabelle -->", standingsBuilder.ToString())
     End Sub
+
 End Class

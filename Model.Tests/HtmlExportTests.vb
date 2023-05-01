@@ -1,8 +1,10 @@
 ﻿<TestClass()>
 Public Class HtmlExportTests
 
-    <TestMethod>
-    Public Sub ToStringTest()
+    Private Shared Result As String
+
+    <ClassInitialize>
+    Public Shared Sub SetUp(testContext As TestContext)
         ' Arrange
         Dim tournament = New Tournament()
         Dim team1 = New Team(1)
@@ -16,12 +18,27 @@ Public Class HtmlExportTests
         Dim testClass = New HtmlExport(tournament)
 
         ' Act
-        Dim result = testClass.ToString()
+        Result = testClass.ToString()
+    End Sub
 
-        ' Assert
-        StringAssert.StartsWith(result, "{% extends 'base.html.twig' %}")
-        StringAssert.Contains(result, "<h1>Club-Liga")
-        StringAssert.EndsWith(result, "{% endblock %}")
+    <TestMethod>
+    Public Sub HeaderTest()
+        StringAssert.StartsWith(Result, "{% extends 'base.html.twig' %}")
+    End Sub
+
+    <TestMethod>
+    Public Sub FooterTest()
+        StringAssert.Contains(Result, "<h1>Club-Liga")
+    End Sub
+
+    <TestMethod>
+    Public Sub StandTest()
+        StringAssert.EndsWith(Result, "{% endblock %}")
+    End Sub
+
+    <TestMethod>
+    Public Sub SubtitleTest()
+        StringAssert.Contains(Result, " nach 1 von ")
     End Sub
 
 End Class
