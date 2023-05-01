@@ -72,6 +72,7 @@
     <Compile Include="Business\TableManager.vb" />
     <Compile Include="Business\TeamManager.vb" />
     <Compile Include="Data\Database.vb" />
+    <Compile Include="Export\HtmlExport.vb" />
     <Compile Include="Match.vb" />
     <Compile Include="MatchStatus.vb" />
     <Compile Include="Result.vb" />
