@@ -85,6 +85,7 @@
     <Import Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlExportTests.vb" />
     <Compile Include="MatchTests.vb" />
     <Compile Include="ResultTests.vb" />
     <Compile Include="SetResultTests.vb" />
