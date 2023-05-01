@@ -9,6 +9,7 @@ Public Class HtmlExportTests
         Dim tournament = New Tournament()
         Dim team1 = New Team(1)
         Dim team2 = New Team(2)
+        Dim team3 = New Team(3)
         tournament.AddTeam(team1)
         tournament.AddTeam(team2)
         tournament.MatchManager.Generate({team1, team2})
@@ -27,18 +28,28 @@ Public Class HtmlExportTests
     End Sub
 
     <TestMethod>
-    Public Sub FooterTest()
+    Public Sub TitleTest()
         StringAssert.Contains(Result, "<h1>Club-Liga")
-    End Sub
-
-    <TestMethod>
-    Public Sub StandTest()
-        StringAssert.EndsWith(Result, "{% endblock %}")
     End Sub
 
     <TestMethod>
     Public Sub SubtitleTest()
         StringAssert.Contains(Result, " nach 1 von ")
+    End Sub
+
+    <TestMethod>
+    Public Sub StandingTest()
+        StringAssert.Contains(Result, "<td>Team N°1</td>")
+    End Sub
+
+    <TestMethod>
+    Public Sub GamesTest()
+        StringAssert.Contains(Result, "<td>Team N°1</td><td>Team N°2</td><td>5:3</td>")
+    End Sub
+
+    <TestMethod>
+    Public Sub FooterTest()
+        StringAssert.EndsWith(Result, "{% endblock %}")
     End Sub
 
 End Class

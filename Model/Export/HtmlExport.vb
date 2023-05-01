@@ -13,6 +13,7 @@ Public Class HtmlExport
 
         SetSubtitel(builder)
         SetStandings(builder)
+        SetGames(builder)
 
         My.Computer.Clipboard.SetText(builder.ToString())
         Return builder.ToString()
@@ -27,7 +28,7 @@ Public Class HtmlExport
         Dim standingsBuilder As New StringBuilder()
 
         For Each standing As Standing In Tournament.GetStandings()
-            ' <tr><td>1.</td><td>Florian Kapfhammer</td><td>3</td><td class="font-weight-bold">7</td></td><td>10:2</td></tr>
+            ' <tr><td>1.</td><td>Spieler 1</td><td>3</td><td class="font-weight-bold">7</td></td><td>10:2</td></tr>
             standingsBuilder.Append("<tr>")
             standingsBuilder.Append($"<td>{standing.Place}</td>")
             standingsBuilder.Append($"<td>{standing.Team.Name}</td>")
@@ -39,6 +40,23 @@ Public Class HtmlExport
         Next standing
 
         builder.Replace("<!-- Tabelle -->", standingsBuilder.ToString())
+    End Sub
+
+    Private Sub SetGames(builder As StringBuilder)
+        Dim gamesBuilder As New StringBuilder()
+
+        For Each game As Match In Tournament.MatchManager.GetMatches()
+            ' <tr><td>1</td><td>Spieler 1</td><td>Spieler 2</td><td>3:1</td></tr>
+            gamesBuilder.Append("<tr>")
+            gamesBuilder.Append($"<td>{game.Number}</td>")
+            gamesBuilder.Append($"<td>{game.Team1.Name}</td>")
+            gamesBuilder.Append($"<td>{game.Team2.Name}</td>")
+            gamesBuilder.Append($"<td>{game.Result}</td>")
+            gamesBuilder.Append("</tr>")
+            gamesBuilder.Append(Environment.NewLine)
+        Next game
+
+        builder.Replace("<!-- Spiele -->", gamesBuilder.ToString())
     End Sub
 
 End Class
