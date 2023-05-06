@@ -63,6 +63,15 @@ Namespace Screens
                 e.CellStyle.ForeColor = Color.LightGray
             End If
         End Sub
+
+        Private Sub TeamsDataGridView_CellMouseDown(sender As Object, e As DataGridViewCellMouseEventArgs) Handles TeamsDataGridView.CellMouseDown
+            If e.Button = MouseButtons.Right Then
+                With CType(sender, DataGridView)
+                    .ClearSelection()
+                    .Rows(e.RowIndex).Selected = True
+                End With
+            End If
+        End Sub
     End Class
 
 End Namespace

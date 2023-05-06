@@ -26,13 +26,13 @@
         Private Sub InitializeComponent()
             Me.components = New System.ComponentModel.Container()
             Me.TeamsDataGridView = New System.Windows.Forms.DataGridView()
-            Me.TeamContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
-            Me.DeleteTeamMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-            Me.WithdrawTeamMenuItem = New System.Windows.Forms.ToolStripMenuItem()
             Me.TeamNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
             Me.Player1Column = New System.Windows.Forms.DataGridViewTextBoxColumn()
             Me.Player2Column = New System.Windows.Forms.DataGridViewTextBoxColumn()
             Me.Zurückgezogen = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+            Me.TeamContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
+            Me.WithdrawTeamMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+            Me.DeleteTeamMenuItem = New System.Windows.Forms.ToolStripMenuItem()
             CType(Me.TeamsDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
             Me.TeamContextMenuStrip.SuspendLayout()
             Me.SuspendLayout()
@@ -54,25 +54,6 @@
             Me.TeamsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
             Me.TeamsDataGridView.Size = New System.Drawing.Size(492, 282)
             Me.TeamsDataGridView.TabIndex = 2
-            '
-            'TeamContextMenuStrip
-            '
-            Me.TeamContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WithdrawTeamMenuItem, Me.DeleteTeamMenuItem})
-            Me.TeamContextMenuStrip.Name = "TeamContextMenuStrip"
-            Me.TeamContextMenuStrip.Size = New System.Drawing.Size(146, 48)
-            '
-            'DeleteTeamMenuItem
-            '
-            Me.DeleteTeamMenuItem.Name = "DeleteTeamMenuItem"
-            Me.DeleteTeamMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete
-            Me.DeleteTeamMenuItem.Size = New System.Drawing.Size(180, 22)
-            Me.DeleteTeamMenuItem.Text = "Löschen"
-            '
-            'WithdrawTeamMenuItem
-            '
-            Me.WithdrawTeamMenuItem.Name = "WithdrawTeamMenuItem"
-            Me.WithdrawTeamMenuItem.Size = New System.Drawing.Size(180, 22)
-            Me.WithdrawTeamMenuItem.Text = "Zurückziehen"
             '
             'TeamNameColumn
             '
@@ -108,6 +89,25 @@
             Me.Zurückgezogen.Name = "Zurückgezogen"
             Me.Zurückgezogen.ReadOnly = True
             Me.Zurückgezogen.Visible = False
+            '
+            'TeamContextMenuStrip
+            '
+            Me.TeamContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WithdrawTeamMenuItem, Me.DeleteTeamMenuItem})
+            Me.TeamContextMenuStrip.Name = "TeamContextMenuStrip"
+            Me.TeamContextMenuStrip.Size = New System.Drawing.Size(146, 48)
+            '
+            'WithdrawTeamMenuItem
+            '
+            Me.WithdrawTeamMenuItem.Name = "WithdrawTeamMenuItem"
+            Me.WithdrawTeamMenuItem.Size = New System.Drawing.Size(145, 22)
+            Me.WithdrawTeamMenuItem.Text = "Zurückziehen"
+            '
+            'DeleteTeamMenuItem
+            '
+            Me.DeleteTeamMenuItem.Name = "DeleteTeamMenuItem"
+            Me.DeleteTeamMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete
+            Me.DeleteTeamMenuItem.Size = New System.Drawing.Size(145, 22)
+            Me.DeleteTeamMenuItem.Text = "Löschen"
             '
             'TeamsScreen
             '
