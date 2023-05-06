@@ -46,6 +46,7 @@ Public Class HtmlExport
         Dim gamesBuilder As New StringBuilder()
 
         For Each game As Match In Tournament.MatchManager.GetMatches()
+            If game.Team1.Withdrawn Or game.Team2.Withdrawn Then Continue For
             ' <tr><td>1</td><td>Spieler 1</td><td>Spieler 2</td><td>3:1</td></tr>
             gamesBuilder.Append("<tr>")
             gamesBuilder.Append($"<td>{game.Number}</td>")

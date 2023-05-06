@@ -12,6 +12,7 @@ Public Class Team
     Public Property Name As String
     Public Property Player1 As String
     Public Property Player2 As String
+    Public Property Withdrawn As Boolean
 
     Public Overrides Function Equals(obj As Object) As Boolean
         Dim otherTeam As Team = obj
