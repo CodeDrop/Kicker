@@ -18,7 +18,7 @@
 
     Public ReadOnly Property TotalMatchCount As Integer
         Get
-            Return MatchManager.TotalMatchCount
+            Return MatchManager.GetMatches().Count(Function(m) Not ContainsWithdrawnTeam(m))
         End Get
     End Property
 
@@ -57,5 +57,11 @@
         Dim export = New HtmlExport(Me)
         My.Computer.Clipboard.SetText(export.ToString())
     End Sub
+
+    Private Function ContainsWithdrawnTeam(match As Match) As Boolean
+        Dim team1 = GetTeams().Single(Function(t) t.Equals(match.Team1))
+        Dim team2 = GetTeams().Single(Function(t) t.Equals(match.Team2))
+        Return team1.Withdrawn Or team2.Withdrawn
+    End Function
 
 End Class

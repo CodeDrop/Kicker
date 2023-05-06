@@ -8,12 +8,6 @@ Public Class MatchManager
 
     Private Matches(-1) As Match
 
-    Public ReadOnly Property TotalMatchCount
-        Get
-            Return Matches.Count(Function(m) Not (m.Team1.Withdrawn Or m.Team2.Withdrawn))
-        End Get
-    End Property
-
     Public Sub Clear()
         ReDim Matches(-1)
     End Sub
