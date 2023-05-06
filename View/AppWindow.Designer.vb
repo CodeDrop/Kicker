@@ -86,7 +86,7 @@
         Me.AppTabControl.Location = New System.Drawing.Point(0, 24)
         Me.AppTabControl.Name = "AppTabControl"
         Me.AppTabControl.SelectedIndex = 0
-        Me.AppTabControl.Size = New System.Drawing.Size(664, 329)
+        Me.AppTabControl.Size = New System.Drawing.Size(664, 307)
         Me.AppTabControl.TabIndex = 0
         '
         'TeamsTabPage
@@ -109,9 +109,9 @@
         'MatchesTabPage
         '
         Me.MatchesTabPage.Controls.Add(Me.MatchListView)
-        Me.MatchesTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.MatchesTabPage.Location = New System.Drawing.Point(4, 27)
         Me.MatchesTabPage.Name = "MatchesTabPage"
-        Me.MatchesTabPage.Size = New System.Drawing.Size(656, 303)
+        Me.MatchesTabPage.Size = New System.Drawing.Size(656, 298)
         Me.MatchesTabPage.TabIndex = 1
         Me.MatchesTabPage.Text = "Spiele"
         '
@@ -125,7 +125,7 @@
         Me.MatchListView.HoverSelection = True
         Me.MatchListView.Location = New System.Drawing.Point(0, 0)
         Me.MatchListView.Name = "MatchListView"
-        Me.MatchListView.Size = New System.Drawing.Size(656, 303)
+        Me.MatchListView.Size = New System.Drawing.Size(656, 298)
         Me.MatchListView.SmallImageList = Me.MatchImageList
         Me.MatchListView.TabIndex = 2
         Me.MatchListView.UseCompatibleStateImageBehavior = False
@@ -166,9 +166,9 @@
         'ResultsTabPage
         '
         Me.ResultsTabPage.Controls.Add(Me.StandingListView)
-        Me.ResultsTabPage.Location = New System.Drawing.Point(4, 22)
+        Me.ResultsTabPage.Location = New System.Drawing.Point(4, 27)
         Me.ResultsTabPage.Name = "ResultsTabPage"
-        Me.ResultsTabPage.Size = New System.Drawing.Size(656, 303)
+        Me.ResultsTabPage.Size = New System.Drawing.Size(656, 276)
         Me.ResultsTabPage.TabIndex = 2
         Me.ResultsTabPage.Text = "Tabelle"
         '
@@ -183,7 +183,7 @@
         Me.StandingListView.Location = New System.Drawing.Point(0, 0)
         Me.StandingListView.MultiSelect = False
         Me.StandingListView.Name = "StandingListView"
-        Me.StandingListView.Size = New System.Drawing.Size(656, 303)
+        Me.StandingListView.Size = New System.Drawing.Size(656, 276)
         Me.StandingListView.TabIndex = 1
         Me.StandingListView.UseCompatibleStateImageBehavior = False
         Me.StandingListView.View = System.Windows.Forms.View.Details
@@ -240,14 +240,14 @@
         '
         Me.NewTeamToolStripMenuItem.Name = "NewTeamToolStripMenuItem"
         Me.NewTeamToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NewTeamToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.NewTeamToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
         Me.NewTeamToolStripMenuItem.Text = "&Neue Mannschaft"
         '
         'CreatePlaylistToolStripMenuItem
         '
         Me.CreatePlaylistToolStripMenuItem.Name = "CreatePlaylistToolStripMenuItem"
         Me.CreatePlaylistToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5
-        Me.CreatePlaylistToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.CreatePlaylistToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
         Me.CreatePlaylistToolStripMenuItem.Text = "Spiel&plan erstellen"
         '
         'CopyToolStripMenuItem
@@ -255,25 +255,25 @@
         Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
         Me.CopyToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
         Me.CopyToolStripMenuItem.Text = "Kopieren (HTML)"
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
         Me.SaveToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
         Me.SaveToolStripMenuItem.Text = "&Speichern"
         '
         'AppToolStripMenuItem
         '
         Me.AppToolStripMenuItem.Name = "AppToolStripMenuItem"
-        Me.AppToolStripMenuItem.Size = New System.Drawing.Size(288, 6)
+        Me.AppToolStripMenuItem.Size = New System.Drawing.Size(235, 6)
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
         Me.ExitToolStripMenuItem.Text = "Be&enden"
         '
         'AppStatusStrip
@@ -320,9 +320,9 @@
         '
         Me.AutoScaleBaseSize = New System.Drawing.Size(8, 24)
         Me.ClientSize = New System.Drawing.Size(664, 353)
-        Me.Controls.Add(Me.AppStatusStrip)
         Me.Controls.Add(Me.AppTabControl)
         Me.Controls.Add(Me.AppMainMenuStrip)
+        Me.Controls.Add(Me.AppStatusStrip)
         Me.Font = New System.Drawing.Font("Lucida Sans Unicode", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "AppWindow"
