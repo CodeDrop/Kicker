@@ -45,19 +45,25 @@ Public Class HtmlExport
     Private Sub SetGames(builder As StringBuilder)
         Dim gamesBuilder As New StringBuilder()
 
-        For Each game As Match In Tournament.MatchManager.GetMatches()
-            If game.Team1.Withdrawn Or game.Team2.Withdrawn Then Continue For
+        For Each match As Match In Tournament.MatchManager.GetMatches()
+            If ContainsWithdrawnTeam(match) Then Continue For
             ' <tr><td>1</td><td>Spieler 1</td><td>Spieler 2</td><td>3:1</td></tr>
             gamesBuilder.Append("<tr>")
-            gamesBuilder.Append($"<td>{game.Number}</td>")
-            gamesBuilder.Append($"<td>{game.Team1.Name}</td>")
-            gamesBuilder.Append($"<td>{game.Team2.Name}</td>")
-            gamesBuilder.Append($"<td>{game.Result}</td>")
+            gamesBuilder.Append($"<td>{match.Number}</td>")
+            gamesBuilder.Append($"<td>{match.Team1.Name}</td>")
+            gamesBuilder.Append($"<td>{match.Team2.Name}</td>")
+            gamesBuilder.Append($"<td>{match.Result}</td>")
             gamesBuilder.Append("</tr>")
             gamesBuilder.Append(Environment.NewLine)
-        Next game
+        Next match
 
         builder.Replace("<!-- Spiele -->", gamesBuilder.ToString())
     End Sub
+
+    Private Function ContainsWithdrawnTeam(match As Match) As Boolean
+        Dim team1 = Tournament.GetTeams().Single(Function(t) t.Equals(match.Team1))
+        Dim team2 = Tournament.GetTeams().Single(Function(t) t.Equals(match.Team2))
+        Return team1.Withdrawn Or team2.Withdrawn
+    End Function
 
 End Class

@@ -10,7 +10,7 @@ Public Class MatchManager
 
     Public ReadOnly Property TotalMatchCount
         Get
-            Return Matches.Length
+            Return Matches.Count(Function(m) Not (m.Team1.Withdrawn Or m.Team2.Withdrawn))
         End Get
     End Property
 

@@ -1,6 +1,4 @@
-﻿Imports System.Text
-
-Public Class Tournament
+﻿Public Class Tournament
 
     Public Sub New()
         TeamManager = New TeamManager()

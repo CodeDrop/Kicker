@@ -14,6 +14,7 @@ Public Class HtmlExportTests
         Dim team3 = New Team(3) With {.Withdrawn = True}
         tournament.AddTeam(team1)
         tournament.AddTeam(team2)
+        tournament.AddTeam(team3)
         tournament.MatchManager.Generate({team1, team2, team3})
         Dim matchResult = New Result()
         matchResult.AddSetResult(New SetResult() With {.Home = 5, .Guest = 3})
