@@ -10,6 +10,7 @@ Public Class StandingManager
             With finishedMatch
                 If Not list.ContainsKey(.Team1) Then list.Add(.Team1, New Standing(.Team1))
                 If Not list.ContainsKey(.Team2) Then list.Add(.Team2, New Standing(.Team2))
+                If .Team1.Withdrawn Or .Team2.Withdrawn Then Continue For
 
                 For Each setResult In .Result.SetResults
                     Select Case setResult.Home.CompareTo(setResult.Guest)
