@@ -16,11 +16,9 @@
         MatchManager.Generate(GetTeams())
     End Sub
 
-    Public ReadOnly Property TotalMatchCount As Integer
-        Get
-            Return MatchManager.GetMatches().Count(Function(m) Not ContainsWithdrawnTeam(m))
-        End Get
-    End Property
+    Public Function TotalMatchCount() As Integer
+        Return MatchManager.GetMatches().Count(Function(m) Not ContainsWithdrawnTeam(m))
+    End Function
 
     Public Function PlayedMatchCount() As Integer
         Return MatchManager.GetMatches(MatchStatus.Finished).Length

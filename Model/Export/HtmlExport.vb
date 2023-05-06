@@ -20,7 +20,7 @@ Public Class HtmlExport
     End Function
 
     Private Sub SetSubtitel(builder As StringBuilder)
-        Dim subtitle = $"Stand {Now:dd.M.yyyy} nach {Tournament.PlayedMatchCount()} von 153 Spielen"
+        Dim subtitle = $"Stand {Now:dd.M.yyyy} nach {Tournament.PlayedMatchCount()} von {Tournament.TotalMatchCount()} Spielen"
         builder.Replace("<!-- Stand -->", subtitle)
     End Sub
 

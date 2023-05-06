@@ -70,7 +70,7 @@ Public Class AppWindow
             DirectCast(MatchListView.Items.Add(New MatchListViewItem(match)), MatchListViewItem).RefreshNumber()
         Next match
 
-        TotalMatchesCountToolStripStatusLabel.Text = ViewModel.Tournament.TotalMatchCount.ToString()
+        TotalMatchesCountToolStripStatusLabel.Text = ViewModel.Tournament.TotalMatchCount().ToString()
         PlayedMatchesCountToolStripStatusLabel.Text = ViewModel.Tournament.PlayedMatchCount().ToString()
     End Sub
 
