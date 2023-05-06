@@ -29,12 +29,21 @@ Namespace Screens
         End Sub
 
         Private Sub TeamContextMenu_Popup(sender As Object, e As EventArgs) Handles TeamContextMenuStrip.Opening
-            DeleteTeamMenuItem.Enabled = TeamsDataGridView.SelectedRows.Count > 0
+            Dim enabled = TeamsDataGridView.SelectedRows.Count > 0
+            WithdrawTeamMenuItem.Enabled = enabled
+            DeleteTeamMenuItem.Enabled = enabled
         End Sub
 
         Private Sub DeleteTeamMenuItem_Click(sender As System.Object, e As EventArgs) Handles DeleteTeamMenuItem.Click
             With TeamsDataGridView.SelectedRows
                 If .Count > 0 Then ViewModel.RemoveTeam(CType(.Item(0).DataBoundItem, Team))
+            End With
+        End Sub
+
+        Private Sub WithdrawTeamMenuItem_Click(sender As Object, e As EventArgs) Handles WithdrawTeamMenuItem.Click
+            With TeamsDataGridView.SelectedRows
+                If .Count > 0 Then ViewModel.ToggleTeamStatus(CType(.Item(0).DataBoundItem, Team))
+                TeamsDataGridView.Refresh()
             End With
         End Sub
 
@@ -48,6 +57,12 @@ Namespace Screens
             Return MessageBox.Show(Me, message, Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Yes
         End Function
 
+        Private Sub TeamsDataGridView_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles TeamsDataGridView.CellFormatting
+            If ViewModel.Teams.Item(e.RowIndex).Withdrawn Then
+                e.CellStyle.Font = New Font(e.CellStyle.Font, FontStyle.Strikeout)
+                e.CellStyle.ForeColor = Color.LightGray
+            End If
+        End Sub
     End Class
 
 End Namespace

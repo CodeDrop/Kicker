@@ -144,9 +144,6 @@
     <Compile Include="Components\StandingListViewItem.vb">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Components\TeamListViewItem.vb">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Screens\TeamsScreen.Designer.vb">
       <DependentUpon>TeamsScreen.vb</DependentUpon>
     </Compile>

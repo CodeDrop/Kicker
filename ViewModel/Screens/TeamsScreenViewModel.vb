@@ -56,6 +56,9 @@ Namespace Screens
             End If
         End Sub
 
+        Public Sub ToggleTeamStatus(team As Team)
+            team.Withdrawn = Not team.Withdrawn
+        End Sub
 
     End Class
 

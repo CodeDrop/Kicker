@@ -6,8 +6,8 @@ Imports System.Reflection
 <Assembly: AssemblyDescription("Turnierauswertung für Tischfußball")>
 <Assembly: AssemblyCompany("POFF")>
 <Assembly: AssemblyProduct("Kicker")>
-<Assembly: AssemblyCopyright("©2004-2022 Programs Of Free Fantasy")>
+<Assembly: AssemblyCopyright("©2004-2023 Programs Of Free Fantasy")>
 <Assembly: CLSCompliant(True)>
 
-<Assembly: AssemblyVersion("1.0.2.1002")>
+<Assembly: AssemblyVersion("1.1.0.1003")>
 <Assembly: ComVisible(False)>
