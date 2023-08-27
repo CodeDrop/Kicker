@@ -1,4 +1,5 @@
-<Serializable()> _
+<Serializable()>
+<DebuggerDisplay("{Name}")>
 Public Class Team
 
     Public Sub New()

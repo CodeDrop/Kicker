@@ -53,7 +53,8 @@ Public Class AppWindow
         If CheckDeleteResults("Die Ergebnisse der bereits durchgeführten Spiele{0}werden gelöscht, wenn Sie den Spielplan neu erstellen.{0}{0}Wollen Sie die Ergebnisse verwerfen und den Spielplan erstellen?", vbCrLf) = DialogResult.No Then Return
 
         ' Generate match list 
-        ViewModel.Tournament.Start()
+        Dim type = If(OptionMatchDaysToolStripMenuItem.Checked, TournamentType.MatchDays, TournamentType.Standard)
+        ViewModel.Tournament.Start(type)
         UpdateMatchList()
         UpdateStandingList()
     End Sub

@@ -74,6 +74,8 @@
     <Compile Include="Data\Database.vb" />
     <Compile Include="Export\HtmlExport.vb" />
     <Compile Include="Match.vb" />
+    <Compile Include="MatchGenerators\GeneticMatchGenerator.vb" />
+    <Compile Include="MatchGenerators\IMatchGenerator.vb" />
     <Compile Include="MatchStatus.vb" />
     <Compile Include="Result.vb" />
     <Compile Include="SetResult.vb" />
@@ -96,6 +98,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Tournament.vb" />
+    <Compile Include="TournamentType.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

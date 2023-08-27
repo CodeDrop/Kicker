@@ -86,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HtmlExportTests.vb" />
+    <Compile Include="MatchGenerators\GeneticMatchGeneratorTests.vb" />
     <Compile Include="MatchTests.vb" />
     <Compile Include="ResultTests.vb" />
     <Compile Include="SetResultTests.vb" />

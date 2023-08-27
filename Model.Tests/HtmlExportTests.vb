@@ -18,7 +18,7 @@ Public Class HtmlExportTests
         tournament.MatchManager.Generate({team1, team2, team3})
         Dim matchResult = New Result()
         matchResult.AddSetResult(New SetResult() With {.Home = 5, .Guest = 3})
-        tournament.MatchManager.SetStatus(1, matchResult)
+        tournament.MatchManager.SetStatus(2, matchResult)
         Dim testClass = New HtmlExport(tournament)
 
         ' Act

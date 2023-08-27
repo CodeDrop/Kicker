@@ -1,4 +1,5 @@
-<Serializable()> _
+<Serializable()>
+<DebuggerDisplay("Match N°{Number}: {Team1} - {Team2}")>
 Public Class Match
 
     Friend Sub New()

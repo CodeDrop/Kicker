@@ -69,6 +69,8 @@
         Me.TotalMatchesCountToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.PlayedMatchesToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.PlayedMatchesCountToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OptionMatchDaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AppTabControl.SuspendLayout()
         Me.TeamsTabPage.SuspendLayout()
         Me.MatchesTabPage.SuspendLayout()
@@ -94,7 +96,7 @@
         Me.TeamsTabPage.Controls.Add(Me.TeamsScreenContent)
         Me.TeamsTabPage.Location = New System.Drawing.Point(4, 27)
         Me.TeamsTabPage.Name = "TeamsTabPage"
-        Me.TeamsTabPage.Size = New System.Drawing.Size(656, 298)
+        Me.TeamsTabPage.Size = New System.Drawing.Size(656, 276)
         Me.TeamsTabPage.TabIndex = 0
         Me.TeamsTabPage.Text = "Mannschaften"
         '
@@ -103,15 +105,15 @@
         Me.TeamsScreenContent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TeamsScreenContent.Location = New System.Drawing.Point(0, 0)
         Me.TeamsScreenContent.Name = "TeamsScreenContent"
-        Me.TeamsScreenContent.Size = New System.Drawing.Size(656, 298)
+        Me.TeamsScreenContent.Size = New System.Drawing.Size(656, 276)
         Me.TeamsScreenContent.TabIndex = 0
         '
         'MatchesTabPage
         '
         Me.MatchesTabPage.Controls.Add(Me.MatchListView)
-        Me.MatchesTabPage.Location = New System.Drawing.Point(4, 27)
+        Me.MatchesTabPage.Location = New System.Drawing.Point(4, 22)
         Me.MatchesTabPage.Name = "MatchesTabPage"
-        Me.MatchesTabPage.Size = New System.Drawing.Size(656, 298)
+        Me.MatchesTabPage.Size = New System.Drawing.Size(656, 281)
         Me.MatchesTabPage.TabIndex = 1
         Me.MatchesTabPage.Text = "Spiele"
         '
@@ -125,7 +127,7 @@
         Me.MatchListView.HoverSelection = True
         Me.MatchListView.Location = New System.Drawing.Point(0, 0)
         Me.MatchListView.Name = "MatchListView"
-        Me.MatchListView.Size = New System.Drawing.Size(656, 298)
+        Me.MatchListView.Size = New System.Drawing.Size(656, 281)
         Me.MatchListView.SmallImageList = Me.MatchImageList
         Me.MatchListView.TabIndex = 2
         Me.MatchListView.UseCompatibleStateImageBehavior = False
@@ -166,9 +168,9 @@
         'ResultsTabPage
         '
         Me.ResultsTabPage.Controls.Add(Me.StandingListView)
-        Me.ResultsTabPage.Location = New System.Drawing.Point(4, 27)
+        Me.ResultsTabPage.Location = New System.Drawing.Point(4, 22)
         Me.ResultsTabPage.Name = "ResultsTabPage"
-        Me.ResultsTabPage.Size = New System.Drawing.Size(656, 276)
+        Me.ResultsTabPage.Size = New System.Drawing.Size(656, 281)
         Me.ResultsTabPage.TabIndex = 2
         Me.ResultsTabPage.Text = "Tabelle"
         '
@@ -183,7 +185,7 @@
         Me.StandingListView.Location = New System.Drawing.Point(0, 0)
         Me.StandingListView.MultiSelect = False
         Me.StandingListView.Name = "StandingListView"
-        Me.StandingListView.Size = New System.Drawing.Size(656, 276)
+        Me.StandingListView.Size = New System.Drawing.Size(656, 281)
         Me.StandingListView.TabIndex = 1
         Me.StandingListView.UseCompatibleStateImageBehavior = False
         Me.StandingListView.View = System.Windows.Forms.View.Details
@@ -222,7 +224,7 @@
         '
         'AppMainMenuStrip
         '
-        Me.AppMainMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TournamentToolStripMenuItem})
+        Me.AppMainMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TournamentToolStripMenuItem, Me.OptionsToolStripMenuItem})
         Me.AppMainMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.AppMainMenuStrip.Name = "AppMainMenuStrip"
         Me.AppMainMenuStrip.Size = New System.Drawing.Size(664, 24)
@@ -240,14 +242,14 @@
         '
         Me.NewTeamToolStripMenuItem.Name = "NewTeamToolStripMenuItem"
         Me.NewTeamToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NewTeamToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.NewTeamToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.NewTeamToolStripMenuItem.Text = "&Neue Mannschaft"
         '
         'CreatePlaylistToolStripMenuItem
         '
         Me.CreatePlaylistToolStripMenuItem.Name = "CreatePlaylistToolStripMenuItem"
         Me.CreatePlaylistToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5
-        Me.CreatePlaylistToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.CreatePlaylistToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.CreatePlaylistToolStripMenuItem.Text = "Spiel&plan erstellen"
         '
         'CopyToolStripMenuItem
@@ -255,25 +257,25 @@
         Me.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
         Me.CopyToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.CopyToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.CopyToolStripMenuItem.Text = "Kopieren (HTML)"
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
         Me.SaveToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.SaveToolStripMenuItem.Text = "&Speichern"
         '
         'AppToolStripMenuItem
         '
         Me.AppToolStripMenuItem.Name = "AppToolStripMenuItem"
-        Me.AppToolStripMenuItem.Size = New System.Drawing.Size(235, 6)
+        Me.AppToolStripMenuItem.Size = New System.Drawing.Size(288, 6)
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(238, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExitToolStripMenuItem.Text = "Be&enden"
         '
         'AppStatusStrip
@@ -288,7 +290,7 @@
         'SpacerStripStatusLabel
         '
         Me.SpacerStripStatusLabel.Name = "SpacerStripStatusLabel"
-        Me.SpacerStripStatusLabel.Size = New System.Drawing.Size(505, 17)
+        Me.SpacerStripStatusLabel.Size = New System.Drawing.Size(536, 17)
         Me.SpacerStripStatusLabel.Spring = True
         '
         'TotalMatchesToolStripStatusLabel
@@ -315,6 +317,20 @@
         Me.PlayedMatchesCountToolStripStatusLabel.Name = "PlayedMatchesCountToolStripStatusLabel"
         Me.PlayedMatchesCountToolStripStatusLabel.Size = New System.Drawing.Size(10, 17)
         Me.PlayedMatchesCountToolStripStatusLabel.Text = "."
+        '
+        'OptionsToolStripMenuItem
+        '
+        Me.OptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionMatchDaysToolStripMenuItem})
+        Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(69, 20)
+        Me.OptionsToolStripMenuItem.Text = "Optionen"
+        '
+        'OptionMatchDaysToolStripMenuItem
+        '
+        Me.OptionMatchDaysToolStripMenuItem.CheckOnClick = True
+        Me.OptionMatchDaysToolStripMenuItem.Name = "OptionMatchDaysToolStripMenuItem"
+        Me.OptionMatchDaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OptionMatchDaysToolStripMenuItem.Text = "Spieltage"
         '
         'AppWindow
         '
@@ -355,4 +371,6 @@
     Private WithEvents SpacerStripStatusLabel As ToolStripStatusLabel
     Private WithEvents PlayedMatchesCountToolStripStatusLabel As ToolStripStatusLabel
     Private WithEvents TotalMatchesCountToolStripStatusLabel As ToolStripStatusLabel
+    Friend WithEvents OptionsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents OptionMatchDaysToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -12,8 +12,8 @@
 
     Public ReadOnly Property MatchManager() As MatchManager
 
-    Public Sub Start()
-        MatchManager.Generate(GetTeams())
+    Public Sub Start(type As TournamentType)
+        MatchManager.Generate(GetTeams(), type)
     End Sub
 
     Public Function TotalMatchCount() As Integer
