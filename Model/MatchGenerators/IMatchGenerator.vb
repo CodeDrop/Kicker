@@ -1,3 +1,3 @@
 ﻿Public Interface IMatchGenerator
-    Function Generate(teamsCount As Integer) As IEnumerable(Of Tuple(Of Integer, Integer))
+    Function Generate(teamsCount As Integer) As IEnumerable(Of MatchIndexPair)
 End Interface

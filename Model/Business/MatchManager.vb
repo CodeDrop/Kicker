@@ -24,10 +24,10 @@ Public Class MatchManager
         ReDim Matches(matchIndexes.Count - 1) ' Reset
         Dim matchNumber = 1
 
-        For Each matchIndexTuple In matchIndexes
-            Matches(matchNumber - 1) = New Match(matchNumber, teams(matchIndexTuple.Item1), teams(matchIndexTuple.Item2))
+        For Each matchIndexPair In matchIndexes
+            Matches(matchNumber - 1) = New Match(matchNumber, teams(matchIndexPair.Item1), teams(matchIndexPair.Item2))
             matchNumber += 1
-        Next matchIndexTuple
+        Next matchIndexPair
     End Sub
 
     ' Get next match with fitting status

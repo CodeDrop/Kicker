@@ -88,6 +88,7 @@
     <Compile Include="HtmlExportTests.vb" />
     <Compile Include="MatchGenerators\GeneticMatchGeneratorTests.vb" />
     <Compile Include="MatchGenerators\MatchDaysMatchGeneratorTests.vb" />
+    <Compile Include="MatchGenerators\MatchIndexPairTests.vb" />
     <Compile Include="MatchTests.vb" />
     <Compile Include="ResultTests.vb" />
     <Compile Include="SetResultTests.vb" />

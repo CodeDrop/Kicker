@@ -1,10 +1,10 @@
 ﻿Public Class GeneticMatchGenerator
     Implements IMatchGenerator
 
-    Private Matches As New List(Of Tuple(Of Integer, Integer))
+    Private Matches As New List(Of MatchIndexPair)
     Private TeamsCount As Integer
 
-    Public Function Generate(teamsCount As Integer) As IEnumerable(Of Tuple(Of Integer, Integer)) Implements IMatchGenerator.Generate
+    Public Function Generate(teamsCount As Integer) As IEnumerable(Of MatchIndexPair) Implements IMatchGenerator.Generate
         Dim startIndex As Integer
         Dim matchCount = CInt((teamsCount - 1) * teamsCount / 2)
         Me.TeamsCount = teamsCount
@@ -37,7 +37,7 @@
                 team2Index = GetTeamIndex(TeamsCount, team2CIndex)
 
                 If Not MatchExists(team1Index, team2Index) Then
-                    Dim matchIndexPair = New Tuple(Of Integer, Integer)(team1Index, team2Index)
+                    Dim matchIndexPair = New MatchIndexPair(team1Index, team2Index)
 
                     If Matches.Count < matchNumber Then
                         Matches.Add(matchIndexPair)
@@ -61,14 +61,14 @@
     End Function
 
     Private Function MatchExists(team1Index As Integer, team2Index As Integer) As Boolean
-        For Each item As Tuple(Of Integer, Integer) In Matches
-            If (team1Index = item.Item1 And team2Index = item.Item2) _
+        For Each matchIndexPair In Matches
+            If (team1Index = matchIndexPair.Item1 And team2Index = matchIndexPair.Item2) _
                Or
-               (team1Index = item.Item2 And team2Index = item.Item1) _
+               (team1Index = matchIndexPair.Item2 And team2Index = matchIndexPair.Item1) _
                Then
                 Return True ' Match found
             End If
-        Next item
+        Next matchIndexPair
 
         Return False
     End Function
