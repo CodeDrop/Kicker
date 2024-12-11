@@ -13,17 +13,15 @@
 
         Do While processedMatches.Count < matchIndexes.Count
             round.Clear()
-            Dim eliminationMatch = Nothing
+            Dim eliminationMatch As MatchIndexPair = Nothing
             Dim availableMatches = matchIndexes.Except(processedMatches).ToList()
 
             Do While round.Count < matchesPerRound
+                AddMatchToRoundIfFree(round, eliminationMatch, availableMatches.Last())
 
                 For Each matchIndexPair In availableMatches
                     If round.Count = matchesPerRound Then Exit For
-                    If Not round.Any(Function(m) m.ContainsTeamOf(matchIndexPair)) _
-                        AndAlso Not matchIndexPair.Equals(eliminationMatch) Then
-                        round.Add(matchIndexPair)
-                    End If
+                    AddMatchToRoundIfFree(round, eliminationMatch, matchIndexPair)
                 Next matchIndexPair
 
                 If round.Count < matchesPerRound Then
@@ -40,6 +38,13 @@
             processedMatches.AddRange(round)
         Loop
     End Function
+
+    Private Shared Sub AddMatchToRoundIfFree(round As List(Of MatchIndexPair), eliminationMatch As MatchIndexPair, matchIndexPair As MatchIndexPair)
+        If Not round.Any(Function(m) m.ContainsTeamOf(matchIndexPair)) _
+            AndAlso Not matchIndexPair.Equals(eliminationMatch) Then
+            round.Add(matchIndexPair)
+        End If
+    End Sub
 
     Private Function GetMatchesPerRound(teamsCount As Integer) As Integer
         Return Math.Floor(teamsCount / 2)
@@ -170,7 +175,7 @@ End Class
 ' 3 - 4 - 5 - 1 
 ' 4 - 5 - 1 - 2 
 ' 5 - 1 - 2 - 3
-
+' https://csharp.hotexamples.com/examples/Liga/Spielpaarungen/-/php-spielpaarungen-class-examples.html
 ' <summary>
 ' Generiert anhand der übergebenen Teilnehmer die Spielpaarungen.
 ' </summary>
