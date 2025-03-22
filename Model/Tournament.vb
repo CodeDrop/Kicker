@@ -1,4 +1,7 @@
-﻿Public Class Tournament
+﻿Imports System.IO
+Imports Fluid
+
+Public Class Tournament
 
     Public Sub New()
         TeamManager = New TeamManager()
@@ -61,5 +64,10 @@
         Dim team2 = GetTeams().Single(Function(t) t.Equals(match.Team2))
         Return team1.Withdrawn Or team2.Withdrawn
     End Function
+
+    Public Sub Export()
+        Dim exporter = New FluidTemplateExport(Me)
+        My.Computer.Clipboard.SetText(If(exporter.ToString(), ""))
+    End Sub
 
 End Class

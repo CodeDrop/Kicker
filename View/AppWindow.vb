@@ -124,4 +124,12 @@ Public Class AppWindow
         AppTabControl.Refresh()
     End Sub
 
+    Private Sub ExportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportToolStripMenuItem.Click
+        Try
+            ViewModel.Export()
+        Catch ex As Exception
+            MessageBox.Show(Me, ex.Message, "Export error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
+    End Sub
+
 End Class

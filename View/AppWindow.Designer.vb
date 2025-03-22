@@ -63,14 +63,15 @@
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AppToolStripMenuItem = New System.Windows.Forms.ToolStripSeparator()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OptionMatchDaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AppStatusStrip = New System.Windows.Forms.StatusStrip()
         Me.SpacerStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TotalMatchesToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.TotalMatchesCountToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.PlayedMatchesToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.PlayedMatchesCountToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OptionMatchDaysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AppTabControl.SuspendLayout()
         Me.TeamsTabPage.SuspendLayout()
         Me.MatchesTabPage.SuspendLayout()
@@ -224,7 +225,7 @@
         '
         'AppMainMenuStrip
         '
-        Me.AppMainMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TournamentToolStripMenuItem, Me.OptionsToolStripMenuItem})
+        Me.AppMainMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TournamentToolStripMenuItem, Me.OptionsToolStripMenuItem, Me.ExportToolStripMenuItem})
         Me.AppMainMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.AppMainMenuStrip.Name = "AppMainMenuStrip"
         Me.AppMainMenuStrip.Size = New System.Drawing.Size(664, 24)
@@ -278,6 +279,20 @@
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(291, 22)
         Me.ExitToolStripMenuItem.Text = "Be&enden"
         '
+        'OptionsToolStripMenuItem
+        '
+        Me.OptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionMatchDaysToolStripMenuItem})
+        Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(69, 20)
+        Me.OptionsToolStripMenuItem.Text = "Optionen"
+        '
+        'OptionMatchDaysToolStripMenuItem
+        '
+        Me.OptionMatchDaysToolStripMenuItem.CheckOnClick = True
+        Me.OptionMatchDaysToolStripMenuItem.Name = "OptionMatchDaysToolStripMenuItem"
+        Me.OptionMatchDaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.OptionMatchDaysToolStripMenuItem.Text = "Spieltage"
+        '
         'AppStatusStrip
         '
         Me.AppStatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SpacerStripStatusLabel, Me.TotalMatchesToolStripStatusLabel, Me.TotalMatchesCountToolStripStatusLabel, Me.PlayedMatchesToolStripStatusLabel, Me.PlayedMatchesCountToolStripStatusLabel})
@@ -318,19 +333,11 @@
         Me.PlayedMatchesCountToolStripStatusLabel.Size = New System.Drawing.Size(10, 17)
         Me.PlayedMatchesCountToolStripStatusLabel.Text = "."
         '
-        'OptionsToolStripMenuItem
+        'ExportToolStripMenuItem
         '
-        Me.OptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionMatchDaysToolStripMenuItem})
-        Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
-        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(69, 20)
-        Me.OptionsToolStripMenuItem.Text = "Optionen"
-        '
-        'OptionMatchDaysToolStripMenuItem
-        '
-        Me.OptionMatchDaysToolStripMenuItem.CheckOnClick = True
-        Me.OptionMatchDaysToolStripMenuItem.Name = "OptionMatchDaysToolStripMenuItem"
-        Me.OptionMatchDaysToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.OptionMatchDaysToolStripMenuItem.Text = "Spieltage"
+        Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
+        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
+        Me.ExportToolStripMenuItem.Text = "Export"
         '
         'AppWindow
         '
@@ -373,4 +380,5 @@
     Private WithEvents TotalMatchesCountToolStripStatusLabel As ToolStripStatusLabel
     Friend WithEvents OptionsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OptionMatchDaysToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExportToolStripMenuItem As ToolStripMenuItem
 End Class
