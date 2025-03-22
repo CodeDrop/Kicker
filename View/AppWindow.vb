@@ -3,9 +3,13 @@ Imports POFF.Kicker.View.Screens
 Imports POFF.Kicker.View.Components
 Imports POFF.Kicker.ViewModel
 Imports POFF.Kicker.ViewModel.Types
+Imports System.Linq
 
 Public Class AppWindow
     Inherits Form
+
+    Private ReadOnly ViewModel As AppWindowViewModel
+    Private Const NoTeamFilter As String = "(Team Filter)"
 
     Public Sub New()
         MyBase.New()
@@ -24,12 +28,14 @@ Public Class AppWindow
         AddHandler CopyToolStripMenuItem.Click, Sub() ViewModel.CopyToClipboard()
         AddHandler SaveToolStripMenuItem.Click, Sub() ViewModel.Save()
         AddHandler ExitToolStripMenuItem.Click, Sub() Close()
+        AddHandler PlayerFilterToolStripDropDownButton.DropDownItemClicked, AddressOf UpdateFilter
     End Sub
-
-    Private ReadOnly ViewModel As AppWindowViewModel
 
     Private Sub AppWindow_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateGui()
+        PlayerFilterToolStripDropDownButton.DropDownItems.Add(NoTeamFilter)
+        PlayerFilterToolStripDropDownButton.DropDownItems.AddRange(
+            ViewModel.Tournament.TeamManager.GetTeams().Select(Function(p) New ToolStripMenuItem(p.Name) With {.Tag = p}).ToArray())
     End Sub
 
     Private Sub NewTeamMenuItem_Click(sender As Object, e As EventArgs) Handles NewTeamToolStripMenuItem.Click
@@ -66,9 +72,14 @@ Public Class AppWindow
 
     Private Sub UpdateMatchList()
         MatchListView.Items.Clear()
+        Dim filter = PlayerFilterToolStripDropDownButton.Text
+        Dim no As Integer
 
         For Each match In Me.ViewModel.Tournament.MatchManager.GetMatches()
-            DirectCast(MatchListView.Items.Add(New MatchListViewItem(match)), MatchListViewItem).RefreshNumber()
+            no += 1
+            If filter = NoTeamFilter OrElse match.Team1.Name = filter OrElse match.Team2.Name = filter Then
+                MatchListView.Items.Add(New MatchListViewItem(match, no))
+            End If
         Next match
 
         TotalMatchesCountToolStripStatusLabel.Text = ViewModel.Tournament.TotalMatchCount().ToString()
@@ -80,6 +91,11 @@ Public Class AppWindow
         For Each standing In ViewModel.Tournament.GetStandings()
             StandingListView.Items.Add(New StandingListViewItem(standing))
         Next standing
+    End Sub
+
+    Private Sub UpdateFilter(sender As Object, e As ToolStripItemClickedEventArgs)
+        PlayerFilterToolStripDropDownButton.Text = e.ClickedItem.Text
+        UpdateMatchList()
     End Sub
 
     Private Sub MatchListView_DoubleClick(sender As Object, e As EventArgs) Handles MatchListView.DoubleClick

@@ -5,12 +5,12 @@ Namespace Components
     Public Class MatchListViewItem
         Inherits ListViewItem
 
-        Public Sub New(match As Match)
+        Public Sub New(match As Match, Optional matchNo As Integer = 0)
             MyBase.New("", match.Status)
-            Me.SubItems.Add("?")
-            Me.SubItems.Add(match.Team1.Name)
-            Me.SubItems.Add(match.Team2.Name)
-            Me.SubItems.Add(match.Result.ToString)
+            SubItems.Add($"{matchNo}")
+            SubItems.Add(match.Team1.Name)
+            SubItems.Add(match.Team2.Name)
+            SubItems.Add(match.Result.ToString)
 
             MatchValue = match
         End Sub

@@ -6,12 +6,12 @@ Imports POFF.Kicker.ViewModel.Types
 Public Class AppWindowViewModel
     Inherits ViewModelBase
 
+    Public Shared Instance As AppWindowViewModel = New AppWindowViewModel()
+
     Private Sub New()
         TournamentValue = New Tournament()
         TeamsScreenValue = New TeamsScreenViewModel(TournamentValue)
     End Sub
-
-    Public Shared Instance As AppWindowViewModel = New AppWindowViewModel()
 
     Public Shared Function DI(Of T As ViewModelBase)() As T
         If GetType(T) Is GetType(TeamsScreenViewModel) Then
