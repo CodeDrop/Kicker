@@ -9,7 +9,7 @@ Public Class HtmlExport
     End Sub
 
     Public Overrides Function ToString() As String
-        Dim builder As New StringBuilder(My.Resources.HtmlExportTemplate)
+        Dim builder As New StringBuilder(My.Resources.HtmlExportStandingOnlyTemplate)
 
         SetSubtitel(builder)
         SetStandings(builder)

@@ -117,6 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="HtmlExportStandingOnlyTemplate" xml:space="preserve">
+    <value>&lt;p&gt;&lt;!-- Stand --&gt;&lt;/p&gt;
+                    &lt;table class="table table-striped"&gt;
+                        &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Platz&lt;/th&gt;
+                            &lt;th&gt;Spieler&lt;/th&gt;
+                            &lt;th&gt;Spiele&lt;/th&gt;
+                            &lt;th&gt;Punkte&lt;/th&gt;
+                            &lt;th&gt;Frames&lt;/th&gt;
+                        &lt;/tr&gt;
+                        &lt;/thead&gt;
+                        &lt;tbody&gt;
+&lt;!-- Tabelle --&gt;
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;</value>
+  </data>
   <data name="HtmlExportTemplate" xml:space="preserve">
     <value>{% extends 'base.html.twig' %}
 
