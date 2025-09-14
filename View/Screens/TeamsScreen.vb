@@ -58,6 +58,9 @@ Namespace Screens
         End Function
 
         Private Sub TeamsDataGridView_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles TeamsDataGridView.CellFormatting
+            If e.ColumnIndex = 0 Then
+                e.Value = e.RowIndex + 1
+            End If
             If ViewModel.Teams.Item(e.RowIndex).Withdrawn Then
                 e.CellStyle.Font = New Font(e.CellStyle.Font, FontStyle.Strikeout)
                 e.CellStyle.ForeColor = Color.LightGray
