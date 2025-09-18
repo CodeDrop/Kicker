@@ -2,16 +2,19 @@
     Implements IMatchGenerator
 
     Private Matches As New List(Of MatchIndexPair)
-    Private TeamsCount As Integer
+    Private ReadOnly _teamsCount As Integer
 
-    Public Function Generate(teamsCount As Integer) As IEnumerable(Of MatchIndexPair) Implements IMatchGenerator.Generate
+    Public Sub New(teamsCount As Integer)
+        _teamsCount = teamsCount
+    End Sub
+
+    Public Function Generate() As IEnumerable(Of MatchIndexPair) Implements IMatchGenerator.Generate
         Dim startIndex As Integer
-        Dim matchCount = CInt((teamsCount - 1) * teamsCount / 2)
-        Me.TeamsCount = teamsCount
+        Dim matchCount = CInt((_teamsCount - 1) * _teamsCount / 2)
         Matches.Clear()
 
         ' Build a section of one more than half the team count
-        Dim sectionCount = CInt(teamsCount / 2) + 1
+        Dim sectionCount = CInt(_teamsCount / 2) + 1
 
         Do While Matches.Count < matchCount
             Dim matchNumber = Matches.Count + 1
@@ -28,13 +31,13 @@
     End Function
 
     Private Sub FindNextSectionMatch(matchNumber As Integer, startIndex As Integer, groupCount As Integer)
-        Dim team1Index, team2Index As Integer ' "real" index culculated from "circular" index (identical while cIndex<length)
+        Dim team1Index, team2Index As Integer ' "real" index calculated from "circular" index (identical while cIndex<length)
 
         For team1CIndex = startIndex To startIndex + groupCount - 2
-            team1Index = GetTeamIndex(TeamsCount, team1CIndex)
+            team1Index = GetTeamIndex(_teamsCount, team1CIndex)
 
             For team2CIndex = team1CIndex + 1 To startIndex + groupCount - 1
-                team2Index = GetTeamIndex(TeamsCount, team2CIndex)
+                team2Index = GetTeamIndex(_teamsCount, team2CIndex)
 
                 If Not MatchExists(team1Index, team2Index) Then
                     Dim matchIndexPair = New MatchIndexPair(team1Index, team2Index)

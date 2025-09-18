@@ -15,12 +15,12 @@ Public Class MatchManager
 
         Dim matchGenerator As IMatchGenerator
         If type = TournamentType.MatchDays Then
-            matchGenerator = New MatchDaysMatchGenerator()
+            matchGenerator = New MatchDaysMatchGenerator(teams.Count)
         Else
-            matchGenerator = New GeneticMatchGenerator()
+            matchGenerator = New GeneticMatchGenerator(teams.Count)
         End If
 
-        Dim matchIndexes = matchGenerator.Generate(teams.Count)
+        Dim matchIndexes = matchGenerator.Generate()
         ReDim Matches(matchIndexes.Count - 1) ' Reset
         Dim matchNumber = 1
 

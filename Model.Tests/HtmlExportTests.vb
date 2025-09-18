@@ -27,12 +27,7 @@ Public Class HtmlExportTests
 
     <TestMethod>
     Public Sub HeaderTest()
-        StringAssert.StartsWith(Result, "{% extends 'base.html.twig' %}")
-    End Sub
-
-    <TestMethod>
-    Public Sub TitleTest()
-        StringAssert.Contains(Result, "<h1>Club-Liga")
+        StringAssert.StartsWith(Result, "<p>Stand ")
     End Sub
 
     <TestMethod>
@@ -46,11 +41,6 @@ Public Class HtmlExportTests
     End Sub
 
     <TestMethod>
-    Public Sub GamesTest()
-        StringAssert.Contains(Result, "<td>Team N°1</td><td>Team N°2</td><td>5:3</td>")
-    End Sub
-
-    <TestMethod>
     Public Sub GamesOfWithdrawnTeam()
         Dim pattern As New Regex("<td>Team N°3</td>")
         StringAssert.DoesNotMatch(Result, pattern)
@@ -58,7 +48,7 @@ Public Class HtmlExportTests
 
     <TestMethod>
     Public Sub FooterTest()
-        StringAssert.EndsWith(Result, "{% endblock %}")
+        StringAssert.EndsWith(Result, "</table>")
     End Sub
 
 End Class

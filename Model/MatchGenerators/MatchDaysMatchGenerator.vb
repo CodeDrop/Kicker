@@ -1,9 +1,15 @@
 ﻿Public Class MatchDaysMatchGenerator
     Implements IMatchGenerator
 
-    Public Function Generate(teamsCount As Integer) As IEnumerable(Of MatchIndexPair) Implements IMatchGenerator.Generate
-        Dim matchIndexes = GetAllMatches(teamsCount)
-        Dim matchesPerRound = GetMatchesPerRound(teamsCount)
+    Private ReadOnly _teamsCount As Integer
+
+    Public Sub New(teamsCount As Integer)
+        _teamsCount = teamsCount
+    End Sub
+
+    Public Function Generate() As IEnumerable(Of MatchIndexPair) Implements IMatchGenerator.Generate
+        Dim matchIndexes = GetAllMatches(_teamsCount)
+        Dim matchesPerRound = GetMatchesPerRound(_teamsCount)
         Return Shuffle(matchIndexes, matchesPerRound)
     End Function
 
