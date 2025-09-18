@@ -25,7 +25,7 @@ Public Class MatchManager
         Dim matchNumber = 1
 
         For Each matchIndexPair In matchIndexes
-            Matches(matchNumber - 1) = New Match(matchNumber, teams(matchIndexPair.Item1), teams(matchIndexPair.Item2))
+            Matches(matchNumber - 1) = New Match(matchNumber, teams(matchIndexPair.Item1 - 1), teams(matchIndexPair.Item2 - 1))
             matchNumber += 1
         Next matchIndexPair
     End Sub
