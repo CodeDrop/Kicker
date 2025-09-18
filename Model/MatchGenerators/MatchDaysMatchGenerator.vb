@@ -1,4 +1,4 @@
-﻿Public Class MatchDaysMatchGenerator
+﻿Public Class MatchdaysMatchGenerator
     Implements IMatchGenerator
 
     Private ReadOnly _teamsCount As Integer

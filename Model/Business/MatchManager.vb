@@ -15,7 +15,7 @@ Public Class MatchManager
 
         Dim matchGenerator As IMatchGenerator
         If type = TournamentType.MatchDays Then
-            matchGenerator = New MatchDaysMatchGenerator(teams.Count)
+            matchGenerator = New MatchdaysMatchGenerator(teams.Count)
         Else
             matchGenerator = New GeneticMatchGenerator(teams.Count)
         End If
