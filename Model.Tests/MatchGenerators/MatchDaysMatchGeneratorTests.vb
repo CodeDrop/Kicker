@@ -9,17 +9,17 @@ Public Class MatchDaysMatchGeneratorTests
     End Sub
 
     <TestMethod>
-    Public Sub Generate3Test()
-        Dim sut = New MatchdaysMatchGenerator(3)
+    Public Sub Generate4Test()
+        Dim sut = New MatchdaysMatchGenerator(4)
         Dim result = sut.Generate()
-        Assert.AreEqual(3, result.Count)
+        Assert.AreEqual(6, result.Count)
     End Sub
 
     <TestMethod>
-    Public Sub Generate5Test()
-        Dim sut = New MatchdaysMatchGenerator(5)
+    Public Sub Generate10Test()
+        Dim sut = New MatchdaysMatchGenerator(10)
         Dim result = sut.Generate()
-        Assert.AreEqual(10, result.Count)
+        Assert.AreEqual(45, result.Count)
         Assert.AreNotEqual(New Tuple(Of Integer, Integer)(0, 2), result.ElementAt(1))
     End Sub
 

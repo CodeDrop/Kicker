@@ -76,6 +76,7 @@
     <Compile Include="Match.vb" />
     <Compile Include="MatchGenerators\GeneticMatchGenerator.vb" />
     <Compile Include="MatchGenerators\IMatchGenerator.vb" />
+    <Compile Include="MatchGenerators\Matchday.vb" />
     <Compile Include="MatchGenerators\MatchdaysMatchGenerator.vb" />
     <Compile Include="MatchGenerators\MatchIndexPair.vb" />
     <Compile Include="MatchStatus.vb" />

@@ -1,6 +1,8 @@
 ﻿Public Class MatchIndexPair
     Inherits Tuple(Of Integer, Integer)
 
+    Public Shared ReadOnly Empty As MatchIndexPair = New MatchIndexPair(0, 0)
+
     Public Sub New(team1Index As Integer, team2Index As Integer)
         MyBase.New(team1Index, team2Index)
     End Sub

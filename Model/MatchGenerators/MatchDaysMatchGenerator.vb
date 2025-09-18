@@ -1,212 +1,74 @@
-﻿Public Class MatchdaysMatchGenerator
+﻿
+Public Class MatchdaysMatchGenerator
     Implements IMatchGenerator
-
     Private ReadOnly _teamsCount As Integer
+    Private ReadOnly _matches As New List(Of MatchIndexPair)()
+    Private ReadOnly _matchdays As New List(Of Matchday)()
 
-    Public Sub New(teamsCount As Integer)
+    Public Sub New(Optional teamsCount As Integer = 10)
         _teamsCount = teamsCount
     End Sub
 
     Public Function Generate() As IEnumerable(Of MatchIndexPair) Implements IMatchGenerator.Generate
-        Dim matchIndexes = GetAllMatches(_teamsCount)
-        Dim matchesPerRound = GetMatchesPerRound(_teamsCount)
-        Return Shuffle(matchIndexes, matchesPerRound)
+        _matches.Clear()
+        _matches.AddRange(GenerateMatches())
+        _matchdays.Clear()
+        _matchdays.AddRange(GenerateMatchdays())
+        Return MatchIndexPairsOrderdByMatchdays()
     End Function
 
-    Private Iterator Function Shuffle(matchIndexes As IEnumerable(Of MatchIndexPair), matchesPerRound As Integer) As IEnumerable(Of MatchIndexPair)
-        Dim round = New List(Of MatchIndexPair)(matchesPerRound)
-        Dim processedMatches = New List(Of MatchIndexPair)(matchIndexes.Count())
-
-        Do While processedMatches.Count < matchIndexes.Count
-            round.Clear()
-            Dim eliminationMatch As MatchIndexPair = Nothing
-            Dim availableMatches = matchIndexes.Except(processedMatches).ToList()
-
-            Do While round.Count < matchesPerRound
-                AddMatchToRoundIfFree(round, eliminationMatch, availableMatches.Last())
-
-                For Each matchIndexPair In availableMatches
-                    If round.Count = matchesPerRound Then Exit For
-                    AddMatchToRoundIfFree(round, eliminationMatch, matchIndexPair)
-                Next matchIndexPair
-
-                If round.Count < matchesPerRound Then
-                    Dim eliminationMatchIndex = If(eliminationMatch IsNot Nothing, round.IndexOf(eliminationMatch) + 1, 0)
-                    eliminationMatch = round.ElementAt(eliminationMatchIndex)
-                    round.Remove(eliminationMatch)
-                End If
-            Loop
-
-            For Each matchIndexPair In round
+    Private Iterator Function MatchIndexPairsOrderdByMatchdays() As IEnumerable(Of MatchIndexPair)
+        For Each matchday In _matchdays
+            For Each matchIndexPair In matchday
                 Yield matchIndexPair
             Next matchIndexPair
-
-            processedMatches.AddRange(round)
-        Loop
+        Next matchday
     End Function
 
-    Private Shared Sub AddMatchToRoundIfFree(round As List(Of MatchIndexPair), eliminationMatch As MatchIndexPair, matchIndexPair As MatchIndexPair)
-        If Not round.Any(Function(m) m.ContainsTeamOf(matchIndexPair)) _
-            AndAlso Not matchIndexPair.Equals(eliminationMatch) Then
-            round.Add(matchIndexPair)
-        End If
-    End Sub
-
-    Private Function GetMatchesPerRound(teamsCount As Integer) As Integer
-        Return Math.Floor(teamsCount / 2)
+    Private Iterator Function GenerateMatches() As IEnumerable(Of MatchIndexPair)
+        For i As Integer = 1 To _teamsCount
+            For j As Integer = i + 1 To _teamsCount
+                Yield New MatchIndexPair(i, j)
+            Next
+        Next
     End Function
 
-    Private Shared Function GetAllMatches(teamsCount As Integer) As IEnumerable(Of MatchIndexPair)
-        Dim matchIndexes = New List(Of MatchIndexPair)
-        Dim diff = 0
+    Private Iterator Function GenerateMatchdays() As IEnumerable(Of Matchday)
+        Dim blockSize As Integer = _teamsCount \ 2
 
-        For i = 1 To Math.Floor(teamsCount / 2)
-            diff += 1
-            For t1 = 0 To teamsCount - 1
-                Dim t2 = If(t1 + diff < teamsCount, t1 + diff, t1 + diff - teamsCount)
-                matchIndexes.Add(New MatchIndexPair(t1, t2))
-            Next t1
-        Next i
-
-        Return matchIndexes.Distinct()
+        For i As Integer = 0 To _teamsCount - 2
+            Yield GenerateMatchday(blockSize)
+        Next
     End Function
 
-    Private Function GetRoundsCount(teamsCount As Integer) As Integer
-        ' 0->0, 1->0, 2->1, 3->2, 4->3, 5->5, 6->5
-        Return If(teamsCount < 2, 0, teamsCount - 1 + teamsCount Mod 2)
+    Private Function GenerateMatchday(blockSize As Integer) As Matchday
+        Dim matchday As New Matchday()
+        While matchday.Count < blockSize
+            Dim invalidatedMatches As New List(Of MatchIndexPair)()
+            Dim nextMatch As MatchIndexPair = GetNextMatch(matchday)
+            If nextMatch.Equals(MatchIndexPair.Empty) Then
+                nextMatch = _matches.Except(invalidatedMatches).FirstOrDefault()
+                If nextMatch Is Nothing Then nextMatch = MatchIndexPair.Empty
+                invalidatedMatches.AddRange(matchday.MatchesWithPlayersFrom(nextMatch))
+                _matches.AddRange(invalidatedMatches)
+                matchday.RemoveAll(Function(m) invalidatedMatches.Contains(m))
+            End If
+            matchday.Add(nextMatch)
+            _matches.Remove(nextMatch)
+        End While
+        Return matchday
     End Function
 
-    Private Function GetMatchCount(teamsCount As Integer) As Integer
-        ' 0->0, 1->0, 2->1, 3->3, 5->10
-        Return (teamsCount - 1) * teamsCount / 2
-    End Function
+    Private Function GetNextMatch(matchday As Matchday) As MatchIndexPair
+        If _matches.Count = 0 Then Return MatchIndexPair.Empty
 
+        For i As Integer = 0 To _matches.Count - 1
+            Dim match = _matches(i)
+            If Not matchday.ContainsPlayerIn(match) Then
+                Return match
+            End If
+        Next
+
+        Return MatchIndexPair.Empty
+    End Function
 End Class
-
-#Region "Match Index overview"
-
-' - 2 -
-' 1:2
-
-' - 3 -
-' 1*
-' 2:3
-
-' 2*
-' 1:3
-
-' 3*
-' 1:2
-
-' - 4 -
-' 1:2
-' 3:4
-
-' 1:3
-' 2:4
-
-' 1:4
-' 2:3
-
-' - 5 -
-' 1*
-' 2:3
-' 4:5
-
-' 2*
-' 1:4
-' 3:5
-
-' 3*
-' 1:5
-' 2:4
-
-' 4*
-' 1:3
-' 2:5
-
-' 5*
-' 1:2
-' 3:4
-
-' - 6 -
-' 1:2
-' 3:4
-' 5:6
-
-' 1:3  
-' 2:5  
-' 4:6  
-
-' 1:4  
-' 2:6  
-' 3:5  
-
-' 1:5  
-' 2:4  
-' 3:6        
-
-' 1:6  
-' 2:3  
-' 4:5  
-
-' 1 - 2 - 3 - 4 - 5 - 6    
-'----------------------
-' 2 - 3 - 4 - 5 - 6 
-' 3 - 4 - 5 - 6 
-' 4 - 5 - 6  
-' 5 - 6 
-' 6
-
-
-' 1 - 2 - 3
-' 4 - 5 - 6 
-
-' 2 - 4 - 6
-' 1 - 3 - 5 
-
-' 3 - 6 - 4
-' 1 - 2 - 5
-
-' 4 - 2 - 6
-' 2 - 5 - 6
-
-
-' 3 - 4 - 5 - 6 - 1 
-' 4 - 5 - 6 - 1 - 2 
-' 5 - 6 - 1 - 2 - 3
-
-' 1 - 2 - 3 - 4 - 5
-' 2 - 3 - 4 - 5 
-' 3 - 4 - 5 - 1 
-' 4 - 5 - 1 - 2 
-' 5 - 1 - 2 - 3
-' https://csharp.hotexamples.com/examples/Liga/Spielpaarungen/-/php-spielpaarungen-class-examples.html
-' <summary>
-' Generiert anhand der übergebenen Teilnehmer die Spielpaarungen.
-' </summary>
-' <param name="bTeilnehmer">Aktuelle Teilnehmer</param>
-' <returns>Generierte Spielpaarungen</returns>
-' <remarks>
-' Vorgehensweise:
-' Man nehme zum Beispiel 5 Teams und stelle diese in eine Zeile 1234567
-' Runde 1 besitzt den Abstand 1. Das heißt, der Algorithmus geht von links nach rechts jeden einzelnen Eintrag durch
-' und bildet mit seinem rechten Nachbarn eine Spielpaarung: 1-2, 2-3, 3-4, 4-5, 5-6, 6-7, 7-1
-' Runde 2 besitzt den Abstand 2. Auch hier geht der Algorithmus von links nach rechts jeden einzelnen Eintrag durch,
-' bildet aber mit jedem zweiten Nachbarn eine Spielpaarung: 1-3, 2-4, 3-5, 4-6, 5-7, 6-1, 7-2
-' Und schließlich in Runde 3 (der letzten Runde) besitzt der Abstand den Wert 3. Gleiche Vorgehensweise, allerdings unterschiedliche
-' Schrittanzahl, sofern die Teilnehmerzahl 6 betragen würde. Bei gerader Teilnehmerzahl ist die Schrittzahl die halbe Teilnehmerzahl,
-' bei ungerader Teilnehmerzahl ändert sich nichts. Es werden also in diesem Beispiel die Spielpaarungen 1-4, 2-5, 3-6, 4-7, 5-1
-' und 6-2 gebildet.
-' Die Gesamtanzahl der Runden beträgt immer die Hälfte der Teilnehmerzahl (abgerundet), wobei bei der letzten Runde immer die in
-' Runde 3 beschriebene Sonderregel beachtet werden muss.
-' Ergbnis:
-' Man erhält eine Jeder-gegen-Jeden-Generierung mit ausbalanciertem Heim- und Auswärtsspielpaarungen. Einziges Manko dieses Algorithmus
-' ist die erste Runde, in der die Reihenfolge 1-2, 3-4, 5-6, 7-1, 2-3, 4-5, 6-7 sinnvoller gewesen wäre, da die Durchführung nicht
-' von einem bereits spielenden Team blockiert wird. Dies lässt sich allerdings im Anschluss sehr leicht korrigieren, worauf in
-' diesem Beispiel erstmal verzichtet worden ist. Auch könnte die Streuung der Partien, damit manche Spielpausen nicht zu lang sind,
-' anspassen.
-' Wichtig: Es findet keine Neuinitialisierung statt. Würde diese Methode ein weiteres Mal aufgerufen werden, werden die Punkte, Tore und
-' alles andere draufaddiert.
-' </remarks>
-#End Region
