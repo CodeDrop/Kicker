@@ -132,7 +132,8 @@
                         &lt;tbody&gt;
 &lt;!-- Tabelle --&gt;
                         &lt;/tbody&gt;
-                    &lt;/table&gt;</value>
+                    &lt;/table&gt;
+&lt;!-- Spiele --&gt;</value>
   </data>
   <data name="HtmlExportTemplate" xml:space="preserve">
     <value>{% extends 'base.html.twig' %}
