@@ -73,7 +73,6 @@ namespace POFF.Kicker.ViewModel.Types
             }
         }
 
-        private string Player2Value;
         public string Player2
         {
             get
