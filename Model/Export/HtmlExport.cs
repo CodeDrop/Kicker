@@ -23,7 +23,6 @@ namespace POFF.Kicker.Model
             SetStandings(builder);
             SetGames(builder);
 
-            My.MyProject.Computer.Clipboard.SetText(builder.ToString());
             return builder.ToString();
         }
 

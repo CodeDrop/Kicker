@@ -5,8 +5,6 @@ using System.Windows.Forms;
 
 namespace POFF.Kicker.View.Screens
 {
-
-    [Microsoft.VisualBasic.CompilerServices.DesignerGenerated()]
     public partial class TeamsScreen : UserControl
     {
 

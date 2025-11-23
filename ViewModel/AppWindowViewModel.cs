@@ -89,6 +89,5 @@ namespace POFF.Kicker.ViewModel
         {
             Tournament.CopyStandingsHtmlToClipboard();
         }
-
     }
 }

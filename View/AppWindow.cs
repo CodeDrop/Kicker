@@ -59,7 +59,7 @@ namespace POFF.Kicker.View
             SwitchToTab(TeamsTabPage);                   // Switch to teams tab
 
             // Ask user for acknoledge, if there are already matches played
-            if (CheckDeleteResults("Der Spielplan und Ergebnisse der bereits durchgeführten Spiele{0}werden gelöscht, wenn Sie noch eine Mannschaft hinzufügen.{0}{0}Wollen Sie die Manschaft hinzufügen?", Constants.vbCrLf) == DialogResult.No)
+            if (CheckDeleteResults("Der Spielplan und Ergebnisse der bereits durchgeführten Spiele{0}werden gelöscht, wenn Sie noch eine Mannschaft hinzufügen.{0}{0}Wollen Sie die Manschaft hinzufügen?", Environment.NewLine) == DialogResult.No)
                 return;
 
             {
@@ -77,7 +77,7 @@ namespace POFF.Kicker.View
             SwitchToTab(MatchesTabPage);                 // Show matches tab page
 
             // Ask user for acknoledge, if there are already matches played
-            if (CheckDeleteResults("Die Ergebnisse der bereits durchgeführten Spiele{0}werden gelöscht, wenn Sie den Spielplan neu erstellen.{0}{0}Wollen Sie die Ergebnisse verwerfen und den Spielplan erstellen?", Constants.vbCrLf) == DialogResult.No)
+            if (CheckDeleteResults("Die Ergebnisse der bereits durchgeführten Spiele{0}werden gelöscht, wenn Sie den Spielplan neu erstellen.{0}{0}Wollen Sie die Ergebnisse verwerfen und den Spielplan erstellen?", Environment.NewLine) == DialogResult.No)
                 return;
 
             // Generate match list 
