@@ -1,5 +1,5 @@
 ﻿
-namespace POFF.KickerModel.Interfaces;
+namespace POFF.Kicker.Interfaces;
 
 
 public interface IConfirmationMessage

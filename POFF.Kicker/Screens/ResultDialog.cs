@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using POFF.Kicker.Data;
-using POFF.KickerModel.Screens;
 
 namespace POFF.Kicker.Screens;
 

@@ -2,8 +2,7 @@
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using POFF.KickerModel.Screens;
-using POFF.KickerModel.Types;
+using POFF.Kicker.Types;
 
 namespace POFF.Kicker.Screens;
 

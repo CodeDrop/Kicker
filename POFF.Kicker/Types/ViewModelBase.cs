@@ -1,5 +1,5 @@
 ﻿
-namespace POFF.KickerModel.Types;
+namespace POFF.Kicker.Types;
 
 
 public class ViewModelBase : NotificationObject

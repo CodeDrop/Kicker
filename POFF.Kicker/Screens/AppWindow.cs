@@ -6,8 +6,7 @@ using System.Windows.Forms;
 using POFF.Kicker.Data;
 using POFF.Kicker.Components;
 using POFF.Kicker.Screens;
-using POFF.KickerModel;
-using POFF.KickerModel.Types;
+using POFF.Kicker.Types;
 
 namespace POFF.Kicker;
 

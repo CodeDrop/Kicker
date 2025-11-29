@@ -1,7 +1,7 @@
 ﻿using System;
-using POFF.KickerModel.Types;
+using POFF.Kicker.Types;
 
-namespace POFF.KickerModel.Screens;
+namespace POFF.Kicker.Screens;
 
 
 public class TeamDialogViewModel

@@ -2,11 +2,9 @@
 using System.ComponentModel;
 using POFF.Kicker.Data;
 using POFF.Kicker.View.Model;
-using POFF.KickerModel.Screens;
-using POFF.KickerModel.Types;
+using POFF.Kicker.Types;
 
-namespace POFF.KickerModel;
-
+namespace POFF.Kicker.Screens;
 
 public class AppWindowViewModel : ViewModelBase
 {

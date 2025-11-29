@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace POFF.KickerModel.My.Resources {
+namespace POFF.Kicker.My.Resources {
     using System;
     
     

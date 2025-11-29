@@ -1,7 +1,7 @@
 ﻿using System;
 using POFF.Kicker.Data;
 
-namespace POFF.KickerModel.Types;
+namespace POFF.Kicker.Types;
 
 
 public class SetResultInput

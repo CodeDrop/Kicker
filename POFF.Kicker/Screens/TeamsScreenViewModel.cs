@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using POFF.Kicker.Data;
 using POFF.Kicker.View.Model;
-using POFF.KickerModel.Interfaces;
-using POFF.KickerModel.Types;
+using POFF.Kicker.Interfaces;
+using POFF.Kicker.Types;
 
-namespace POFF.KickerModel.Screens;
+namespace POFF.Kicker.Screens;
 
 
 public class TeamsScreenViewModel : ViewModelBase
