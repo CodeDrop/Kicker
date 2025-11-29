@@ -89,15 +89,6 @@
     <Compile Include="My Project\MyNamespace.Static.1.Designer.cs" />
     <Compile Include="My Project\MyNamespace.Static.2.Designer.cs" />
     <Compile Include="My Project\MyNamespace.Static.3.Designer.cs" />
-    <Compile Include="HtmlExportTests.cs" />
-    <Compile Include="MatchGenerators\GeneticMatchGeneratorTests.cs" />
-    <Compile Include="MatchGenerators\MatchDaysMatchGeneratorTests.cs" />
-    <Compile Include="MatchGenerators\MatchIndexPairTests.cs" />
-    <Compile Include="MatchTests.cs" />
-    <Compile Include="ResultTests.cs" />
-    <Compile Include="SetResultTests.cs" />
-    <Compile Include="StandingTests.cs" />
-    <Compile Include="TeamTests.cs" />
     <Compile Include="My Project\AssemblyInfo.cs" />
     <Compile Include="My Project\Application.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -114,7 +105,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TournamentTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
