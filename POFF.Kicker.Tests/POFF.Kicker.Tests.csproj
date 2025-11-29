@@ -138,13 +138,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{C766A6A4-EED0-0FF9-2639-625A749BE9F7}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\View\View.csproj">
+    <ProjectReference Include="..\POFF.Kicker\POFF.Kicker.csproj">
       <Project>{d73bfe67-5f33-08e2-3fd0-d4fe17392214}</Project>
-      <Name>View</Name>
+      <Name>POFF.Kicker</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
