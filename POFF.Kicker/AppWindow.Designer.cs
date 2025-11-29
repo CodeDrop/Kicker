@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
-namespace POFF.Kicker.View;
+namespace POFF.Kicker;
 
 public partial class AppWindow
 {

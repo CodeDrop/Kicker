@@ -2,10 +2,10 @@
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using POFF.Kicker.ViewModel.Screens;
-using POFF.Kicker.ViewModel.Types;
+using POFF.KickerModel.Screens;
+using POFF.KickerModel.Types;
 
-namespace POFF.Kicker.View.Screens;
+namespace POFF.Kicker.Screens;
 
 
 public class TeamDialog : Form

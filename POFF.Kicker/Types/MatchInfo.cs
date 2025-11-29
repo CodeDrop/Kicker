@@ -1,7 +1,7 @@
 ﻿using System;
-using POFF.Kicker.Model;
+using POFF.Kicker.Data;
 
-namespace POFF.Kicker.ViewModel;
+namespace POFF.KickerModel;
 
 
 public class MatchInfo

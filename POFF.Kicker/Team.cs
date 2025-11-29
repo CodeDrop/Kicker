@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace POFF.Kicker.Model;
+namespace POFF.Kicker.Data;
 
 [Serializable()]
 [DebuggerDisplay("{Name}")]

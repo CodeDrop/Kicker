@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace POFF.Kicker.ViewModel.Types;
+namespace POFF.KickerModel.Types;
 
 
 public class NotificationObject : INotifyPropertyChanged

@@ -1,6 +1,6 @@
-﻿using POFF.Kicker.ViewModel.Interfaces;
+﻿using POFF.KickerModel.Interfaces;
 
-namespace POFF.Kicker.ViewModel.Types;
+namespace POFF.KickerModel.Types;
 
 
 internal class DefaultConfirmationMessageHandler : IConfirmationMessage

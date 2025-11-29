@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
-using POFF.Kicker.Model;
+using POFF.Kicker.Data;
 
-namespace POFF.Kicker.View.Components;
+namespace POFF.Kicker.Components;
 
 
 public class StandingListViewItem : ListViewItem

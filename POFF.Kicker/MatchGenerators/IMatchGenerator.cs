@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace POFF.Kicker.Model;
+namespace POFF.Kicker.MatchGenerators;
 
 public interface IMatchGenerator
 {

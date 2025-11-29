@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace POFF.Kicker.Model;
+namespace POFF.Kicker.MatchGenerators;
 
 public class GeneticMatchGenerator : IMatchGenerator
 {

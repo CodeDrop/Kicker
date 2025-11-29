@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using POFF.Kicker.Model;
-using POFF.Kicker.ViewModel;
-using POFF.Kicker.ViewModel.Interfaces;
-using POFF.Kicker.ViewModel.Screens;
-using POFF.Kicker.ViewModel.Types;
+using POFF.Kicker.Data;
+using POFF.KickerModel;
+using POFF.KickerModel.Interfaces;
+using POFF.KickerModel.Screens;
+using POFF.KickerModel.Types;
 
-namespace POFF.Kicker.View.Screens;
+namespace POFF.Kicker.Screens;
 
 
 public partial class TeamsScreen : IConfirmationMessage

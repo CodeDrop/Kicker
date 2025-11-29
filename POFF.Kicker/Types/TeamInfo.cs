@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
-using POFF.Kicker.Model;
+using POFF.Kicker.Data;
 
-namespace POFF.Kicker.ViewModel.Types;
+namespace POFF.KickerModel.Types;
 
 
 public class TeamInfo : NotificationObject, IChangeTracking

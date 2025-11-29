@@ -1,10 +1,9 @@
-﻿using POFF.Kicker.View.Properties;
+﻿using POFF.Kicker.Properties;
 using System;
 using System.Linq;
 using System.Text;
 
-namespace POFF.Kicker.Model;
-
+namespace POFF.Kicker.Data;
 
 public class HtmlExport
 {

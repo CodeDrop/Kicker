@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace POFF.Kicker.View.Properties; 
+namespace POFF.Kicker.Properties; 
 using System;
 
 
@@ -39,7 +39,7 @@ internal class Resources {
     internal static global::System.Resources.ResourceManager ResourceManager {
         get {
             if (object.ReferenceEquals(resourceMan, null)) {
-                global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("POFF.Kicker.View.Properties.Resources", typeof(Resources).Assembly);
+                global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("POFF.Kicker.Properties.Resources", typeof(Resources).Assembly);
                 resourceMan = temp;
             }
             return resourceMan;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace POFF.Kicker.Model;
+namespace POFF.Kicker.MatchGenerators;
 
 public class MatchIndexPair : Tuple<int, int>
 {

@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace POFF.Kicker.View.Screens;
+namespace POFF.Kicker.Screens;
 
 public partial class TeamsScreen : UserControl
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using POFF.Kicker.Model;
-using POFF.Kicker.ViewModel;
+using POFF.Kicker.Data;
+using POFF.KickerModel;
 
 namespace POFF.Kicker.Tests.Types;
 

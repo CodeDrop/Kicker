@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace POFF.Kicker.Model;
+namespace POFF.Kicker.Data;
 
 
 internal class Database

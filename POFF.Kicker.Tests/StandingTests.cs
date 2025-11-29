@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace POFF.Kicker.Model;
+namespace POFF.Kicker.Data;
 
 [TestClass()]
 public class StandingTests

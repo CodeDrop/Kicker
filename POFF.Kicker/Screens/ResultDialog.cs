@@ -2,10 +2,10 @@
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using POFF.Kicker.Model;
-using POFF.Kicker.ViewModel.Screens;
+using POFF.Kicker.Data;
+using POFF.KickerModel.Screens;
 
-namespace POFF.Kicker.View.Screens;
+namespace POFF.Kicker.Screens;
 
 
 public class ResultDialog : Form

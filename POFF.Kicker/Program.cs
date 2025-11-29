@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace POFF.Kicker.View
+namespace POFF.Kicker;
+
+public class Program
 {
-    public class Program
+    [STAThread]
+    public static void Main(string[] args)
     {
-        [STAThread]
-        public static void Main(string[] args)
-        {
-            Application.Run(new AppWindow());
-        }
+        Application.Run(new AppWindow());
     }
 }

@@ -3,13 +3,13 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using POFF.Kicker.Model;
-using POFF.Kicker.View.Components;
-using POFF.Kicker.View.Screens;
-using POFF.Kicker.ViewModel;
-using POFF.Kicker.ViewModel.Types;
+using POFF.Kicker.Data;
+using POFF.Kicker.Components;
+using POFF.Kicker.Screens;
+using POFF.KickerModel;
+using POFF.KickerModel.Types;
 
-namespace POFF.Kicker.View;
+namespace POFF.Kicker;
 
 
 public partial class AppWindow : Form

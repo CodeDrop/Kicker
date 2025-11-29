@@ -1,9 +1,10 @@
-﻿using System;
+﻿using POFF.Kicker.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace POFF.Kicker.Model;
+namespace POFF.Kicker.Data;
 
 public class Tournament
 {

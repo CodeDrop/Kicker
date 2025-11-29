@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace POFF.Kicker.Model;
+namespace POFF.Kicker.MatchGenerators;
 
 
 public class MatchdaysMatchGenerator : IMatchGenerator

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Linq;
 
-namespace POFF.Kicker.Model;
+namespace POFF.Kicker.MatchGenerators;
 
 public class Matchday : List<MatchIndexPair>
 {

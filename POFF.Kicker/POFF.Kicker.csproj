@@ -13,7 +13,7 @@
     <ApplicationIcon>Kicker.ico</ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>Kicker</AssemblyName>
+    <AssemblyName>POFF.Kicker</AssemblyName>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
@@ -25,8 +25,8 @@
     <OptionCompare>Text</OptionCompare>
     <OptionExplicit>On</OptionExplicit>
     <OptionStrict>On</OptionStrict>
-    <RootNamespace>POFF.Kicker.View</RootNamespace>
-    <StartupObject>POFF.Kicker.View.Program</StartupObject>
+    <RootNamespace>POFF.Kicker</RootNamespace>
+    <StartupObject>POFF.Kicker.Program</StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
@@ -56,7 +56,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
-    <DocumentationFile>bin\Kicker.xml</DocumentationFile>
+    <DocumentationFile>bin\POFF.Kicker.xml</DocumentationFile>
     <BaseAddress>285212672</BaseAddress>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
@@ -73,7 +73,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
-    <DocumentationFile>bin\Kicker.xml</DocumentationFile>
+    <DocumentationFile>bin\POFF.Kicker.xml</DocumentationFile>
     <BaseAddress>285212672</BaseAddress>
     <ConfigurationOverrideFile>
     </ConfigurationOverrideFile>
@@ -126,12 +126,12 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Business\MatchManager.cs" />
-    <Compile Include="Business\StandingManager.cs" />
-    <Compile Include="Business\TableManager.cs" />
-    <Compile Include="Business\TeamManager.cs" />
+    <Compile Include="Model\MatchManager.cs" />
+    <Compile Include="Model\StandingManager.cs" />
+    <Compile Include="Model\TableManager.cs" />
+    <Compile Include="Model\TeamManager.cs" />
     <Compile Include="Data\Database.cs" />
-    <Compile Include="Export\HtmlExport.cs" />
+    <Compile Include="Data\HtmlExport.cs" />
     <Compile Include="Interfaces\IConfirmationMessage.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="MatchGenerators\GeneticMatchGenerator.cs" />
@@ -201,9 +201,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="My Project\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
