@@ -133,20 +133,20 @@
     <Compile Include="Data\Database.cs" />
     <Compile Include="Data\HtmlExport.cs" />
     <Compile Include="Interfaces\IConfirmationMessage.cs" />
-    <Compile Include="Match.cs" />
+    <Compile Include="Data\Match.cs" />
     <Compile Include="MatchGenerators\GeneticMatchGenerator.cs" />
     <Compile Include="MatchGenerators\IMatchGenerator.cs" />
     <Compile Include="MatchGenerators\Matchday.cs" />
     <Compile Include="MatchGenerators\MatchdaysMatchGenerator.cs" />
     <Compile Include="MatchGenerators\MatchIndexPair.cs" />
-    <Compile Include="MatchStatus.cs" />
+    <Compile Include="Data\MatchStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Result.cs" />
+    <Compile Include="Data\Result.cs" />
     <Compile Include="Screens\ResultDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,11 +171,11 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Screens\TeamsScreenViewModel.cs" />
-    <Compile Include="SetResult.cs" />
-    <Compile Include="Standing.cs" />
-    <Compile Include="Team.cs" />
+    <Compile Include="Data\SetResult.cs" />
+    <Compile Include="Data\Standing.cs" />
+    <Compile Include="Data\Team.cs" />
     <Compile Include="Tournament.cs" />
-    <Compile Include="TournamentType.cs" />
+    <Compile Include="Data\TournamentType.cs" />
     <Compile Include="Types\DefaultConfirmationMessageHandler.cs" />
     <Compile Include="Types\MatchInfo.cs" />
     <Compile Include="Types\NotificationObject.cs" />
