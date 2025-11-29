@@ -5,10 +5,9 @@ using System.Linq;
 using System.Windows.Forms;
 using POFF.Kicker.Data;
 using POFF.Kicker.Components;
-using POFF.Kicker.Screens;
 using POFF.Kicker.Types;
 
-namespace POFF.Kicker;
+namespace POFF.Kicker.Screens;
 
 
 public partial class AppWindow : Form
