@@ -65,7 +65,7 @@ namespace POFF.Kicker.ViewModel.Screens
 
         public void RemoveTeam(Team team)
         {
-            string message = string.Format("Der Spielplan und Ergebnisse der bereits durchgeführten Spiele{0}werden gelöscht, wenn Sie die Mannschaft \"{1}\" entfernen.{0}{0}Wollen Sie die Manschaft entfernen?", Constants.vbCrLf, team.Name);
+            string message = string.Format("Der Spielplan und Ergebnisse der bereits durchgeführten Spiele{0}werden gelöscht, wenn Sie die Mannschaft \"{1}\" entfernen.{0}{0}Wollen Sie die Manschaft entfernen?", Environment.NewLine, team.Name);
             if (ConfirmationMessageHandler.Confirm(message))
             {
                 Tournament.RemoveTeam(team);

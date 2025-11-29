@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.0.11217.181 d18.0
+VisualStudioVersion = 18.0.11217.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", "{D73BFE67-5F33-08E2-3FD0-D4FE17392214}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{C766A6A4-EED0-0FF9-2639-625A749BE9F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model.Tests", "Model.Tests\Model.Tests.csproj", "{41139BF5-D40A-07DA-14FF-3DFD49195C29}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{8CE44347-D621-0CDA-188E-0E1DB5F6117E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel.Tests", "ViewModel.Tests\ViewModel.Tests.csproj", "{1EEB6085-8D22-066C-0ABB-4D2B2D65F42A}"
 EndProject
@@ -31,10 +29,6 @@ Global
 		{41139BF5-D40A-07DA-14FF-3DFD49195C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41139BF5-D40A-07DA-14FF-3DFD49195C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41139BF5-D40A-07DA-14FF-3DFD49195C29}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8CE44347-D621-0CDA-188E-0E1DB5F6117E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CE44347-D621-0CDA-188E-0E1DB5F6117E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CE44347-D621-0CDA-188E-0E1DB5F6117E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CE44347-D621-0CDA-188E-0E1DB5F6117E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1EEB6085-8D22-066C-0ABB-4D2B2D65F42A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1EEB6085-8D22-066C-0ABB-4D2B2D65F42A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EEB6085-8D22-066C-0ABB-4D2B2D65F42A}.Release|Any CPU.ActiveCfg = Release|Any CPU

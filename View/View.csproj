@@ -122,12 +122,25 @@
     <Compile Include="AppWindow.Designer.cs">
       <DependentUpon>AppWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppWindowViewModel.cs" />
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\IConfirmationMessage.cs" />
+    <Compile Include="My Project\Application.Designer.cs">
+      <DependentUpon>Application.myapp</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Screens\ResultDialog.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Screens\ResultDialogViewModel.cs" />
     <Compile Include="Screens\TeamDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,12 +153,24 @@
     <Compile Include="Components\StandingListViewItem.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Screens\TeamDialogViewModel.cs" />
     <Compile Include="Screens\TeamsScreen.Designer.cs">
       <DependentUpon>TeamsScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\TeamsScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Screens\TeamsScreenViewModel.cs" />
+    <Compile Include="Types\DefaultConfirmationMessageHandler.cs" />
+    <Compile Include="Types\MatchInfo.cs" />
+    <Compile Include="Types\NotificationObject.cs" />
+    <Compile Include="Types\SetResultInput.cs" />
+    <Compile Include="Types\TeamInfo.cs" />
+    <Compile Include="Types\ViewModelBase.cs" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.cs</LastGenOutput>
+    </None>
     <EmbeddedResource Include="Screens\ResultDialog.resx">
       <DependentUpon>ResultDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +185,11 @@
       <DependentUpon>TeamsScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>POFF.Kicker.ViewModel.My</CustomToolNamespace>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -178,10 +208,6 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{C766A6A4-EED0-0FF9-2639-625A749BE9F7}</Project>
       <Name>Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
-      <Project>{8CE44347-D621-0CDA-188E-0E1DB5F6117E}</Project>
-      <Name>ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
