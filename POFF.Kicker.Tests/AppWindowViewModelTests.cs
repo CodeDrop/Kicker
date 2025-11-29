@@ -1,7 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using POFF.Kicker.ViewModel;
 using POFF.Kicker.ViewModel.Screens;
 
-namespace POFF.Kicker.ViewModel;
+namespace POFF.Kicker.Tests;
 
 
 [TestClass()]

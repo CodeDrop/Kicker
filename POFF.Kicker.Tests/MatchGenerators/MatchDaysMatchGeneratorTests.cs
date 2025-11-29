@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using POFF.Kicker.Model;
 
-namespace POFF.Kicker.Model;
+namespace POFF.Kicker.Tests.MatchGenerators;
 
 [TestClass]
 public class MatchDaysMatchGeneratorTests

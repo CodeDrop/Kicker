@@ -1,7 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using POFF.Kicker.Model;
 
-namespace POFF.Kicker.Model;
+namespace POFF.Kicker.Tests;
 
 
 [TestClass()]

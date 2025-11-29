@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1EEB6085-8D22-066C-0ABB-4D2B2D65F42A}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>POFF.Kicker.ViewModel</RootNamespace>
-    <AssemblyName>Kicker.ViewModel.Tests</AssemblyName>
+    <RootNamespace>POFF.Kicker.Tests</RootNamespace>
+    <AssemblyName>POFF.Kicker.Tests</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -28,7 +28,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>bin\Debug\Kicker.ViewModel.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\POFF.Kicker.Tests.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,1591</NoWarn>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
   </PropertyGroup>
@@ -36,7 +36,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>bin\Release\Kicker.ViewModel.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\POFF.Kicker.Tests.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>

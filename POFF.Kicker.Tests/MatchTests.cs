@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using POFF.Kicker.Model;
 
-namespace POFF.Kicker.Model;
+namespace POFF.Kicker.Tests;
 
 [TestClass()]
 public class MatchTests
