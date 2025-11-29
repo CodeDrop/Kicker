@@ -3,7 +3,6 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 using POFF.Kicker.Model;
 using POFF.Kicker.View.Components;
 using POFF.Kicker.View.Screens;

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Microsoft.VisualBasic;
 using POFF.Kicker.Model;
 using POFF.Kicker.ViewModel.Interfaces;
 using POFF.Kicker.ViewModel.Types;
