@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POFF.Kicker.View.Properties;
+using System;
 using System.Linq;
 using System.Text;
 
@@ -17,7 +18,7 @@ namespace POFF.Kicker.Model
 
         public override string ToString()
         {
-            var builder = new StringBuilder(My.Resources.Resources.HtmlExportStandingOnlyTemplate);
+            var builder = new StringBuilder(Resources.HtmlExportStandingOnlyTemplate);
 
             SetSubtitel(builder);
             SetStandings(builder);

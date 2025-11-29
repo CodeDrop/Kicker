@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace POFF.Kicker.Model
 {
@@ -72,7 +73,7 @@ namespace POFF.Kicker.Model
         public void CopyStandingsHtmlToClipboard()
         {
             var export = new HtmlExport(this);
-            My.MyProject.Computer.Clipboard.SetText(export.ToString());
+            Clipboard.SetText(export.ToString());
         }
 
         private bool ContainsWithdrawnTeam(Match match)

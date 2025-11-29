@@ -16,10 +16,8 @@ namespace POFF.Kicker.Model
 
             int goalCount1 = default, goalCount2 = default;
 
-            if (Information.IsNumeric(setResult.Home))
-                goalCount1 = int.Parse(setResult.Home.ToString());
-            if (Information.IsNumeric(setResult.Guest))
-                goalCount2 = int.Parse(setResult.Guest.ToString());
+            goalCount1 = setResult.Home;
+            goalCount2 = setResult.Guest;
 
             Array.Resize(ref SetResults, SetResults.Length + 1);
             SetResults[SetResults.Length - 1] = new SetResult();

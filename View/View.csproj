@@ -126,7 +126,20 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Business\MatchManager.cs" />
+    <Compile Include="Business\StandingManager.cs" />
+    <Compile Include="Business\TableManager.cs" />
+    <Compile Include="Business\TeamManager.cs" />
+    <Compile Include="Data\Database.cs" />
+    <Compile Include="Export\HtmlExport.cs" />
     <Compile Include="Interfaces\IConfirmationMessage.cs" />
+    <Compile Include="Match.cs" />
+    <Compile Include="MatchGenerators\GeneticMatchGenerator.cs" />
+    <Compile Include="MatchGenerators\IMatchGenerator.cs" />
+    <Compile Include="MatchGenerators\Matchday.cs" />
+    <Compile Include="MatchGenerators\MatchdaysMatchGenerator.cs" />
+    <Compile Include="MatchGenerators\MatchIndexPair.cs" />
+    <Compile Include="MatchStatus.cs" />
     <Compile Include="My Project\Application.Designer.cs">
       <DependentUpon>Application.myapp</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -137,6 +150,12 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Result.cs" />
     <Compile Include="Screens\ResultDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +180,11 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Screens\TeamsScreenViewModel.cs" />
+    <Compile Include="SetResult.cs" />
+    <Compile Include="Standing.cs" />
+    <Compile Include="Team.cs" />
+    <Compile Include="Tournament.cs" />
+    <Compile Include="TournamentType.cs" />
     <Compile Include="Types\DefaultConfirmationMessageHandler.cs" />
     <Compile Include="Types\MatchInfo.cs" />
     <Compile Include="Types\NotificationObject.cs" />
@@ -171,6 +195,10 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.cs</LastGenOutput>
     </None>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\ResultDialog.resx">
       <DependentUpon>ResultDialog.cs</DependentUpon>
     </EmbeddedResource>
