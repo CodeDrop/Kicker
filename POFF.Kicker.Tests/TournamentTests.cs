@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using POFF.Kicker.View.Model;
 
 namespace POFF.Kicker.Data;
 

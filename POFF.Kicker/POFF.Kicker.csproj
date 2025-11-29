@@ -174,7 +174,7 @@
     <Compile Include="Data\SetResult.cs" />
     <Compile Include="Data\Standing.cs" />
     <Compile Include="Data\Team.cs" />
-    <Compile Include="Tournament.cs" />
+    <Compile Include="Model\Tournament.cs" />
     <Compile Include="Data\TournamentType.cs" />
     <Compile Include="Types\DefaultConfirmationMessageHandler.cs" />
     <Compile Include="Types\MatchInfo.cs" />

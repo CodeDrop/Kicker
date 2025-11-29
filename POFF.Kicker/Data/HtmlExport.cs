@@ -1,4 +1,5 @@
 ﻿using POFF.Kicker.Properties;
+using POFF.Kicker.View.Model;
 using System;
 using System.Linq;
 using System.Text;
