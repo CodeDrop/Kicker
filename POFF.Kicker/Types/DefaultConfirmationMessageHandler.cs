@@ -1,23 +1,21 @@
 ﻿using POFF.Kicker.ViewModel.Interfaces;
 
-namespace POFF.Kicker.ViewModel.Types
+namespace POFF.Kicker.ViewModel.Types;
+
+
+internal class DefaultConfirmationMessageHandler : IConfirmationMessage
 {
 
-    internal class DefaultConfirmationMessageHandler : IConfirmationMessage
+    private DefaultConfirmationMessageHandler()
     {
+        // 
+    }
 
-        private DefaultConfirmationMessageHandler()
-        {
-            // 
-        }
+    public static IConfirmationMessage Empty = new DefaultConfirmationMessageHandler();
 
-        public static IConfirmationMessage Empty = new DefaultConfirmationMessageHandler();
-
-        public bool Confirm(string message)
-        {
-            return true;
-        }
-
+    public bool Confirm(string message)
+    {
+        return true;
     }
 
 }

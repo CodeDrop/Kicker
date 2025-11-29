@@ -2,114 +2,112 @@
 using System.ComponentModel;
 using POFF.Kicker.Model;
 
-namespace POFF.Kicker.ViewModel.Types
+namespace POFF.Kicker.ViewModel.Types;
+
+
+public class TeamInfo : NotificationObject, IChangeTracking
 {
 
-    public class TeamInfo : NotificationObject, IChangeTracking
+    public TeamInfo() : this(new Team() { Name = "New Team" })
     {
+    }
 
-        public TeamInfo() : this(new Team() { Name = "New Team" })
+    public TeamInfo(Team team)
+    {
+        // Check parameters
+        if (team is null)
+            throw new ArgumentNullException("team");
+
+        // Initialize members
+        TeamValue = team;
+        Current.Name = team.Name;
+        Current.Player1 = team.Player1;
+        Current.Player2 = team.Player2;
+    }
+
+    private Data Current;
+
+    private struct Data
+    {
+        public string Name;
+        public string Player1;
+        public string Player2;
+    }
+
+    private readonly Team TeamValue;
+    internal Team Team
+    {
+        get
         {
+            return TeamValue;
         }
+    }
 
-        public TeamInfo(Team team)
+    public string Name
+    {
+        get
         {
-            // Check parameters
-            if (team is null)
-                throw new ArgumentNullException("team");
-
-            // Initialize members
-            TeamValue = team;
-            Current.Name = team.Name;
-            Current.Player1 = team.Player1;
-            Current.Player2 = team.Player2;
+            return Current.Name;
         }
-
-        private Data Current;
-
-        private struct Data
+        set
         {
-            public string Name;
-            public string Player1;
-            public string Player2;
+            if ((value ?? "") == (Current.Name ?? ""))
+                return;
+            Current.Name = value;
+            OnPropertyChanged();
         }
+    }
 
-        private readonly Team TeamValue;
-        internal Team Team
+    public string Player1
+    {
+        get
         {
-            get
-            {
-                return TeamValue;
-            }
+            return Current.Player1;
         }
-
-        public string Name
+        set
         {
-            get
-            {
-                return Current.Name;
-            }
-            set
-            {
-                if ((value ?? "") == (Current.Name ?? ""))
-                    return;
-                Current.Name = value;
-                OnPropertyChanged();
-            }
+            if ((value ?? "") == (Current.Player1 ?? ""))
+                return;
+            Current.Player1 = value;
+            OnPropertyChanged();
         }
+    }
 
-        public string Player1
+    public string Player2
+    {
+        get
         {
-            get
-            {
-                return Current.Player1;
-            }
-            set
-            {
-                if ((value ?? "") == (Current.Player1 ?? ""))
-                    return;
-                Current.Player1 = value;
-                OnPropertyChanged();
-            }
+            return Current.Player2;
         }
-
-        public string Player2
+        set
         {
-            get
-            {
-                return Current.Player2;
-            }
-            set
-            {
-                if ((value ?? "") == (Current.Player2 ?? ""))
-                    return;
-                Current.Player2 = value;
-                OnPropertyChanged();
-            }
+            if ((value ?? "") == (Current.Player2 ?? ""))
+                return;
+            Current.Player2 = value;
+            OnPropertyChanged();
         }
+    }
 
-        protected override void OnPropertyChanged(string propertyName = "")
+    protected override void OnPropertyChanged(string propertyName = "")
+    {
+        IsChangedValue = true;
+        base.OnPropertyChanged(propertyName);
+    }
+
+    public void AcceptChanges()
+    {
+        Team.Name = Current.Name;
+        Team.Player1 = Current.Player1;
+        Team.Player2 = Current.Player2;
+    }
+
+    private bool IsChangedValue;
+    public bool IsChanged
+    {
+        get
         {
-            IsChangedValue = true;
-            base.OnPropertyChanged(propertyName);
+            return IsChangedValue;
         }
-
-        public void AcceptChanges()
-        {
-            Team.Name = Current.Name;
-            Team.Player1 = Current.Player1;
-            Team.Player2 = Current.Player2;
-        }
-
-        private bool IsChangedValue;
-        public bool IsChanged
-        {
-            get
-            {
-                return IsChangedValue;
-            }
-        }
-
     }
 
 }

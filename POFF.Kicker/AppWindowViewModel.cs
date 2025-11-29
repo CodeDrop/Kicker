@@ -4,90 +4,89 @@ using POFF.Kicker.Model;
 using POFF.Kicker.ViewModel.Screens;
 using POFF.Kicker.ViewModel.Types;
 
-namespace POFF.Kicker.ViewModel
+namespace POFF.Kicker.ViewModel;
+
+
+public class AppWindowViewModel : ViewModelBase
 {
 
-    public class AppWindowViewModel : ViewModelBase
+    public static AppWindowViewModel Instance = new AppWindowViewModel();
+
+    private AppWindowViewModel()
     {
+        TournamentValue = new Tournament();
+        TeamsScreenValue = new TeamsScreenViewModel(TournamentValue);
+    }
 
-        public static AppWindowViewModel Instance = new AppWindowViewModel();
-
-        private AppWindowViewModel()
+    public static T DI<T>() where T : ViewModelBase
+    {
+        if (ReferenceEquals(typeof(T), typeof(TeamsScreenViewModel)))
         {
-            TournamentValue = new Tournament();
-            TeamsScreenValue = new TeamsScreenViewModel(TournamentValue);
+            return (T)(ViewModelBase)Instance.TeamsScreen;
         }
 
-        public static T DI<T>() where T : ViewModelBase
-        {
-            if (ReferenceEquals(typeof(T), typeof(TeamsScreenViewModel)))
-            {
-                return (T)(ViewModelBase)Instance.TeamsScreen;
-            }
+        throw new ArgumentOutOfRangeException("type", "Unexpected type");
+    }
 
-            throw new ArgumentOutOfRangeException("type", "Unexpected type");
-        }
-
-        public BindingList<Team> Teams
+    public BindingList<Team> Teams
+    {
+        get
         {
-            get
-            {
-                return TeamsScreen.Teams;
-            }
+            return TeamsScreen.Teams;
         }
+    }
 
-        private Tournament TournamentValue;
-        public Tournament Tournament
+    private Tournament TournamentValue;
+    public Tournament Tournament
+    {
+        get
         {
-            get
-            {
-                return TournamentValue;
-            }
+            return TournamentValue;
         }
+    }
 
-        private int TabIndexValue;
-        public int TabIndex
+    private int TabIndexValue;
+    public int TabIndex
+    {
+        get
         {
-            get
-            {
-                return TabIndexValue;
-            }
-            set
-            {
-                if (value == TabIndexValue)
-                    return;
-                TabIndexValue = value;
-                OnPropertyChanged();
-            }
+            return TabIndexValue;
         }
+        set
+        {
+            if (value == TabIndexValue)
+                return;
+            TabIndexValue = value;
+            OnPropertyChanged();
+        }
+    }
 
-        private readonly TeamsScreenViewModel TeamsScreenValue;
-        public TeamsScreenViewModel TeamsScreen
+    private readonly TeamsScreenViewModel TeamsScreenValue;
+    public TeamsScreenViewModel TeamsScreen
+    {
+        get
         {
-            get
-            {
-                return TeamsScreenValue;
-            }
+            return TeamsScreenValue;
         }
+    }
 
-        public void AddTeam(TeamInfo team)
-        {
-            TeamsScreen.AddTeam(team.Team);
-        }
+    public void AddTeam(TeamInfo team)
+    {
+        TeamsScreen.AddTeam(team.Team);
+    }
 
-        public void RemoveTeam(Team team)
-        {
-            TeamsScreen.RemoveTeam(team);
-        }
+    public void RemoveTeam(Team team)
+    {
+        TeamsScreen.RemoveTeam(team);
+    }
 
-        public void Save()
-        {
-            Tournament.Save();
-        }
+    public void Save()
+    {
+        Tournament.Save();
+    }
 
-        public void CopyToClipboard()
-        {
-            Tournament.CopyStandingsHtmlToClipboard();
-        }
+    public void CopyToClipboard()
+    {
+        Tournament.CopyStandingsHtmlToClipboard();
     }
 }

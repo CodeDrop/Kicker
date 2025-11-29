@@ -4,13 +4,12 @@
 
 using System;
 
-namespace Microsoft.VisualBasic
+namespace Microsoft.VisualBasic;
+
+[Embedded()]
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Module | AttributeTargets.Assembly, Inherited = false)]
+[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+[System.Runtime.CompilerServices.CompilerGenerated()]
+internal sealed class Embedded : Attribute
 {
-    [Embedded()]
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Module | AttributeTargets.Assembly, Inherited = false)]
-    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-    [System.Runtime.CompilerServices.CompilerGenerated()]
-    internal sealed class Embedded : Attribute
-    {
-    }
 }

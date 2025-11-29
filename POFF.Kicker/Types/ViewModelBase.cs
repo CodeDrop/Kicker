@@ -1,10 +1,8 @@
 ﻿
-namespace POFF.Kicker.ViewModel.Types
+namespace POFF.Kicker.ViewModel.Types;
+
+
+public class ViewModelBase : NotificationObject
 {
-
-    public class ViewModelBase : NotificationObject
-    {
-
-    }
 
 }

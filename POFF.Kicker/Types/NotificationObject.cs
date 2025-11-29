@@ -1,19 +1,17 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace POFF.Kicker.ViewModel.Types
+namespace POFF.Kicker.ViewModel.Types;
+
+
+public class NotificationObject : INotifyPropertyChanged
 {
 
-    public class NotificationObject : INotifyPropertyChanged
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
     {
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
 }

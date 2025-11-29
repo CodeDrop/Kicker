@@ -1,23 +1,22 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace POFF.Kicker.Model
+namespace POFF.Kicker.Model;
+
+[TestClass()]
+public class TeamTests
 {
-    [TestClass()]
-    public class TeamTests
+
+    [TestMethod()]
+    public void TeamTest()
     {
+        // Arrange
+        int number = 3;
 
-        [TestMethod()]
-        public void TeamTest()
-        {
-            // Arrange
-            int number = 3;
+        // Act
+        var result = new Team(number);
 
-            // Act
-            var result = new Team(number);
-
-            // Assert
-            Assert.AreEqual("Team N°3", result.Name, "Unexpected Name");
-        }
-
+        // Assert
+        Assert.AreEqual("Team N°3", result.Name, "Unexpected Name");
     }
+
 }

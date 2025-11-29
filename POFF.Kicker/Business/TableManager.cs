@@ -1,8 +1,7 @@
 ﻿
-namespace POFF.Kicker.Model
-{
-    public class TableManager
-    {
+namespace POFF.Kicker.Model;
 
-    }
+public class TableManager
+{
+
 }

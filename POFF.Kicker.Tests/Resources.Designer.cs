@@ -12,59 +12,58 @@
 using System.Diagnostics;
 using Microsoft.VisualBasic;
 
-namespace POFF.Kicker.ViewModel.My.Resources
+namespace POFF.Kicker.ViewModel.My.Resources;
+
+
+// Diese Klasse wurde von der StronglyTypedResourceBuilder automatisch generiert
+// -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
+// Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
+// mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
+/// <summary>
+/// Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+/// </summary>
+[System.CodeDom.Compiler.GeneratedCode("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+[DebuggerNonUserCode()]
+[System.Runtime.CompilerServices.CompilerGenerated()]
+[HideModuleName()]
+internal static class Resources
 {
 
-    // Diese Klasse wurde von der StronglyTypedResourceBuilder automatisch generiert
-    // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
-    // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
-    // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
+    private static System.Resources.ResourceManager resourceMan;
+
+    private static System.Globalization.CultureInfo resourceCulture;
+
     /// <summary>
-    /// Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+    /// Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
     /// </summary>
-    [System.CodeDom.Compiler.GeneratedCode("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
-    [DebuggerNonUserCode()]
-    [System.Runtime.CompilerServices.CompilerGenerated()]
-    [HideModuleName()]
-    internal static class Resources
+    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+    internal static System.Resources.ResourceManager ResourceManager
     {
-
-        private static System.Resources.ResourceManager resourceMan;
-
-        private static System.Globalization.CultureInfo resourceCulture;
-
-        /// <summary>
-        /// Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
-        /// </summary>
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Resources.ResourceManager ResourceManager
+        get
         {
-            get
+            if (ReferenceEquals(resourceMan, null))
             {
-                if (ReferenceEquals(resourceMan, null))
-                {
-                    var temp = new System.Resources.ResourceManager("POFF.Kicker.ViewModel.Resources", typeof(Resources).Assembly);
-                    resourceMan = temp;
-                }
-                return resourceMan;
+                var temp = new System.Resources.ResourceManager("POFF.Kicker.ViewModel.Resources", typeof(Resources).Assembly);
+                resourceMan = temp;
             }
+            return resourceMan;
         }
+    }
 
-        /// <summary>
-        /// Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
-        /// Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
-        /// </summary>
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Globalization.CultureInfo Culture
+    /// <summary>
+    /// Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+    /// Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+    /// </summary>
+    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+    internal static System.Globalization.CultureInfo Culture
+    {
+        get
         {
-            get
-            {
-                return resourceCulture;
-            }
-            set
-            {
-                resourceCulture = value;
-            }
+            return resourceCulture;
+        }
+        set
+        {
+            resourceCulture = value;
         }
     }
 }

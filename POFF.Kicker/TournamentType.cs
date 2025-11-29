@@ -1,9 +1,8 @@
 ﻿
-namespace POFF.Kicker.Model
+namespace POFF.Kicker.Model;
+
+public enum TournamentType
 {
-    public enum TournamentType
-    {
-        Standard,
-        MatchDays
-    }
+    Standard,
+    MatchDays
 }

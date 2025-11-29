@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace POFF.Kicker.Model
+namespace POFF.Kicker.Model;
+
+public interface IMatchGenerator
 {
-    public interface IMatchGenerator
-    {
-        IEnumerable<MatchIndexPair> Generate();
-    }
+    IEnumerable<MatchIndexPair> Generate();
 }

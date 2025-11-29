@@ -1,10 +1,9 @@
 ﻿
-namespace POFF.Kicker.Model
+namespace POFF.Kicker.Model;
+
+public enum MatchStatus
 {
-    public enum MatchStatus
-    {
-        Open,
-        Running,
-        Finished
-    }
+    Open,
+    Running,
+    Finished
 }

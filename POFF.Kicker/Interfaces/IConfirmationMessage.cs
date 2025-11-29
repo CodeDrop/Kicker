@@ -1,12 +1,10 @@
 ﻿
-namespace POFF.Kicker.ViewModel.Interfaces
+namespace POFF.Kicker.ViewModel.Interfaces;
+
+
+public interface IConfirmationMessage
 {
 
-    public interface IConfirmationMessage
-    {
-
-        bool Confirm(string message);
-
-    }
+    bool Confirm(string message);
 
 }

@@ -1,53 +1,51 @@
 ﻿using System;
 using POFF.Kicker.Model;
 
-namespace POFF.Kicker.ViewModel.Types
+namespace POFF.Kicker.ViewModel.Types;
+
+
+public class SetResultInput
 {
 
-    public class SetResultInput
+    public SetResultInput()
     {
+        HomeValue = default;
+        GuestValue = default;
+    }
 
-        public SetResultInput()
+    public SetResultInput(SetResult setResult)
+    {
+        if (setResult is null)
+            throw new ArgumentNullException("setResult");
+
+        HomeValue = setResult.Home;
+        GuestValue = setResult.Guest;
+    }
+
+    private int? HomeValue;
+    public int? Home
+    {
+        get
         {
-            HomeValue = default;
-            GuestValue = default;
+            return HomeValue;
         }
-
-        public SetResultInput(SetResult setResult)
+        set
         {
-            if (setResult is null)
-                throw new ArgumentNullException("setResult");
-
-            HomeValue = setResult.Home;
-            GuestValue = setResult.Guest;
+            HomeValue = value;
         }
+    }
 
-        private int? HomeValue;
-        public int? Home
+    private int? GuestValue;
+    public int? Guest
+    {
+        get
         {
-            get
-            {
-                return HomeValue;
-            }
-            set
-            {
-                HomeValue = value;
-            }
+            return GuestValue;
         }
-
-        private int? GuestValue;
-        public int? Guest
+        set
         {
-            get
-            {
-                return GuestValue;
-            }
-            set
-            {
-                GuestValue = value;
-            }
+            GuestValue = value;
         }
-
     }
 
 }
