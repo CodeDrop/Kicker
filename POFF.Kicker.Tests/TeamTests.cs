@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace POFF.Kicker.Data;
+namespace POFF.Kicker.Domain;
 
 [TestClass()]
 public class TeamTests

@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using POFF.Kicker.View.Model;
 
-namespace POFF.Kicker.Data;
+namespace POFF.Kicker.Domain;
 
 [TestClass()]
 public class TournamentTests

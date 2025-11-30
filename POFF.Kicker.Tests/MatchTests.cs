@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using POFF.Kicker.Data;
+using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.Tests;
 

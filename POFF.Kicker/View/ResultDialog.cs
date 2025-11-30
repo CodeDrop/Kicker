@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using POFF.Kicker.Data;
+using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.View;
 

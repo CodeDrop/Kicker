@@ -126,27 +126,27 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\MatchManager.cs" />
-    <Compile Include="Model\StandingManager.cs" />
-    <Compile Include="Model\TableManager.cs" />
-    <Compile Include="Model\TeamManager.cs" />
-    <Compile Include="Data\Database.cs" />
-    <Compile Include="Data\HtmlExport.cs" />
-    <Compile Include="Interfaces\IConfirmationMessage.cs" />
-    <Compile Include="Data\Match.cs" />
-    <Compile Include="MatchGenerators\GeneticMatchGenerator.cs" />
-    <Compile Include="MatchGenerators\IMatchGenerator.cs" />
-    <Compile Include="MatchGenerators\Matchday.cs" />
-    <Compile Include="MatchGenerators\MatchdaysMatchGenerator.cs" />
-    <Compile Include="MatchGenerators\MatchIndexPair.cs" />
-    <Compile Include="Data\MatchStatus.cs" />
+    <Compile Include="Domain\MatchManager.cs" />
+    <Compile Include="Domain\StandingManager.cs" />
+    <Compile Include="Domain\TableManager.cs" />
+    <Compile Include="Domain\TeamManager.cs" />
+    <Compile Include="Infrastructure\Database.cs" />
+    <Compile Include="Infrastructure\HtmlExport.cs" />
+    <Compile Include="View\IConfirmationMessage.cs" />
+    <Compile Include="Domain\Match.cs" />
+    <Compile Include="Domain\MatchGenerators\GeneticMatchGenerator.cs" />
+    <Compile Include="Domain\MatchGenerators\IMatchGenerator.cs" />
+    <Compile Include="Domain\MatchGenerators\Matchday.cs" />
+    <Compile Include="Domain\MatchGenerators\MatchdaysMatchGenerator.cs" />
+    <Compile Include="Domain\MatchGenerators\MatchIndexPair.cs" />
+    <Compile Include="Domain\MatchStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Data\Result.cs" />
+    <Compile Include="Domain\Result.cs" />
     <Compile Include="View\ResultDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,17 +171,17 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\TeamsScreenViewModel.cs" />
-    <Compile Include="Data\SetResult.cs" />
-    <Compile Include="Data\Standing.cs" />
-    <Compile Include="Data\Team.cs" />
-    <Compile Include="Model\Tournament.cs" />
-    <Compile Include="Data\TournamentType.cs" />
-    <Compile Include="Types\DefaultConfirmationMessageHandler.cs" />
-    <Compile Include="Types\MatchInfo.cs" />
-    <Compile Include="Types\NotificationObject.cs" />
-    <Compile Include="Types\SetResultInput.cs" />
-    <Compile Include="Types\TeamInfo.cs" />
-    <Compile Include="Types\ViewModelBase.cs" />
+    <Compile Include="Domain\SetResult.cs" />
+    <Compile Include="Domain\Standing.cs" />
+    <Compile Include="Domain\Team.cs" />
+    <Compile Include="Domain\Tournament.cs" />
+    <Compile Include="Domain\TournamentType.cs" />
+    <Compile Include="View\DefaultConfirmationMessageHandler.cs" />
+    <Compile Include="Domain\MatchInfo.cs" />
+    <Compile Include="View\NotificationObject.cs" />
+    <Compile Include="Domain\SetResultInput.cs" />
+    <Compile Include="Domain\TeamInfo.cs" />
+    <Compile Include="View\ViewModelBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

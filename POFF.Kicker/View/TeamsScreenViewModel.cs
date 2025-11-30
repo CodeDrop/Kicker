@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using POFF.Kicker.Data;
+using POFF.Kicker.Domain;
 using POFF.Kicker.View.Model;
-using POFF.Kicker.Interfaces;
-using POFF.Kicker.Types;
 
 namespace POFF.Kicker.View;
 

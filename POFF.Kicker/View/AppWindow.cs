@@ -3,7 +3,7 @@ using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
-using POFF.Kicker.Data;
+using POFF.Kicker.Domain;
 using POFF.Kicker.Types;
 
 namespace POFF.Kicker.View;

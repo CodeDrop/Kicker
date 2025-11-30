@@ -92,7 +92,7 @@
     <Compile Include="MatchGenerators\MatchIndexPairTests.cs" />
     <Compile Include="MatchTests.cs" />
     <Compile Include="AppWindowViewModelTests.cs" />
-    <Compile Include="My Project\AssemblyInfo.cs" />
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -103,7 +103,7 @@
     <Compile Include="StandingTests.cs" />
     <Compile Include="TeamTests.cs" />
     <Compile Include="TournamentTests.cs" />
-    <Compile Include="Types\MatchInfoTests.cs" />
+    <Compile Include="MatchInfoTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">

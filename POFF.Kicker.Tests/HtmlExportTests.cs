@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using POFF.Kicker.Data;
+using POFF.Kicker.Domain;
+using POFF.Kicker.Infrastructure;
 using POFF.Kicker.View.Model;
 
 namespace POFF.Kicker.Tests;

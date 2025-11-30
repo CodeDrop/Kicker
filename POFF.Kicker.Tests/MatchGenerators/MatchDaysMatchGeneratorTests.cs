@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using POFF.Kicker.MatchGenerators;
+using POFF.Kicker.Domain.MatchGenerators;
 
 namespace POFF.Kicker.Tests.MatchGenerators;
 
