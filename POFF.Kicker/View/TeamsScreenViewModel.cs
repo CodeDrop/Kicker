@@ -6,7 +6,7 @@ using POFF.Kicker.View.Model;
 using POFF.Kicker.Interfaces;
 using POFF.Kicker.Types;
 
-namespace POFF.Kicker.Screens;
+namespace POFF.Kicker.View;
 
 
 public class TeamsScreenViewModel : ViewModelBase

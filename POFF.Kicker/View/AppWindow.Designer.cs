@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
-namespace POFF.Kicker.Screens;
+namespace POFF.Kicker.View;
 
 public partial class AppWindow
 {
@@ -316,7 +316,7 @@ public partial class AppWindow
         var resources = new System.ComponentModel.ComponentResourceManager(typeof(AppWindow));
         _AppTabControl = new TabControl();
         _TeamsTabPage = new TabPage();
-        _TeamsScreenContent = new Screens.TeamsScreen();
+        _TeamsScreenContent = new View.TeamsScreen();
         _MatchesTabPage = new TabPage();
         _MatchListView = new ListView();
         _MatchListView.DoubleClick += new EventHandler(MatchListView_DoubleClick);
@@ -775,9 +775,9 @@ public partial class AppWindow
             _ExitToolStripMenuItem = value;
         }
     }
-    private Screens.TeamsScreen _TeamsScreenContent;
+    private View.TeamsScreen _TeamsScreenContent;
 
-    internal virtual Screens.TeamsScreen TeamsScreenContent
+    internal virtual View.TeamsScreen TeamsScreenContent
     {
         [MethodImpl(MethodImplOptions.Synchronized)]
         get

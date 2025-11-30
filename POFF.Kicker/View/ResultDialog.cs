@@ -4,8 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using POFF.Kicker.Data;
 
-namespace POFF.Kicker.Screens;
-
+namespace POFF.Kicker.View;
 
 public class ResultDialog : Form
 {

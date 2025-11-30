@@ -4,7 +4,7 @@ using POFF.Kicker.Data;
 using POFF.Kicker.View.Model;
 using POFF.Kicker.Types;
 
-namespace POFF.Kicker.Screens;
+namespace POFF.Kicker.View;
 
 public class AppWindowViewModel : ViewModelBase
 {

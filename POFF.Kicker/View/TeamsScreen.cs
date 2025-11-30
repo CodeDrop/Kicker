@@ -5,11 +5,10 @@ using POFF.Kicker.Data;
 using POFF.Kicker.Interfaces;
 using POFF.Kicker.Types;
 
-namespace POFF.Kicker.Screens;
+namespace POFF.Kicker.View;
 
 public partial class TeamsScreen : IConfirmationMessage
 {
-
     public TeamsScreen()
     {
 

@@ -119,10 +119,10 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Screens\AppWindow.Designer.cs">
+    <Compile Include="View\AppWindow.Designer.cs">
       <DependentUpon>AppWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\AppWindowViewModel.cs" />
+    <Compile Include="View\AppWindowViewModel.cs" />
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -147,30 +147,30 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Data\Result.cs" />
-    <Compile Include="Screens\ResultDialog.cs">
+    <Compile Include="View\ResultDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\ResultDialogViewModel.cs" />
-    <Compile Include="Screens\TeamDialog.cs">
+    <Compile Include="View\ResultDialogViewModel.cs" />
+    <Compile Include="View\TeamDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\AppWindow.cs">
+    <Compile Include="View\AppWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Components\MatchListViewItem.cs">
+    <Compile Include="View\MatchListViewItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Components\StandingListViewItem.cs">
+    <Compile Include="View\StandingListViewItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Screens\TeamDialogViewModel.cs" />
-    <Compile Include="Screens\TeamsScreen.Designer.cs">
+    <Compile Include="View\TeamDialogViewModel.cs" />
+    <Compile Include="View\TeamsScreen.Designer.cs">
       <DependentUpon>TeamsScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\TeamsScreen.cs">
+    <Compile Include="View\TeamsScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Screens\TeamsScreenViewModel.cs" />
+    <Compile Include="View\TeamsScreenViewModel.cs" />
     <Compile Include="Data\SetResult.cs" />
     <Compile Include="Data\Standing.cs" />
     <Compile Include="Data\Team.cs" />
@@ -186,17 +186,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\ResultDialog.resx">
+    <EmbeddedResource Include="View\ResultDialog.resx">
       <DependentUpon>ResultDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\TeamDialog.resx">
+    <EmbeddedResource Include="View\TeamDialog.resx">
       <DependentUpon>TeamDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Screens\AppWindow.resx">
+    <EmbeddedResource Include="View\AppWindow.resx">
       <DependentUpon>AppWindow.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="Kicker.ico" />
-    <EmbeddedResource Include="Screens\TeamsScreen.resx">
+    <EmbeddedResource Include="View\TeamsScreen.resx">
       <DependentUpon>TeamsScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
