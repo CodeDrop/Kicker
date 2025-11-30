@@ -11,9 +11,12 @@ public class Tournament
 {
     private readonly StandingManager _standingManager;
 
-    public Tournament()
+    public Tournament() : this([])
+    { }
+
+    public Tournament(Team[] teams)
     {
-        TeamManager = new TeamManager();
+        TeamManager = new TeamManager(teams);
         MatchManager = new MatchManager();
         _standingManager = new StandingManager();
     }
@@ -62,7 +65,7 @@ public class Tournament
 
     public void Save()
     {
-        Database.Save(typeof(Team[]), TeamManager.GetTeams());
+        FileTournamentStorage.Save(typeof(Team[]), TeamManager.GetTeams());
         MatchManager.Save();
     }
 
@@ -79,6 +82,7 @@ public class Tournament
 
     private bool ContainsWithdrawnTeam(Match match)
     {
+        if (!GetTeams.Any()) return false;
         var team1 = GetTeams.Single(t => t.Equals(match.Team1));
         var team2 = GetTeams.Single(t => t.Equals(match.Team2));
         return team1.Withdrawn | team2.Withdrawn;

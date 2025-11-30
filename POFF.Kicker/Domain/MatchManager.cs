@@ -109,13 +109,13 @@ public class MatchManager
 
     private void Load()
     {
-        var data = Database.Load(typeof(Match[]));
+        var data = FileTournamentStorage.Load(typeof(Match[]));
         if (data is not null)
             _matches = (Match[])data;
     }
 
     public void Save()
     {
-        Database.Save(typeof(Match[]), _matches);
+        FileTournamentStorage.Save(typeof(Match[]), _matches);
     }
 }

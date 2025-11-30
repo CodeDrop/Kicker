@@ -1,5 +1,4 @@
-﻿using POFF.Kicker.Infrastructure;
-using System;
+﻿using System;
 
 namespace POFF.Kicker.Domain;
 
@@ -7,9 +6,9 @@ public class TeamManager
 {
     private Team[] _teams = [];
 
-    public TeamManager()
+    public TeamManager(Team[] teams)
     {
-        Load();
+        _teams = teams ?? [];
     }
 
     public Team NewTeam()
@@ -46,12 +45,4 @@ public class TeamManager
     {
         return _teams;
     }
-
-    private void Load()
-    {
-        var data = Database.Load(typeof(Team[]));
-        if (data is not null)
-            _teams = (Team[])data;
-    }
-
 }

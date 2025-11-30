@@ -162,7 +162,7 @@
     <Compile Include="HtmlExportTests.cs" />
     <Compile Include="GeneticMatchGeneratorTests.cs" />
     <Compile Include="Infrastructure\Save_Tournament_File.cs" />
-    <Compile Include="Infrastructure\Open_Tournament_File.cs" />
+    <Compile Include="Infrastructure\Load_Tournament_from_file.cs" />
     <Compile Include="MatchDaysMatchGeneratorTests.cs" />
     <Compile Include="MatchIndexPairTests.cs" />
     <Compile Include="MatchTests.cs" />

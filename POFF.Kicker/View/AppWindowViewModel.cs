@@ -3,18 +3,19 @@ using System.ComponentModel;
 using POFF.Kicker.Domain;
 using POFF.Kicker.View.Model;
 using POFF.Kicker.Types;
+using POFF.Kicker.Infrastructure;
 
 namespace POFF.Kicker.View;
 
 public class AppWindowViewModel : ViewModelBase
 {
-
-    public static AppWindowViewModel Instance = new AppWindowViewModel();
+    public static AppWindowViewModel Instance = new();
+    private readonly ITournamentStorage _storage = new FileTournamentStorage();
 
     private AppWindowViewModel()
     {
-        TournamentValue = new Tournament();
-        TeamsScreenValue = new TeamsScreenViewModel(TournamentValue);
+        Tournament = _storage.Load();
+        TeamsScreen = new TeamsScreenViewModel(Tournament);
     }
 
     public static T DI<T>() where T : ViewModelBase
@@ -35,14 +36,7 @@ public class AppWindowViewModel : ViewModelBase
         }
     }
 
-    private Tournament TournamentValue;
-    public Tournament Tournament
-    {
-        get
-        {
-            return TournamentValue;
-        }
-    }
+    public Tournament Tournament { get; }
 
     private int TabIndexValue;
     public int TabIndex
@@ -60,14 +54,7 @@ public class AppWindowViewModel : ViewModelBase
         }
     }
 
-    private readonly TeamsScreenViewModel TeamsScreenValue;
-    public TeamsScreenViewModel TeamsScreen
-    {
-        get
-        {
-            return TeamsScreenValue;
-        }
-    }
+    public TeamsScreenViewModel TeamsScreen { get; }
 
     public void AddTeam(TeamInfo team)
     {

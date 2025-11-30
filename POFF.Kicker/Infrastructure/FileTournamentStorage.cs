@@ -1,10 +1,36 @@
-﻿using System;
+﻿using POFF.Kicker.View.Model;
+using System;
+using System.IO;
 using System.Xml.Serialization;
 
 namespace POFF.Kicker.Infrastructure;
 
-internal class Database
+public class FileTournamentStorage : ITournamentStorage
 {
+    private readonly string _filename;
+
+    public FileTournamentStorage(string filename = "Tournament.xml")
+    {
+        _filename = filename;
+    }
+
+    public Tournament Load()
+    {
+        if (File.Exists(_filename))
+        {
+            using var reader = new StreamReader(_filename);
+            var serializer = new XmlSerializer(typeof(TournamentFile));
+            var file = (TournamentFile)serializer.Deserialize(reader);
+            reader.Close();
+            return new Tournament(file.Teams);
+        }
+        return new Tournament();
+    }
+
+    public void Save(Tournament tournament)
+    {
+        throw new NotImplementedException();
+    }
 
     public static object Load(Type @type)
     {
@@ -43,5 +69,4 @@ internal class Database
     {
         return string.Format(@".\{0}.xml", type.Name);
     }
-
 }
