@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 using NUnit.Framework;
+using POFF.Kicker.Domain;
 using POFF.Kicker.View.Model;
 
-namespace POFF.Kicker.Domain;
+namespace POFF.Kicker.Tests;
 
 [TestFixture]
 public class TournamentTests
