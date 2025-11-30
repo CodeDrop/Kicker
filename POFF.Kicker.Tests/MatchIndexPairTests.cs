@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using POFF.Kicker.Domain.MatchGenerators;
 
-namespace POFF.Kicker.Tests.MatchGenerators;
+namespace POFF.Kicker.Tests;
 
 [TestClass]
 public class MatchIndexPairTests

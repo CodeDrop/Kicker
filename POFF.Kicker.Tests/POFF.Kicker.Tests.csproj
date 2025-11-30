@@ -87,31 +87,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HtmlExportTests.cs" />
-    <Compile Include="MatchGenerators\GeneticMatchGeneratorTests.cs" />
-    <Compile Include="MatchGenerators\MatchDaysMatchGeneratorTests.cs" />
-    <Compile Include="MatchGenerators\MatchIndexPairTests.cs" />
+    <Compile Include="GeneticMatchGeneratorTests.cs" />
+    <Compile Include="MatchDaysMatchGeneratorTests.cs" />
+    <Compile Include="MatchIndexPairTests.cs" />
     <Compile Include="MatchTests.cs" />
     <Compile Include="AppWindowViewModelTests.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="ResultTests.cs" />
     <Compile Include="SetResultTests.cs" />
     <Compile Include="StandingTests.cs" />
     <Compile Include="TeamTests.cs" />
     <Compile Include="TournamentTests.cs" />
     <Compile Include="MatchInfoTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>POFF.Kicker.ViewModel.My.Resources</CustomToolNamespace>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\POFF.Kicker\POFF.Kicker.csproj">
