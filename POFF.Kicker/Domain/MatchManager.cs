@@ -8,9 +8,9 @@ namespace POFF.Kicker.Domain;
 
 public class MatchManager
 {
-    public MatchManager()
+    public MatchManager(Match[] matches)
     {
-        Load();
+        _matches = matches ?? [];
     }
 
     private Match[] _matches = [];
@@ -105,17 +105,5 @@ public class MatchManager
         if (matchNo < 1 | matchNo > _matches.Length)
             throw new IndexOutOfRangeException("matchNo may only have values between 1 and number of matches");
         _matches[matchNo - 1].Status = matchStatus;
-    }
-
-    private void Load()
-    {
-        var data = FileTournamentStorage.Load(typeof(Match[]));
-        if (data is not null)
-            _matches = (Match[])data;
-    }
-
-    public void Save()
-    {
-        FileTournamentStorage.Save(typeof(Match[]), _matches);
     }
 }

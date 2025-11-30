@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using POFF.Kicker.Domain;
 using POFF.Kicker.Infrastructure;
+using POFF.Kicker.View.Model;
 using System.IO;
-using System.Xml.Serialization;
 
 namespace POFF.Kicker.Tests.Infrastructure
 {
@@ -10,7 +10,7 @@ namespace POFF.Kicker.Tests.Infrastructure
     class Save_Tournament_File
     {
         private const string FILENAME = "unittest.xml";
-        private TournamentFile _sut;
+        private FileTournamentStorage _sut;
 
         [OneTimeSetUp]
         public void Setup()
@@ -21,17 +21,12 @@ namespace POFF.Kicker.Tests.Infrastructure
                     new Team { Name = "Team B" }
                 ];
 
-            _sut = new TournamentFile
-            {
-                Teams = teams,
-                Matches = [new Match(1, teams[0], teams[1])]
-            };
+            Match[] matches = [new Match(1, teams[0], teams[1])];
 
-            var writer = new StreamWriter(FILENAME, false);
+            var tournament = new Tournament(teams, matches);
 
-            var serializer = new XmlSerializer(typeof(TournamentFile));
-            serializer.Serialize(writer, _sut);
-            writer.Close();
+            _sut = new FileTournamentStorage(FILENAME);
+            _sut.Save(tournament);
         }
 
         [OneTimeTearDown]

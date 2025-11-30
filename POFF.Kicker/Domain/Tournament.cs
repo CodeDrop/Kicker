@@ -11,13 +11,13 @@ public class Tournament
 {
     private readonly StandingManager _standingManager;
 
-    public Tournament() : this([])
+    public Tournament() : this([], [])
     { }
 
-    public Tournament(Team[] teams)
+    public Tournament(Team[] teams, Match[] matches)
     {
         TeamManager = new TeamManager(teams);
-        MatchManager = new MatchManager();
+        MatchManager = new MatchManager(matches);
         _standingManager = new StandingManager();
     }
 
@@ -61,12 +61,6 @@ public class Tournament
 
         TeamManager.RemoveTeam(team);
         MatchManager.Clear();
-    }
-
-    public void Save()
-    {
-        FileTournamentStorage.Save(typeof(Team[]), TeamManager.GetTeams());
-        MatchManager.Save();
     }
 
     public IEnumerable<Standing> GetStandings()

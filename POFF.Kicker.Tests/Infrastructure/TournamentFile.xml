@@ -30,5 +30,35 @@
         <SetResults />
       </Result>
     </Match>
+    <Match>
+      <Number>2</Number>
+      <Team1>
+        <Name>Team B</Name>
+        <Withdrawn>false</Withdrawn>
+      </Team1>
+      <Team2>
+        <Name>Team C</Name>
+        <Withdrawn>false</Withdrawn>
+      </Team2>
+      <Status>Open</Status>
+      <Result>
+        <SetResults />
+      </Result>
+    </Match>
+    <Match>
+      <Number>3</Number>
+      <Team1>
+        <Name>Team A</Name>
+        <Withdrawn>false</Withdrawn>
+      </Team1>
+      <Team2>
+        <Name>Team C</Name>
+        <Withdrawn>false</Withdrawn>
+      </Team2>
+      <Status>Open</Status>
+      <Result>
+        <SetResults />
+      </Result>
+    </Match>
   </Matches>
 </TournamentFile>

@@ -68,7 +68,7 @@ public class AppWindowViewModel : ViewModelBase
 
     public void Save()
     {
-        Tournament.Save();
+        _storage.Save(Tournament);
     }
 
     public void CopyToClipboard()
