@@ -1,13 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.Tests;
 
-[TestClass()]
+[TestFixture]
 public class MatchTests
 {
 
-    [TestMethod()]
+    [Test]
     public void MatchTest()
     {
         // Arrange

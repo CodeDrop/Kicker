@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using POFF.Kicker.View;
 
 namespace POFF.Kicker.Tests;
 
 
-[TestClass()]
+[TestFixture]
 public class AppWindowViewModelTests
 {
 
-    [TestMethod()]
+    [Test]
     public void InstanceTest()
     {
         // Arrange
@@ -22,7 +22,7 @@ public class AppWindowViewModelTests
         Assert.IsNotNull(result.TeamsScreen, "TeamsScreen is null");
     }
 
-    [TestMethod()]
+    [Test]
     public void DITest()
     {
         // Arrange

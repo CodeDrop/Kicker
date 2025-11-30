@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using POFF.Kicker.Domain.MatchGenerators;
 
 namespace POFF.Kicker.Tests;
 
-[TestClass]
+[TestFixture]
 public class MatchDaysMatchGeneratorTests
 {
 
-    [TestMethod]
+    [Test]
     public void Generate2Test()
     {
         var sut = new MatchdaysMatchGenerator(2);
@@ -17,7 +17,7 @@ public class MatchDaysMatchGeneratorTests
         Assert.AreEqual(1, result.Count());
     }
 
-    [TestMethod]
+    [Test]
     public void Generate4Test()
     {
         var sut = new MatchdaysMatchGenerator(4);
@@ -25,7 +25,7 @@ public class MatchDaysMatchGeneratorTests
         Assert.AreEqual(6, result.Count());
     }
 
-    [TestMethod]
+    [Test]
     public void Generate10Test()
     {
         var sut = new MatchdaysMatchGenerator(10);
@@ -34,7 +34,7 @@ public class MatchDaysMatchGeneratorTests
         Assert.AreNotEqual(new Tuple<int, int>(0, 2), result.ElementAt(1));
     }
 
-    [TestMethod]
+    [Test]
     public void GenerateXTest()
     {
         var sut = new MatchdaysMatchGenerator(14);

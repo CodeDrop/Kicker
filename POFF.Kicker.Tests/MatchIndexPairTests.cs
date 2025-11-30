@@ -1,14 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using POFF.Kicker.Domain.MatchGenerators;
 
 namespace POFF.Kicker.Tests;
 
-[TestClass]
+[TestFixture]
 public class MatchIndexPairTests
 {
 
 
-    [TestMethod]
+    [Test]
     public void ContainsTeam1OfTest()
     {
         var m1 = new MatchIndexPair(1, 2);
@@ -16,7 +16,7 @@ public class MatchIndexPairTests
         Assert.IsTrue(m1.ContainsTeamOf(m2));
     }
 
-    [TestMethod]
+    [Test]
     public void ContainsTeam2OfTest()
     {
         var m1 = new MatchIndexPair(1, 2);
@@ -24,7 +24,7 @@ public class MatchIndexPairTests
         Assert.IsTrue(m1.ContainsTeamOf(m2));
     }
 
-    [TestMethod]
+    [Test]
     public void ContainsNoTeamOfTest()
     {
         var m1 = new MatchIndexPair(1, 2);
@@ -32,28 +32,26 @@ public class MatchIndexPairTests
         Assert.IsFalse(m1.ContainsTeamOf(m2));
     }
 
-    [TestMethod]
+    [Test]
     public void EqualsSameTest()
     {
         var m1 = new MatchIndexPair(1, 2);
-        Assert.AreEqual(m1, m1);
+        Assert.That(m1.Equals(m1), Is.True);
     }
 
-    [TestMethod]
+    [Test]
     public void EqualsDuplicateTest()
     {
         var m1 = new MatchIndexPair(1, 2);
         var m2 = new MatchIndexPair(1, 2);
-        Assert.AreEqual(m1, m2);
+        Assert.That(m1.Equals(m2), Is.True);
     }
 
-    [TestMethod]
+    [Test]
     public void EqualsReverseTest()
     {
         var m1 = new MatchIndexPair(1, 2);
         var m2 = new MatchIndexPair(2, 1);
-        Assert.AreEqual(m1, m2);
+        Assert.That(m1.Equals(m2), Is.True);
     }
-
-
 }

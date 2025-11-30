@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using POFF.Kicker.Domain;
 using POFF.Kicker.Infrastructure;
 using POFF.Kicker.View.Model;
@@ -7,14 +7,14 @@ using POFF.Kicker.View.Model;
 namespace POFF.Kicker.Tests;
 
 
-[TestClass()]
+[TestFixture]
 public class HtmlExportTests
 {
 
     private static string Result;
 
-    [ClassInitialize]
-    public static void SetUp(TestContext testContext)
+    [OneTimeSetUp]
+    public static void SetUp()
     {
         // Arrange
         var tournament = new Tournament();
@@ -34,35 +34,35 @@ public class HtmlExportTests
         Result = testClass.ToString();
     }
 
-    [TestMethod]
+    [Test]
     public void HeaderTest()
     {
-        StringAssert.StartsWith(Result, "<p>Stand ");
+        StringAssert.StartsWith("<p>Stand ", Result);
     }
 
-    [TestMethod]
+    [Test]
     public void SubtitleTest()
     {
-        StringAssert.Contains(Result, " nach 1 von ");
+        StringAssert.Contains(" nach 1 von ", Result);
     }
 
-    [TestMethod]
+    [Test]
     public void StandingTest()
     {
-        StringAssert.Contains(Result, "<td>Team N°1</td>");
+        StringAssert.Contains("<td>Team N°1</td>", Result);
     }
 
-    [TestMethod]
+    [Test]
     public void GamesOfWithdrawnTeam()
     {
         var pattern = new Regex("<td>Team N°3</td>");
-        StringAssert.DoesNotMatch(Result, pattern);
+        StringAssert.DoesNotMatch(pattern.ToString(), Result);
     }
 
-    [TestMethod]
+    [Test]
     public void FooterTest()
     {
-        StringAssert.Contains(Result, "</table>");
+        StringAssert.Contains("</table>", Result);
     }
 
 }

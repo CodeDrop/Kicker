@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace POFF.Kicker.Domain;
 
-[TestClass()]
+[TestFixture]
 public class ResultTests
 {
 
-    [TestMethod()]
+    [Test]
     public void AddSetResultTest()
     {
         // Arrange

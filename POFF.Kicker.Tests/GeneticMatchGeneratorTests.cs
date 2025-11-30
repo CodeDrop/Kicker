@@ -1,14 +1,14 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using POFF.Kicker.Domain.MatchGenerators;
 
 namespace POFF.Kicker.Tests;
 
-[TestClass]
+[TestFixture]
 public class GeneticMatchGeneratorTests
 {
 
-    [TestMethod]
+    [Test]
     public void Generate2Test()
     {
         var sut = new GeneticMatchGenerator(2);
@@ -16,7 +16,7 @@ public class GeneticMatchGeneratorTests
         Assert.AreEqual(1, result.Count());
     }
 
-    [TestMethod]
+    [Test]
     public void Generate3Test()
     {
         var sut = new GeneticMatchGenerator(3);
@@ -24,7 +24,7 @@ public class GeneticMatchGeneratorTests
         Assert.AreEqual(3, result.Count());
     }
 
-    [TestMethod]
+    [Test]
     public void Generate5Test()
     {
         var sut = new GeneticMatchGenerator(5);

@@ -1,14 +1,14 @@
 ﻿using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using POFF.Kicker.View.Model;
 
 namespace POFF.Kicker.Domain;
 
-[TestClass()]
+[TestFixture]
 public class TournamentTests
 {
 
-    [TestMethod()]
+    [Test]
     public void TournamentTest()
     {
         // Arrange
@@ -22,7 +22,7 @@ public class TournamentTests
         Assert.IsNotNull(result.MatchManager, "MatchManager is null");
     }
 
-    [TestMethod()]
+    [Test]
     public void GetStandingsTest()
     {
         // Arrange

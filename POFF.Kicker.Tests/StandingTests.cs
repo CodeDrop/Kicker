@@ -1,13 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.Domain;
 
-[TestClass()]
+[TestFixture]
 public class StandingTests
 {
 
-    [TestMethod()]
+    [Test]
     public void StandingTest()
     {
         // Arrange
