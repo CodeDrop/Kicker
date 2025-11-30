@@ -6,7 +6,7 @@ namespace POFF.Kicker.Domain;
 public class Result
 {
 
-    public SetResult[] SetResults = new SetResult[0];
+    public SetResult[] SetResults = [];
 
     public void AddSetResult(SetResult setResult)
     {

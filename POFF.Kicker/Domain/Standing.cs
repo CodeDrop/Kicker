@@ -1,11 +1,9 @@
-﻿using POFF.Kicker.Domain;
-using System;
+﻿using System;
 
 namespace POFF.Kicker.Domain;
 
 public class Standing : IComparable
 {
-
     public Standing(Team team)
     {
         Team = team;
@@ -39,5 +37,4 @@ public class Standing : IComparable
     {
         return obj.Equals(Team);
     }
-
 }

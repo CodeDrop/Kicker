@@ -1,5 +1,4 @@
-﻿using POFF.Kicker.Domain;
-using POFF.Kicker.Infrastructure;
+﻿using POFF.Kicker.Infrastructure;
 using POFF.Kicker.Domain.MatchGenerators;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,6 @@ namespace POFF.Kicker.Domain;
 
 public class MatchManager
 {
-
     public MatchManager()
     {
         Load();
@@ -120,5 +118,4 @@ public class MatchManager
     {
         Database.Save(typeof(Match[]), _matches);
     }
-
 }

@@ -7,7 +7,6 @@ namespace POFF.Kicker.Domain;
 [DebuggerDisplay("{Name}")]
 public class Team
 {
-
     public Team()
     {
         // Default constructor needed for serialization
@@ -33,5 +32,4 @@ public class Team
     {
         return Name.GetHashCode();
     }
-
 }

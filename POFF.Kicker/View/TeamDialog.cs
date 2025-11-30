@@ -254,7 +254,7 @@ public class TeamDialog : Form
         CancelButton = _AbortButton;
         ClientSize = new Size(378, 182);
         ControlBox = false;
-        Controls.AddRange(new Control[] { _AbortButton, _OKButton, _Label3, _Player2TextBox, _Label2, _Player1TextBox, _Label1, _TeamTextBox });
+        Controls.AddRange([_AbortButton, _OKButton, _Label3, _Player2TextBox, _Label2, _Player1TextBox, _Label1, _TeamTextBox]);
         Font = new Font("Lucida Sans Unicode", 11.25f, FontStyle.Regular, GraphicsUnit.Point, 0);
         FormBorderStyle = FormBorderStyle.FixedSingle;
         Name = "TeamDialog";

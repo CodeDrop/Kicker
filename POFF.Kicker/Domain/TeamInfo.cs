@@ -5,9 +5,10 @@ using POFF.Kicker.View;
 
 namespace POFF.Kicker.Types;
 
-
 public class TeamInfo : NotificationObject, IChangeTracking
 {
+    private Data _current;
+    private readonly Team _team;
 
     public TeamInfo() : this(new Team() { Name = "New Team" })
     {
@@ -20,13 +21,11 @@ public class TeamInfo : NotificationObject, IChangeTracking
             throw new ArgumentNullException("team");
 
         // Initialize members
-        TeamValue = team;
-        Current.Name = team.Name;
-        Current.Player1 = team.Player1;
-        Current.Player2 = team.Player2;
+        _team = team;
+        _current.Name = team.Name;
+        _current.Player1 = team.Player1;
+        _current.Player2 = team.Player2;
     }
-
-    private Data Current;
 
     private struct Data
     {
@@ -35,12 +34,11 @@ public class TeamInfo : NotificationObject, IChangeTracking
         public string Player2;
     }
 
-    private readonly Team TeamValue;
     internal Team Team
     {
         get
         {
-            return TeamValue;
+            return _team;
         }
     }
 
@@ -48,13 +46,13 @@ public class TeamInfo : NotificationObject, IChangeTracking
     {
         get
         {
-            return Current.Name;
+            return _current.Name;
         }
         set
         {
-            if ((value ?? "") == (Current.Name ?? ""))
+            if ((value ?? "") == (_current.Name ?? ""))
                 return;
-            Current.Name = value;
+            _current.Name = value;
             OnPropertyChanged();
         }
     }
@@ -63,13 +61,13 @@ public class TeamInfo : NotificationObject, IChangeTracking
     {
         get
         {
-            return Current.Player1;
+            return _current.Player1;
         }
         set
         {
-            if ((value ?? "") == (Current.Player1 ?? ""))
+            if ((value ?? "") == (_current.Player1 ?? ""))
                 return;
-            Current.Player1 = value;
+            _current.Player1 = value;
             OnPropertyChanged();
         }
     }
@@ -78,37 +76,29 @@ public class TeamInfo : NotificationObject, IChangeTracking
     {
         get
         {
-            return Current.Player2;
+            return _current.Player2;
         }
         set
         {
-            if ((value ?? "") == (Current.Player2 ?? ""))
+            if ((value ?? "") == (_current.Player2 ?? ""))
                 return;
-            Current.Player2 = value;
+            _current.Player2 = value;
             OnPropertyChanged();
         }
     }
 
     protected override void OnPropertyChanged(string propertyName = "")
     {
-        IsChangedValue = true;
+        IsChanged = true;
         base.OnPropertyChanged(propertyName);
     }
 
     public void AcceptChanges()
     {
-        Team.Name = Current.Name;
-        Team.Player1 = Current.Player1;
-        Team.Player2 = Current.Player2;
+        Team.Name = _current.Name;
+        Team.Player1 = _current.Player1;
+        Team.Player2 = _current.Player2;
     }
 
-    private bool IsChangedValue;
-    public bool IsChanged
-    {
-        get
-        {
-            return IsChangedValue;
-        }
-    }
-
+    public bool IsChanged { get; private set; }
 }

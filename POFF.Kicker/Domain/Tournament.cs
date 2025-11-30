@@ -1,5 +1,4 @@
 ﻿using POFF.Kicker.Domain;
-using POFF.Kicker.Domain;
 using POFF.Kicker.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -10,15 +9,14 @@ namespace POFF.Kicker.View.Model;
 
 public class Tournament
 {
+    private readonly StandingManager _standingManager;
 
     public Tournament()
     {
         TeamManager = new TeamManager();
         MatchManager = new MatchManager();
-        StandingManager = new StandingManager();
+        _standingManager = new StandingManager();
     }
-
-    private readonly StandingManager StandingManager;
 
     public TeamManager TeamManager { get; private set; }
 
@@ -70,7 +68,7 @@ public class Tournament
 
     public IEnumerable<Standing> GetStandings()
     {
-        return StandingManager.GetStandings(MatchManager.GetMatches(MatchStatus.Finished));
+        return _standingManager.GetStandings(MatchManager.GetMatches(MatchStatus.Finished));
     }
 
     public void CopyStandingsHtmlToClipboard()
@@ -85,5 +83,4 @@ public class Tournament
         var team2 = GetTeams.Single(t => t.Equals(match.Team2));
         return team1.Withdrawn | team2.Withdrawn;
     }
-
 }

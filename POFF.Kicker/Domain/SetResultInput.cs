@@ -3,14 +3,12 @@ using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.Types;
 
-
 public class SetResultInput
 {
-
     public SetResultInput()
     {
-        HomeValue = default;
-        GuestValue = default;
+        Home = default;
+        Guest = default;
     }
 
     public SetResultInput(SetResult setResult)
@@ -18,34 +16,11 @@ public class SetResultInput
         if (setResult is null)
             throw new ArgumentNullException("setResult");
 
-        HomeValue = setResult.Home;
-        GuestValue = setResult.Guest;
+        Home = setResult.Home;
+        Guest = setResult.Guest;
     }
 
-    private int? HomeValue;
-    public int? Home
-    {
-        get
-        {
-            return HomeValue;
-        }
-        set
-        {
-            HomeValue = value;
-        }
-    }
+    public int? Home { get; set; }
 
-    private int? GuestValue;
-    public int? Guest
-    {
-        get
-        {
-            return GuestValue;
-        }
-        set
-        {
-            GuestValue = value;
-        }
-    }
-
+    public int? Guest { get; set; }
 }

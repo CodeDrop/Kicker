@@ -3,10 +3,8 @@ using POFF.Kicker.Domain;
 
 namespace POFF.Kicker;
 
-
 public class MatchInfo
 {
-
     public MatchInfo(Match match)
     {
         // Check parameters
@@ -14,46 +12,17 @@ public class MatchInfo
             throw new ArgumentNullException("match");
 
         // Initializes members
-        MatchValue = match;
-        Team1NameValue = match.Team1.Name;
-        Team2NameValue = match.Team2.Name;
-        ResultSummaryValue = match.Result.ToString();
+        Match = match;
+        Team1Name = match.Team1.Name;
+        Team2Name = match.Team2.Name;
+        ResultSummary = match.Result.ToString();
     }
 
-    private readonly Match MatchValue;
-    internal Match Match
-    {
-        get
-        {
-            return MatchValue;
-        }
-    }
+    internal Match Match { get; }
 
-    private readonly string Team1NameValue;
-    public string Team1Name
-    {
-        get
-        {
-            return Team1NameValue;
-        }
-    }
+    public string Team1Name { get; }
 
-    private readonly string Team2NameValue;
-    public string Team2Name
-    {
-        get
-        {
-            return Team2NameValue;
-        }
-    }
+    public string Team2Name { get; }
 
-    private readonly string ResultSummaryValue;
-    public string ResultSummary
-    {
-        get
-        {
-            return ResultSummaryValue;
-        }
-    }
-
+    public string ResultSummary { get; }
 }

@@ -7,7 +7,6 @@ namespace POFF.Kicker.Domain;
 [DebuggerDisplay("Match N°{Number}: {Team1} - {Team2}")]
 public class Match
 {
-
     internal Match()
     {
         // 

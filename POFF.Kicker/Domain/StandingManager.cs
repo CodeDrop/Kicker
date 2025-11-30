@@ -1,5 +1,4 @@
-﻿using POFF.Kicker.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace POFF.Kicker.Domain;
@@ -10,7 +9,7 @@ public class StandingManager
     public Standing[] GetStandings(Match[] finishedMatches)
     {
         var list = new Dictionary<Team, Standing>();
-        int[] setsWon = new int[0], points = new int[0], goals = new int[0];
+        int[] setsWon = [], points = [], goals = [];
 
         foreach (var finishedMatch in finishedMatches)
         {

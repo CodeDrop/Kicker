@@ -260,13 +260,13 @@ public class ResultDialog : Form
         _SetResultDataGrid.RowHeaderWidth = 0;
         _SetResultDataGrid.Size = new Size(187, 96);
         _SetResultDataGrid.TabIndex = 14;
-        _SetResultDataGrid.TableStyles.AddRange(new DataGridTableStyle[] { _DataGridTableStyle1 });
+        _SetResultDataGrid.TableStyles.AddRange([_DataGridTableStyle1]);
         // 
         // DataGridTableStyle1
         // 
         _DataGridTableStyle1.ColumnHeadersVisible = false;
         _DataGridTableStyle1.DataGrid = _SetResultDataGrid;
-        _DataGridTableStyle1.GridColumnStyles.AddRange(new DataGridColumnStyle[] { _DataGridTextBoxColumn1, _DataGridTextBoxColumn2 });
+        _DataGridTableStyle1.GridColumnStyles.AddRange([_DataGridTextBoxColumn1, _DataGridTextBoxColumn2]);
         _DataGridTableStyle1.HeaderForeColor = SystemColors.ControlText;
         _DataGridTableStyle1.MappingName = "SetResult";
         _DataGridTableStyle1.PreferredColumnWidth = 186;
