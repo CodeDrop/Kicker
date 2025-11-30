@@ -15,11 +15,11 @@ public class MatchManager
         Load();
     }
 
-    private Match[] Matches = [];
+    private Match[] _matches = [];
 
     public void Clear()
     {
-        Matches = new Match[0];
+        _matches = [];
     }
 
     public void Generate(Team[] teams, TournamentType @type = TournamentType.Standard)
@@ -38,12 +38,12 @@ public class MatchManager
         }
 
         var matchIndexes = matchGenerator.Generate();
-        Matches = new Match[(matchIndexes.Count())]; // Reset
+        _matches = new Match[(matchIndexes.Count())]; // Reset
         int matchNumber = 1;
 
         foreach (var matchIndexPair in matchIndexes)
         {
-            Matches[matchNumber - 1] = new Match(matchNumber, teams[matchIndexPair.Item1], teams[matchIndexPair.Item2]);
+            _matches[matchNumber - 1] = new Match(matchNumber, teams[matchIndexPair.Item1], teams[matchIndexPair.Item2]);
             matchNumber += 1;
         }
     }
@@ -53,7 +53,7 @@ public class MatchManager
     {
         bool teamConflict;
 
-        foreach (var match in Matches)
+        foreach (var match in _matches)
         {
             if (match.Status == MatchStatus.Open)
             {
@@ -77,7 +77,7 @@ public class MatchManager
     // Get all matches
     public Match[] GetMatches()
     {
-        return Matches;
+        return _matches;
     }
 
     // Get matches depending on running status
@@ -85,40 +85,40 @@ public class MatchManager
     {
         var matchesInStatus = new List<Match>();
 
-        for (int index = 0, loopTo = Matches.Length - 1; index <= loopTo; index++)
+        for (int index = 0, loopTo = _matches.Length - 1; index <= loopTo; index++)
         {
-            if (Matches[index].Status == matchStatus)
+            if (_matches[index].Status == matchStatus)
             {
-                matchesInStatus.Add(Matches[index]);
+                matchesInStatus.Add(_matches[index]);
             }
         }
 
-        return matchesInStatus.ToArray();
+        return [.. matchesInStatus];
     }
 
     public void SetStatus(int matchNo, Result result)
     {
         SetStatus(matchNo, MatchStatus.Finished);
-        Matches[matchNo - 1].Result = result;
+        _matches[matchNo - 1].Result = result;
     }
 
     private void SetStatus(int matchNo, MatchStatus matchStatus)
     {
-        if (matchNo < 1 | matchNo > Matches.Length)
+        if (matchNo < 1 | matchNo > _matches.Length)
             throw new IndexOutOfRangeException("matchNo may only have values between 1 and number of matches");
-        Matches[matchNo - 1].Status = matchStatus;
+        _matches[matchNo - 1].Status = matchStatus;
     }
 
     private void Load()
     {
         var data = Database.Load(typeof(Match[]));
         if (data is not null)
-            Matches = (Match[])data;
+            _matches = (Match[])data;
     }
 
     public void Save()
     {
-        Database.Save(typeof(Match[]), Matches);
+        Database.Save(typeof(Match[]), _matches);
     }
 
 }

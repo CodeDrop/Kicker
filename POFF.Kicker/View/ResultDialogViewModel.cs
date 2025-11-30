@@ -17,7 +17,7 @@ public class ResultDialogViewModel
         Team1Value = match.Team1.Name;
         Team2Value = match.Team2.Name;
 
-        SetResultInputsValue = new BindingList<SetResultInput>();
+        SetResultInputsValue = [];
 
         foreach (var setResult in match.Result.SetResults)
             SetResultInputsValue.Add(new SetResultInput(setResult));

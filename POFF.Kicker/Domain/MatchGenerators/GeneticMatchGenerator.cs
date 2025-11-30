@@ -6,7 +6,7 @@ namespace POFF.Kicker.Domain.MatchGenerators;
 public class GeneticMatchGenerator : IMatchGenerator
 {
 
-    private List<MatchIndexPair> Matches = new List<MatchIndexPair>();
+    private readonly List<MatchIndexPair> _matches = [];
     private readonly int _teamsCount;
 
     public GeneticMatchGenerator(int teamsCount)
@@ -18,14 +18,14 @@ public class GeneticMatchGenerator : IMatchGenerator
     {
         var startIndex = default(int);
         int matchCount = (int)Math.Round((_teamsCount - 1) * _teamsCount / 2d);
-        Matches.Clear();
+        _matches.Clear();
 
         // Build a section of one more than half the team count
         int sectionCount = (int)Math.Round(_teamsCount / 2d) + 1;
 
-        while (Matches.Count < matchCount)
+        while (_matches.Count < matchCount)
         {
-            int matchNumber = Matches.Count + 1;
+            int matchNumber = _matches.Count + 1;
             FindNextSectionMatch(matchNumber, startIndex, sectionCount);               // Gruppe 1
             if (sectionCount > 1)
             {
@@ -36,7 +36,7 @@ public class GeneticMatchGenerator : IMatchGenerator
             startIndex += 1;
         }
 
-        return Matches;
+        return _matches;
     }
 
     private void FindNextSectionMatch(int matchNumber, int startIndex, int groupCount)
@@ -55,13 +55,13 @@ public class GeneticMatchGenerator : IMatchGenerator
                 {
                     var matchIndexPair = new MatchIndexPair(team1Index, team2Index);
 
-                    if (Matches.Count < matchNumber)
+                    if (_matches.Count < matchNumber)
                     {
-                        Matches.Add(matchIndexPair);
+                        _matches.Add(matchIndexPair);
                     }
                     else
                     {
-                        Matches[matchNumber - 1] = matchIndexPair;
+                        _matches[matchNumber - 1] = matchIndexPair;
                     }
                     return;
                 }
@@ -74,14 +74,14 @@ public class GeneticMatchGenerator : IMatchGenerator
         int index = circularIndex;
 
         while (!(index < teamsCount))
-            index = index - teamsCount;
+            index -= teamsCount;
 
         return index;
     }
 
     private bool MatchExists(int team1Index, int team2Index)
     {
-        foreach (var matchIndexPair in Matches)
+        foreach (var matchIndexPair in _matches)
         {
             if (team1Index == matchIndexPair.Item1 & team2Index == matchIndexPair.Item2 | team1Index == matchIndexPair.Item2 & team2Index == matchIndexPair.Item1)
 

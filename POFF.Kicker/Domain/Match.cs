@@ -38,7 +38,7 @@ public class Match
 
     public override string ToString()
     {
-        return string.Format("Spiel {0}: {2} vs. {3}", Number, Team1.Name, Team2.Name);
+        return string.Format("Spiel {0}: {1} vs. {2}", Number, Team1.Name, Team2.Name);
     }
 
     public new bool Equals(object obj)

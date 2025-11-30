@@ -1,0 +1,20 @@
+root = true
+
+[*.cs]
+# Enforce member field naming: camelCase with leading underscore for private and protected fields
+# Symbol: private or protected fields
+dotnet_naming_symbols.private_or_protected_fields.applicable_kinds = field
+dotnet_naming_symbols.private_or_protected_fields.applicable_accessibilities = private, protected
+
+# Style: camel case plus leading underscore
+dotnet_naming_style.camelcase_with_underscore.capitalization = camel_case
+dotnet_naming_style.camelcase_with_underscore.required_prefix = _
+dotnet_naming_style.camelcase_with_underscore.required_suffix =
+
+# Rule: apply the style to the symbol
+dotnet_naming_rule.private_or_protected_fields_should_be_camelcase_underscore.symbols = private_or_protected_fields
+dotnet_naming_rule.private_or_protected_fields_should_be_camelcase_underscore.style = camelcase_with_underscore
+dotnet_naming_rule.private_or_protected_fields_should_be_camelcase_underscore.severity = suggestion
+
+# Optional: prefer not qualifying field access with 'this.'
+csharp_style_qualification_for_field = false:suggestion

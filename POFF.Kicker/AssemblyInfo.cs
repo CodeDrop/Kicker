@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -11,3 +12,5 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion("1.1.0.1003")]
 [assembly: ComVisible(false)]
+
+[assembly: SuppressMessage("Style", "IDE0290:Primären Konstruktor verwenden", Justification = "<Ausstehend>", Scope = "member", Target = "~M:POFF.Kicker.Domain.MatchGenerators.GeneticMatchGenerator.#ctor(System.Int32)")]

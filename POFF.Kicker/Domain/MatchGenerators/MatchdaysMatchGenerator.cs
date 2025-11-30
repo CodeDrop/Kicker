@@ -7,8 +7,8 @@ namespace POFF.Kicker.Domain.MatchGenerators;
 public class MatchdaysMatchGenerator : IMatchGenerator
 {
     private readonly int _teamsCount;
-    private readonly List<MatchIndexPair> _matches = new List<MatchIndexPair>();
-    private readonly List<Matchday> _matchdays = new List<Matchday>();
+    private readonly List<MatchIndexPair> _matches = [];
+    private readonly List<Matchday> _matchdays = [];
 
     public MatchdaysMatchGenerator(int teamsCount = 10)
     {

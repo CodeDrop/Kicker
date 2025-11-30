@@ -199,6 +199,7 @@
     <EmbeddedResource Include="View\TeamsScreen.resx">
       <DependentUpon>TeamsScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include=".editorconfig" />
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup />
