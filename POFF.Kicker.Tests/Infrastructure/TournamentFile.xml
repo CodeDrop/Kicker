@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TournamentFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Teams>
+    <Team>
+      <Name>Team A</Name>
+      <Withdrawn>false</Withdrawn>
+    </Team>
+    <Team>
+      <Name>Team B</Name>
+      <Withdrawn>false</Withdrawn>
+    </Team>
+    <Team>
+      <Name>Team C</Name>
+      <Withdrawn>false</Withdrawn>
+    </Team>
+  </Teams>
+  <Matches>
+    <Match>
+      <Number>1</Number>
+      <Team1>
+        <Name>Team A</Name>
+        <Withdrawn>false</Withdrawn>
+      </Team1>
+      <Team2>
+        <Name>Team B</Name>
+        <Withdrawn>false</Withdrawn>
+      </Team2>
+      <Status>Open</Status>
+      <Result>
+        <SetResults />
+      </Result>
+    </Match>
+  </Matches>
+</TournamentFile>

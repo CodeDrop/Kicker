@@ -161,6 +161,8 @@
   <ItemGroup>
     <Compile Include="HtmlExportTests.cs" />
     <Compile Include="GeneticMatchGeneratorTests.cs" />
+    <Compile Include="Infrastructure\Save_Tournament_File.cs" />
+    <Compile Include="Infrastructure\Open_Tournament_File.cs" />
     <Compile Include="MatchDaysMatchGeneratorTests.cs" />
     <Compile Include="MatchIndexPairTests.cs" />
     <Compile Include="MatchTests.cs" />
@@ -182,6 +184,11 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Infrastructure\TournamentFile.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
