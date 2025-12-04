@@ -97,7 +97,7 @@ public partial class AppWindow : Form
         foreach (var match in ViewModel.Tournament.MatchManager.GetMatches())
         {
             no += 1;
-            if (CultureInfo.CurrentCulture.CompareInfo.Compare(filter ?? "", NoTeamFilter, CompareOptions.IgnoreCase | CompareOptions.IgnoreKanaType | CompareOptions.IgnoreWidth) == 0 || CultureInfo.CurrentCulture.CompareInfo.Compare(match.Team1.Name ?? "", filter ?? "", CompareOptions.IgnoreCase | CompareOptions.IgnoreKanaType | CompareOptions.IgnoreWidth) == 0 || CultureInfo.CurrentCulture.CompareInfo.Compare(match.Team2.Name ?? "", filter ?? "", CompareOptions.IgnoreCase | CompareOptions.IgnoreKanaType | CompareOptions.IgnoreWidth) == 0)
+            if (filter == NoTeamFilter || filter == match.Team1.Name || filter == match.Team2.Name)
             {
                 MatchListView.Items.Add(new MatchListViewItem(match, no));
             }
