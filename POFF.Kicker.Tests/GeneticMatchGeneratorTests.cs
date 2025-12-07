@@ -7,7 +7,6 @@ namespace POFF.Kicker.Tests;
 [TestFixture]
 class GeneticMatchGeneratorTests
 {
-
     [Test]
     public void Generate2Test()
     {
@@ -31,5 +30,4 @@ class GeneticMatchGeneratorTests
         var result = sut.Generate();
         Assert.AreEqual(10, result.Count());
     }
-
 }

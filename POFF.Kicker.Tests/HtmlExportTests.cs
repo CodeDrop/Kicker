@@ -6,12 +6,10 @@ using POFF.Kicker.View.Model;
 
 namespace POFF.Kicker.Tests;
 
-
 [TestFixture]
 class HtmlExportTests
 {
-
-    private static string Result;
+    private static string _result;
 
     [OneTimeSetUp]
     public static void SetUp()
@@ -31,21 +29,19 @@ class HtmlExportTests
         var testClass = new HtmlExport(tournament, ExportType.Games | ExportType.Standings);
 
         // Act
-        Result = testClass.ToString();
+        _result = testClass.ToString();
     }
 
     [Test]
     public void StandingTest()
     {
-        StringAssert.Contains("<td>Team N°1</td>", Result);
+        StringAssert.Contains("<td>Team N°1</td>", _result);
     }
 
     [Test]
     public void GamesOfWithdrawnTeam()
     {
         var pattern = new Regex("<td>Team N°3</td>");
-        StringAssert.DoesNotMatch(pattern.ToString(), Result);
+        StringAssert.DoesNotMatch(pattern.ToString(), _result);
     }
-
-
 }

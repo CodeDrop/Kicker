@@ -6,7 +6,6 @@ namespace POFF.Kicker.Tests;
 [TestFixture]
 class ResultTests
 {
-
     [Test]
     public void AddSetResultTest()
     {
@@ -23,5 +22,4 @@ class ResultTests
         Assert.AreEqual(5, result.SetResults[0].Home, "Unexpected SetResults[0].Home");
         Assert.AreEqual(2, result.SetResults[0].Guest, "Unexpected SetResults[0].Guest");
     }
-
 }

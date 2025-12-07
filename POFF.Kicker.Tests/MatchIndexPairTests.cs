@@ -6,8 +6,6 @@ namespace POFF.Kicker.Tests;
 [TestFixture]
 class MatchIndexPairTests
 {
-
-
     [Test]
     public void ContainsTeam1OfTest()
     {

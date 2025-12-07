@@ -3,11 +3,9 @@ using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.Tests;
 
-
 [TestFixture]
 class MatchInfoTests
 {
-
     [Test]
     public void MatchInfoTest()
     {
@@ -24,5 +22,4 @@ class MatchInfoTests
         Assert.AreEqual("Team 2", result.Team2Name, "Unexpected Team2Name");
         Assert.AreEqual("5:1/5:2", result.ResultSummary, "Unexpected ResultSummary");
     }
-
 }

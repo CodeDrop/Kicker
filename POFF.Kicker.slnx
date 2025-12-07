@@ -1,4 +1,10 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE.txt" />
+  </Folder>
   <Project Path="POFF.Kicker.Tests/POFF.Kicker.Tests.csproj" />
   <Project Path="POFF.Kicker/POFF.Kicker.csproj" />
   <Properties Name="ExtensibilityGlobals" Scope="PostLoad">

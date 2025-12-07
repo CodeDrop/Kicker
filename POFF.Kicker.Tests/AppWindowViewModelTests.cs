@@ -3,11 +3,9 @@ using POFF.Kicker.View;
 
 namespace POFF.Kicker.Tests;
 
-
 [TestFixture]
 class AppWindowViewModelTests
 {
-
     [Test]
     public void InstanceTest()
     {
@@ -34,5 +32,4 @@ class AppWindowViewModelTests
         // Assert
         Assert.IsNotNull(result, "DI returned null");
     }
-
 }

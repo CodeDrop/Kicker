@@ -6,7 +6,6 @@ namespace POFF.Kicker.Tests;
 [TestFixture]
 class SetResultTests
 {
-
     [Test]
     public void ToStringTest()
     {
@@ -19,5 +18,4 @@ class SetResultTests
         // Assert
         Assert.AreEqual("5:3", result, "Unexpected result");
     }
-
 }

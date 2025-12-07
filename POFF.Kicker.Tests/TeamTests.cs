@@ -6,7 +6,6 @@ namespace POFF.Kicker.Tests;
 [TestFixture]
 class TeamTests
 {
-
     [Test]
     public void TeamTest()
     {
@@ -19,5 +18,4 @@ class TeamTests
         // Assert
         Assert.AreEqual("Team N°3", result.Name, "Unexpected Name");
     }
-
 }

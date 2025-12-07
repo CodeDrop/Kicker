@@ -8,7 +8,6 @@ namespace POFF.Kicker.Tests;
 [TestFixture]
 class TournamentTests
 {
-
     [Test]
     public void TournamentTest()
     {

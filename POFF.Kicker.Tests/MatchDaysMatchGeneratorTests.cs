@@ -8,7 +8,6 @@ namespace POFF.Kicker.Tests;
 [TestFixture]
 class MatchDaysMatchGeneratorTests
 {
-
     [Test]
     public void Generate2Test()
     {
@@ -42,5 +41,4 @@ class MatchDaysMatchGeneratorTests
         foreach (var matchIndexPair in result)
             Console.WriteLine(matchIndexPair);
     }
-
 }
