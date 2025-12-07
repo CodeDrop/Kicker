@@ -16,6 +16,6 @@ class SetResultTests
         string result = setResult.ToString();
 
         // Assert
-        Assert.AreEqual("5:3", result, "Unexpected result");
+        Assert.That(result, Is.EqualTo("5:3"), "Unexpected result");
     }
 }

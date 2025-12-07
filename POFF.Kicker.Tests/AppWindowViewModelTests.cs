@@ -16,8 +16,8 @@ class AppWindowViewModelTests
         var result = AppWindowViewModel.Instance;
 
         // Assert
-        Assert.AreEqual(0, result.TabIndex, "Unexpected TabIndex");
-        Assert.IsNotNull(result.TeamsScreen, "TeamsScreen is null");
+        Assert.That(result.TabIndex, Is.EqualTo(0), "Unexpected TabIndex");
+        Assert.That(result.TeamsScreen, Is.Not.Null, "TeamsScreen is null");
     }
 
     [Test]
@@ -30,6 +30,6 @@ class AppWindowViewModelTests
         var result = AppWindowViewModel.DI<TeamsScreenViewModel>();
 
         // Assert
-        Assert.IsNotNull(result, "DI returned null");
+        Assert.That(result, Is.Not.Null, "DI returned null");
     }
 }

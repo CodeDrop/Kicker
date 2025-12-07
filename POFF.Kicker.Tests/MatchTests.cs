@@ -18,8 +18,8 @@ class MatchTests
         var result = new Match(number, team1, team2);
 
         // Assert
-        Assert.AreEqual(number, result.Number, "Unexpected Number");
-        Assert.AreSame(team1, result.Team1, "Unexpected Team1");
-        Assert.AreSame(team2, result.Team2, "Unexpected Team2");
+        Assert.That(result.Number, Is.EqualTo(number), "Unexpected Number");
+        Assert.That(result.Team1, Is.SameAs(team1), "Unexpected Team1");
+        Assert.That(result.Team2, Is.SameAs(team2), "Unexpected Team2");
     }
 }

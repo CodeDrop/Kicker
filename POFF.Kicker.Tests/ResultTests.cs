@@ -17,9 +17,9 @@ class ResultTests
         result.AddSetResult(setResult);
 
         // Assert
-        Assert.IsNotNull(result.SetResults, "SetResults is null");
-        Assert.AreEqual(1, result.SetResults.Length, "Unexpected number of SetResults");
-        Assert.AreEqual(5, result.SetResults[0].Home, "Unexpected SetResults[0].Home");
-        Assert.AreEqual(2, result.SetResults[0].Guest, "Unexpected SetResults[0].Guest");
+        Assert.That(result.SetResults, Is.Not.Null, "SetResults is null");
+        Assert.That(result.SetResults.Length, Is.EqualTo(1), "Unexpected number of SetResults");
+        Assert.That(result.SetResults[0].Home, Is.EqualTo(5), "Unexpected SetResults[0].Home");
+        Assert.That(result.SetResults[0].Guest, Is.EqualTo(2), "Unexpected SetResults[0].Guest");
     }
 }

@@ -35,13 +35,13 @@ class HtmlExportTests
     [Test]
     public void StandingTest()
     {
-        StringAssert.Contains("<td>Team N°1</td>", _result);
+        Assert.That(_result, Does.Contain("<td>Team N°1</td>"));
     }
 
     [Test]
     public void GamesOfWithdrawnTeam()
     {
         var pattern = new Regex("<td>Team N°3</td>");
-        StringAssert.DoesNotMatch(pattern.ToString(), _result);
+        Assert.That(_result, Does.Not.Match(pattern.ToString()));
     }
 }

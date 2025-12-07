@@ -11,7 +11,7 @@ class MatchIndexPairTests
     {
         var m1 = new MatchIndexPair(1, 2);
         var m2 = new MatchIndexPair(1, 3);
-        Assert.IsTrue(m1.ContainsTeamOf(m2));
+        Assert.That(m1.ContainsTeamOf(m2), Is.True);
     }
 
     [Test]
@@ -19,7 +19,7 @@ class MatchIndexPairTests
     {
         var m1 = new MatchIndexPair(1, 2);
         var m2 = new MatchIndexPair(5, 2);
-        Assert.IsTrue(m1.ContainsTeamOf(m2));
+        Assert.That(m1.ContainsTeamOf(m2), Is.True);
     }
 
     [Test]

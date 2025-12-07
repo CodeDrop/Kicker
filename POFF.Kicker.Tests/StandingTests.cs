@@ -16,6 +16,6 @@ class StandingTests
         var result = new Standing(team);
 
         // Assert
-        Assert.AreSame(team, result.Team, "Unexpected Team");
+        Assert.That(result.Team, Is.SameAs(team), "Unexpected Team");
     }
 }

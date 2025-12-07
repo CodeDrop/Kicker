@@ -13,7 +13,7 @@ class MatchDaysMatchGeneratorTests
     {
         var sut = new MatchdaysMatchGenerator(2);
         var result = sut.Generate();
-        Assert.AreEqual(1, result.Count());
+        Assert.That(result.Count(), Is.EqualTo(1));
     }
 
     [Test]
@@ -21,7 +21,7 @@ class MatchDaysMatchGeneratorTests
     {
         var sut = new MatchdaysMatchGenerator(4);
         var result = sut.Generate();
-        Assert.AreEqual(6, result.Count());
+        Assert.That(result.Count(), Is.EqualTo(6));
     }
 
     [Test]
@@ -29,7 +29,7 @@ class MatchDaysMatchGeneratorTests
     {
         var sut = new MatchdaysMatchGenerator(10);
         var result = sut.Generate();
-        Assert.AreEqual(45, result.Count());
+        Assert.That(result.Count(), Is.EqualTo(45));
         Assert.AreNotEqual(new Tuple<int, int>(0, 2), result.ElementAt(1));
     }
 

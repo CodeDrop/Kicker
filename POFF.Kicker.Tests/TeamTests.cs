@@ -16,6 +16,6 @@ class TeamTests
         var result = new Team(number);
 
         // Assert
-        Assert.AreEqual("Team N°3", result.Name, "Unexpected Name");
+        Assert.That(result.Name, Is.EqualTo("Team N°3"), "Unexpected Name");
     }
 }

@@ -18,8 +18,8 @@ class TournamentTests
         var result = new Tournament();
 
         // Assert
-        Assert.IsNotNull(result.TeamManager, "TeamManager is null");
-        Assert.IsNotNull(result.MatchManager, "MatchManager is null");
+        Assert.That(result.TeamManager, Is.Not.Null, "TeamManager is null");
+        Assert.That(result.MatchManager, Is.Not.Null, "MatchManager is null");
     }
 
     [Test]
@@ -40,8 +40,7 @@ class TournamentTests
         var result = testClass.GetStandings();
 
         // Assert
-        Assert.IsNotNull(result, "GetStandings returned null");
-        Assert.AreEqual(2, result.Count(), "Unexpected Count");
+        Assert.That(result, Is.Not.Null, "GetStandings returned null");
+        Assert.That(result.Count(), Is.EqualTo(2), "Unexpected Count");
     }
-
 }

@@ -5,9 +5,6 @@
     <File Path=".gitignore" />
     <File Path="LICENSE.txt" />
   </Folder>
-  <Project Path="POFF.Kicker.Tests/POFF.Kicker.Tests.csproj" />
-  <Project Path="POFF.Kicker/POFF.Kicker.csproj" />
-  <Properties Name="ExtensibilityGlobals" Scope="PostLoad">
-    <Property Name="ObjectiFSystem" Value="C:\temp\Temper" />
-  </Properties>
+  <Project Path="POFF.Kicker.Tests/POFF.Kicker.Tests.csproj" Id="1eeb6085-8d22-066c-0abb-4d2b2d65f42a" />
+  <Project Path="POFF.Kicker/POFF.Kicker.csproj" Id="d73bfe67-5f33-08e2-3fd0-d4fe17392214" />
 </Solution>

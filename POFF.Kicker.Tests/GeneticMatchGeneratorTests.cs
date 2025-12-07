@@ -12,7 +12,7 @@ class GeneticMatchGeneratorTests
     {
         var sut = new GeneticMatchGenerator(2);
         var result = sut.Generate();
-        Assert.AreEqual(1, result.Count());
+        Assert.That(result.Count(), Is.EqualTo(1));
     }
 
     [Test]
@@ -20,7 +20,7 @@ class GeneticMatchGeneratorTests
     {
         var sut = new GeneticMatchGenerator(3);
         var result = sut.Generate();
-        Assert.AreEqual(3, result.Count());
+        Assert.That(result.Count(), Is.EqualTo(3));
     }
 
     [Test]
@@ -28,6 +28,6 @@ class GeneticMatchGeneratorTests
     {
         var sut = new GeneticMatchGenerator(5);
         var result = sut.Generate();
-        Assert.AreEqual(10, result.Count());
+        Assert.That(result.Count(), Is.EqualTo(10));
     }
 }
