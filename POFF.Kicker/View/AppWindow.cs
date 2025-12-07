@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using POFF.Kicker.Domain;
@@ -10,9 +9,8 @@ namespace POFF.Kicker.View;
 
 public partial class AppWindow : Form
 {
-
-    private readonly AppWindowViewModel ViewModel;
-    private const string NoTeamFilter = "(Team Filter)";
+    private readonly AppWindowViewModel _viewModel;
+    private const string _noTeamFilter = "(Team Filter)";
 
     public static void Main()
     {
@@ -23,7 +21,7 @@ public partial class AppWindow : Form
 
     public AppWindow() : base()
     {
-        ViewModel = AppWindowViewModel.Instance;
+        _viewModel = AppWindowViewModel.Instance;
 
         // This call is required by the Windows Form Designer.
         InitializeComponent();
@@ -31,22 +29,23 @@ public partial class AppWindow : Form
         // Add any initialization after the InitializeComponent() call
 
         // ViewModel <-> View
-        AppTabControl.DataBindings.Add("SelectedIndex", ViewModel, "TabIndex", false, DataSourceUpdateMode.OnPropertyChanged);
+        AppTabControl.DataBindings.Add("SelectedIndex", _viewModel, "TabIndex", false, DataSourceUpdateMode.OnPropertyChanged);
 
         // Actions
-        FormClosing += (s, e) => ViewModel.Save();
-        CopyToolStripMenuItem.Click += (s, e) => ViewModel.CopyToClipboard();
-        SaveToolStripMenuItem.Click += (s, e) => ViewModel.Save();
-        ExitToolStripMenuItem.Click += (s, e) => Close();
-        PlayerFilterToolStripDropDownButton.DropDownItemClicked += UpdateFilter;
         Load += AppWindow_Load;
+        FormClosing += (s, e) => _viewModel.Save();
+        ExitToolStripMenuItem.Click += (s, e) => Close();
+
+        ClipboardTableMenuItem.Click += (s, e) => _viewModel.CopyToClipboard();
+        SaveToolStripMenuItem.Click += (s, e) => _viewModel.Save();
+        PlayerFilterToolStripDropDownButton.DropDownItemClicked += UpdateFilter;
     }
 
     private void AppWindow_Load(object sender, EventArgs e)
     {
         UpdateGui();
-        PlayerFilterToolStripDropDownButton.DropDownItems.Add(NoTeamFilter);
-        PlayerFilterToolStripDropDownButton.DropDownItems.AddRange(ViewModel.Tournament.TeamManager.GetTeams().Select(p => new ToolStripMenuItem(p.Name) { Tag = p }).ToArray());
+        PlayerFilterToolStripDropDownButton.DropDownItems.Add(_noTeamFilter);
+        PlayerFilterToolStripDropDownButton.DropDownItems.AddRange(_viewModel.Tournament.TeamManager.GetTeams().Select(p => new ToolStripMenuItem(p.Name) { Tag = p }).ToArray());
     }
 
     private void NewTeamMenuItem_Click(object sender, EventArgs e)
@@ -61,7 +60,7 @@ public partial class AppWindow : Form
             var withBlock = new TeamDialog(new TeamInfo());
             if (withBlock.ShowDialog() == DialogResult.OK)
             {
-                ViewModel.AddTeam(withBlock.TeamInfo);
+                _viewModel.AddTeam(withBlock.TeamInfo);
                 UpdateGui();
             }
         }
@@ -77,7 +76,7 @@ public partial class AppWindow : Form
 
         // Generate match list 
         var @type = OptionMatchDaysToolStripMenuItem.Checked ? TournamentType.MatchDays : TournamentType.Standard;
-        ViewModel.Tournament.Start(type);
+        _viewModel.Tournament.Start(type);
         UpdateMatchList();
         UpdateStandingList();
     }
@@ -94,23 +93,23 @@ public partial class AppWindow : Form
         string filter = PlayerFilterToolStripDropDownButton.Text;
         var no = default(int);
 
-        foreach (var match in ViewModel.Tournament.MatchManager.GetMatches())
+        foreach (var match in _viewModel.Tournament.MatchManager.GetMatches())
         {
             no += 1;
-            if (filter == NoTeamFilter || filter == match.Team1.Name || filter == match.Team2.Name)
+            if (filter == _noTeamFilter || filter == match.Team1.Name || filter == match.Team2.Name)
             {
                 MatchListView.Items.Add(new MatchListViewItem(match, no));
             }
         }
 
-        TotalMatchesCountToolStripStatusLabel.Text = ViewModel.Tournament.TotalMatchCount().ToString();
-        PlayedMatchesCountToolStripStatusLabel.Text = ViewModel.Tournament.PlayedMatchCount().ToString();
+        TotalMatchesCountToolStripStatusLabel.Text = _viewModel.Tournament.TotalMatchCount().ToString();
+        PlayedMatchesCountToolStripStatusLabel.Text = _viewModel.Tournament.PlayedMatchCount().ToString();
     }
 
     private void UpdateStandingList()
     {
         StandingListView.Items.Clear();
-        foreach (var standing in ViewModel.Tournament.GetStandings())
+        foreach (var standing in _viewModel.Tournament.GetStandings())
             StandingListView.Items.Add(new StandingListViewItem(standing));
     }
 
@@ -130,27 +129,11 @@ public partial class AppWindow : Form
             var withBlock = new ResultDialog(match);
             if (withBlock.ShowDialog(this) == DialogResult.OK)
             {
-                ViewModel.Tournament.MatchManager.SetStatus(match.Number, withBlock.Result);
+                _viewModel.Tournament.MatchManager.SetStatus(match.Number, withBlock.Result);
                 UpdateMatchList();
                 UpdateStandingList();
             }
         }
-    }
-
-    private void ShowInformation(string text)
-    {
-        ShowInformation("{0}", text);
-    }
-
-    private void ShowInformation(string format, params object[] args)
-    {
-        string message = string.Format(format, args);
-        MessageBox.Show(message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-    }
-
-    private DialogResult ShowQuestion(string text)
-    {
-        return ShowQuestion("{0}", text);
     }
 
     private DialogResult ShowQuestion(string format, params object[] args)
@@ -160,7 +143,7 @@ public partial class AppWindow : Form
 
     private DialogResult CheckDeleteResults(string format, params object[] args)
     {
-        int finishedMatchCount = ViewModel.Tournament.MatchManager.GetMatches(MatchStatus.Finished).Length;
+        int finishedMatchCount = _viewModel.Tournament.MatchManager.GetMatches(MatchStatus.Finished).Length;
 
         if (finishedMatchCount > 0)
             return ShowQuestion(format, args);
@@ -172,5 +155,4 @@ public partial class AppWindow : Form
         AppTabControl.SelectedTab = tabPage;
         AppTabControl.Refresh();
     }
-
 }

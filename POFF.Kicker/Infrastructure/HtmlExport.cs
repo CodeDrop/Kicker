@@ -7,16 +7,8 @@ using System.Text;
 
 namespace POFF.Kicker.Infrastructure;
 
-public class HtmlExport
+public class HtmlExport(Tournament tournament)
 {
-
-    private readonly Tournament Tournament;
-
-    public HtmlExport(Tournament tournament)
-    {
-        Tournament = tournament;
-    }
-
     public override string ToString()
     {
         var builder = new StringBuilder(Resources.HtmlExportStandingOnlyTemplate);
@@ -30,7 +22,7 @@ public class HtmlExport
 
     private void SetSubtitel(StringBuilder builder)
     {
-        string subtitle = $"Stand {DateTime.Now:d.M.yyyy} nach {Tournament.PlayedMatchCount()} von {Tournament.TotalMatchCount()} Spielen";
+        string subtitle = $"Stand {DateTime.Now:d.M.yyyy} nach {tournament.PlayedMatchCount()} von {tournament.TotalMatchCount()} Spielen";
         builder.Replace("<!-- Stand -->", subtitle);
     }
 
@@ -38,7 +30,7 @@ public class HtmlExport
     {
         var standingsBuilder = new StringBuilder();
 
-        foreach (Standing standing in Tournament.GetStandings())
+        foreach (Standing standing in tournament.GetStandings())
         {
             // <tr><td>1.</td><td>Spieler 1</td><td>3</td><td class="font-weight-bold">7</td></td><td>10:2</td></tr>
             standingsBuilder.Append("<tr>");
@@ -58,7 +50,7 @@ public class HtmlExport
     {
         var gamesBuilder = new StringBuilder();
 
-        foreach (Match match in Tournament.MatchManager.GetMatches())
+        foreach (Match match in tournament.MatchManager.GetMatches())
         {
             if (ContainsWithdrawnTeam(match))
                 continue;
@@ -77,8 +69,8 @@ public class HtmlExport
 
     private bool ContainsWithdrawnTeam(Match match)
     {
-        var team1 = Tournament.GetTeams.Single(t => t.Equals(match.Team1));
-        var team2 = Tournament.GetTeams.Single(t => t.Equals(match.Team2));
+        var team1 = tournament.GetTeams.Single(t => t.Equals(match.Team1));
+        var team2 = tournament.GetTeams.Single(t => t.Equals(match.Team2));
         return team1.Withdrawn | team2.Withdrawn;
     }
 

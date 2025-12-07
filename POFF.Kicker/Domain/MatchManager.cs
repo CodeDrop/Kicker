@@ -1,5 +1,4 @@
-﻿using POFF.Kicker.Infrastructure;
-using POFF.Kicker.Domain.MatchGenerators;
+﻿using POFF.Kicker.Domain.MatchGenerators;
 using System;
 using System.Collections.Generic;
 using System.Linq;

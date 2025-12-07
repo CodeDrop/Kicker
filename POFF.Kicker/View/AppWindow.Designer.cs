@@ -312,337 +312,379 @@ public partial class AppWindow
     [DebuggerStepThrough()]
     private void InitializeComponent()
     {
-        components = new System.ComponentModel.Container();
-        var resources = new System.ComponentModel.ComponentResourceManager(typeof(AppWindow));
-        _AppTabControl = new TabControl();
-        _TeamsTabPage = new TabPage();
-        _TeamsScreenContent = new View.TeamsScreen();
-        _MatchesTabPage = new TabPage();
-        _MatchListView = new ListView();
-        _MatchListView.DoubleClick += new EventHandler(MatchListView_DoubleClick);
-        _MatchStatusColumnHeader = new ColumnHeader();
-        _MatchNumberColumnHeader = new ColumnHeader();
-        _Team1ColumnHeader = new ColumnHeader();
-        _Team2ColumnHeader = new ColumnHeader();
-        _ResultColumnHeader = new ColumnHeader();
-        _MatchImageList = new ImageList(components);
-        _ResultsTabPage = new TabPage();
-        _StandingListView = new ListView();
-        _PlaceColumnHeader = new ColumnHeader();
-        _TeamTableColumnHeader = new ColumnHeader();
-        _PointsColumnHeader = new ColumnHeader();
-        _WonSetsColumnHeader = new ColumnHeader();
-        _GoalsColumnHeader = new ColumnHeader();
-        _MatchesColumnHeader = new ColumnHeader();
-        _AppMainMenuStrip = new MenuStrip();
-        _TournamentToolStripMenuItem = new ToolStripMenuItem();
-        _NewTeamToolStripMenuItem = new ToolStripMenuItem();
-        _NewTeamToolStripMenuItem.Click += new EventHandler(NewTeamMenuItem_Click);
-        _CreatePlaylistToolStripMenuItem = new ToolStripMenuItem();
-        _CreatePlaylistToolStripMenuItem.Click += new EventHandler(CreateAgendaMenuItem_Click);
-        _CopyToolStripMenuItem = new ToolStripMenuItem();
-        _SaveToolStripMenuItem = new ToolStripMenuItem();
-        _AppToolStripMenuItem = new ToolStripSeparator();
-        _ExitToolStripMenuItem = new ToolStripMenuItem();
-        _OptionsToolStripMenuItem = new ToolStripMenuItem();
-        _OptionMatchDaysToolStripMenuItem = new ToolStripMenuItem();
-        _AppStatusStrip = new StatusStrip();
-        _SpacerStripStatusLabel = new ToolStripStatusLabel();
-        _TotalMatchesToolStripStatusLabel = new ToolStripStatusLabel();
-        _TotalMatchesCountToolStripStatusLabel = new ToolStripStatusLabel();
-        _PlayedMatchesToolStripStatusLabel = new ToolStripStatusLabel();
-        _PlayedMatchesCountToolStripStatusLabel = new ToolStripStatusLabel();
-        _PlayerFilterToolStripDropDownButton = new ToolStripDropDownButton();
-        _AppTabControl.SuspendLayout();
-        _TeamsTabPage.SuspendLayout();
-        _MatchesTabPage.SuspendLayout();
-        _ResultsTabPage.SuspendLayout();
-        _AppMainMenuStrip.SuspendLayout();
-        _AppStatusStrip.SuspendLayout();
-        SuspendLayout();
-        // 
-        // AppTabControl
-        // 
-        _AppTabControl.Controls.Add(_TeamsTabPage);
-        _AppTabControl.Controls.Add(_MatchesTabPage);
-        _AppTabControl.Controls.Add(_ResultsTabPage);
-        _AppTabControl.Dock = DockStyle.Fill;
-        _AppTabControl.Location = new Point(0, 24);
-        _AppTabControl.Name = "_AppTabControl";
-        _AppTabControl.SelectedIndex = 0;
-        _AppTabControl.Size = new Size(664, 307);
-        _AppTabControl.TabIndex = 0;
-        // 
-        // TeamsTabPage
-        // 
-        _TeamsTabPage.Controls.Add(_TeamsScreenContent);
-        _TeamsTabPage.Location = new Point(4, 27);
-        _TeamsTabPage.Name = "_TeamsTabPage";
-        _TeamsTabPage.Size = new Size(656, 276);
-        _TeamsTabPage.TabIndex = 0;
-        _TeamsTabPage.Text = "Mannschaften";
-        // 
-        // TeamsScreenContent
-        // 
-        _TeamsScreenContent.Dock = DockStyle.Fill;
-        _TeamsScreenContent.Location = new Point(0, 0);
-        _TeamsScreenContent.Name = "_TeamsScreenContent";
-        _TeamsScreenContent.Size = new Size(656, 276);
-        _TeamsScreenContent.TabIndex = 0;
-        // 
-        // MatchesTabPage
-        // 
-        _MatchesTabPage.Controls.Add(_MatchListView);
-        _MatchesTabPage.Location = new Point(4, 22);
-        _MatchesTabPage.Name = "_MatchesTabPage";
-        _MatchesTabPage.Size = new Size(656, 281);
-        _MatchesTabPage.TabIndex = 1;
-        _MatchesTabPage.Text = "Spiele";
-        // 
-        // MatchListView
-        // 
-        _MatchListView.BackColor = Color.LightSteelBlue;
-        _MatchListView.Columns.AddRange(new ColumnHeader[] { _MatchStatusColumnHeader, _MatchNumberColumnHeader, _Team1ColumnHeader, _Team2ColumnHeader, _ResultColumnHeader });
-        _MatchListView.Dock = DockStyle.Fill;
-        _MatchListView.FullRowSelect = true;
-        _MatchListView.HideSelection = false;
-        _MatchListView.HoverSelection = true;
-        _MatchListView.Location = new Point(0, 0);
-        _MatchListView.Name = "_MatchListView";
-        _MatchListView.Size = new Size(656, 281);
-        _MatchListView.SmallImageList = _MatchImageList;
-        _MatchListView.TabIndex = 2;
-        _MatchListView.UseCompatibleStateImageBehavior = false;
-        _MatchListView.View = System.Windows.Forms.View.Details;
-        // 
-        // MatchStatusColumnHeader
-        // 
-        _MatchStatusColumnHeader.Text = "";
-        _MatchStatusColumnHeader.Width = 50;
-        // 
-        // MatchNumberColumnHeader
-        // 
-        _MatchNumberColumnHeader.Text = "N°";
-        // 
-        // Team1ColumnHeader
-        // 
-        _Team1ColumnHeader.Text = "Mannschaft 1";
-        _Team1ColumnHeader.Width = 200;
-        // 
-        // Team2ColumnHeader
-        // 
-        _Team2ColumnHeader.Text = "Mannschaft 2";
-        _Team2ColumnHeader.Width = 200;
-        // 
-        // ResultColumnHeader
-        // 
-        _ResultColumnHeader.Text = "Ergebnis";
-        _ResultColumnHeader.Width = 150;
-        // 
-        // MatchImageList
-        // 
-        _MatchImageList.ImageStream = (ImageListStreamer)resources.GetObject("MatchImageList.ImageStream");
-        _MatchImageList.TransparentColor = Color.Transparent;
-        _MatchImageList.Images.SetKeyName(0, "");
-        _MatchImageList.Images.SetKeyName(1, "");
-        _MatchImageList.Images.SetKeyName(2, "");
-        // 
-        // ResultsTabPage
-        // 
-        _ResultsTabPage.Controls.Add(_StandingListView);
-        _ResultsTabPage.Location = new Point(4, 22);
-        _ResultsTabPage.Name = "_ResultsTabPage";
-        _ResultsTabPage.Size = new Size(656, 281);
-        _ResultsTabPage.TabIndex = 2;
-        _ResultsTabPage.Text = "Tabelle";
-        // 
-        // StandingListView
-        // 
-        _StandingListView.BackColor = Color.LightSteelBlue;
-        _StandingListView.Columns.AddRange(new ColumnHeader[] { _PlaceColumnHeader, _TeamTableColumnHeader, _PointsColumnHeader, _WonSetsColumnHeader, _GoalsColumnHeader, _MatchesColumnHeader });
-        _StandingListView.Dock = DockStyle.Fill;
-        _StandingListView.FullRowSelect = true;
-        _StandingListView.HideSelection = false;
-        _StandingListView.HoverSelection = true;
-        _StandingListView.Location = new Point(0, 0);
-        _StandingListView.MultiSelect = false;
-        _StandingListView.Name = "_StandingListView";
-        _StandingListView.Size = new Size(656, 281);
-        _StandingListView.TabIndex = 1;
-        _StandingListView.UseCompatibleStateImageBehavior = false;
-        _StandingListView.View = System.Windows.Forms.View.Details;
-        // 
-        // PlaceColumnHeader
-        // 
-        _PlaceColumnHeader.Text = "Platz";
-        _PlaceColumnHeader.Width = 50;
-        // 
-        // TeamTableColumnHeader
-        // 
-        _TeamTableColumnHeader.Text = "Mannschaft";
-        _TeamTableColumnHeader.Width = 200;
-        // 
-        // PointsColumnHeader
-        // 
-        _PointsColumnHeader.Text = "Punkte";
-        _PointsColumnHeader.TextAlign = HorizontalAlignment.Right;
-        _PointsColumnHeader.Width = 65;
-        // 
-        // WonSetsColumnHeader
-        // 
-        _WonSetsColumnHeader.Text = "Sätze";
-        _WonSetsColumnHeader.TextAlign = HorizontalAlignment.Right;
-        _WonSetsColumnHeader.Width = 55;
-        // 
-        // GoalsColumnHeader
-        // 
-        _GoalsColumnHeader.Text = "Tore";
-        _GoalsColumnHeader.TextAlign = HorizontalAlignment.Right;
-        // 
-        // MatchesColumnHeader
-        // 
-        _MatchesColumnHeader.Text = "Spiele";
-        _MatchesColumnHeader.TextAlign = HorizontalAlignment.Right;
-        // 
-        // AppMainMenuStrip
-        // 
-        _AppMainMenuStrip.Items.AddRange(new ToolStripItem[] { _TournamentToolStripMenuItem, _OptionsToolStripMenuItem });
-        _AppMainMenuStrip.Location = new Point(0, 0);
-        _AppMainMenuStrip.Name = "_AppMainMenuStrip";
-        _AppMainMenuStrip.Size = new Size(664, 24);
-        _AppMainMenuStrip.TabIndex = 1;
-        _AppMainMenuStrip.Text = "MenuStrip1";
-        // 
-        // TournamentToolStripMenuItem
-        // 
-        _TournamentToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { _NewTeamToolStripMenuItem, _CreatePlaylistToolStripMenuItem, _CopyToolStripMenuItem, _SaveToolStripMenuItem, _AppToolStripMenuItem, _ExitToolStripMenuItem });
-        _TournamentToolStripMenuItem.Name = "_TournamentToolStripMenuItem";
-        _TournamentToolStripMenuItem.Size = new Size(57, 20);
-        _TournamentToolStripMenuItem.Text = "&Turnier";
-        // 
-        // NewTeamToolStripMenuItem
-        // 
-        _NewTeamToolStripMenuItem.Name = "_NewTeamToolStripMenuItem";
-        _NewTeamToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
-        _NewTeamToolStripMenuItem.Size = new Size(292, 22);
-        _NewTeamToolStripMenuItem.Text = "&Neue Mannschaft";
-        // 
-        // CreatePlaylistToolStripMenuItem
-        // 
-        _CreatePlaylistToolStripMenuItem.Name = "_CreatePlaylistToolStripMenuItem";
-        _CreatePlaylistToolStripMenuItem.ShortcutKeys = Keys.F5;
-        _CreatePlaylistToolStripMenuItem.Size = new Size(292, 22);
-        _CreatePlaylistToolStripMenuItem.Text = "Spiel&plan erstellen";
-        // 
-        // CopyToolStripMenuItem
-        // 
-        _CopyToolStripMenuItem.Name = "_CopyToolStripMenuItem";
-        _CopyToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.C;
-        _CopyToolStripMenuItem.Size = new Size(292, 22);
-        _CopyToolStripMenuItem.Text = "Kopieren (HTML)";
-        // 
-        // SaveToolStripMenuItem
-        // 
-        _SaveToolStripMenuItem.Name = "_SaveToolStripMenuItem";
-        _SaveToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
-        _SaveToolStripMenuItem.Size = new Size(292, 22);
-        _SaveToolStripMenuItem.Text = "&Speichern";
-        // 
-        // AppToolStripMenuItem
-        // 
-        _AppToolStripMenuItem.Name = "_AppToolStripMenuItem";
-        _AppToolStripMenuItem.Size = new Size(289, 6);
-        // 
-        // ExitToolStripMenuItem
-        // 
-        _ExitToolStripMenuItem.Name = "_ExitToolStripMenuItem";
-        _ExitToolStripMenuItem.Size = new Size(292, 22);
-        _ExitToolStripMenuItem.Text = "Be&enden";
-        // 
-        // OptionsToolStripMenuItem
-        // 
-        _OptionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { _OptionMatchDaysToolStripMenuItem });
-        _OptionsToolStripMenuItem.Name = "_OptionsToolStripMenuItem";
-        _OptionsToolStripMenuItem.Size = new Size(69, 20);
-        _OptionsToolStripMenuItem.Text = "Optionen";
-        // 
-        // OptionMatchDaysToolStripMenuItem
-        // 
-        _OptionMatchDaysToolStripMenuItem.CheckOnClick = true;
-        _OptionMatchDaysToolStripMenuItem.Name = "_OptionMatchDaysToolStripMenuItem";
-        _OptionMatchDaysToolStripMenuItem.Size = new Size(122, 22);
-        _OptionMatchDaysToolStripMenuItem.Text = "Spieltage";
-        // 
-        // AppStatusStrip
-        // 
-        _AppStatusStrip.Items.AddRange(new ToolStripItem[] { _PlayerFilterToolStripDropDownButton, _SpacerStripStatusLabel, _TotalMatchesToolStripStatusLabel, _TotalMatchesCountToolStripStatusLabel, _PlayedMatchesToolStripStatusLabel, _PlayedMatchesCountToolStripStatusLabel });
-        _AppStatusStrip.Location = new Point(0, 331);
-        _AppStatusStrip.Name = "_AppStatusStrip";
-        _AppStatusStrip.Size = new Size(664, 22);
-        _AppStatusStrip.TabIndex = 2;
-        _AppStatusStrip.Text = "StatusStrip1";
-        // 
-        // SpacerStripStatusLabel
-        // 
-        _SpacerStripStatusLabel.Name = "_SpacerStripStatusLabel";
-        _SpacerStripStatusLabel.Size = new Size(476, 17);
-        _SpacerStripStatusLabel.Spring = true;
-        // 
-        // TotalMatchesToolStripStatusLabel
-        // 
-        _TotalMatchesToolStripStatusLabel.Name = "_TotalMatchesToolStripStatusLabel";
-        _TotalMatchesToolStripStatusLabel.Size = new Size(41, 17);
-        _TotalMatchesToolStripStatusLabel.Text = "Spiele:";
-        // 
-        // TotalMatchesCountToolStripStatusLabel
-        // 
-        _TotalMatchesCountToolStripStatusLabel.Name = "_TotalMatchesCountToolStripStatusLabel";
-        _TotalMatchesCountToolStripStatusLabel.Size = new Size(10, 17);
-        _TotalMatchesCountToolStripStatusLabel.Text = ".";
-        // 
-        // PlayedMatchesToolStripStatusLabel
-        // 
-        _PlayedMatchesToolStripStatusLabel.Name = "_PlayedMatchesToolStripStatusLabel";
-        _PlayedMatchesToolStripStatusLabel.Size = new Size(52, 17);
-        _PlayedMatchesToolStripStatusLabel.Text = "Gespielt:";
-        // 
-        // PlayedMatchesCountToolStripStatusLabel
-        // 
-        _PlayedMatchesCountToolStripStatusLabel.BorderStyle = Border3DStyle.SunkenInner;
-        _PlayedMatchesCountToolStripStatusLabel.Name = "_PlayedMatchesCountToolStripStatusLabel";
-        _PlayedMatchesCountToolStripStatusLabel.Size = new Size(10, 17);
-        _PlayedMatchesCountToolStripStatusLabel.Text = ".";
-        // 
-        // PlayerFilterToolStripDropDownButton
-        // 
-        _PlayerFilterToolStripDropDownButton.DisplayStyle = ToolStripItemDisplayStyle.Text;
-        _PlayerFilterToolStripDropDownButton.Image = (Image)resources.GetObject("PlayerFilterToolStripDropDownButton.Image");
-        _PlayerFilterToolStripDropDownButton.ImageTransparentColor = Color.Magenta;
-        _PlayerFilterToolStripDropDownButton.Name = "_PlayerFilterToolStripDropDownButton";
-        _PlayerFilterToolStripDropDownButton.Size = new Size(86, 20);
-        _PlayerFilterToolStripDropDownButton.Text = "(Team Filter)";
-        // 
-        // AppWindow
-        // 
-        AutoScaleBaseSize = new Size(8, 24);
-        ClientSize = new Size(664, 353);
-        Controls.Add(_AppTabControl);
-        Controls.Add(_AppMainMenuStrip);
-        Controls.Add(_AppStatusStrip);
-        Font = new Font("Lucida Sans Unicode", 11.25f, FontStyle.Regular, GraphicsUnit.Point, 0);
-        Icon = (Icon)resources.GetObject("$this.Icon");
-        Name = "AppWindow";
-        Text = "POFF Kicker";
-        _AppTabControl.ResumeLayout(false);
-        _TeamsTabPage.ResumeLayout(false);
-        _MatchesTabPage.ResumeLayout(false);
-        _ResultsTabPage.ResumeLayout(false);
-        _AppMainMenuStrip.ResumeLayout(false);
-        _AppMainMenuStrip.PerformLayout();
-        _AppStatusStrip.ResumeLayout(false);
-        _AppStatusStrip.PerformLayout();
-        ResumeLayout(false);
-        PerformLayout();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppWindow));
+            this._AppTabControl = new System.Windows.Forms.TabControl();
+            this._TeamsTabPage = new System.Windows.Forms.TabPage();
+            this._TeamsScreenContent = new POFF.Kicker.View.TeamsScreen();
+            this._MatchesTabPage = new System.Windows.Forms.TabPage();
+            this._MatchListView = new System.Windows.Forms.ListView();
+            this._MatchStatusColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._MatchNumberColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._Team1ColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._Team2ColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._ResultColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._MatchImageList = new System.Windows.Forms.ImageList(this.components);
+            this._ResultsTabPage = new System.Windows.Forms.TabPage();
+            this._StandingListView = new System.Windows.Forms.ListView();
+            this._PlaceColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._TeamTableColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._PointsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._WonSetsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._GoalsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._MatchesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this._AppMainMenuStrip = new System.Windows.Forms.MenuStrip();
+            this._TournamentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._NewTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._CreatePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._AppToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            this._ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._OptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._OptionMatchDaysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClipboardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClipboardTableMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClipboardGamesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._AppStatusStrip = new System.Windows.Forms.StatusStrip();
+            this._PlayerFilterToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this._SpacerStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this._TotalMatchesToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this._TotalMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this._PlayedMatchesToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this._PlayedMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this._AppTabControl.SuspendLayout();
+            this._TeamsTabPage.SuspendLayout();
+            this._MatchesTabPage.SuspendLayout();
+            this._ResultsTabPage.SuspendLayout();
+            this._AppMainMenuStrip.SuspendLayout();
+            this._AppStatusStrip.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // _AppTabControl
+            // 
+            this._AppTabControl.Controls.Add(this._TeamsTabPage);
+            this._AppTabControl.Controls.Add(this._MatchesTabPage);
+            this._AppTabControl.Controls.Add(this._ResultsTabPage);
+            this._AppTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._AppTabControl.Location = new System.Drawing.Point(0, 24);
+            this._AppTabControl.Name = "_AppTabControl";
+            this._AppTabControl.SelectedIndex = 0;
+            this._AppTabControl.Size = new System.Drawing.Size(664, 307);
+            this._AppTabControl.TabIndex = 0;
+            // 
+            // _TeamsTabPage
+            // 
+            this._TeamsTabPage.Controls.Add(this._TeamsScreenContent);
+            this._TeamsTabPage.Location = new System.Drawing.Point(4, 27);
+            this._TeamsTabPage.Name = "_TeamsTabPage";
+            this._TeamsTabPage.Size = new System.Drawing.Size(656, 276);
+            this._TeamsTabPage.TabIndex = 0;
+            this._TeamsTabPage.Text = "Mannschaften";
+            // 
+            // _TeamsScreenContent
+            // 
+            this._TeamsScreenContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._TeamsScreenContent.Location = new System.Drawing.Point(0, 0);
+            this._TeamsScreenContent.Name = "_TeamsScreenContent";
+            this._TeamsScreenContent.Size = new System.Drawing.Size(656, 276);
+            this._TeamsScreenContent.TabIndex = 0;
+            // 
+            // _MatchesTabPage
+            // 
+            this._MatchesTabPage.Controls.Add(this._MatchListView);
+            this._MatchesTabPage.Location = new System.Drawing.Point(4, 22);
+            this._MatchesTabPage.Name = "_MatchesTabPage";
+            this._MatchesTabPage.Size = new System.Drawing.Size(656, 281);
+            this._MatchesTabPage.TabIndex = 1;
+            this._MatchesTabPage.Text = "Spiele";
+            // 
+            // _MatchListView
+            // 
+            this._MatchListView.BackColor = System.Drawing.Color.LightSteelBlue;
+            this._MatchListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._MatchStatusColumnHeader,
+            this._MatchNumberColumnHeader,
+            this._Team1ColumnHeader,
+            this._Team2ColumnHeader,
+            this._ResultColumnHeader});
+            this._MatchListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._MatchListView.FullRowSelect = true;
+            this._MatchListView.HideSelection = false;
+            this._MatchListView.HoverSelection = true;
+            this._MatchListView.Location = new System.Drawing.Point(0, 0);
+            this._MatchListView.Name = "_MatchListView";
+            this._MatchListView.Size = new System.Drawing.Size(656, 281);
+            this._MatchListView.SmallImageList = this._MatchImageList;
+            this._MatchListView.TabIndex = 2;
+            this._MatchListView.UseCompatibleStateImageBehavior = false;
+            this._MatchListView.View = System.Windows.Forms.View.Details;
+            this._MatchListView.DoubleClick += new System.EventHandler(this.MatchListView_DoubleClick);
+            // 
+            // _MatchStatusColumnHeader
+            // 
+            this._MatchStatusColumnHeader.Text = "";
+            this._MatchStatusColumnHeader.Width = 50;
+            // 
+            // _MatchNumberColumnHeader
+            // 
+            this._MatchNumberColumnHeader.Text = "N°";
+            // 
+            // _Team1ColumnHeader
+            // 
+            this._Team1ColumnHeader.Text = "Mannschaft 1";
+            this._Team1ColumnHeader.Width = 200;
+            // 
+            // _Team2ColumnHeader
+            // 
+            this._Team2ColumnHeader.Text = "Mannschaft 2";
+            this._Team2ColumnHeader.Width = 200;
+            // 
+            // _ResultColumnHeader
+            // 
+            this._ResultColumnHeader.Text = "Ergebnis";
+            this._ResultColumnHeader.Width = 150;
+            // 
+            // _MatchImageList
+            // 
+            this._MatchImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_MatchImageList.ImageStream")));
+            this._MatchImageList.TransparentColor = System.Drawing.Color.Transparent;
+            this._MatchImageList.Images.SetKeyName(0, "");
+            this._MatchImageList.Images.SetKeyName(1, "");
+            this._MatchImageList.Images.SetKeyName(2, "");
+            // 
+            // _ResultsTabPage
+            // 
+            this._ResultsTabPage.Controls.Add(this._StandingListView);
+            this._ResultsTabPage.Location = new System.Drawing.Point(4, 22);
+            this._ResultsTabPage.Name = "_ResultsTabPage";
+            this._ResultsTabPage.Size = new System.Drawing.Size(656, 281);
+            this._ResultsTabPage.TabIndex = 2;
+            this._ResultsTabPage.Text = "Tabelle";
+            // 
+            // _StandingListView
+            // 
+            this._StandingListView.BackColor = System.Drawing.Color.LightSteelBlue;
+            this._StandingListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._PlaceColumnHeader,
+            this._TeamTableColumnHeader,
+            this._PointsColumnHeader,
+            this._WonSetsColumnHeader,
+            this._GoalsColumnHeader,
+            this._MatchesColumnHeader});
+            this._StandingListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._StandingListView.FullRowSelect = true;
+            this._StandingListView.HideSelection = false;
+            this._StandingListView.HoverSelection = true;
+            this._StandingListView.Location = new System.Drawing.Point(0, 0);
+            this._StandingListView.MultiSelect = false;
+            this._StandingListView.Name = "_StandingListView";
+            this._StandingListView.Size = new System.Drawing.Size(656, 281);
+            this._StandingListView.TabIndex = 1;
+            this._StandingListView.UseCompatibleStateImageBehavior = false;
+            this._StandingListView.View = System.Windows.Forms.View.Details;
+            // 
+            // _PlaceColumnHeader
+            // 
+            this._PlaceColumnHeader.Text = "Platz";
+            this._PlaceColumnHeader.Width = 50;
+            // 
+            // _TeamTableColumnHeader
+            // 
+            this._TeamTableColumnHeader.Text = "Mannschaft";
+            this._TeamTableColumnHeader.Width = 200;
+            // 
+            // _PointsColumnHeader
+            // 
+            this._PointsColumnHeader.Text = "Punkte";
+            this._PointsColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._PointsColumnHeader.Width = 65;
+            // 
+            // _WonSetsColumnHeader
+            // 
+            this._WonSetsColumnHeader.Text = "Sätze";
+            this._WonSetsColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._WonSetsColumnHeader.Width = 55;
+            // 
+            // _GoalsColumnHeader
+            // 
+            this._GoalsColumnHeader.Text = "Tore";
+            this._GoalsColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // _MatchesColumnHeader
+            // 
+            this._MatchesColumnHeader.Text = "Spiele";
+            this._MatchesColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // _AppMainMenuStrip
+            // 
+            this._AppMainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._TournamentToolStripMenuItem,
+            this.ClipboardMenuItem,
+            this._OptionsToolStripMenuItem});
+            this._AppMainMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this._AppMainMenuStrip.Name = "_AppMainMenuStrip";
+            this._AppMainMenuStrip.Size = new System.Drawing.Size(664, 24);
+            this._AppMainMenuStrip.TabIndex = 1;
+            this._AppMainMenuStrip.Text = "MenuStrip1";
+            // 
+            // _TournamentToolStripMenuItem
+            // 
+            this._TournamentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._NewTeamToolStripMenuItem,
+            this._CreatePlaylistToolStripMenuItem,
+            this._SaveToolStripMenuItem,
+            this._AppToolStripMenuItem,
+            this._ExitToolStripMenuItem});
+            this._TournamentToolStripMenuItem.Name = "_TournamentToolStripMenuItem";
+            this._TournamentToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this._TournamentToolStripMenuItem.Text = "&Turnier";
+            // 
+            // _NewTeamToolStripMenuItem
+            // 
+            this._NewTeamToolStripMenuItem.Name = "_NewTeamToolStripMenuItem";
+            this._NewTeamToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this._NewTeamToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this._NewTeamToolStripMenuItem.Text = "&Neue Mannschaft";
+            this._NewTeamToolStripMenuItem.Click += new System.EventHandler(this.NewTeamMenuItem_Click);
+            // 
+            // _CreatePlaylistToolStripMenuItem
+            // 
+            this._CreatePlaylistToolStripMenuItem.Name = "_CreatePlaylistToolStripMenuItem";
+            this._CreatePlaylistToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this._CreatePlaylistToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this._CreatePlaylistToolStripMenuItem.Text = "Spiel&plan erstellen";
+            this._CreatePlaylistToolStripMenuItem.Click += new System.EventHandler(this.CreateAgendaMenuItem_Click);
+            // 
+            // _SaveToolStripMenuItem
+            // 
+            this._SaveToolStripMenuItem.Name = "_SaveToolStripMenuItem";
+            this._SaveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this._SaveToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this._SaveToolStripMenuItem.Text = "&Speichern";
+            // 
+            // _AppToolStripMenuItem
+            // 
+            this._AppToolStripMenuItem.Name = "_AppToolStripMenuItem";
+            this._AppToolStripMenuItem.Size = new System.Drawing.Size(210, 6);
+            // 
+            // _ExitToolStripMenuItem
+            // 
+            this._ExitToolStripMenuItem.Name = "_ExitToolStripMenuItem";
+            this._ExitToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this._ExitToolStripMenuItem.Text = "Be&enden";
+            // 
+            // _OptionsToolStripMenuItem
+            // 
+            this._OptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._OptionMatchDaysToolStripMenuItem});
+            this._OptionsToolStripMenuItem.Name = "_OptionsToolStripMenuItem";
+            this._OptionsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this._OptionsToolStripMenuItem.Text = "Optionen";
+            // 
+            // _OptionMatchDaysToolStripMenuItem
+            // 
+            this._OptionMatchDaysToolStripMenuItem.CheckOnClick = true;
+            this._OptionMatchDaysToolStripMenuItem.Name = "_OptionMatchDaysToolStripMenuItem";
+            this._OptionMatchDaysToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this._OptionMatchDaysToolStripMenuItem.Text = "Spieltage";
+            // 
+            // ClipboardMenuItem
+            // 
+            this.ClipboardMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ClipboardTableMenuItem,
+            this.ClipboardGamesMenuItem});
+            this.ClipboardMenuItem.Name = "ClipboardMenuItem";
+            this.ClipboardMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.ClipboardMenuItem.Text = "Clipboard";
+            // 
+            // ClipboardTableMenuItem
+            // 
+            this.ClipboardTableMenuItem.Name = "ClipboardTableMenuItem";
+            this.ClipboardTableMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.ClipboardTableMenuItem.Text = "Tabelle (HTML)";
+            // 
+            // ClipboardGamesMenuItem
+            // 
+            this.ClipboardGamesMenuItem.Name = "ClipboardGamesMenuItem";
+            this.ClipboardGamesMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.ClipboardGamesMenuItem.Text = "Spiele (HTML)";
+            // 
+            // _AppStatusStrip
+            // 
+            this._AppStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._PlayerFilterToolStripDropDownButton,
+            this._SpacerStripStatusLabel,
+            this._TotalMatchesToolStripStatusLabel,
+            this._TotalMatchesCountToolStripStatusLabel,
+            this._PlayedMatchesToolStripStatusLabel,
+            this._PlayedMatchesCountToolStripStatusLabel});
+            this._AppStatusStrip.Location = new System.Drawing.Point(0, 331);
+            this._AppStatusStrip.Name = "_AppStatusStrip";
+            this._AppStatusStrip.Size = new System.Drawing.Size(664, 22);
+            this._AppStatusStrip.TabIndex = 2;
+            this._AppStatusStrip.Text = "StatusStrip1";
+            // 
+            // _PlayerFilterToolStripDropDownButton
+            // 
+            this._PlayerFilterToolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._PlayerFilterToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("_PlayerFilterToolStripDropDownButton.Image")));
+            this._PlayerFilterToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._PlayerFilterToolStripDropDownButton.Name = "_PlayerFilterToolStripDropDownButton";
+            this._PlayerFilterToolStripDropDownButton.Size = new System.Drawing.Size(86, 20);
+            this._PlayerFilterToolStripDropDownButton.Text = "(Team Filter)";
+            // 
+            // _SpacerStripStatusLabel
+            // 
+            this._SpacerStripStatusLabel.Name = "_SpacerStripStatusLabel";
+            this._SpacerStripStatusLabel.Size = new System.Drawing.Size(450, 17);
+            this._SpacerStripStatusLabel.Spring = true;
+            // 
+            // _TotalMatchesToolStripStatusLabel
+            // 
+            this._TotalMatchesToolStripStatusLabel.Name = "_TotalMatchesToolStripStatusLabel";
+            this._TotalMatchesToolStripStatusLabel.Size = new System.Drawing.Size(41, 17);
+            this._TotalMatchesToolStripStatusLabel.Text = "Spiele:";
+            // 
+            // _TotalMatchesCountToolStripStatusLabel
+            // 
+            this._TotalMatchesCountToolStripStatusLabel.Name = "_TotalMatchesCountToolStripStatusLabel";
+            this._TotalMatchesCountToolStripStatusLabel.Size = new System.Drawing.Size(10, 17);
+            this._TotalMatchesCountToolStripStatusLabel.Text = ".";
+            // 
+            // _PlayedMatchesToolStripStatusLabel
+            // 
+            this._PlayedMatchesToolStripStatusLabel.Name = "_PlayedMatchesToolStripStatusLabel";
+            this._PlayedMatchesToolStripStatusLabel.Size = new System.Drawing.Size(52, 17);
+            this._PlayedMatchesToolStripStatusLabel.Text = "Gespielt:";
+            // 
+            // _PlayedMatchesCountToolStripStatusLabel
+            // 
+            this._PlayedMatchesCountToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
+            this._PlayedMatchesCountToolStripStatusLabel.Name = "_PlayedMatchesCountToolStripStatusLabel";
+            this._PlayedMatchesCountToolStripStatusLabel.Size = new System.Drawing.Size(10, 17);
+            this._PlayedMatchesCountToolStripStatusLabel.Text = ".";
+            // 
+            // AppWindow
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(8, 24);
+            this.ClientSize = new System.Drawing.Size(664, 353);
+            this.Controls.Add(this._AppTabControl);
+            this.Controls.Add(this._AppMainMenuStrip);
+            this.Controls.Add(this._AppStatusStrip);
+            this.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "AppWindow";
+            this.Text = "POFF Kicker";
+            this._AppTabControl.ResumeLayout(false);
+            this._TeamsTabPage.ResumeLayout(false);
+            this._MatchesTabPage.ResumeLayout(false);
+            this._ResultsTabPage.ResumeLayout(false);
+            this._AppMainMenuStrip.ResumeLayout(false);
+            this._AppMainMenuStrip.PerformLayout();
+            this._AppStatusStrip.ResumeLayout(false);
+            this._AppStatusStrip.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
     }
     private MenuStrip _AppMainMenuStrip;
@@ -791,22 +833,7 @@ public partial class AppWindow
             _TeamsScreenContent = value;
         }
     }
-    private ToolStripMenuItem _CopyToolStripMenuItem;
 
-    internal virtual ToolStripMenuItem CopyToolStripMenuItem
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _CopyToolStripMenuItem;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _CopyToolStripMenuItem = value;
-        }
-    }
     private ColumnHeader _MatchNumberColumnHeader;
 
     internal virtual ColumnHeader MatchNumberColumnHeader
@@ -952,6 +979,9 @@ public partial class AppWindow
         }
     }
     private ToolStripDropDownButton _PlayerFilterToolStripDropDownButton;
+    private ToolStripMenuItem ClipboardMenuItem;
+    private ToolStripMenuItem ClipboardTableMenuItem;
+    private ToolStripMenuItem ClipboardGamesMenuItem;
 
     private ToolStripDropDownButton PlayerFilterToolStripDropDownButton
     {
