@@ -6,7 +6,7 @@ using POFF.Kicker.Domain.MatchGenerators;
 namespace POFF.Kicker.Tests;
 
 [TestFixture]
-public class MatchDaysMatchGeneratorTests
+class MatchDaysMatchGeneratorTests
 {
 
     [Test]

@@ -5,7 +5,7 @@ using POFF.Kicker.Domain.MatchGenerators;
 namespace POFF.Kicker.Tests;
 
 [TestFixture]
-public class GeneticMatchGeneratorTests
+class GeneticMatchGeneratorTests
 {
 
     [Test]

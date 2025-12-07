@@ -4,7 +4,7 @@ using POFF.Kicker.Domain;
 namespace POFF.Kicker.Tests;
 
 [TestFixture]
-public class ResultTests
+class ResultTests
 {
 
     [Test]

@@ -6,7 +6,7 @@ using POFF.Kicker.View.Model;
 namespace POFF.Kicker.Tests;
 
 [TestFixture]
-public class TournamentTests
+class TournamentTests
 {
 
     [Test]

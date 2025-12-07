@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="POFF.Kicker.Tests/POFF.Kicker.Tests.csproj" />
+  <Project Path="POFF.Kicker/POFF.Kicker.csproj" />
+  <Properties Name="ExtensibilityGlobals" Scope="PostLoad">
+    <Property Name="ObjectiFSystem" Value="C:\temp\Temper" />
+  </Properties>
+</Solution>

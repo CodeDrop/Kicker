@@ -5,7 +5,7 @@ namespace POFF.Kicker.Tests;
 
 
 [TestFixture]
-public class AppWindowViewModelTests
+class AppWindowViewModelTests
 {
 
     [Test]

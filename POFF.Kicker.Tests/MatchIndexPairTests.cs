@@ -4,7 +4,7 @@ using POFF.Kicker.Domain.MatchGenerators;
 namespace POFF.Kicker.Tests;
 
 [TestFixture]
-public class MatchIndexPairTests
+class MatchIndexPairTests
 {
 
 

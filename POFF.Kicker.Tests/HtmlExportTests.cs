@@ -8,7 +8,7 @@ namespace POFF.Kicker.Tests;
 
 
 [TestFixture]
-public class HtmlExportTests
+class HtmlExportTests
 {
 
     private static string Result;
