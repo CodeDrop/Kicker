@@ -118,71 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="HtmlExportStandingOnlyTemplate" xml:space="preserve">
-    <value>&lt;p&gt;&lt;!-- Stand --&gt;&lt;/p&gt;
-                    &lt;table class="table table-striped"&gt;
-                        &lt;thead&gt;
-                        &lt;tr&gt;
-                            &lt;th&gt;Platz&lt;/th&gt;
-                            &lt;th&gt;Spieler&lt;/th&gt;
-                            &lt;th&gt;Spiele&lt;/th&gt;
-                            &lt;th&gt;Punkte&lt;/th&gt;
-                            &lt;th&gt;Frames&lt;/th&gt;
-                        &lt;/tr&gt;
-                        &lt;/thead&gt;
-                        &lt;tbody&gt;
-&lt;!-- Tabelle --&gt;
-                        &lt;/tbody&gt;
-                    &lt;/table&gt;
-&lt;!-- Spiele --&gt;</value>
-  </data>
-  <data name="HtmlExportTemplate" xml:space="preserve">
-    <value>{% extends 'base.html.twig' %}
+    <value>&lt;!-- Spiele --&gt;
 
-{% block title %}Club-Liga 2022/23{% endblock %}
-
-{% block body %}
-    &lt;div class="club"&gt;
-        &lt;div class="container main-container"&gt;
-            &lt;div class="row"&gt;
-                &lt;div class="col-md-12 mt-12"&gt;
-                    &lt;h1&gt;Club-Liga 2022/23&lt;/h1&gt;
-                    &lt;p&gt;&lt;!-- Stand --&gt;&lt;/p&gt;
-                    &lt;table class="table table-striped"&gt;
-                        &lt;thead&gt;
-                        &lt;tr&gt;
-                            &lt;th&gt;Platz&lt;/th&gt;
-                            &lt;th&gt;Spieler&lt;/th&gt;
-                            &lt;th&gt;Spiele&lt;/th&gt;
-                            &lt;th&gt;Punkte&lt;/th&gt;
-                            &lt;th&gt;Frames&lt;/th&gt;
-                        &lt;/tr&gt;
-                        &lt;/thead&gt;
-                        &lt;tbody&gt;
-&lt;!-- Tabelle --&gt;
-                        &lt;/tbody&gt;
-                    &lt;/table&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class="row"&gt;
-                &lt;div class="col-md-12 mt-12"&gt;
-                    &lt;h1&gt;Spiele&lt;/h1&gt;
-                    &lt;table class="table table-striped"&gt;
-                        &lt;thead&gt;
-                        &lt;tr&gt;
-                            &lt;th&gt;Nr&lt;/th&gt;
-                            &lt;th&gt;Spieler 1&lt;/th&gt;
-                            &lt;th&gt;Spieler 2&lt;/th&gt;
-                            &lt;th&gt;Ergebnis&lt;/th&gt;
-                        &lt;/tr&gt;
-                        &lt;/thead&gt;
-                        &lt;tbody&gt;
-&lt;!-- Spiele --&gt;
-                        &lt;/tbody&gt;
-                    &lt;/table&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-{% endblock %}</value>
+&lt;!-- Tabelle --&gt;</value>
   </data>
 </root>

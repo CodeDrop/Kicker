@@ -7,23 +7,18 @@ using System.Text;
 
 namespace POFF.Kicker.Infrastructure;
 
-public class HtmlExport(Tournament tournament)
+public class HtmlExport(Tournament tournament, ExportType exportType)
 {
     public override string ToString()
     {
         var builder = new StringBuilder(Resources.HtmlExportStandingOnlyTemplate);
 
-        SetSubtitel(builder);
-        SetStandings(builder);
-        SetGames(builder);
+        if ((exportType & ExportType.Games) == ExportType.Games)
+            SetGames(builder);
+        if ((exportType & ExportType.Standings) == ExportType.Standings)
+            SetStandings(builder);
 
         return builder.ToString();
-    }
-
-    private void SetSubtitel(StringBuilder builder)
-    {
-        string subtitle = $"Stand {DateTime.Now:d.M.yyyy} nach {tournament.PlayedMatchCount()} von {tournament.TotalMatchCount()} Spielen";
-        builder.Replace("<!-- Stand -->", subtitle);
     }
 
     private void SetStandings(StringBuilder builder)

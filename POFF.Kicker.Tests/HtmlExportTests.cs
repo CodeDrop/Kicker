@@ -28,22 +28,10 @@ public class HtmlExportTests
         var matchResult = new Result();
         matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
         tournament.MatchManager.SetStatus(2, matchResult);
-        var testClass = new HtmlExport(tournament);
+        var testClass = new HtmlExport(tournament, ExportType.Games | ExportType.Standings);
 
         // Act
         Result = testClass.ToString();
-    }
-
-    [Test]
-    public void HeaderTest()
-    {
-        StringAssert.StartsWith("<p>Stand ", Result);
-    }
-
-    [Test]
-    public void SubtitleTest()
-    {
-        StringAssert.Contains(" nach 1 von ", Result);
     }
 
     [Test]
@@ -59,10 +47,5 @@ public class HtmlExportTests
         StringAssert.DoesNotMatch(pattern.ToString(), Result);
     }
 
-    [Test]
-    public void FooterTest()
-    {
-        StringAssert.Contains("</table>", Result);
-    }
 
 }

@@ -119,6 +119,7 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\ExportType.cs" />
     <Compile Include="Infrastructure\ITournamentStorage.cs" />
     <Compile Include="Infrastructure\TournamentFile.cs" />
     <Compile Include="View\AppWindow.Designer.cs">

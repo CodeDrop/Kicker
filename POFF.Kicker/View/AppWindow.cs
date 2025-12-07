@@ -3,6 +3,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using POFF.Kicker.Domain;
+using POFF.Kicker.Infrastructure;
 using POFF.Kicker.Types;
 
 namespace POFF.Kicker.View;
@@ -36,7 +37,9 @@ public partial class AppWindow : Form
         FormClosing += (s, e) => _viewModel.Save();
         ExitToolStripMenuItem.Click += (s, e) => Close();
 
-        ClipboardTableMenuItem.Click += (s, e) => _viewModel.CopyToClipboard();
+        ClipboardGamesMenuItem.Click += (s, e) => _viewModel.CopyToClipboard(ExportType.Games);
+        ClipboardTableMenuItem.Click += (s, e) => _viewModel.CopyToClipboard(ExportType.Standings);
+        ClipboardCopyAllMenuItem.Click += (s, e) => _viewModel.CopyToClipboard(ExportType.Games | ExportType.Standings);
         SaveToolStripMenuItem.Click += (s, e) => _viewModel.Save();
         PlayerFilterToolStripDropDownButton.DropDownItemClicked += UpdateFilter;
     }

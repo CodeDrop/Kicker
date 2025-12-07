@@ -68,9 +68,9 @@ public class Tournament
         return _standingManager.GetStandings(MatchManager.GetMatches(MatchStatus.Finished));
     }
 
-    public void CopyStandingsHtmlToClipboard()
+    public void CopyToClipboard(ExportType exportType)
     {
-        var export = new HtmlExport(this);
+        var export = new HtmlExport(this, exportType);
         Clipboard.SetText(export.ToString());
     }
 

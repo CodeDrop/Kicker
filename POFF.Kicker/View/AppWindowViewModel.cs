@@ -71,8 +71,8 @@ public class AppWindowViewModel : ViewModelBase
         _storage.Save(Tournament);
     }
 
-    public void CopyToClipboard()
+    public void CopyToClipboard(ExportType exportType)
     {
-        Tournament.CopyStandingsHtmlToClipboard();
+        Tournament.CopyToClipboard(exportType);
     }
 }

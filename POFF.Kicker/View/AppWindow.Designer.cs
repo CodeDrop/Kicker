@@ -340,11 +340,12 @@ public partial class AppWindow
             this._SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._AppToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this._ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClipboardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClipboardGamesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClipboardTableMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClipboardCopyAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._OptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._OptionMatchDaysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ClipboardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ClipboardTableMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ClipboardGamesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._AppStatusStrip = new System.Windows.Forms.StatusStrip();
             this._PlayerFilterToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this._SpacerStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -573,6 +574,36 @@ public partial class AppWindow
             this._ExitToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this._ExitToolStripMenuItem.Text = "Be&enden";
             // 
+            // ClipboardMenuItem
+            // 
+            this.ClipboardMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ClipboardGamesMenuItem,
+            this.ClipboardTableMenuItem,
+            this.ClipboardCopyAllMenuItem});
+            this.ClipboardMenuItem.Name = "ClipboardMenuItem";
+            this.ClipboardMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.ClipboardMenuItem.Text = "Clipboard";
+            // 
+            // ClipboardGamesMenuItem
+            // 
+            this.ClipboardGamesMenuItem.Name = "ClipboardGamesMenuItem";
+            this.ClipboardGamesMenuItem.Size = new System.Drawing.Size(279, 22);
+            this.ClipboardGamesMenuItem.Text = "Spiele (HTML)";
+            // 
+            // ClipboardTableMenuItem
+            // 
+            this.ClipboardTableMenuItem.Name = "ClipboardTableMenuItem";
+            this.ClipboardTableMenuItem.Size = new System.Drawing.Size(279, 22);
+            this.ClipboardTableMenuItem.Text = "Tabelle (HTML)";
+            // 
+            // ClipboardCopyAllMenuItem
+            // 
+            this.ClipboardCopyAllMenuItem.Name = "ClipboardCopyAllMenuItem";
+            this.ClipboardCopyAllMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.C)));
+            this.ClipboardCopyAllMenuItem.Size = new System.Drawing.Size(279, 22);
+            this.ClipboardCopyAllMenuItem.Text = "Beides (HTML)";
+            // 
             // _OptionsToolStripMenuItem
             // 
             this._OptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -587,27 +618,6 @@ public partial class AppWindow
             this._OptionMatchDaysToolStripMenuItem.Name = "_OptionMatchDaysToolStripMenuItem";
             this._OptionMatchDaysToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this._OptionMatchDaysToolStripMenuItem.Text = "Spieltage";
-            // 
-            // ClipboardMenuItem
-            // 
-            this.ClipboardMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ClipboardTableMenuItem,
-            this.ClipboardGamesMenuItem});
-            this.ClipboardMenuItem.Name = "ClipboardMenuItem";
-            this.ClipboardMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.ClipboardMenuItem.Text = "Clipboard";
-            // 
-            // ClipboardTableMenuItem
-            // 
-            this.ClipboardTableMenuItem.Name = "ClipboardTableMenuItem";
-            this.ClipboardTableMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.ClipboardTableMenuItem.Text = "Tabelle (HTML)";
-            // 
-            // ClipboardGamesMenuItem
-            // 
-            this.ClipboardGamesMenuItem.Name = "ClipboardGamesMenuItem";
-            this.ClipboardGamesMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.ClipboardGamesMenuItem.Text = "Spiele (HTML)";
             // 
             // _AppStatusStrip
             // 
@@ -982,6 +992,7 @@ public partial class AppWindow
     private ToolStripMenuItem ClipboardMenuItem;
     private ToolStripMenuItem ClipboardTableMenuItem;
     private ToolStripMenuItem ClipboardGamesMenuItem;
+    private ToolStripMenuItem ClipboardCopyAllMenuItem;
 
     private ToolStripDropDownButton PlayerFilterToolStripDropDownButton
     {
