@@ -117,7 +117,7 @@ public partial class AppWindow : Form
 
         // Generate match list 
         var @type = OptionMatchDaysToolStripMenuItem.Checked ? TournamentType.MatchDays : TournamentType.Standard;
-        _viewModel.Tournament.Start(type);
+        _viewModel.Tournament.Start();
         UpdateMatchList();
         UpdateStandingList();
     }
@@ -164,7 +164,7 @@ public partial class AppWindow : Form
             var dialog = new ResultDialog(match);
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                _viewModel.Tournament.MatchManager.SetStatus(match.Number, dialog.Result);
+                _viewModel.Tournament.SetResult(match.Number, dialog.Result);
                 UpdateMatchList();
                 UpdateStandingList();
             }

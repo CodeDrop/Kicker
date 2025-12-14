@@ -22,10 +22,10 @@ class HtmlExportTests
         tournament.AddTeam(team1);
         tournament.AddTeam(team2);
         tournament.AddTeam(team3);
-        tournament.Start(TournamentType.Standard);
+        tournament.Start();
         var matchResult = new Result();
         matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
-        tournament.MatchManager.SetStatus(2, matchResult);
+        tournament.SetResult(2, matchResult);
         var testClass = new HtmlExport(tournament, ExportType.Games | ExportType.Standings);
 
         // Act

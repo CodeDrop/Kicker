@@ -19,7 +19,7 @@ class TournamentTests
 
         // Assert
         Assert.That(result.Teams, Is.Not.Null);
-        Assert.That(result.MatchManager, Is.Not.Null);
+        Assert.That(result.Matches, Is.Not.Null);
     }
 
     [Test]
@@ -31,10 +31,10 @@ class TournamentTests
         var team2 = new Team(2);
         testClass.AddTeam(team1);
         testClass.AddTeam(team2);
-        testClass.Start(TournamentType.Standard);
+        testClass.Start();
         var matchResult = new Result();
         matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
-        testClass.MatchManager.SetStatus(1, matchResult);
+        testClass.SetResult(1, matchResult);
 
         // Act
         var result = testClass.GetStandings();

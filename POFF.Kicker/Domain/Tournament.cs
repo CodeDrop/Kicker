@@ -9,9 +9,10 @@ namespace POFF.Kicker.View.Model;
 
 public class Tournament
 {
-    private readonly StandingManager _standingManager;
     private readonly List<Team> _teams = new();
     private readonly List<Match> _matches = new();
+    private readonly MatchManager _matchManager;
+    private readonly StandingManager _standingManager;
 
     public Tournament() : this([], [])
     { }
@@ -20,7 +21,7 @@ public class Tournament
     {
         _teams.AddRange(teams);
         _matches.AddRange(matches);
-        MatchManager = new MatchManager();
+        _matchManager = new MatchManager();
         _standingManager = new StandingManager();
     }
 
@@ -33,12 +34,19 @@ public class Tournament
         return _matches.Where(m => m.Status == MatchStatus.Finished);
     }
 
-    public MatchManager MatchManager { get; private set; }
+    public void SetResult(int matchNo, Result result)
+    {
+        if (matchNo < 1 | matchNo > _matches.Count)
+            throw new IndexOutOfRangeException("matchNo may only have values between 1 and number of matches");
 
-    public void Start(TournamentType @type)
+        _matches[matchNo - 1].Result = result;
+        _matches[matchNo - 1].Status = MatchStatus.Finished;
+    }
+
+    public void Start()
     {
         _matches.Clear();
-        _matches.AddRange(MatchManager.Generate(_teams.ToArray()));
+        _matches.AddRange(_matchManager.Generate(_teams.ToArray()));
     }
 
     public int TotalMatchCount()

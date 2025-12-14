@@ -1,5 +1,4 @@
 ﻿using POFF.Kicker.Domain.MatchGenerators;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,11 +6,10 @@ namespace POFF.Kicker.Domain;
 
 public class MatchManager
 {
-    private Match[] _matches = [];
-
     public IEnumerable<Match> Generate(Team[] teams, TournamentType @type = TournamentType.Standard)
     {
         if (teams is null) return [];
+        Match[] _matches = [];
 
         IMatchGenerator matchGenerator;
         if (type == TournamentType.MatchDays)
@@ -34,18 +32,5 @@ public class MatchManager
         }
 
         return _matches;
-    }
-
-    public void SetStatus(int matchNo, Result result)
-    {
-        SetStatus(matchNo, MatchStatus.Finished);
-        _matches[matchNo - 1].Result = result;
-    }
-
-    private void SetStatus(int matchNo, MatchStatus matchStatus)
-    {
-        if (matchNo < 1 | matchNo > _matches.Length)
-            throw new IndexOutOfRangeException("matchNo may only have values between 1 and number of matches");
-        _matches[matchNo - 1].Status = matchStatus;
     }
 }
