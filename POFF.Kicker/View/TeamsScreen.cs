@@ -15,7 +15,7 @@ public partial class TeamsScreen : IConfirmationMessage
         InitializeComponent();
 
         // Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
-        ViewModel = AppWindowViewModel.DI<TeamsScreenViewModel>();
+        ViewModel = AppWindowViewModel.Instance.TeamsScreen;
         ViewModel.ConfirmationMessageHandler = this;
         TeamsDataGridView.DataSource = ViewModel.Teams;
     }

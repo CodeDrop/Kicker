@@ -18,16 +18,6 @@ public class AppWindowViewModel : ViewModelBase
         TeamsScreen = new TeamsScreenViewModel(Tournament);
     }
 
-    public static T DI<T>() where T : ViewModelBase
-    {
-        if (ReferenceEquals(typeof(T), typeof(TeamsScreenViewModel)))
-        {
-            return (T)(ViewModelBase)Instance.TeamsScreen;
-        }
-
-        throw new ArgumentOutOfRangeException("type", "Unexpected type");
-    }
-
     public BindingList<Team> Teams
     {
         get
