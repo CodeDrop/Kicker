@@ -25,9 +25,11 @@ public partial class TeamsScreen : IConfirmationMessage
     private void TeamsDataGridView_DoubleClick(object sender, EventArgs e)
     {
         {
-            var withBlock = TeamsDataGridView.SelectedRows;
-            if (withBlock.Count > 0)
-                EditTeam((Team)withBlock[0].DataBoundItem);
+            var rows = TeamsDataGridView.SelectedRows;
+            if (rows.Count > 0)
+            {
+                EditTeam((Team)rows[0].DataBoundItem);
+            }
         }
     }
 
@@ -40,21 +42,17 @@ public partial class TeamsScreen : IConfirmationMessage
 
     private void DeleteTeamMenuItem_Click(object sender, EventArgs e)
     {
-        {
-            var withBlock = TeamsDataGridView.SelectedRows;
-            if (withBlock.Count > 0)
-                ViewModel.RemoveTeam((Team)withBlock[0].DataBoundItem);
-        }
+        var rows = TeamsDataGridView.SelectedRows;
+        if (rows.Count > 0)
+            ViewModel.RemoveTeam((Team)rows[0].DataBoundItem);
     }
 
     private void WithdrawTeamMenuItem_Click(object sender, EventArgs e)
     {
-        {
-            var withBlock = TeamsDataGridView.SelectedRows;
-            if (withBlock.Count > 0)
-                ViewModel.ToggleTeamStatus((Team)withBlock[0].DataBoundItem);
-            TeamsDataGridView.Refresh();
-        }
+        var rows = TeamsDataGridView.SelectedRows;
+        if (rows.Count > 0)
+            ViewModel.ToggleTeamStatus((Team)rows[0].DataBoundItem);
+        TeamsDataGridView.Refresh();
     }
 
     private void EditTeam(Team team)
@@ -87,11 +85,9 @@ public partial class TeamsScreen : IConfirmationMessage
     {
         if (e.Button == MouseButtons.Right)
         {
-            {
-                var withBlock = (DataGridView)sender;
-                withBlock.ClearSelection();
-                withBlock.Rows[e.RowIndex].Selected = true;
-            }
+            var dataGridView = (DataGridView)sender;
+            dataGridView.ClearSelection();
+            dataGridView.Rows[e.RowIndex].Selected = true;
         }
     }
 }

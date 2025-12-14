@@ -32,7 +32,7 @@ public class FileTournamentStorage : ITournamentStorage
         var tournamentFile = new TournamentFile 
         { 
             Teams = [.. tournament.Teams], 
-            Matches = tournament.MatchManager.GetMatches()
+            Matches = [.. tournament.Matches]
         };
         var writer = new StreamWriter(_filename, false);
         var serializer = new XmlSerializer(typeof(TournamentFile));

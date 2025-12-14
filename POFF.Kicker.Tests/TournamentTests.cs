@@ -31,7 +31,7 @@ class TournamentTests
         var team2 = new Team(2);
         testClass.AddTeam(team1);
         testClass.AddTeam(team2);
-        testClass.MatchManager.Generate([team1, team2]);
+        testClass.Start(TournamentType.Standard);
         var matchResult = new Result();
         matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
         testClass.MatchManager.SetStatus(1, matchResult);

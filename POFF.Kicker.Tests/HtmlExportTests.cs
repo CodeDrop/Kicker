@@ -22,7 +22,7 @@ class HtmlExportTests
         tournament.AddTeam(team1);
         tournament.AddTeam(team2);
         tournament.AddTeam(team3);
-        tournament.MatchManager.Generate([team1, team2, team3]);
+        tournament.Start(TournamentType.Standard);
         var matchResult = new Result();
         matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
         tournament.MatchManager.SetStatus(2, matchResult);

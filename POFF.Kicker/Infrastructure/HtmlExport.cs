@@ -45,7 +45,7 @@ public class HtmlExport(Tournament tournament, ExportType exportType)
     {
         var gamesBuilder = new StringBuilder();
 
-        foreach (Match match in tournament.MatchManager.GetMatches())
+        foreach (Match match in tournament.Matches)
         {
             if (ContainsWithdrawnTeam(match))
                 continue;

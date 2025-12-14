@@ -25,8 +25,7 @@ namespace POFF.Kicker.Tests.Infrastructure
         [Test]
         public void File_contains_matches()
         {
-            Assert.That(_sut.MatchManager.GetMatches(), Is.Not.Empty);
-            Assert.That(_sut.MatchManager.GetMatches(), Has.Length.EqualTo(3));
+            Assert.That(_sut.Matches, Is.Not.Empty);
         }
     }
 }

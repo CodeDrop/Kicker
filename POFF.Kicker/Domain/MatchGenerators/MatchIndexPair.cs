@@ -18,12 +18,9 @@ public class MatchIndexPair : Tuple<int, int>
 
     public override bool Equals(object obj)
     {
-        if (obj is null || !(obj is MatchIndexPair))
-            return false;
-        {
-            var withBlock = (MatchIndexPair)obj;
-            return Item1 == withBlock.Item1 && Item2 == withBlock.Item2 || Item1 == withBlock.Item2 && Item2 == withBlock.Item1;
-        }
+        if (obj is not MatchIndexPair otherMatchIndexPair) return false;
+
+        return Item1 == otherMatchIndexPair.Item1 && Item2 == otherMatchIndexPair.Item2 || Item1 == otherMatchIndexPair.Item2 && Item2 == otherMatchIndexPair.Item1;
     }
 
     public bool ContainsTeamOf(MatchIndexPair other)

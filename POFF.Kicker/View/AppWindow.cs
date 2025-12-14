@@ -98,10 +98,10 @@ public partial class AppWindow : Form
             return;
 
         {
-            var withBlock = new TeamDialog(new TeamInfo());
-            if (withBlock.ShowDialog() == DialogResult.OK)
+            var dialog = new TeamDialog(new TeamInfo());
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                _viewModel.AddTeam(withBlock.TeamInfo);
+                _viewModel.AddTeam(dialog.TeamInfo);
                 UpdateGui();
             }
         }
@@ -134,7 +134,7 @@ public partial class AppWindow : Form
         string filter = PlayerFilterToolStripDropDownButton.Text;
         var no = default(int);
 
-        foreach (var match in _viewModel.Tournament.MatchManager.GetMatches())
+        foreach (var match in _viewModel.Tournament.Matches)
         {
             no += 1;
             if (filter == _noTeamFilter || filter == match.Team1.Name || filter == match.Team2.Name)
@@ -161,10 +161,10 @@ public partial class AppWindow : Form
 
         var match = ((MatchListViewItem)MatchListView.SelectedItems[0]).Match;
         {
-            var withBlock = new ResultDialog(match);
-            if (withBlock.ShowDialog(this) == DialogResult.OK)
+            var dialog = new ResultDialog(match);
+            if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                _viewModel.Tournament.MatchManager.SetStatus(match.Number, withBlock.Result);
+                _viewModel.Tournament.MatchManager.SetStatus(match.Number, dialog.Result);
                 UpdateMatchList();
                 UpdateStandingList();
             }
@@ -178,9 +178,7 @@ public partial class AppWindow : Form
 
     private DialogResult CheckDeleteResults(string format, params object[] args)
     {
-        int finishedMatchCount = _viewModel.Tournament.MatchManager.GetMatches(MatchStatus.Finished).Length;
-
-        if (finishedMatchCount > 0)
+        if (_viewModel.Tournament.PlayedMatchCount() > 0)
             return ShowQuestion(format, args);
         return DialogResult.Yes;
     }

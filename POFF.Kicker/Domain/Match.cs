@@ -43,10 +43,10 @@ public class Match
     public new bool Equals(object obj)
     {
         {
-            var withBlock = (Match)obj;
-            if ((withBlock.Team1.Name ?? "") != (Team1.Name ?? "") && (withBlock.Team1.Name ?? "") != (Team2.Name ?? ""))
+            var otherMatch = (Match)obj;
+            if ((otherMatch.Team1.Name ?? "") != (Team1.Name ?? "") && (otherMatch.Team1.Name ?? "") != (Team2.Name ?? ""))
                 return false;
-            if ((withBlock.Team2.Name ?? "") != (Team1.Name ?? "") && (withBlock.Team2.Name ?? "") != (Team2.Name ?? ""))
+            if ((otherMatch.Team2.Name ?? "") != (Team1.Name ?? "") && (otherMatch.Team2.Name ?? "") != (Team2.Name ?? ""))
                 return false;
 
             return true;

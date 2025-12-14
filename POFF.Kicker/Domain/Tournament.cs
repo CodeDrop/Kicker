@@ -11,6 +11,7 @@ public class Tournament
 {
     private readonly StandingManager _standingManager;
     private readonly List<Team> _teams = new();
+    private readonly List<Match> _matches = new();
 
     public Tournament() : this([], [])
     { }
@@ -18,27 +19,36 @@ public class Tournament
     public Tournament(IEnumerable<Team> teams, Match[] matches)
     {
         _teams.AddRange(teams);
-        MatchManager = new MatchManager(matches);
+        _matches.AddRange(matches);
+        MatchManager = new MatchManager();
         _standingManager = new StandingManager();
     }
 
     public IEnumerable<Team> Teams => _teams;
 
+    public IEnumerable<Match> Matches => _matches;
+
+    public IEnumerable<Match> FinishedMatches()
+    {
+        return _matches.Where(m => m.Status == MatchStatus.Finished);
+    }
+
     public MatchManager MatchManager { get; private set; }
 
     public void Start(TournamentType @type)
     {
-        MatchManager.Generate(_teams.ToArray(), type);
+        _matches.Clear();
+        _matches.AddRange(MatchManager.Generate(_teams.ToArray()));
     }
 
     public int TotalMatchCount()
     {
-        return MatchManager.GetMatches().Count(m => !ContainsWithdrawnTeam(m));
+        return _matches.Count(m => !ContainsWithdrawnTeam(m));
     }
 
     public int PlayedMatchCount()
     {
-        return MatchManager.GetMatches(MatchStatus.Finished).Length;
+        return FinishedMatches().Count();
     }
 
     public void AddTeam(Team team)
@@ -52,12 +62,12 @@ public class Tournament
             throw new ArgumentNullException("team");
 
         _teams.Remove(team);
-        MatchManager.Clear();
+        _matches.Clear();
     }
 
     public IEnumerable<Standing> GetStandings()
     {
-        return _standingManager.GetStandings(MatchManager.GetMatches(MatchStatus.Finished));
+        return _standingManager.GetStandings([.. FinishedMatches()]);
     }
 
     public void CopyToClipboard(ExportType exportType)

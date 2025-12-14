@@ -7,22 +7,11 @@ namespace POFF.Kicker.Domain;
 
 public class MatchManager
 {
-    public MatchManager(Match[] matches)
-    {
-        _matches = matches ?? [];
-    }
-
     private Match[] _matches = [];
 
-    public void Clear()
+    public IEnumerable<Match> Generate(Team[] teams, TournamentType @type = TournamentType.Standard)
     {
-        _matches = [];
-    }
-
-    public void Generate(Team[] teams, TournamentType @type = TournamentType.Standard)
-    {
-        if (teams is null)
-            return;
+        if (teams is null) return [];
 
         IMatchGenerator matchGenerator;
         if (type == TournamentType.MatchDays)
@@ -43,54 +32,8 @@ public class MatchManager
             _matches[matchNumber - 1] = new Match(matchNumber, teams[matchIndexPair.Item1], teams[matchIndexPair.Item2]);
             matchNumber += 1;
         }
-    }
 
-    // Get next match with fitting status
-    public Match GetNextMatch()
-    {
-        bool teamConflict;
-
-        foreach (var match in _matches)
-        {
-            if (match.Status == MatchStatus.Open)
-            {
-                teamConflict = false;
-
-                foreach (var runningMatch in GetMatches(MatchStatus.Running))
-                {
-                    teamConflict = runningMatch.HasTeam(match.Team1) | runningMatch.HasTeam(match.Team2);
-                    if (teamConflict)
-                        break;
-                }
-
-                if (!teamConflict)
-                    return match;
-            }
-        }
-
-        return null;
-    }
-
-    // Get all matches
-    public Match[] GetMatches()
-    {
         return _matches;
-    }
-
-    // Get matches depending on running status
-    public Match[] GetMatches(MatchStatus matchStatus)
-    {
-        var matchesInStatus = new List<Match>();
-
-        for (int index = 0, loopTo = _matches.Length - 1; index <= loopTo; index++)
-        {
-            if (_matches[index].Status == matchStatus)
-            {
-                matchesInStatus.Add(_matches[index]);
-            }
-        }
-
-        return [.. matchesInStatus];
     }
 
     public void SetStatus(int matchNo, Result result)
