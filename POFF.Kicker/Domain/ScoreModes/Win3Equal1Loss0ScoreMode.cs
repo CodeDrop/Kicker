@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace POFF.Kicker.Domain;
+namespace POFF.Kicker.Domain.ScoreModes;
 
-public class StandingManager
+public class Win3Equal1Loss0ScoreMode : IScoreMode
 {
-    public Standing[] GetStandings(Match[] finishedMatches)
+    public IEnumerable<Standing> Evaluate(IEnumerable<Match> matches)
     {
         var list = new Dictionary<Team, Standing>();
         int[] setsWon, points, goals;
 
-        foreach (var finishedMatch in finishedMatches)
+        foreach (var match in matches)
         {
             setsWon = new int[2];
             points = new int[2];
             goals = new int[2];
 
-            if (!list.ContainsKey(finishedMatch.Team1))
-                list.Add(finishedMatch.Team1, new Standing(finishedMatch.Team1));
-            if (!list.ContainsKey(finishedMatch.Team2))
-                list.Add(finishedMatch.Team2, new Standing(finishedMatch.Team2));
+            if (!list.ContainsKey(match.Team1))
+                list.Add(match.Team1, new Standing(match.Team1));
+            if (!list.ContainsKey(match.Team2))
+                list.Add(match.Team2, new Standing(match.Team2));
 
-            foreach (var setResult in finishedMatch.Result.SetResults)
+            foreach (var setResult in match.Result.SetResults)
             {
                 switch (setResult.Home.CompareTo(setResult.Guest))
                 {
@@ -61,14 +61,14 @@ public class StandingManager
                     }
             }
 
-            var standing1 = list[finishedMatch.Team1];
+            var standing1 = list[match.Team1];
             standing1.MatchCount += 1;
             standing1.Points += points[0];
             standing1.WonSetCount += setsWon[0];
             standing1.Goals += goals[0];
             standing1.GoalsAgainst += goals[1];
 
-            var standing2 = list[finishedMatch.Team2];
+            var standing2 = list[match.Team2];
             standing2.MatchCount += 1;
             standing2.Points += points[1];
             standing2.WonSetCount += setsWon[1];
@@ -90,5 +90,4 @@ public class StandingManager
 
         return standings;
     }
-
 }

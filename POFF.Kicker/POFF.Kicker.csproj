@@ -119,6 +119,8 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\ScoreModes\IScoreMode.cs" />
+    <Compile Include="Domain\ScoreModes\Win3Equal1Loss0ScoreMode.cs" />
     <Compile Include="Infrastructure\ExportType.cs" />
     <Compile Include="Infrastructure\ITournamentStorage.cs" />
     <Compile Include="Infrastructure\TournamentFile.cs" />
@@ -129,7 +131,6 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Domain\StandingManager.cs" />
     <Compile Include="Infrastructure\FileTournamentStorage.cs" />
     <Compile Include="Infrastructure\HtmlExport.cs" />
     <Compile Include="View\IConfirmationMessage.cs" />
@@ -172,7 +173,7 @@
     </Compile>
     <Compile Include="View\TeamsScreenViewModel.cs" />
     <Compile Include="Domain\SetResult.cs" />
-    <Compile Include="Domain\Standing.cs" />
+    <Compile Include="Domain\ScoreModes\Standing.cs" />
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Domain\Tournament.cs" />
     <Compile Include="Domain\TournamentType.cs" />

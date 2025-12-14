@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-using POFF.Kicker.Domain;
+using POFF.Kicker.Domain.ScoreModes;
 
 namespace POFF.Kicker.View;
 

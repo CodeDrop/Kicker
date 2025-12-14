@@ -1,5 +1,6 @@
 ﻿using POFF.Kicker.Domain;
 using POFF.Kicker.Domain.PlayModes;
+using POFF.Kicker.Domain.ScoreModes;
 using POFF.Kicker.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ public class Tournament
 {
     private readonly List<Team> _teams = [];
     private readonly List<Match> _matches = [];
-    private readonly StandingManager _standingManager;
 
     public Tournament() : this([], [])
     { }
@@ -21,8 +21,8 @@ public class Tournament
     {
         _teams.AddRange(teams);
         _matches.AddRange(matches);
-        _standingManager = new StandingManager();
         PlayMode = new RoundRobinPlayMode();
+        ScoreMode = new Win3Equal1Loss0ScoreMode();
     }
 
     public IEnumerable<Team> Teams => _teams;
@@ -32,43 +32,13 @@ public class Tournament
     public IPlayMode PlayMode
     {
         private get;
-        set { field = value ?? throw new ArgumentNullException(); }
+        set { field = value ?? throw new ArgumentNullException(nameof(PlayMode)); }
     }
 
-    public void Start(TournamentType tournamentType = TournamentType.Standard)
+    public IScoreMode ScoreMode
     {
-        _matches.Clear();
-
-        var matchIndexes = PlayMode.Generate(_teams.Count);
-
-        foreach (var matchIndexPair in matchIndexes)
-        {
-            _matches.Add(new Match(_matches.Count + 1, _teams[matchIndexPair.Item1], _teams[matchIndexPair.Item2]));
-        }
-    }
-
-    public void SetResult(int matchNo, Result result)
-    {
-        if (matchNo < 1 | matchNo > _matches.Count)
-            throw new IndexOutOfRangeException("matchNo may only have values between 1 and number of matches");
-
-        _matches[matchNo - 1].Result = result;
-        _matches[matchNo - 1].Status = MatchStatus.Finished;
-    }
-
-    public IEnumerable<Match> FinishedMatches()
-    {
-        return _matches.Where(m => m.Status == MatchStatus.Finished);
-    }
-
-    public int TotalMatchCount()
-    {
-        return _matches.Count(m => !ContainsWithdrawnTeam(m));
-    }
-
-    public int PlayedMatchCount()
-    {
-        return FinishedMatches().Count();
+        private get;
+        set { field = value ?? throw new ArgumentNullException(nameof(ScoreMode)); }
     }
 
     public void AddTeam(Team team)
@@ -85,9 +55,45 @@ public class Tournament
         _matches.Clear();
     }
 
+    public void Start(TournamentType tournamentType = TournamentType.Standard)
+    {
+        _matches.Clear();
+
+        var fixtures = PlayMode.Generate(_teams.Count);
+
+        foreach (var fixture in fixtures)
+        {
+            _matches.Add(new Match(_matches.Count + 1, _teams[fixture.Item1], _teams[fixture.Item2]));
+        }
+    }
+
+    public void SetResult(int matchNo, Result result)
+    {
+        if (matchNo < 1 | matchNo > _matches.Count)
+            throw new IndexOutOfRangeException("matchNo may only have values between 1 and number of matches");
+
+        _matches[matchNo - 1].Result = result;
+        _matches[matchNo - 1].Status = MatchStatus.Finished;
+    }
+
     public IEnumerable<Standing> GetStandings()
     {
-        return _standingManager.GetStandings([.. FinishedMatches()]);
+        return ScoreMode.Evaluate([.. FinishedMatches()]);
+    }
+
+    public IEnumerable<Match> FinishedMatches()
+    {
+        return _matches.Where(m => m.Status == MatchStatus.Finished);
+    }
+
+    public int TotalMatchCount()
+    {
+        return _matches.Count(m => !ContainsWithdrawnTeam(m));
+    }
+
+    public int PlayedMatchCount()
+    {
+        return FinishedMatches().Count();
     }
 
     public void CopyToClipboard(ExportType exportType)

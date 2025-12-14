@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace POFF.Kicker.Domain;
+namespace POFF.Kicker.Domain.ScoreModes;
 
 public class Standing : IComparable
 {

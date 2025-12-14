@@ -1,4 +1,5 @@
 ﻿using POFF.Kicker.Domain;
+using POFF.Kicker.Domain.ScoreModes;
 using POFF.Kicker.Properties;
 using POFF.Kicker.View.Model;
 using System;
