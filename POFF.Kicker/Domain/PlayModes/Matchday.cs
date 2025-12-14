@@ -2,17 +2,17 @@
 using System.Data;
 using System.Linq;
 
-namespace POFF.Kicker.Domain.MatchGenerators;
+namespace POFF.Kicker.Domain.PlayModes;
 
-public class Matchday : List<MatchIndexPair>
+public class Matchday : List<Fixture>
 {
 
-    public bool ContainsPlayerIn(MatchIndexPair match)
+    public bool ContainsPlayerIn(Fixture match)
     {
         return this.Any(m => m.Item1 == match.Item1 || m.Item1 == match.Item2 || m.Item2 == match.Item1 || m.Item2 == match.Item2);
     }
 
-    public IEnumerable<MatchIndexPair> MatchesWithPlayersFrom(MatchIndexPair match)
+    public IEnumerable<Fixture> MatchesWithPlayersFrom(Fixture match)
     {
         return this.Where(m => m.Item1 == match.Item1 || m.Item1 == match.Item2 || m.Item2 == match.Item1 || m.Item2 == match.Item2);
     }

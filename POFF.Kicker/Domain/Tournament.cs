@@ -1,5 +1,5 @@
 ﻿using POFF.Kicker.Domain;
-using POFF.Kicker.Domain.MatchGenerators;
+using POFF.Kicker.Domain.PlayModes;
 using POFF.Kicker.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -22,21 +22,24 @@ public class Tournament
         _teams.AddRange(teams);
         _matches.AddRange(matches);
         _standingManager = new StandingManager();
+        PlayMode = new RoundRobinPlayMode();
     }
 
     public IEnumerable<Team> Teams => _teams;
 
     public IEnumerable<Match> Matches => _matches;
 
+    public IPlayMode PlayMode
+    {
+        private get;
+        set { field = value ?? throw new ArgumentNullException(); }
+    }
+
     public void Start(TournamentType tournamentType = TournamentType.Standard)
     {
         _matches.Clear();
 
-        IMatchGenerator matchGenerator =
-            tournamentType == TournamentType.MatchDays ?
-            new MatchdaysMatchGenerator(_teams.Count()) : new GeneticMatchGenerator(_teams.Count());
-
-        var matchIndexes = matchGenerator.Generate();
+        var matchIndexes = PlayMode.Generate(_teams.Count);
 
         foreach (var matchIndexPair in matchIndexes)
         {

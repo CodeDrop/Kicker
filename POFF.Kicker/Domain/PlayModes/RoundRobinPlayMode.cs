@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace POFF.Kicker.Domain.MatchGenerators;
+namespace POFF.Kicker.Domain.PlayModes;
 
-public class GeneticMatchGenerator : IMatchGenerator
+public class RoundRobinPlayMode : IPlayMode
 {
+    private readonly List<Fixture> _matches = [];
+    private int _teamsCount;
 
-    private readonly List<MatchIndexPair> _matches = [];
-    private readonly int _teamsCount;
-
-    public GeneticMatchGenerator(int teamsCount)
+    public IEnumerable<Fixture> Generate(int teamsCount)
     {
         _teamsCount = teamsCount;
-    }
-
-    public IEnumerable<MatchIndexPair> Generate()
-    {
         var startIndex = default(int);
         int matchCount = (int)Math.Round((_teamsCount - 1) * _teamsCount / 2d);
         _matches.Clear();
@@ -53,7 +48,7 @@ public class GeneticMatchGenerator : IMatchGenerator
 
                 if (!MatchExists(team1Index, team2Index))
                 {
-                    var matchIndexPair = new MatchIndexPair(team1Index, team2Index);
+                    var matchIndexPair = new Fixture(team1Index, team2Index);
 
                     if (_matches.Count < matchNumber)
                     {

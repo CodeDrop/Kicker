@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using POFF.Kicker.Domain;
+using POFF.Kicker.Domain.PlayModes;
 using POFF.Kicker.Infrastructure;
 using POFF.Kicker.Types;
 
@@ -187,5 +188,12 @@ public partial class AppWindow : Form
     {
         AppTabControl.SelectedTab = tabPage;
         AppTabControl.Refresh();
+    }
+
+    private void _OptionMatchDaysToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        _viewModel.Tournament.PlayMode = OptionMatchDaysToolStripMenuItem.Checked
+            ? new MatchdaysPlayMode()
+            : new RoundRobinPlayMode();
     }
 }

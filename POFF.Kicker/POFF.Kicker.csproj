@@ -134,11 +134,11 @@
     <Compile Include="Infrastructure\HtmlExport.cs" />
     <Compile Include="View\IConfirmationMessage.cs" />
     <Compile Include="Domain\Match.cs" />
-    <Compile Include="Domain\MatchGenerators\GeneticMatchGenerator.cs" />
-    <Compile Include="Domain\MatchGenerators\IMatchGenerator.cs" />
-    <Compile Include="Domain\MatchGenerators\Matchday.cs" />
-    <Compile Include="Domain\MatchGenerators\MatchdaysMatchGenerator.cs" />
-    <Compile Include="Domain\MatchGenerators\MatchIndexPair.cs" />
+    <Compile Include="Domain\PlayModes\RoundRobinPlayMode.cs" />
+    <Compile Include="Domain\PlayModes\IPlayMode.cs" />
+    <Compile Include="Domain\PlayModes\Matchday.cs" />
+    <Compile Include="Domain\PlayModes\MatchdaysPlayMode.cs" />
+    <Compile Include="Domain\PlayModes\Fixture.cs" />
     <Compile Include="Domain\MatchStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

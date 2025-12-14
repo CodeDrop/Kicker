@@ -640,6 +640,7 @@ public partial class AppWindow
             this._OptionMatchDaysToolStripMenuItem.Name = "_OptionMatchDaysToolStripMenuItem";
             this._OptionMatchDaysToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this._OptionMatchDaysToolStripMenuItem.Text = "Spieltage";
+            this._OptionMatchDaysToolStripMenuItem.Click += new System.EventHandler(this._OptionMatchDaysToolStripMenuItem_Click);
             // 
             // _AppStatusStrip
             // 

@@ -1,22 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace POFF.Kicker.Domain.MatchGenerators;
+namespace POFF.Kicker.Domain.PlayModes;
 
-
-public class MatchdaysMatchGenerator : IMatchGenerator
+public class MatchdaysPlayMode : IPlayMode
 {
-    private readonly int _teamsCount;
-    private readonly List<MatchIndexPair> _matches = [];
+    private int _teamsCount;
+    private readonly List<Fixture> _matches = [];
     private readonly List<Matchday> _matchdays = [];
 
-    public MatchdaysMatchGenerator(int teamsCount = 10)
+    public IEnumerable<Fixture> Generate(int teamsCount)
     {
         _teamsCount = teamsCount;
-    }
-
-    public IEnumerable<MatchIndexPair> Generate()
-    {
         _matches.Clear();
         _matches.AddRange(GenerateMatches());
         _matchdays.Clear();
@@ -24,7 +19,7 @@ public class MatchdaysMatchGenerator : IMatchGenerator
         return MatchIndexPairsOrderdByMatchdays();
     }
 
-    private IEnumerable<MatchIndexPair> MatchIndexPairsOrderdByMatchdays()
+    private IEnumerable<Fixture> MatchIndexPairsOrderdByMatchdays()
     {
         foreach (var matchday in _matchdays)
         {
@@ -33,12 +28,12 @@ public class MatchdaysMatchGenerator : IMatchGenerator
         }
     }
 
-    private IEnumerable<MatchIndexPair> GenerateMatches()
+    private IEnumerable<Fixture> GenerateMatches()
     {
         for (int i = 1, loopTo = _teamsCount; i <= loopTo; i++)
         {
             for (int j = i + 1, loopTo1 = _teamsCount; j <= loopTo1; j++)
-                yield return new MatchIndexPair(i, j);
+                yield return new Fixture(i - 1, j - 1);
         }
     }
 
@@ -55,13 +50,13 @@ public class MatchdaysMatchGenerator : IMatchGenerator
         var matchday = new Matchday();
         while (matchday.Count < blockSize)
         {
-            var invalidatedMatches = new List<MatchIndexPair>();
+            var invalidatedMatches = new List<Fixture>();
             var nextMatch = GetNextMatch(matchday);
-            if (nextMatch.Equals(MatchIndexPair.Empty))
+            if (nextMatch.Equals(Fixture.Empty))
             {
                 nextMatch = _matches.Except(invalidatedMatches).FirstOrDefault();
                 if (nextMatch is null)
-                    nextMatch = MatchIndexPair.Empty;
+                    nextMatch = Fixture.Empty;
                 invalidatedMatches.AddRange(matchday.MatchesWithPlayersFrom(nextMatch));
                 _matches.AddRange(invalidatedMatches);
                 matchday.RemoveAll(m => invalidatedMatches.Contains(m));
@@ -72,10 +67,10 @@ public class MatchdaysMatchGenerator : IMatchGenerator
         return matchday;
     }
 
-    private MatchIndexPair GetNextMatch(Matchday matchday)
+    private Fixture GetNextMatch(Matchday matchday)
     {
         if (_matches.Count == 0)
-            return MatchIndexPair.Empty;
+            return Fixture.Empty;
 
         for (int i = 0, loopTo = _matches.Count - 1; i <= loopTo; i++)
         {
@@ -86,6 +81,6 @@ public class MatchdaysMatchGenerator : IMatchGenerator
             }
         }
 
-        return MatchIndexPair.Empty;
+        return Fixture.Empty;
     }
 }
