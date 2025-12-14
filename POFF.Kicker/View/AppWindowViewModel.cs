@@ -38,18 +38,18 @@ public class AppWindowViewModel : ViewModelBase
 
     public Tournament Tournament { get; }
 
-    private int TabIndexValue;
+    private int _tabIndexValue;
     public int TabIndex
     {
         get
         {
-            return TabIndexValue;
+            return _tabIndexValue;
         }
         set
         {
-            if (value == TabIndexValue)
+            if (value == _tabIndexValue)
                 return;
-            TabIndexValue = value;
+            _tabIndexValue = value;
             OnPropertyChanged();
         }
     }
