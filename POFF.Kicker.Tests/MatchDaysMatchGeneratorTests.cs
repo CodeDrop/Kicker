@@ -30,7 +30,7 @@ class MatchDaysMatchGeneratorTests
         var sut = new MatchdaysMatchGenerator(10);
         var result = sut.Generate();
         Assert.That(result.Count(), Is.EqualTo(45));
-        Assert.AreNotEqual(new Tuple<int, int>(0, 2), result.ElementAt(1));
+        Assert.That(result.ElementAt(1), Is.Not.EqualTo(new Tuple<int, int>(0, 2)));
     }
 
     [Test]

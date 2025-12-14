@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using POFF.Kicker.Domain;
@@ -13,13 +14,6 @@ public partial class AppWindow : Form
     private readonly AppWindowViewModel _viewModel;
     private const string _noTeamFilter = "(Team Filter)";
 
-    public static void Main()
-    {
-        Application.EnableVisualStyles();
-        Application.SetCompatibleTextRenderingDefault(false);
-        Application.Run(new AppWindow());
-    }
-
     public AppWindow() : base()
     {
         _viewModel = AppWindowViewModel.Instance;
@@ -31,24 +25,67 @@ public partial class AppWindow : Form
 
         // ViewModel <-> View
         AppTabControl.DataBindings.Add("SelectedIndex", _viewModel, "TabIndex", false, DataSourceUpdateMode.OnPropertyChanged);
-
-        // Actions
-        Load += AppWindow_Load;
-        FormClosing += (s, e) => _viewModel.Save();
-        ExitToolStripMenuItem.Click += (s, e) => Close();
-
-        ClipboardGamesMenuItem.Click += (s, e) => _viewModel.CopyToClipboard(ExportType.Games);
-        ClipboardTableMenuItem.Click += (s, e) => _viewModel.CopyToClipboard(ExportType.Standings);
-        ClipboardCopyAllMenuItem.Click += (s, e) => _viewModel.CopyToClipboard(ExportType.Games | ExportType.Standings);
-        SaveToolStripMenuItem.Click += (s, e) => _viewModel.Save();
-        PlayerFilterToolStripDropDownButton.DropDownItemClicked += UpdateFilter;
     }
 
     private void AppWindow_Load(object sender, EventArgs e)
     {
         UpdateGui();
+        UpdateTeams();
+    }
+
+    private void AppWindow_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        _viewModel.Save();
+    }
+
+    private void ClipboardGamesMenuItem_Click(object sender, EventArgs e)
+    {
+        _viewModel.CopyToClipboard(ExportType.Games);
+    }
+
+    private void ClipboardTableMenuItem_Click(object sender, EventArgs e)
+    {
+        _viewModel.CopyToClipboard(ExportType.Standings);
+    }
+
+    private void ClipboardCopyAllMenuItem_Click(object sender, EventArgs e)
+    {
+        _viewModel.CopyToClipboard(ExportType.Games | ExportType.Standings);
+    }
+
+    private void PlayerFilterDropDownButton_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+    {
+        PlayerFilterToolStripDropDownButton.Text = e.ClickedItem.Text;
+        UpdateMatchList();
+    }
+
+    private void ExitMenuItem_Click(object sender, EventArgs e)
+    {
+        Close();
+    }
+
+    private void UpdateTeams()
+    {
         PlayerFilterToolStripDropDownButton.DropDownItems.Add(_noTeamFilter);
         PlayerFilterToolStripDropDownButton.DropDownItems.AddRange(_viewModel.Tournament.TeamManager.GetTeams().Select(p => new ToolStripMenuItem(p.Name) { Tag = p }).ToArray());
+    }
+
+    private void OpenMenuItem_Click(object sender, EventArgs e)
+    {
+        using var openFileDialog = new OpenFileDialog();
+        openFileDialog.Filter = "POFF Tournament (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            _viewModel.Open(openFileDialog.FileName);
+            Text = $"POFF Kicker - {Path.GetFileNameWithoutExtension(openFileDialog.FileName)}";
+            UpdateTeams();
+            UpdateGui();
+        }
+    }
+
+    private void SaveMenuItem_Click(object sender, EventArgs e)
+    {
+        _viewModel.Save();
     }
 
     private void NewTeamMenuItem_Click(object sender, EventArgs e)
@@ -114,12 +151,6 @@ public partial class AppWindow : Form
         StandingListView.Items.Clear();
         foreach (var standing in _viewModel.Tournament.GetStandings())
             StandingListView.Items.Add(new StandingListViewItem(standing));
-    }
-
-    private void UpdateFilter(object sender, ToolStripItemClickedEventArgs e)
-    {
-        PlayerFilterToolStripDropDownButton.Text = e.ClickedItem.Text;
-        UpdateMatchList();
     }
 
     private void MatchListView_DoubleClick(object sender, EventArgs e)

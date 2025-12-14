@@ -335,9 +335,11 @@ public partial class AppWindow
             this._MatchesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this._AppMainMenuStrip = new System.Windows.Forms.MenuStrip();
             this._TournamentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this._NewTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._CreatePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._AppToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this._ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClipboardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -531,20 +533,43 @@ public partial class AppWindow
             // _TournamentToolStripMenuItem
             // 
             this._TournamentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenMenuItem,
+            this.SaveMenuItem,
+            this.toolStripMenuItem1,
             this._NewTeamToolStripMenuItem,
             this._CreatePlaylistToolStripMenuItem,
-            this._SaveToolStripMenuItem,
             this._AppToolStripMenuItem,
             this._ExitToolStripMenuItem});
             this._TournamentToolStripMenuItem.Name = "_TournamentToolStripMenuItem";
             this._TournamentToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this._TournamentToolStripMenuItem.Text = "&Turnier";
             // 
+            // OpenMenuItem
+            // 
+            this.OpenMenuItem.Name = "OpenMenuItem";
+            this.OpenMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.OpenMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.OpenMenuItem.Text = "Öffnen";
+            this.OpenMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
+            // 
+            // SaveMenuItem
+            // 
+            this.SaveMenuItem.Name = "SaveMenuItem";
+            this.SaveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.SaveMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.SaveMenuItem.Text = "&Speichern";
+            this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 6);
+            // 
             // _NewTeamToolStripMenuItem
             // 
             this._NewTeamToolStripMenuItem.Name = "_NewTeamToolStripMenuItem";
-            this._NewTeamToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this._NewTeamToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this._NewTeamToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
+            this._NewTeamToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this._NewTeamToolStripMenuItem.Text = "&Neue Mannschaft";
             this._NewTeamToolStripMenuItem.Click += new System.EventHandler(this.NewTeamMenuItem_Click);
             // 
@@ -552,27 +577,21 @@ public partial class AppWindow
             // 
             this._CreatePlaylistToolStripMenuItem.Name = "_CreatePlaylistToolStripMenuItem";
             this._CreatePlaylistToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this._CreatePlaylistToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this._CreatePlaylistToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this._CreatePlaylistToolStripMenuItem.Text = "Spiel&plan erstellen";
             this._CreatePlaylistToolStripMenuItem.Click += new System.EventHandler(this.CreateAgendaMenuItem_Click);
-            // 
-            // _SaveToolStripMenuItem
-            // 
-            this._SaveToolStripMenuItem.Name = "_SaveToolStripMenuItem";
-            this._SaveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this._SaveToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this._SaveToolStripMenuItem.Text = "&Speichern";
             // 
             // _AppToolStripMenuItem
             // 
             this._AppToolStripMenuItem.Name = "_AppToolStripMenuItem";
-            this._AppToolStripMenuItem.Size = new System.Drawing.Size(210, 6);
+            this._AppToolStripMenuItem.Size = new System.Drawing.Size(204, 6);
             // 
             // _ExitToolStripMenuItem
             // 
             this._ExitToolStripMenuItem.Name = "_ExitToolStripMenuItem";
-            this._ExitToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this._ExitToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this._ExitToolStripMenuItem.Text = "Be&enden";
+            this._ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
             // ClipboardMenuItem
             // 
@@ -589,12 +608,14 @@ public partial class AppWindow
             this.ClipboardGamesMenuItem.Name = "ClipboardGamesMenuItem";
             this.ClipboardGamesMenuItem.Size = new System.Drawing.Size(279, 22);
             this.ClipboardGamesMenuItem.Text = "Spiele (HTML)";
+            this.ClipboardGamesMenuItem.Click += new System.EventHandler(this.ClipboardGamesMenuItem_Click);
             // 
             // ClipboardTableMenuItem
             // 
             this.ClipboardTableMenuItem.Name = "ClipboardTableMenuItem";
             this.ClipboardTableMenuItem.Size = new System.Drawing.Size(279, 22);
             this.ClipboardTableMenuItem.Text = "Tabelle (HTML)";
+            this.ClipboardTableMenuItem.Click += new System.EventHandler(this.ClipboardTableMenuItem_Click);
             // 
             // ClipboardCopyAllMenuItem
             // 
@@ -603,6 +624,7 @@ public partial class AppWindow
             | System.Windows.Forms.Keys.C)));
             this.ClipboardCopyAllMenuItem.Size = new System.Drawing.Size(279, 22);
             this.ClipboardCopyAllMenuItem.Text = "Beides (HTML)";
+            this.ClipboardCopyAllMenuItem.Click += new System.EventHandler(this.ClipboardCopyAllMenuItem_Click);
             // 
             // _OptionsToolStripMenuItem
             // 
@@ -616,7 +638,7 @@ public partial class AppWindow
             // 
             this._OptionMatchDaysToolStripMenuItem.CheckOnClick = true;
             this._OptionMatchDaysToolStripMenuItem.Name = "_OptionMatchDaysToolStripMenuItem";
-            this._OptionMatchDaysToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this._OptionMatchDaysToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this._OptionMatchDaysToolStripMenuItem.Text = "Spieltage";
             // 
             // _AppStatusStrip
@@ -642,6 +664,7 @@ public partial class AppWindow
             this._PlayerFilterToolStripDropDownButton.Name = "_PlayerFilterToolStripDropDownButton";
             this._PlayerFilterToolStripDropDownButton.Size = new System.Drawing.Size(86, 20);
             this._PlayerFilterToolStripDropDownButton.Text = "(Team Filter)";
+            this._PlayerFilterToolStripDropDownButton.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.PlayerFilterDropDownButton_ItemClicked);
             // 
             // _SpacerStripStatusLabel
             // 
@@ -685,6 +708,8 @@ public partial class AppWindow
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AppWindow";
             this.Text = "POFF Kicker";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppWindow_FormClosing);
+            this.Load += new System.EventHandler(this.AppWindow_Load);
             this._AppTabControl.ResumeLayout(false);
             this._TeamsTabPage.ResumeLayout(false);
             this._MatchesTabPage.ResumeLayout(false);
@@ -779,22 +804,8 @@ public partial class AppWindow
             }
         }
     }
-    private ToolStripMenuItem _SaveToolStripMenuItem;
+    private ToolStripMenuItem SaveMenuItem;
 
-    internal virtual ToolStripMenuItem SaveToolStripMenuItem
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _SaveToolStripMenuItem;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _SaveToolStripMenuItem = value;
-        }
-    }
     private ToolStripSeparator _AppToolStripMenuItem;
 
     internal virtual ToolStripSeparator AppToolStripMenuItem
@@ -993,6 +1004,8 @@ public partial class AppWindow
     private ToolStripMenuItem ClipboardTableMenuItem;
     private ToolStripMenuItem ClipboardGamesMenuItem;
     private ToolStripMenuItem ClipboardCopyAllMenuItem;
+    private ToolStripMenuItem OpenMenuItem;
+    private ToolStripSeparator toolStripMenuItem1;
 
     private ToolStripDropDownButton PlayerFilterToolStripDropDownButton
     {

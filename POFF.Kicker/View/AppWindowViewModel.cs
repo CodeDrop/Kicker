@@ -10,7 +10,7 @@ namespace POFF.Kicker.View;
 public class AppWindowViewModel : ViewModelBase
 {
     public static AppWindowViewModel Instance = new();
-    private readonly ITournamentStorage _storage = new FileTournamentStorage();
+    private ITournamentStorage _storage = new FileTournamentStorage();
 
     private AppWindowViewModel()
     {
@@ -36,7 +36,7 @@ public class AppWindowViewModel : ViewModelBase
         }
     }
 
-    public Tournament Tournament { get; }
+    public Tournament Tournament { get; private set; }
 
     private int _tabIndexValue;
     public int TabIndex
@@ -54,7 +54,7 @@ public class AppWindowViewModel : ViewModelBase
         }
     }
 
-    public TeamsScreenViewModel TeamsScreen { get; }
+    public TeamsScreenViewModel TeamsScreen { get; private set; }
 
     public void AddTeam(TeamInfo team)
     {
@@ -64,6 +64,13 @@ public class AppWindowViewModel : ViewModelBase
     public void RemoveTeam(Team team)
     {
         TeamsScreen.RemoveTeam(team);
+    }
+
+    public void Open(string filename)
+    {
+        _storage = new FileTournamentStorage(filename);
+        Tournament = _storage.Load();
+        TeamsScreen = new TeamsScreenViewModel(Tournament);
     }
 
     public void Save()
