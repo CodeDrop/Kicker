@@ -1,44 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using POFF.Kicker.Domain;
 using POFF.Kicker.View.Model;
 
 namespace POFF.Kicker.View;
 
-
 public class TeamsScreenViewModel : ViewModelBase
 {
-
-    public TeamsScreenViewModel(Tournament tournament)
+    public TeamsScreenViewModel()
     {
         // Check parameters
+        ConfirmationMessageHandlerValue = DefaultConfirmationMessageHandler.Empty;
+    }
+
+    public void SetTournament(Tournament tournament)
+    {
         if (tournament is null)
             throw new ArgumentNullException("tournament");
 
         // Initialize members
-        TournamentValue = tournament;
-        TeamsValue = new BindingList<Team>([.. tournament.Teams]) { RaiseListChangedEvents = true };
-        ConfirmationMessageHandlerValue = DefaultConfirmationMessageHandler.Empty;
+        _tournament = tournament;
+        Teams.Clear();
+        foreach (Team team in tournament.Teams)
+            Teams.Add(team);
     }
 
-    private readonly Tournament TournamentValue;
-    public Tournament Tournament
-    {
-        get
-        {
-            return TournamentValue;
-        }
-    }
+    private Tournament _tournament;
 
-    private BindingList<Team> TeamsValue;
-    public BindingList<Team> Teams
-    {
-        get
-        {
-            return TeamsValue;
-        }
-    }
+    public BindingList<Team> Teams { get; } = new();
 
     private IConfirmationMessage ConfirmationMessageHandlerValue;
     public IConfirmationMessage ConfirmationMessageHandler
@@ -57,7 +46,7 @@ public class TeamsScreenViewModel : ViewModelBase
 
     public void AddTeam(Team team)
     {
-        Tournament.AddTeam(team);
+        _tournament.AddTeam(team);
         Teams.Add(team);
     }
 
@@ -66,7 +55,7 @@ public class TeamsScreenViewModel : ViewModelBase
         string message = string.Format("Der Spielplan und Ergebnisse der bereits durchgeführten Spiele{0}werden gelöscht, wenn Sie die Mannschaft \"{1}\" entfernen.{0}{0}Wollen Sie die Manschaft entfernen?", Environment.NewLine, team.Name);
         if (ConfirmationMessageHandler.Confirm(message))
         {
-            Tournament.RemoveTeam(team);
+            _tournament.RemoveTeam(team);
             Teams.Remove(team);
         }
     }
@@ -75,5 +64,4 @@ public class TeamsScreenViewModel : ViewModelBase
     {
         team.Withdrawn = !team.Withdrawn;
     }
-
 }

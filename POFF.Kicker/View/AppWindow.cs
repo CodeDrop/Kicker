@@ -66,8 +66,9 @@ public partial class AppWindow : Form
 
     private void UpdateTeams()
     {
+        PlayerFilterToolStripDropDownButton.DropDownItems.Clear();
         PlayerFilterToolStripDropDownButton.DropDownItems.Add(_noTeamFilter);
-        PlayerFilterToolStripDropDownButton.DropDownItems.AddRange(_viewModel.Tournament.Teams.Select(p => new ToolStripMenuItem(p.Name) { Tag = p }).ToArray());
+        PlayerFilterToolStripDropDownButton.DropDownItems.AddRange(_viewModel.Teams.Select(p => new ToolStripMenuItem(p.Name) { Tag = p }).ToArray());
     }
 
     private void OpenMenuItem_Click(object sender, EventArgs e)

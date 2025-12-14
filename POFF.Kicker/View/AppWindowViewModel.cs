@@ -15,7 +15,8 @@ public class AppWindowViewModel : ViewModelBase
     private AppWindowViewModel()
     {
         Tournament = _storage.Load();
-        TeamsScreen = new TeamsScreenViewModel(Tournament);
+        TeamsScreen = new TeamsScreenViewModel();
+        TeamsScreen.SetTournament(Tournament);
     }
 
     public BindingList<Team> Teams
@@ -55,7 +56,7 @@ public class AppWindowViewModel : ViewModelBase
     {
         _storage = new FileTournamentStorage(filename);
         Tournament = _storage.Load();
-        TeamsScreen = new TeamsScreenViewModel(Tournament);
+        TeamsScreen.SetTournament(Tournament);
     }
 
     public void Save()
