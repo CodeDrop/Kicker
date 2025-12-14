@@ -18,7 +18,7 @@ public class TeamsScreenViewModel : ViewModelBase
 
         // Initialize members
         TournamentValue = tournament;
-        TeamsValue = new BindingList<Team>(new List<Team>(tournament.GetTeams)) { RaiseListChangedEvents = true };
+        TeamsValue = new BindingList<Team>([.. tournament.Teams]) { RaiseListChangedEvents = true };
         ConfirmationMessageHandlerValue = DefaultConfirmationMessageHandler.Empty;
     }
 

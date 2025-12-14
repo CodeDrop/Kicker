@@ -64,8 +64,8 @@ public class HtmlExport(Tournament tournament, ExportType exportType)
 
     private bool ContainsWithdrawnTeam(Match match)
     {
-        var team1 = tournament.GetTeams.Single(t => t.Equals(match.Team1));
-        var team2 = tournament.GetTeams.Single(t => t.Equals(match.Team2));
+        var team1 = tournament.Teams.Single(t => t.Equals(match.Team1));
+        var team2 = tournament.Teams.Single(t => t.Equals(match.Team2));
         return team1.Withdrawn | team2.Withdrawn;
     }
 

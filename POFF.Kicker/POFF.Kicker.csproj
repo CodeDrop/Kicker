@@ -131,7 +131,6 @@
     </Compile>
     <Compile Include="Domain\MatchManager.cs" />
     <Compile Include="Domain\StandingManager.cs" />
-    <Compile Include="Domain\TeamManager.cs" />
     <Compile Include="Infrastructure\FileTournamentStorage.cs" />
     <Compile Include="Infrastructure\HtmlExport.cs" />
     <Compile Include="View\IConfirmationMessage.cs" />

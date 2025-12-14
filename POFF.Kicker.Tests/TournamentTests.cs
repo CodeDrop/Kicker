@@ -18,8 +18,8 @@ class TournamentTests
         var result = new Tournament();
 
         // Assert
-        Assert.That(result.TeamManager, Is.Not.Null, "TeamManager is null");
-        Assert.That(result.MatchManager, Is.Not.Null, "MatchManager is null");
+        Assert.That(result.Teams, Is.Not.Null);
+        Assert.That(result.MatchManager, Is.Not.Null);
     }
 
     [Test]

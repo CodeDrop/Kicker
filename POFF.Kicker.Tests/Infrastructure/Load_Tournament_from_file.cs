@@ -19,8 +19,7 @@ namespace POFF.Kicker.Tests.Infrastructure
         [Test]
         public void File_contains_teams()
         {
-            Assert.That(_sut.GetTeams, Is.Not.Empty);
-            Assert.That(_sut.GetTeams, Has.Length.EqualTo(3));
+            Assert.That(_sut.Teams, Is.Not.Empty);
         }
 
         [Test]

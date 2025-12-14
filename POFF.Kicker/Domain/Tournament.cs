@@ -10,24 +10,25 @@ namespace POFF.Kicker.View.Model;
 public class Tournament
 {
     private readonly StandingManager _standingManager;
+    private readonly List<Team> _teams = new();
 
     public Tournament() : this([], [])
     { }
 
-    public Tournament(Team[] teams, Match[] matches)
+    public Tournament(IEnumerable<Team> teams, Match[] matches)
     {
-        TeamManager = new TeamManager(teams);
+        _teams.AddRange(teams);
         MatchManager = new MatchManager(matches);
         _standingManager = new StandingManager();
     }
 
-    public TeamManager TeamManager { get; private set; }
+    public IEnumerable<Team> Teams => _teams;
 
     public MatchManager MatchManager { get; private set; }
 
     public void Start(TournamentType @type)
     {
-        MatchManager.Generate(GetTeams, type);
+        MatchManager.Generate(_teams.ToArray(), type);
     }
 
     public int TotalMatchCount()
@@ -40,18 +41,9 @@ public class Tournament
         return MatchManager.GetMatches(MatchStatus.Finished).Length;
     }
 
-    public Team[] GetTeams
-    {
-        get
-        {
-            return TeamManager.GetTeams();
-        }
-    }
-
     public void AddTeam(Team team)
     {
-        TeamManager.AddTeam(team);
-        MatchManager.Clear();
+        _teams.Add(team);
     }
 
     public void RemoveTeam(Team team)
@@ -59,7 +51,7 @@ public class Tournament
         if (team is null)
             throw new ArgumentNullException("team");
 
-        TeamManager.RemoveTeam(team);
+        _teams.Remove(team);
         MatchManager.Clear();
     }
 
@@ -76,9 +68,9 @@ public class Tournament
 
     private bool ContainsWithdrawnTeam(Match match)
     {
-        if (!GetTeams.Any()) return false;
-        var team1 = GetTeams.Single(t => t.Equals(match.Team1));
-        var team2 = GetTeams.Single(t => t.Equals(match.Team2));
+        if (!_teams.Any()) return false;
+        var team1 = _teams.Single(t => t.Equals(match.Team1));
+        var team2 = _teams.Single(t => t.Equals(match.Team2));
         return team1.Withdrawn | team2.Withdrawn;
     }
 }

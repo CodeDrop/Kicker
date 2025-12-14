@@ -1,5 +1,6 @@
 ﻿using POFF.Kicker.View.Model;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace POFF.Kicker.Infrastructure;
@@ -30,7 +31,7 @@ public class FileTournamentStorage : ITournamentStorage
     {
         var tournamentFile = new TournamentFile 
         { 
-            Teams = tournament.GetTeams, 
+            Teams = [.. tournament.Teams], 
             Matches = tournament.MatchManager.GetMatches()
         };
         var writer = new StreamWriter(_filename, false);
