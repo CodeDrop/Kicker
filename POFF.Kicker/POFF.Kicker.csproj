@@ -129,7 +129,6 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Domain\MatchManager.cs" />
     <Compile Include="Domain\StandingManager.cs" />
     <Compile Include="Infrastructure\FileTournamentStorage.cs" />
     <Compile Include="Infrastructure\HtmlExport.cs" />

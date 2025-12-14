@@ -1,4 +1,5 @@
 ﻿using POFF.Kicker.Domain;
+using POFF.Kicker.Domain.MatchGenerators;
 using POFF.Kicker.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,8 @@ namespace POFF.Kicker.View.Model;
 
 public class Tournament
 {
-    private readonly List<Team> _teams = new();
-    private readonly List<Match> _matches = new();
-    private readonly MatchManager _matchManager;
+    private readonly List<Team> _teams = [];
+    private readonly List<Match> _matches = [];
     private readonly StandingManager _standingManager;
 
     public Tournament() : this([], [])
@@ -21,7 +21,6 @@ public class Tournament
     {
         _teams.AddRange(teams);
         _matches.AddRange(matches);
-        _matchManager = new MatchManager();
         _standingManager = new StandingManager();
     }
 
@@ -29,9 +28,20 @@ public class Tournament
 
     public IEnumerable<Match> Matches => _matches;
 
-    public IEnumerable<Match> FinishedMatches()
+    public void Start(TournamentType tournamentType = TournamentType.Standard)
     {
-        return _matches.Where(m => m.Status == MatchStatus.Finished);
+        _matches.Clear();
+
+        IMatchGenerator matchGenerator =
+            tournamentType == TournamentType.MatchDays ?
+            new MatchdaysMatchGenerator(_teams.Count()) : new GeneticMatchGenerator(_teams.Count());
+
+        var matchIndexes = matchGenerator.Generate();
+
+        foreach (var matchIndexPair in matchIndexes)
+        {
+            _matches.Add(new Match(_matches.Count + 1, _teams[matchIndexPair.Item1], _teams[matchIndexPair.Item2]));
+        }
     }
 
     public void SetResult(int matchNo, Result result)
@@ -43,10 +53,9 @@ public class Tournament
         _matches[matchNo - 1].Status = MatchStatus.Finished;
     }
 
-    public void Start()
+    public IEnumerable<Match> FinishedMatches()
     {
-        _matches.Clear();
-        _matches.AddRange(_matchManager.Generate(_teams.ToArray()));
+        return _matches.Where(m => m.Status == MatchStatus.Finished);
     }
 
     public int TotalMatchCount()

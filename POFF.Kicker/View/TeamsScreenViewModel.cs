@@ -27,7 +27,7 @@ public class TeamsScreenViewModel : ViewModelBase
 
     private Tournament _tournament;
 
-    public BindingList<Team> Teams { get; } = new();
+    public BindingList<Team> Teams { get; } = [];
 
     private IConfirmationMessage ConfirmationMessageHandlerValue;
     public IConfirmationMessage ConfirmationMessageHandler

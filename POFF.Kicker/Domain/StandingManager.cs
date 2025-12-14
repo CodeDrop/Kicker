@@ -8,7 +8,7 @@ public class StandingManager
     public Standing[] GetStandings(Match[] finishedMatches)
     {
         var list = new Dictionary<Team, Standing>();
-        int[] setsWon = [], points = [], goals = [];
+        int[] setsWon, points, goals;
 
         foreach (var finishedMatch in finishedMatches)
         {
