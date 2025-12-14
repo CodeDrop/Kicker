@@ -61,11 +61,6 @@ public class AppWindowViewModel : ViewModelBase
         TeamsScreen.AddTeam(team.Team);
     }
 
-    public void RemoveTeam(Team team)
-    {
-        TeamsScreen.RemoveTeam(team);
-    }
-
     public void Open(string filename)
     {
         _storage = new FileTournamentStorage(filename);
