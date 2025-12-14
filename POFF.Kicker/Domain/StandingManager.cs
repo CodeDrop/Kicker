@@ -5,7 +5,6 @@ namespace POFF.Kicker.Domain;
 
 public class StandingManager
 {
-
     public Standing[] GetStandings(Match[] finishedMatches)
     {
         var list = new Dictionary<Team, Standing>();
@@ -62,22 +61,19 @@ public class StandingManager
                     }
             }
 
-            {
-                var withBlock = list[finishedMatch.Team1];
-                withBlock.MatchCount += 1;
-                withBlock.Points += points[0];
-                withBlock.WonSetCount += setsWon[0];
-                withBlock.Goals += goals[0];
-                withBlock.GoalsAgainst += goals[1];
-            }
-            {
-                var withBlock1 = list[finishedMatch.Team2];
-                withBlock1.MatchCount += 1;
-                withBlock1.Points += points[1];
-                withBlock1.WonSetCount += setsWon[1];
-                withBlock1.Goals += goals[1];
-                withBlock1.GoalsAgainst += goals[0];
-            }
+            var standing1 = list[finishedMatch.Team1];
+            standing1.MatchCount += 1;
+            standing1.Points += points[0];
+            standing1.WonSetCount += setsWon[0];
+            standing1.Goals += goals[0];
+            standing1.GoalsAgainst += goals[1];
+
+            var standing2 = list[finishedMatch.Team2];
+            standing2.MatchCount += 1;
+            standing2.Points += points[1];
+            standing2.WonSetCount += setsWon[1];
+            standing2.Goals += goals[1];
+            standing2.GoalsAgainst += goals[0];
         }
 
         // Set place numbers 
