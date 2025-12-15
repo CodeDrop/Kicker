@@ -1,6 +1,5 @@
 ﻿using POFF.Kicker.View.Model;
 using System.IO;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace POFF.Kicker.Infrastructure;

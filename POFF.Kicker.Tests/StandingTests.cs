@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using POFF.Kicker.Domain;
+using POFF.Kicker.Domain.ScoreModes;
 
 namespace POFF.Kicker.Tests;
 
@@ -16,6 +17,6 @@ class StandingTests
         var result = new Standing(team);
 
         // Assert
-        Assert.That(result.Team, Is.SameAs(team), "Unexpected Team");
+        Assert.That(result.Team, Is.SameAs(team));
     }
 }

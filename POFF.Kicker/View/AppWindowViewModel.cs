@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using POFF.Kicker.Domain;
-using POFF.Kicker.View.Model;
+﻿using POFF.Kicker.View.Model;
 using POFF.Kicker.Types;
 using POFF.Kicker.Infrastructure;
 
@@ -17,14 +14,6 @@ public class AppWindowViewModel : ViewModelBase
         Tournament = _storage.Load();
         TeamsScreen = new TeamsScreenViewModel();
         TeamsScreen.SetTournament(Tournament);
-    }
-
-    public BindingList<Team> Teams
-    {
-        get
-        {
-            return TeamsScreen.Teams;
-        }
     }
 
     public Tournament Tournament { get; private set; }
