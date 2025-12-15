@@ -338,8 +338,7 @@ public partial class AppWindow
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this._NewTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._CreatePlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddTeamMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._AppToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this._ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClipboardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -352,7 +351,8 @@ public partial class AppWindow
             this._TotalMatchesToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._TotalMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._PlayedMatchesToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this._PlayedMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.PlayedMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.RemoveTeamMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._AppTabControl.SuspendLayout();
             this._TeamsTabPage.SuspendLayout();
             this._MatchesTabPage.SuspendLayout();
@@ -533,8 +533,8 @@ public partial class AppWindow
             this.OpenMenuItem,
             this.SaveMenuItem,
             this.toolStripMenuItem1,
-            this._NewTeamToolStripMenuItem,
-            this._CreatePlaylistToolStripMenuItem,
+            this.AddTeamMenuItem,
+            this.RemoveTeamMenuItem,
             this._AppToolStripMenuItem,
             this._ExitToolStripMenuItem});
             this._TournamentToolStripMenuItem.Name = "_TournamentToolStripMenuItem";
@@ -545,7 +545,7 @@ public partial class AppWindow
             // 
             this.OpenMenuItem.Name = "OpenMenuItem";
             this.OpenMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.OpenMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.OpenMenuItem.Size = new System.Drawing.Size(239, 22);
             this.OpenMenuItem.Text = "Öffnen";
             this.OpenMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
             // 
@@ -553,40 +553,32 @@ public partial class AppWindow
             // 
             this.SaveMenuItem.Name = "SaveMenuItem";
             this.SaveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.SaveMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.SaveMenuItem.Size = new System.Drawing.Size(239, 22);
             this.SaveMenuItem.Text = "&Speichern";
             this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(236, 6);
             // 
-            // _NewTeamToolStripMenuItem
+            // AddTeamMenuItem
             // 
-            this._NewTeamToolStripMenuItem.Name = "_NewTeamToolStripMenuItem";
-            this._NewTeamToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this._NewTeamToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this._NewTeamToolStripMenuItem.Text = "&Neue Mannschaft";
-            this._NewTeamToolStripMenuItem.Click += new System.EventHandler(this.NewTeamMenuItem_Click);
-            // 
-            // _CreatePlaylistToolStripMenuItem
-            // 
-            this._CreatePlaylistToolStripMenuItem.Name = "_CreatePlaylistToolStripMenuItem";
-            this._CreatePlaylistToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this._CreatePlaylistToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this._CreatePlaylistToolStripMenuItem.Text = "Spiel&plan erstellen";
-            this._CreatePlaylistToolStripMenuItem.Click += new System.EventHandler(this.CreateAgendaMenuItem_Click);
+            this.AddTeamMenuItem.Name = "AddTeamMenuItem";
+            this.AddTeamMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
+            this.AddTeamMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.AddTeamMenuItem.Text = "Mannschaft hinzufügen";
+            this.AddTeamMenuItem.Click += new System.EventHandler(this.AddTeamMenuItem_Click);
             // 
             // _AppToolStripMenuItem
             // 
             this._AppToolStripMenuItem.Name = "_AppToolStripMenuItem";
-            this._AppToolStripMenuItem.Size = new System.Drawing.Size(204, 6);
+            this._AppToolStripMenuItem.Size = new System.Drawing.Size(236, 6);
             // 
             // _ExitToolStripMenuItem
             // 
             this._ExitToolStripMenuItem.Name = "_ExitToolStripMenuItem";
-            this._ExitToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this._ExitToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
             this._ExitToolStripMenuItem.Text = "Be&enden";
             this._ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
@@ -631,7 +623,7 @@ public partial class AppWindow
             this._TotalMatchesToolStripStatusLabel,
             this._TotalMatchesCountToolStripStatusLabel,
             this._PlayedMatchesToolStripStatusLabel,
-            this._PlayedMatchesCountToolStripStatusLabel});
+            this.PlayedMatchesCountToolStripStatusLabel});
             this._AppStatusStrip.Location = new System.Drawing.Point(0, 331);
             this._AppStatusStrip.Name = "_AppStatusStrip";
             this._AppStatusStrip.Size = new System.Drawing.Size(664, 22);
@@ -674,10 +666,18 @@ public partial class AppWindow
             // 
             // _PlayedMatchesCountToolStripStatusLabel
             // 
-            this._PlayedMatchesCountToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
-            this._PlayedMatchesCountToolStripStatusLabel.Name = "_PlayedMatchesCountToolStripStatusLabel";
-            this._PlayedMatchesCountToolStripStatusLabel.Size = new System.Drawing.Size(10, 17);
-            this._PlayedMatchesCountToolStripStatusLabel.Text = ".";
+            this.PlayedMatchesCountToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
+            this.PlayedMatchesCountToolStripStatusLabel.Name = "_PlayedMatchesCountToolStripStatusLabel";
+            this.PlayedMatchesCountToolStripStatusLabel.Size = new System.Drawing.Size(10, 17);
+            this.PlayedMatchesCountToolStripStatusLabel.Text = ".";
+            // 
+            // RemoveTeamMenuItem
+            // 
+            this.RemoveTeamMenuItem.Name = "RemoveTeamMenuItem";
+            this.RemoveTeamMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.RemoveTeamMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.RemoveTeamMenuItem.Text = "Mannschaft entfernen";
+            this.RemoveTeamMenuItem.Click += new System.EventHandler(this.RemoveTeamMenuItem_Click);
             // 
             // AppWindow
             // 
@@ -736,203 +736,29 @@ public partial class AppWindow
             _TournamentToolStripMenuItem = value;
         }
     }
-    private ToolStripMenuItem _NewTeamToolStripMenuItem;
+    private ToolStripMenuItem AddTeamMenuItem;
 
-    internal virtual ToolStripMenuItem NewTeamToolStripMenuItem
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _NewTeamToolStripMenuItem;
-        }
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            if (_NewTeamToolStripMenuItem != null)
-            {
-                _NewTeamToolStripMenuItem.Click -= NewTeamMenuItem_Click;
-            }
-
-            _NewTeamToolStripMenuItem = value;
-            if (_NewTeamToolStripMenuItem != null)
-            {
-                _NewTeamToolStripMenuItem.Click += NewTeamMenuItem_Click;
-            }
-        }
-    }
-    private ToolStripMenuItem _CreatePlaylistToolStripMenuItem;
-
-    internal virtual ToolStripMenuItem CreatePlaylistToolStripMenuItem
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _CreatePlaylistToolStripMenuItem;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            if (_CreatePlaylistToolStripMenuItem != null)
-            {
-                _CreatePlaylistToolStripMenuItem.Click -= CreateAgendaMenuItem_Click;
-            }
-
-            _CreatePlaylistToolStripMenuItem = value;
-            if (_CreatePlaylistToolStripMenuItem != null)
-            {
-                _CreatePlaylistToolStripMenuItem.Click += CreateAgendaMenuItem_Click;
-            }
-        }
-    }
+     
     private ToolStripMenuItem SaveMenuItem;
 
     private ToolStripSeparator _AppToolStripMenuItem;
 
-    internal virtual ToolStripSeparator AppToolStripMenuItem
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _AppToolStripMenuItem;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _AppToolStripMenuItem = value;
-        }
-    }
     private ToolStripMenuItem _ExitToolStripMenuItem;
-
-    internal virtual ToolStripMenuItem ExitToolStripMenuItem
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _ExitToolStripMenuItem;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _ExitToolStripMenuItem = value;
-        }
-    }
     private View.TeamsScreen _TeamsScreenContent;
-
-    internal virtual View.TeamsScreen TeamsScreenContent
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _TeamsScreenContent;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _TeamsScreenContent = value;
-        }
-    }
 
     private ColumnHeader _MatchNumberColumnHeader;
 
-    internal virtual ColumnHeader MatchNumberColumnHeader
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _MatchNumberColumnHeader;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _MatchNumberColumnHeader = value;
-        }
-    }
     private StatusStrip _AppStatusStrip;
 
-    private StatusStrip AppStatusStrip
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _AppStatusStrip;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _AppStatusStrip = value;
-        }
-    }
     private ToolStripStatusLabel _TotalMatchesToolStripStatusLabel;
 
-    private ToolStripStatusLabel TotalMatchesToolStripStatusLabel
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _TotalMatchesToolStripStatusLabel;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _TotalMatchesToolStripStatusLabel = value;
-        }
-    }
     private ToolStripStatusLabel _PlayedMatchesToolStripStatusLabel;
 
-    private ToolStripStatusLabel PlayedMatchesToolStripStatusLabel
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _PlayedMatchesToolStripStatusLabel;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _PlayedMatchesToolStripStatusLabel = value;
-        }
-    }
     private ToolStripStatusLabel _SpacerStripStatusLabel;
 
-    private ToolStripStatusLabel SpacerStripStatusLabel
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _SpacerStripStatusLabel;
-        }
+    private ToolStripStatusLabel PlayedMatchesCountToolStripStatusLabel;
 
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _SpacerStripStatusLabel = value;
-        }
-    }
-    private ToolStripStatusLabel _PlayedMatchesCountToolStripStatusLabel;
-
-    private ToolStripStatusLabel PlayedMatchesCountToolStripStatusLabel
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _PlayedMatchesCountToolStripStatusLabel;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _PlayedMatchesCountToolStripStatusLabel = value;
-        }
-    }
     private ToolStripStatusLabel _TotalMatchesCountToolStripStatusLabel;
 
     private ToolStripStatusLabel TotalMatchesCountToolStripStatusLabel
@@ -956,6 +782,7 @@ public partial class AppWindow
     private ToolStripMenuItem ClipboardCopyAllMenuItem;
     private ToolStripMenuItem OpenMenuItem;
     private ToolStripSeparator toolStripMenuItem1;
+    private ToolStripMenuItem RemoveTeamMenuItem;
 
     private ToolStripDropDownButton PlayerFilterToolStripDropDownButton
     {

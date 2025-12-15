@@ -36,9 +36,21 @@ public class AppWindowViewModel : ViewModelBase
 
     public TeamsScreenViewModel TeamsScreen { get; private set; }
 
-    public void AddTeam(TeamInfo team)
+    public Team SelectedTeam => TeamsScreen.SelectedTeam?.Team;
+
+    public void AddTeam(TeamInfo teamInfo)
     {
-        TeamsScreen.AddTeam(team.Team);
+        Tournament.AddTeam(teamInfo.Team);
+        TeamsScreen.Teams.Add(teamInfo.Team);
+    }
+
+    public void RemoveTeam()
+    {
+        if (SelectedTeam is Team)
+        {
+            Tournament.RemoveTeam(SelectedTeam);
+            TeamsScreen.Teams.Remove(SelectedTeam);
+        }
     }
 
     public void Open(string filename)

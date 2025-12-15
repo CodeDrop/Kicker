@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using POFF.Kicker.Domain;
 using POFF.Kicker.View;
 
 namespace POFF.Kicker.Domain;

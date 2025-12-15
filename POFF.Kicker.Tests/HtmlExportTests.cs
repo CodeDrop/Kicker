@@ -22,7 +22,6 @@ class HtmlExportTests
         tournament.AddTeam(team1);
         tournament.AddTeam(team2);
         tournament.AddTeam(team3);
-        tournament.Start();
         var matchResult = new Result();
         matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
         tournament.SetResult(2, matchResult);

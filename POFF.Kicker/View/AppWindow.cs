@@ -88,36 +88,27 @@ public partial class AppWindow : Form
         _viewModel.Save();
     }
 
-    private void NewTeamMenuItem_Click(object sender, EventArgs e)
+    private void AddTeamMenuItem_Click(object sender, EventArgs e)
     {
-        SwitchToTab(TeamsTabPage);                   // Switch to teams tab
-
-        // Ask user for acknoledge, if there are already matches played
-        if (CheckDeleteResults("Der Spielplan und Ergebnisse der bereits durchgeführten Spiele{0}werden gelöscht, wenn Sie noch eine Mannschaft hinzufügen.{0}{0}Wollen Sie die Manschaft hinzufügen?", Environment.NewLine) == DialogResult.No)
+        if (CheckDeleteResults($"Mannschaft hinzufügen?") == DialogResult.No)
             return;
 
-        {
-            var dialog = new TeamDialog(new TeamInfo());
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                _viewModel.AddTeam(dialog.TeamInfo);
-                UpdateGui();
-            }
-        }
+        var dialog = new TeamDialog(new TeamInfo());
+        if (dialog.ShowDialog() != DialogResult.OK) return;
+
+        _viewModel.AddTeam(dialog.TeamInfo);
+        UpdateGui();
     }
 
-    private void CreateAgendaMenuItem_Click(object sender, EventArgs e)
+    private void RemoveTeamMenuItem_Click(object sender, EventArgs e)
     {
-        SwitchToTab(MatchesTabPage);                 // Show matches tab page
-
-        // Ask user for acknoledge, if there are already matches played
-        if (CheckDeleteResults("Die Ergebnisse der bereits durchgeführten Spiele{0}werden gelöscht, wenn Sie den Spielplan neu erstellen.{0}{0}Wollen Sie die Ergebnisse verwerfen und den Spielplan erstellen?", Environment.NewLine) == DialogResult.No)
+        var team = _viewModel.SelectedTeam;
+        if (team is null ||
+            CheckDeleteResults($"Mannschaft \"{team.Name}\" löschen?") == DialogResult.No)
             return;
 
-        // Generate match list 
-        _viewModel.Tournament.Start();
-        UpdateMatchList();
-        UpdateStandingList();
+        _viewModel.RemoveTeam();
+        UpdateGui();
     }
 
     private void UpdateGui()
@@ -174,16 +165,10 @@ public partial class AppWindow : Form
         return MessageBox.Show(string.Format(format, args), Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
     }
 
-    private DialogResult CheckDeleteResults(string format, params object[] args)
+    private DialogResult CheckDeleteResults(string format)
     {
         if (_viewModel.Tournament.PlayedMatchCount() > 0)
-            return ShowQuestion(format, args);
+            return ShowQuestion($"{format}{Environment.NewLine}Erfasste Spielergebnisse werden gelöscht.");
         return DialogResult.Yes;
-    }
-
-    private void SwitchToTab(TabPage tabPage)
-    {
-        AppTabControl.SelectedTab = tabPage;
-        AppTabControl.Refresh();
     }
 }

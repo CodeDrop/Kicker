@@ -32,7 +32,11 @@ public class Tournament
     public IPlayMode PlayMode
     {
         private get;
-        set { field = value ?? throw new ArgumentNullException(nameof(PlayMode)); }
+        set 
+        { 
+            field = value ?? throw new ArgumentNullException(nameof(PlayMode)); 
+            GenerateMatches();
+        }
     }
 
     public IScoreMode ScoreMode
@@ -43,25 +47,21 @@ public class Tournament
 
     public void AddTeam(Team team)
     {
-        _teams.Add(team);
+        _teams.Add(team ?? throw new ArgumentNullException(nameof(team)));
+        GenerateMatches();
     }
 
     public void RemoveTeam(Team team)
     {
-        if (team is null)
-            throw new ArgumentNullException("team");
-
-        _teams.Remove(team);
-        _matches.Clear();
+        _teams.Remove(team ?? throw new ArgumentNullException(nameof(team)));
+        GenerateMatches();
     }
 
-    public void Start()
+    private void GenerateMatches()
     {
         _matches.Clear();
 
-        var fixtures = PlayMode.Generate(_teams.Count);
-
-        foreach (var fixture in fixtures)
+        foreach (var fixture in PlayMode.Generate(_teams.Count))
         {
             _matches.Add(new Match(_matches.Count + 1, _teams[fixture.Item1], _teams[fixture.Item2]));
         }

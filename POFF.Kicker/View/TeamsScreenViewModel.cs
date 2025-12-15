@@ -9,8 +9,7 @@ public class TeamsScreenViewModel : ViewModelBase
 {
     public TeamsScreenViewModel()
     {
-        // Check parameters
-        ConfirmationMessageHandlerValue = DefaultConfirmationMessageHandler.Empty;
+        ConfirmationMessageHandler = DefaultConfirmationMessageHandler.Empty;
     }
 
     public void SetTournament(Tournament tournament)
@@ -19,46 +18,26 @@ public class TeamsScreenViewModel : ViewModelBase
             throw new ArgumentNullException("tournament");
 
         // Initialize members
-        _tournament = tournament;
         Teams.Clear();
         foreach (Team team in tournament.Teams)
             Teams.Add(team);
     }
 
-    private Tournament _tournament;
-
     public BindingList<Team> Teams { get; } = [];
 
-    private IConfirmationMessage ConfirmationMessageHandlerValue;
     public IConfirmationMessage ConfirmationMessageHandler
     {
         get
         {
-            return ConfirmationMessageHandlerValue;
+            return field;
         }
         set
         {
-            if (value is null)
-                throw new ArgumentException("ConfirmationMessageHandler must not be null");
-            ConfirmationMessageHandlerValue = value;
+            field = value ?? throw new ArgumentException("ConfirmationMessageHandler must not be null");
         }
     }
 
-    public void AddTeam(Team team)
-    {
-        _tournament.AddTeam(team);
-        Teams.Add(team);
-    }
-
-    public void RemoveTeam(Team team)
-    {
-        string message = string.Format("Der Spielplan und Ergebnisse der bereits durchgeführten Spiele{0}werden gelöscht, wenn Sie die Mannschaft \"{1}\" entfernen.{0}{0}Wollen Sie die Manschaft entfernen?", Environment.NewLine, team.Name);
-        if (ConfirmationMessageHandler.Confirm(message))
-        {
-            _tournament.RemoveTeam(team);
-            Teams.Remove(team);
-        }
-    }
+    public TeamInfo SelectedTeam { get; internal set; }
 
     public void ToggleTeamStatus(Team team)
     {

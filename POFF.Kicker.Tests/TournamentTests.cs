@@ -31,7 +31,6 @@ class TournamentTests
         var team2 = new Team(2);
         testClass.AddTeam(team1);
         testClass.AddTeam(team2);
-        testClass.Start();
         var matchResult = new Result();
         matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
         testClass.SetResult(1, matchResult);

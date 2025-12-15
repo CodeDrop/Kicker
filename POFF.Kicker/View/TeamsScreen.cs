@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using POFF.Kicker.Domain;
-using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.View;
 
@@ -10,17 +9,16 @@ public partial class TeamsScreen : IConfirmationMessage
 {
     public TeamsScreen()
     {
-
         // Dieser Aufruf ist für den Designer erforderlich.
         InitializeComponent();
 
         // Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
-        ViewModel = AppWindowViewModel.Instance.TeamsScreen;
-        ViewModel.ConfirmationMessageHandler = this;
-        TeamsDataGridView.DataSource = ViewModel.Teams;
+        _teamsScreenViewModel = AppWindowViewModel.Instance.TeamsScreen;
+        _teamsScreenViewModel.ConfirmationMessageHandler = this;
+        TeamsDataGridView.DataSource = _teamsScreenViewModel.Teams;
     }
 
-    private readonly TeamsScreenViewModel ViewModel;
+    private readonly TeamsScreenViewModel _teamsScreenViewModel;
 
     private void TeamsDataGridView_DoubleClick(object sender, EventArgs e)
     {
@@ -33,34 +31,10 @@ public partial class TeamsScreen : IConfirmationMessage
         }
     }
 
-    private void TeamContextMenu_Popup(object sender, EventArgs e)
-    {
-        bool enabled = TeamsDataGridView.SelectedRows.Count > 0;
-        WithdrawTeamMenuItem.Enabled = enabled;
-        DeleteTeamMenuItem.Enabled = enabled;
-    }
-
-    private void DeleteTeamMenuItem_Click(object sender, EventArgs e)
-    {
-        var rows = TeamsDataGridView.SelectedRows;
-        if (rows.Count > 0)
-            ViewModel.RemoveTeam((Team)rows[0].DataBoundItem);
-    }
-
-    private void WithdrawTeamMenuItem_Click(object sender, EventArgs e)
-    {
-        var rows = TeamsDataGridView.SelectedRows;
-        if (rows.Count > 0)
-            ViewModel.ToggleTeamStatus((Team)rows[0].DataBoundItem);
-        TeamsDataGridView.Refresh();
-    }
-
     private void EditTeam(Team team)
     {
-        using (var dialog = new TeamDialog(new TeamInfo(team)))
-        {
-            dialog.ShowDialog(this);
-        }
+        using var dialog = new TeamDialog(new TeamInfo(team));
+        dialog.ShowDialog(this);
     }
 
     public bool Confirm(string message)
@@ -74,20 +48,15 @@ public partial class TeamsScreen : IConfirmationMessage
         {
             e.Value = e.RowIndex + 1;
         }
-        if (ViewModel.Teams[e.RowIndex].Withdrawn)
+        if (_teamsScreenViewModel.Teams[e.RowIndex].Withdrawn)
         {
             e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Strikeout);
             e.CellStyle.ForeColor = Color.LightGray;
         }
     }
 
-    private void TeamsDataGridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+    private void TeamsDataGridView_SelectionChanged(object sender, EventArgs e)
     {
-        if (e.Button == MouseButtons.Right)
-        {
-            var dataGridView = (DataGridView)sender;
-            dataGridView.ClearSelection();
-            dataGridView.Rows[e.RowIndex].Selected = true;
-        }
+        _teamsScreenViewModel.SelectedTeam = TeamsDataGridView.SelectedRows.Count == 1 ? new TeamInfo((Team)TeamsDataGridView.SelectedRows[0].DataBoundItem) : null;
     }
 }
