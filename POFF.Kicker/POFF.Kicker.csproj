@@ -176,7 +176,6 @@
     <Compile Include="Domain\ScoreModes\Standing.cs" />
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Domain\Tournament.cs" />
-    <Compile Include="Domain\TournamentType.cs" />
     <Compile Include="View\DefaultConfirmationMessageHandler.cs" />
     <Compile Include="Domain\MatchInfo.cs" />
     <Compile Include="View\NotificationObject.cs" />
