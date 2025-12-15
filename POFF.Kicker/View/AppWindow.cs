@@ -3,8 +3,6 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using POFF.Kicker.Domain;
-using POFF.Kicker.Domain.PlayModes;
 using POFF.Kicker.Infrastructure;
 using POFF.Kicker.Types;
 
@@ -69,7 +67,7 @@ public partial class AppWindow : Form
     {
         PlayerFilterToolStripDropDownButton.DropDownItems.Clear();
         PlayerFilterToolStripDropDownButton.DropDownItems.Add(_noTeamFilter);
-        PlayerFilterToolStripDropDownButton.DropDownItems.AddRange(_viewModel.Tournament.Teams.Select(p => new ToolStripMenuItem(p.Name) { Tag = p }).ToArray());
+        PlayerFilterToolStripDropDownButton.DropDownItems.AddRange([.. _viewModel.Tournament.Teams.Select(p => new ToolStripMenuItem(p.Name) { Tag = p })]);
     }
 
     private void OpenMenuItem_Click(object sender, EventArgs e)
@@ -117,7 +115,6 @@ public partial class AppWindow : Form
             return;
 
         // Generate match list 
-        var @type = OptionMatchDaysToolStripMenuItem.Checked ? TournamentType.MatchDays : TournamentType.Standard;
         _viewModel.Tournament.Start();
         UpdateMatchList();
         UpdateStandingList();
@@ -188,12 +185,5 @@ public partial class AppWindow : Form
     {
         AppTabControl.SelectedTab = tabPage;
         AppTabControl.Refresh();
-    }
-
-    private void _OptionMatchDaysToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        _viewModel.Tournament.PlayMode = OptionMatchDaysToolStripMenuItem.Checked
-            ? new MatchdaysPlayMode()
-            : new RoundRobinPlayMode();
     }
 }

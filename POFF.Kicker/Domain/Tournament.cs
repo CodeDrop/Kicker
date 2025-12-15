@@ -55,7 +55,7 @@ public class Tournament
         _matches.Clear();
     }
 
-    public void Start(TournamentType tournamentType = TournamentType.Standard)
+    public void Start()
     {
         _matches.Clear();
 

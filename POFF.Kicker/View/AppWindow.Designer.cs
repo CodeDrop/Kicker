@@ -346,8 +346,6 @@ public partial class AppWindow
             this.ClipboardGamesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClipboardTableMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClipboardCopyAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._OptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._OptionMatchDaysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._AppStatusStrip = new System.Windows.Forms.StatusStrip();
             this._PlayerFilterToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this._SpacerStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -522,8 +520,7 @@ public partial class AppWindow
             // 
             this._AppMainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._TournamentToolStripMenuItem,
-            this.ClipboardMenuItem,
-            this._OptionsToolStripMenuItem});
+            this.ClipboardMenuItem});
             this._AppMainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._AppMainMenuStrip.Name = "_AppMainMenuStrip";
             this._AppMainMenuStrip.Size = new System.Drawing.Size(664, 24);
@@ -626,22 +623,6 @@ public partial class AppWindow
             this.ClipboardCopyAllMenuItem.Text = "Beides (HTML)";
             this.ClipboardCopyAllMenuItem.Click += new System.EventHandler(this.ClipboardCopyAllMenuItem_Click);
             // 
-            // _OptionsToolStripMenuItem
-            // 
-            this._OptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._OptionMatchDaysToolStripMenuItem});
-            this._OptionsToolStripMenuItem.Name = "_OptionsToolStripMenuItem";
-            this._OptionsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this._OptionsToolStripMenuItem.Text = "Optionen";
-            // 
-            // _OptionMatchDaysToolStripMenuItem
-            // 
-            this._OptionMatchDaysToolStripMenuItem.CheckOnClick = true;
-            this._OptionMatchDaysToolStripMenuItem.Name = "_OptionMatchDaysToolStripMenuItem";
-            this._OptionMatchDaysToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this._OptionMatchDaysToolStripMenuItem.Text = "Spieltage";
-            this._OptionMatchDaysToolStripMenuItem.Click += new System.EventHandler(this._OptionMatchDaysToolStripMenuItem_Click);
-            // 
             // _AppStatusStrip
             // 
             this._AppStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -708,7 +689,7 @@ public partial class AppWindow
             this.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AppWindow";
-            this.Text = "POFF Kicker";
+            this.Text = "POFF Turnier";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppWindow_FormClosing);
             this.Load += new System.EventHandler(this.AppWindow_Load);
             this._AppTabControl.ResumeLayout(false);
@@ -966,38 +947,6 @@ public partial class AppWindow
         set
         {
             _TotalMatchesCountToolStripStatusLabel = value;
-        }
-    }
-    private ToolStripMenuItem _OptionsToolStripMenuItem;
-
-    internal virtual ToolStripMenuItem OptionsToolStripMenuItem
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _OptionsToolStripMenuItem;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _OptionsToolStripMenuItem = value;
-        }
-    }
-    private ToolStripMenuItem _OptionMatchDaysToolStripMenuItem;
-
-    internal virtual ToolStripMenuItem OptionMatchDaysToolStripMenuItem
-    {
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        get
-        {
-            return _OptionMatchDaysToolStripMenuItem;
-        }
-
-        [MethodImpl(MethodImplOptions.Synchronized)]
-        set
-        {
-            _OptionMatchDaysToolStripMenuItem = value;
         }
     }
     private ToolStripDropDownButton _PlayerFilterToolStripDropDownButton;
