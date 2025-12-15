@@ -17,7 +17,7 @@ public class Tournament
     public Tournament() : this([], [])
     { }
 
-    public Tournament(IEnumerable<Team> teams, Match[] matches)
+    public Tournament(IEnumerable<Team> teams, IEnumerable<Match> matches)
     {
         _teams.AddRange(teams);
         _matches.AddRange(matches);
