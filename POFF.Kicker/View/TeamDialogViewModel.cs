@@ -1,5 +1,5 @@
 ﻿using System;
-using POFF.Kicker.Types;
+using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.View;
 

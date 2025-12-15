@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using POFF.Kicker.Domain;
-using POFF.Kicker.Types;
+using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.View;
 

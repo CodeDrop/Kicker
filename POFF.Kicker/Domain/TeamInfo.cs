@@ -3,7 +3,7 @@ using System.ComponentModel;
 using POFF.Kicker.Domain;
 using POFF.Kicker.View;
 
-namespace POFF.Kicker.Types;
+namespace POFF.Kicker.Domain;
 
 public class TeamInfo : NotificationObject, IChangeTracking
 {

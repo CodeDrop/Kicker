@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using POFF.Kicker.Infrastructure;
-using POFF.Kicker.Types;
+using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.View;
 
