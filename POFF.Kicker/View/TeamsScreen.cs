@@ -5,7 +5,7 @@ using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.View;
 
-public partial class TeamsScreen : IConfirmationMessage
+public partial class TeamsScreen 
 {
     public TeamsScreen()
     {
@@ -13,9 +13,7 @@ public partial class TeamsScreen : IConfirmationMessage
         InitializeComponent();
 
         // Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
-        _teamsScreenViewModel = AppWindowViewModel.Instance.TeamsScreen;
-        _teamsScreenViewModel.ConfirmationMessageHandler = this;
-        TeamsDataGridView.DataSource = _teamsScreenViewModel.Teams;
+        TeamsDataGridView.DataSource = AppWindowViewModel.Instance.Teams;
     }
 
     private readonly TeamsScreenViewModel _teamsScreenViewModel;
@@ -35,11 +33,6 @@ public partial class TeamsScreen : IConfirmationMessage
     {
         using var dialog = new TeamDialog(new TeamInfo(team));
         dialog.ShowDialog(this);
-    }
-
-    public bool Confirm(string message)
-    {
-        return MessageBox.Show(this, message, Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes;
     }
 
     private void TeamsDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

@@ -1,6 +1,7 @@
-﻿using POFF.Kicker.View.Model;
-using POFF.Kicker.Domain;
+﻿using POFF.Kicker.Domain;
 using POFF.Kicker.Infrastructure;
+using POFF.Kicker.View.Model;
+using System.ComponentModel;
 
 namespace POFF.Kicker.View;
 
@@ -11,9 +12,16 @@ public class AppWindowViewModel : ViewModelBase
 
     private AppWindowViewModel()
     {
-        Tournament = _storage.Load();
         TeamsScreen = new TeamsScreenViewModel();
-        TeamsScreen.SetTournament(Tournament);
+        OpenTournament();
+    }
+
+    private void OpenTournament()
+    {
+        Tournament = _storage.Load();
+        Teams.Clear();
+        foreach (Team team in Tournament.Teams)
+            Teams.Add(team);
     }
 
     public Tournament Tournament { get; private set; }
@@ -34,6 +42,8 @@ public class AppWindowViewModel : ViewModelBase
         }
     }
 
+    public BindingList<Team> Teams { get; } = [];
+
     public TeamsScreenViewModel TeamsScreen { get; private set; }
 
     public Team SelectedTeam => TeamsScreen.SelectedTeam?.Team;
@@ -41,23 +51,22 @@ public class AppWindowViewModel : ViewModelBase
     public void AddTeam(TeamInfo teamInfo)
     {
         Tournament.AddTeam(teamInfo.Team);
-        TeamsScreen.Teams.Add(teamInfo.Team);
+        Teams.Add(teamInfo.Team);
     }
 
     public void RemoveTeam()
     {
-        if (SelectedTeam is Team)
+        if (SelectedTeam is not null)
         {
             Tournament.RemoveTeam(SelectedTeam);
-            TeamsScreen.Teams.Remove(SelectedTeam);
+            Teams.Remove(SelectedTeam);
         }
     }
 
     public void Open(string filename)
     {
         _storage = new FileTournamentStorage(filename);
-        Tournament = _storage.Load();
-        TeamsScreen.SetTournament(Tournament);
+        OpenTournament();
     }
 
     public void Save()
