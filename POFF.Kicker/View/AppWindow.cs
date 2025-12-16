@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using POFF.Kicker.Infrastructure;
 using POFF.Kicker.Domain;
+using System.ComponentModel;
 
 namespace POFF.Kicker.View;
 
@@ -23,12 +24,19 @@ public partial class AppWindow : Form
 
         _viewModel = AppWindowViewModel.Instance;
         _TeamsScreenContent.ViewModel = _viewModel;
+        _viewModel.Teams.ListChanged += TeamsChanged;
     }
 
     private void AppWindow_Load(object sender, EventArgs e)
     {
         UpdateGui();
-        UpdateTeams();
+    }
+
+    private void TeamsChanged(object sender, ListChangedEventArgs e)
+    {
+        PlayerFilterToolStripDropDownButton.DropDownItems.Clear();
+        PlayerFilterToolStripDropDownButton.DropDownItems.Add(_noTeamFilter);
+        PlayerFilterToolStripDropDownButton.DropDownItems.AddRange([.. _viewModel.Teams.Select(p => new ToolStripMenuItem(p.Name) { Tag = p })]);
     }
 
     private void AppWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -62,13 +70,6 @@ public partial class AppWindow : Form
         Close();
     }
 
-    private void UpdateTeams()
-    {
-        PlayerFilterToolStripDropDownButton.DropDownItems.Clear();
-        PlayerFilterToolStripDropDownButton.DropDownItems.Add(_noTeamFilter);
-        PlayerFilterToolStripDropDownButton.DropDownItems.AddRange([.. _viewModel.Tournament.Teams.Select(p => new ToolStripMenuItem(p.Name) { Tag = p })]);
-    }
-
     private void OpenMenuItem_Click(object sender, EventArgs e)
     {
         using var openFileDialog = new OpenFileDialog();
@@ -77,7 +78,6 @@ public partial class AppWindow : Form
         {
             _viewModel.Open(openFileDialog.FileName);
             Text = $"POFF Kicker - {Path.GetFileNameWithoutExtension(openFileDialog.FileName)}";
-            UpdateTeams();
             UpdateGui();
         }
     }
