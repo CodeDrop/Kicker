@@ -33,7 +33,7 @@ public partial class AppWindow : Form
 
     private void AppWindow_Load(object sender, EventArgs e)
     {
-        UpdateGui();
+        UpdateStandingList();
     }
 
     private void AppWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -74,7 +74,7 @@ public partial class AppWindow : Form
         {
             _viewModel.Open(openFileDialog.FileName);
             Text = $"POFF Kicker - {Path.GetFileNameWithoutExtension(openFileDialog.FileName)}";
-            UpdateGui();
+            UpdateStandingList();
         }
     }
 
@@ -92,7 +92,7 @@ public partial class AppWindow : Form
         if (dialog.ShowDialog() != DialogResult.OK) return;
 
         _viewModel.AddTeam(dialog.TeamInfo);
-        UpdateGui();
+        UpdateStandingList();
     }
 
     private void RemoveTeamMenuItem_Click(object sender, EventArgs e)
@@ -103,7 +103,7 @@ public partial class AppWindow : Form
             return;
 
         _viewModel.RemoveTeam();
-        UpdateGui();
+        UpdateStandingList();
     }
 
     private void TeamsChanged(object sender, ListChangedEventArgs e)
@@ -124,11 +124,6 @@ public partial class AppWindow : Form
 
         TotalMatchesCountToolStripStatusLabel.Text = _viewModel.Tournament.TotalMatchCount().ToString();
         PlayedMatchesCountToolStripStatusLabel.Text = _viewModel.Tournament.PlayedMatchCount().ToString();
-    }
-
-    private void UpdateGui()
-    {
-        UpdateStandingList();
     }
 
     private void UpdateStandingList()
