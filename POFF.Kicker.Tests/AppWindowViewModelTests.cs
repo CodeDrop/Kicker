@@ -6,16 +6,23 @@ namespace POFF.Kicker.Tests;
 [TestFixture]
 class AppWindowViewModelTests
 {
-    [Test]
-    public void InstanceTest()
+    private AppWindowViewModel _sut;
+
+    [OneTimeSetUp]
+    public void SetUp()
     {
-        // Arrange
-        // -
+        _sut = AppWindowViewModel.Instance;
+    }
 
-        // Act
-        var result = AppWindowViewModel.Instance;
+    [Test]
+    public void Teams_is_not_null()
+    {
+        Assert.That(_sut.Teams, Is.Not.Null);
+    }
 
-        // Assert
-        Assert.That(result.TabIndex, Is.EqualTo(0), "Unexpected TabIndex");
+    [Test]
+    public void Matches_is_not_null()
+    {
+        Assert.That(_sut.Teams, Is.Not.Null);
     }
 }

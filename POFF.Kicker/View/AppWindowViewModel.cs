@@ -1,7 +1,9 @@
 ﻿using POFF.Kicker.Domain;
+using POFF.Kicker.Extensions;
 using POFF.Kicker.Infrastructure;
 using POFF.Kicker.View.Model;
 using System.ComponentModel;
+using System.Linq;
 
 namespace POFF.Kicker.View;
 
@@ -18,21 +20,34 @@ public class AppWindowViewModel : ViewModelBase
     private void OpenTournament()
     {
         Tournament = _storage.Load();
-        Teams.Clear();
-        foreach (Team team in Tournament.Teams)
-            Teams.Add(team);
+        Teams.SetValues(Tournament.Teams);
+        Matches.SetValues(Tournament.Matches);
     }
 
     public Tournament Tournament { get; private set; }
 
     public BindingList<Team> Teams { get; } = [];
 
+    public BindingList<Match> Matches { get; } = [];
+
     public Team SelectedTeam { get; set; }
+    
+    public string MatchFilter 
+    {
+        set
+        {
+            var matches= Tournament.Matches.Where(m=> string.IsNullOrEmpty(value) ||
+                m.Team1.Name == value ||
+                m.Team2.Name == value);
+            Matches.SetValues(matches);
+        }
+    }
 
     public void AddTeam(TeamInfo teamInfo)
     {
         Tournament.AddTeam(teamInfo.Team);
         Teams.Add(teamInfo.Team);
+        Matches.SetValues(Tournament.Matches);
     }
 
     public void RemoveTeam()
@@ -41,6 +56,7 @@ public class AppWindowViewModel : ViewModelBase
         {
             Tournament.RemoveTeam(SelectedTeam);
             Teams.Remove(SelectedTeam);
+            Matches.SetValues(Tournament.Matches);
         }
     }
 

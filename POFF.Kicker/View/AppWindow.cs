@@ -25,18 +25,15 @@ public partial class AppWindow : Form
         _viewModel = AppWindowViewModel.Instance;
         _TeamsScreenContent.ViewModel = _viewModel;
         _viewModel.Teams.ListChanged += TeamsChanged;
+        _viewModel.Matches.ListChanged += MatchesChanged;
+
+        TeamsChanged(_viewModel.Teams, null);
+        MatchesChanged(_viewModel.Matches, null);
     }
 
     private void AppWindow_Load(object sender, EventArgs e)
     {
         UpdateGui();
-    }
-
-    private void TeamsChanged(object sender, ListChangedEventArgs e)
-    {
-        PlayerFilterToolStripDropDownButton.DropDownItems.Clear();
-        PlayerFilterToolStripDropDownButton.DropDownItems.Add(_noTeamFilter);
-        PlayerFilterToolStripDropDownButton.DropDownItems.AddRange([.. _viewModel.Teams.Select(p => new ToolStripMenuItem(p.Name) { Tag = p })]);
     }
 
     private void AppWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -61,8 +58,7 @@ public partial class AppWindow : Form
 
     private void PlayerFilterDropDownButton_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
     {
-        PlayerFilterToolStripDropDownButton.Text = e.ClickedItem.Text;
-        UpdateMatchList();
+        _viewModel.MatchFilter = e.ClickedItem.Text == _noTeamFilter ? "" : e.ClickedItem.Text;
     }
 
     private void ExitMenuItem_Click(object sender, EventArgs e)
@@ -110,29 +106,29 @@ public partial class AppWindow : Form
         UpdateGui();
     }
 
-    private void UpdateGui()
+    private void TeamsChanged(object sender, ListChangedEventArgs e)
     {
-        UpdateMatchList();
-        UpdateStandingList();
+        PlayerFilterToolStripDropDownButton.DropDownItems.Clear();
+        PlayerFilterToolStripDropDownButton.DropDownItems.Add(_noTeamFilter);
+        PlayerFilterToolStripDropDownButton.DropDownItems.AddRange([.. _viewModel.Teams.Select(t => new ToolStripMenuItem(t.Name))]);
     }
 
-    private void UpdateMatchList()
+    private void MatchesChanged(object sender, ListChangedEventArgs e)
     {
         MatchListView.Items.Clear();
-        string filter = PlayerFilterToolStripDropDownButton.Text;
-        var no = default(int);
 
-        foreach (var match in _viewModel.Tournament.Matches)
+        foreach (var match in _viewModel.Matches)
         {
-            no += 1;
-            if (filter == _noTeamFilter || filter == match.Team1.Name || filter == match.Team2.Name)
-            {
-                MatchListView.Items.Add(new MatchListViewItem(match, no));
-            }
+            MatchListView.Items.Add(new MatchListViewItem(match, match.Number));
         }
 
         TotalMatchesCountToolStripStatusLabel.Text = _viewModel.Tournament.TotalMatchCount().ToString();
         PlayedMatchesCountToolStripStatusLabel.Text = _viewModel.Tournament.PlayedMatchCount().ToString();
+    }
+
+    private void UpdateGui()
+    {
+        UpdateStandingList();
     }
 
     private void UpdateStandingList()
@@ -153,7 +149,6 @@ public partial class AppWindow : Form
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
                 _viewModel.Tournament.SetResult(match.Number, dialog.Result);
-                UpdateMatchList();
                 UpdateStandingList();
             }
         }
