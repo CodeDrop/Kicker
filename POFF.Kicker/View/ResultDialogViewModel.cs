@@ -4,61 +4,29 @@ using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.View;
 
-
 public class ResultDialogViewModel
 {
-
     public ResultDialogViewModel(Match match)
     {
         if (match is null)
             throw new ArgumentNullException("match");
 
-        Team1Value = match.Team1.Name;
-        Team2Value = match.Team2.Name;
-
-        SetResultInputsValue = [];
+        Team1 = match.Team1.Name;
+        Team2 = match.Team2.Name;
 
         foreach (var setResult in match.Result.SetResults)
-            SetResultInputsValue.Add(new SetResultInput(setResult));
+            SetResultInputs.Add(new SetResultInput(setResult));
 
-        ResultValue = new Result();
+        Result = new Result();
     }
 
-    private readonly string Team1Value;
-    public string Team1
-    {
-        get
-        {
-            return Team1Value;
-        }
-    }
+    public string Team1 { get; }
 
-    private readonly string Team2Value;
-    public string Team2
-    {
-        get
-        {
-            return Team2Value;
-        }
-    }
+    public string Team2 { get; }
 
-    private readonly BindingList<SetResultInput> SetResultInputsValue;
-    public BindingList<SetResultInput> SetResultInputs
-    {
-        get
-        {
-            return SetResultInputsValue;
-        }
-    }
+    public Result Result { get; }
 
-    private readonly Result ResultValue;
-    public Result Result
-    {
-        get
-        {
-            return ResultValue;
-        }
-    }
+    public BindingList<SetResultInput> SetResultInputs { get; } = [];
 
     public void FillResult()
     {
@@ -71,5 +39,4 @@ public class ResultDialogViewModel
             }
         }
     }
-
 }

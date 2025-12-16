@@ -366,13 +366,5 @@ public class ResultDialog : Form
 
     private readonly ResultDialogViewModel ViewModel;
 
-    private readonly Result ResultValue;
-    public Result Result
-    {
-        get
-        {
-            return ViewModel.Result;
-        }
-    }
-
+    public Result Result => ViewModel.Result;
 }

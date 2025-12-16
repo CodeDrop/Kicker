@@ -143,8 +143,11 @@ public partial class AppWindow : Form
             var dialog = new ResultDialog(match);
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                _viewModel.Tournament.SetResult(match.Number, dialog.Result);
+                match.Result = dialog.Result;
+                match.Status = MatchStatus.Finished;
+
                 UpdateStandingList();
+                MatchesChanged(_viewModel.Matches, null);
             }
         }
     }

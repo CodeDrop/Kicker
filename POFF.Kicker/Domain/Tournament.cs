@@ -13,6 +13,8 @@ public class Tournament
 {
     private readonly List<Team> _teams = [];
     private readonly List<Match> _matches = [];
+    private IPlayMode _playMode = new RoundRobinPlayMode();
+    private IScoreMode _scoreMode = new Win3Equal1Loss0ScoreMode();
 
     public Tournament() : this([], [])
     { }
@@ -21,8 +23,8 @@ public class Tournament
     {
         _teams.AddRange(teams);
         _matches.AddRange(matches);
-        PlayMode = new RoundRobinPlayMode();
-        ScoreMode = new Win3Equal1Loss0ScoreMode();
+        _playMode = new RoundRobinPlayMode();
+        _scoreMode = new Win3Equal1Loss0ScoreMode();
     }
 
     public IEnumerable<Team> Teams => _teams;
@@ -31,18 +33,16 @@ public class Tournament
 
     public IPlayMode PlayMode
     {
-        private get;
         set 
         { 
-            field = value ?? throw new ArgumentNullException(nameof(PlayMode)); 
+            _playMode = value ?? throw new ArgumentNullException(nameof(PlayMode)); 
             GenerateMatches();
         }
     }
 
     public IScoreMode ScoreMode
     {
-        private get;
-        set { field = value ?? throw new ArgumentNullException(nameof(ScoreMode)); }
+        set { _scoreMode = value ?? throw new ArgumentNullException(nameof(ScoreMode)); }
     }
 
     public void AddTeam(Team team)
@@ -61,7 +61,7 @@ public class Tournament
     {
         _matches.Clear();
 
-        foreach (var fixture in PlayMode.Generate(_teams.Count))
+        foreach (var fixture in _playMode.Generate(_teams.Count))
         {
             _matches.Add(new Match(_matches.Count + 1, _teams[fixture.Item1], _teams[fixture.Item2]));
         }
@@ -78,7 +78,7 @@ public class Tournament
 
     public IEnumerable<Standing> GetStandings()
     {
-        return ScoreMode.Evaluate([.. FinishedMatches()]);
+        return _scoreMode.Evaluate([.. FinishedMatches()]);
     }
 
     public IEnumerable<Match> FinishedMatches()
