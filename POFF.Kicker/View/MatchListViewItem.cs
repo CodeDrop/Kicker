@@ -5,29 +5,15 @@ namespace POFF.Kicker.View;
 
 public class MatchListViewItem : ListViewItem
 {
-
-    public MatchListViewItem(Match match, int matchNo = 0) : base("", (int)match.Status)
+    public MatchListViewItem(Match match) : base("", (int)match.Status)
     {
-        SubItems.Add($"{matchNo}");
+        SubItems.Add($"{match.Number}");
         SubItems.Add(match.Team1.Name);
         SubItems.Add(match.Team2.Name);
         SubItems.Add(match.Result.ToString());
 
-        MatchValue = match;
+        Match = match;
     }
 
-    private Match MatchValue;
-    public Match Match
-    {
-        get
-        {
-            return MatchValue;
-        }
-    }
-
-    internal void RefreshNumber()
-    {
-        SubItems[1].Text = $"{Index + 1}";
-    }
-
+    public Match Match { get; }
 }

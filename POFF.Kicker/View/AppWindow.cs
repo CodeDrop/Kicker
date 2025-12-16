@@ -119,7 +119,7 @@ public partial class AppWindow : Form
 
         foreach (var match in _viewModel.Matches)
         {
-            MatchListView.Items.Add(new MatchListViewItem(match, match.Number));
+            MatchListView.Items.Add(new MatchListViewItem(match));
         }
 
         TotalMatchesCountToolStripStatusLabel.Text = _viewModel.Tournament.TotalMatchCount().ToString();
