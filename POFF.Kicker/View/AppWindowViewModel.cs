@@ -12,7 +12,6 @@ public class AppWindowViewModel : ViewModelBase
 
     private AppWindowViewModel()
     {
-        TeamsScreen = new TeamsScreenViewModel();
         OpenTournament();
     }
 
@@ -26,27 +25,9 @@ public class AppWindowViewModel : ViewModelBase
 
     public Tournament Tournament { get; private set; }
 
-    private int _tabIndexValue;
-    public int TabIndex
-    {
-        get
-        {
-            return _tabIndexValue;
-        }
-        set
-        {
-            if (value == _tabIndexValue)
-                return;
-            _tabIndexValue = value;
-            OnPropertyChanged();
-        }
-    }
-
     public BindingList<Team> Teams { get; } = [];
 
-    public TeamsScreenViewModel TeamsScreen { get; private set; }
-
-    public Team SelectedTeam => TeamsScreen.SelectedTeam?.Team;
+    public Team SelectedTeam { get; set; }
 
     public void AddTeam(TeamInfo teamInfo)
     {

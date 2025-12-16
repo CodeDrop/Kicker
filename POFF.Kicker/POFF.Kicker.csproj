@@ -171,7 +171,6 @@
     <Compile Include="View\TeamsScreen.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="View\TeamsScreenViewModel.cs" />
     <Compile Include="Domain\SetResult.cs" />
     <Compile Include="Domain\ScoreModes\Standing.cs" />
     <Compile Include="Domain\Team.cs" />

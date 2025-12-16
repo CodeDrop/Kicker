@@ -5,7 +5,7 @@ using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.View;
 
-public partial class TeamsScreen 
+public partial class TeamsScreen
 {
     public TeamsScreen()
     {
@@ -13,19 +13,24 @@ public partial class TeamsScreen
         InitializeComponent();
 
         // Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
-        TeamsDataGridView.DataSource = AppWindowViewModel.Instance.Teams;
     }
 
-    private readonly TeamsScreenViewModel _teamsScreenViewModel;
+    public AppWindowViewModel ViewModel
+    {
+        private get;
+        set
+        {
+            field = value;
+            TeamsDataGridView.DataSource = value.Teams;
+        }
+    }
 
     private void TeamsDataGridView_DoubleClick(object sender, EventArgs e)
     {
+        var rows = TeamsDataGridView.SelectedRows;
+        if (rows.Count > 0)
         {
-            var rows = TeamsDataGridView.SelectedRows;
-            if (rows.Count > 0)
-            {
-                EditTeam((Team)rows[0].DataBoundItem);
-            }
+            EditTeam((Team)rows[0].DataBoundItem);
         }
     }
 
@@ -41,7 +46,7 @@ public partial class TeamsScreen
         {
             e.Value = e.RowIndex + 1;
         }
-        if (_teamsScreenViewModel.Teams[e.RowIndex].Withdrawn)
+        if (((Team) (TeamsDataGridView.Rows[e.RowIndex].DataBoundItem)).Withdrawn)
         {
             e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Strikeout);
             e.CellStyle.ForeColor = Color.LightGray;
@@ -50,6 +55,6 @@ public partial class TeamsScreen
 
     private void TeamsDataGridView_SelectionChanged(object sender, EventArgs e)
     {
-        _teamsScreenViewModel.SelectedTeam = TeamsDataGridView.SelectedRows.Count == 1 ? new TeamInfo((Team)TeamsDataGridView.SelectedRows[0].DataBoundItem) : null;
+        ViewModel.SelectedTeam = TeamsDataGridView.SelectedRows.Count == 1 ? (Team)TeamsDataGridView.SelectedRows[0].DataBoundItem : null;
     }
 }
