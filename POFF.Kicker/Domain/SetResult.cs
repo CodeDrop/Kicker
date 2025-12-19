@@ -5,6 +5,12 @@ namespace POFF.Kicker.Domain;
 [Serializable()]
 public class SetResult
 {
+    public SetResult()
+    {
+        Home = 0;
+        Guest = 0;
+    }
+
     public int Home { get; set; }
     public int Guest { get; set; }
 

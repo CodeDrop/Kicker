@@ -1,14 +1,16 @@
-﻿using System.Diagnostics;
+﻿using POFF.Kicker.Domain;
+using POFF.Kicker.Extensions;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using POFF.Kicker.Domain;
 
 namespace POFF.Kicker.View;
 
 public class ResultDialog : Form
 {
-
     #region  Windows Form Designer generated code 
 
     public ResultDialog() : base()
@@ -353,18 +355,25 @@ public class ResultDialog : Form
 
     #endregion
 
+    private readonly BindingList<SetResultInput> _setResults = [];
+
     public ResultDialog(Match match) : this()
     {
-        ViewModel = new ResultDialogViewModel(match);
+        Team1Label.Text = match.Team1.Name;
+        Team2Label.Text = match.Team2.Name;
+        _setResults.AddRange(match.Result.SetResults.Select(s => new SetResultInput(s)));
+        SetResultDataGrid.DataSource = _setResults;
 
-        Team1Label.Text = match.Team1.ToString();
-        Team2Label.Text = match.Team1.ToString();
-        SetResultDataGrid.DataSource = ViewModel.SetResultInputs;
-
-        OKButton.Click += (s, e) => ViewModel.FillResult();
+        OKButton.Click += (s, e) =>
+        {
+            match.Result.Clear();
+            foreach (var setResultInput in _setResults)
+            {
+                if (setResultInput.Home.HasValue && setResultInput.Guest.HasValue)
+                {
+                    match.Result.AddSetResult(new SetResult() { Home = (int)setResultInput.Home, Guest = (int)setResultInput.Guest });
+                }
+            }
+        };
     }
-
-    private readonly ResultDialogViewModel ViewModel;
-
-    public Result Result => ViewModel.Result;
 }

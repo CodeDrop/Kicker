@@ -152,7 +152,6 @@
     <Compile Include="View\ResultDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\ResultDialogViewModel.cs" />
     <Compile Include="View\TeamDialog.cs">
       <SubType>Form</SubType>
     </Compile>

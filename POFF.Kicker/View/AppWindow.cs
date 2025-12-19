@@ -143,7 +143,6 @@ public partial class AppWindow : Form
             var dialog = new ResultDialog(match);
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                match.Result = dialog.Result;
                 match.Status = MatchStatus.Finished;
 
                 UpdateStandingList();
