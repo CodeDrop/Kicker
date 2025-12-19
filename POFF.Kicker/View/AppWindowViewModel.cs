@@ -1,4 +1,5 @@
 ﻿using POFF.Kicker.Domain;
+using POFF.Kicker.Domain.ScoreModes;
 using POFF.Kicker.Extensions;
 using POFF.Kicker.Infrastructure;
 using POFF.Kicker.View.Model;
@@ -22,6 +23,7 @@ public class AppWindowViewModel : ViewModelBase
         Tournament = _storage.Load();
         Teams.SetValues(Tournament.Teams);
         Matches.SetValues(Tournament.Matches);
+        Standings.SetValues(Tournament.GetStandings());
     }
 
     public Tournament Tournament { get; private set; }
@@ -30,8 +32,12 @@ public class AppWindowViewModel : ViewModelBase
 
     public BindingList<Match> Matches { get; } = [];
 
+    public BindingList<Standing> Standings { get; } = [];
+
     public Team SelectedTeam { get; set; }
-    
+
+    public Match SelectedMatch { get; set; }
+
     public string MatchFilter 
     {
         set
@@ -48,6 +54,7 @@ public class AppWindowViewModel : ViewModelBase
         Tournament.AddTeam(teamInfo.Team);
         Teams.Add(teamInfo.Team);
         Matches.SetValues(Tournament.Matches);
+        Standings.SetValues(Tournament.GetStandings());
     }
 
     public void RemoveTeam()
@@ -57,6 +64,7 @@ public class AppWindowViewModel : ViewModelBase
             Tournament.RemoveTeam(SelectedTeam);
             Teams.Remove(SelectedTeam);
             Matches.SetValues(Tournament.Matches);
+            Standings.SetValues(Tournament.GetStandings());
         }
     }
 
@@ -74,5 +82,23 @@ public class AppWindowViewModel : ViewModelBase
     public void CopyToClipboard(ExportType exportType)
     {
         Tournament.CopyToClipboard(exportType);
+    }
+
+    public void ProcessResult(BindingList<SetResultInput> setResults)
+    {
+        if (SelectedMatch is null) return;
+
+        SelectedMatch.Result.Clear();
+
+        foreach (SetResultInput input in setResults)
+        {
+            if (input.Home.HasValue && input.Guest.HasValue)
+            {
+                SelectedMatch.Result.AddSetResult(new SetResult { Home = input.Home.Value, Guest = input.Guest.Value });
+            }
+        }
+        SelectedMatch.Status = SelectedMatch.Result.SetResults.Any() ? MatchStatus.Finished : MatchStatus.Open;
+        Matches.ResetBindings();
+        Standings.SetValues(Tournament.GetStandings());
     }
 }

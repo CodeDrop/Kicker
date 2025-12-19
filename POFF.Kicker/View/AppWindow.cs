@@ -26,14 +26,10 @@ public partial class AppWindow : Form
         _TeamsScreenContent.ViewModel = _viewModel;
         _viewModel.Teams.ListChanged += TeamsChanged;
         _viewModel.Matches.ListChanged += MatchesChanged;
+        _viewModel.Standings.ListChanged += StandingsChanged;
 
         TeamsChanged(_viewModel.Teams, null);
         MatchesChanged(_viewModel.Matches, null);
-    }
-
-    private void AppWindow_Load(object sender, EventArgs e)
-    {
-        UpdateStandingList();
     }
 
     private void AppWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -74,7 +70,6 @@ public partial class AppWindow : Form
         {
             _viewModel.Open(openFileDialog.FileName);
             Text = $"POFF Kicker - {Path.GetFileNameWithoutExtension(openFileDialog.FileName)}";
-            UpdateStandingList();
         }
     }
 
@@ -92,7 +87,6 @@ public partial class AppWindow : Form
         if (dialog.ShowDialog() != DialogResult.OK) return;
 
         _viewModel.AddTeam(dialog.TeamInfo);
-        UpdateStandingList();
     }
 
     private void RemoveTeamMenuItem_Click(object sender, EventArgs e)
@@ -103,7 +97,6 @@ public partial class AppWindow : Form
             return;
 
         _viewModel.RemoveTeam();
-        UpdateStandingList();
     }
 
     private void TeamsChanged(object sender, ListChangedEventArgs e)
@@ -126,11 +119,13 @@ public partial class AppWindow : Form
         PlayedMatchesCountToolStripStatusLabel.Text = _viewModel.Tournament.PlayedMatchCount().ToString();
     }
 
-    private void UpdateStandingList()
+    private void StandingsChanged(object sender, ListChangedEventArgs e)
     {
         StandingListView.Items.Clear();
         foreach (var standing in _viewModel.Tournament.GetStandings())
+        {
             StandingListView.Items.Add(new StandingListViewItem(standing));
+        }
     }
 
     private void MatchListView_DoubleClick(object sender, EventArgs e)
@@ -138,16 +133,12 @@ public partial class AppWindow : Form
         if (!(MatchListView.SelectedItems.Count == 1))
             return;
 
-        var match = ((MatchListViewItem)MatchListView.SelectedItems[0]).Match;
-        {
-            var dialog = new ResultDialog(match);
-            if (dialog.ShowDialog(this) == DialogResult.OK)
-            {
-                match.Status = MatchStatus.Finished;
+        _viewModel.SelectedMatch = ((MatchListViewItem)MatchListView.SelectedItems[0]).Match;
 
-                UpdateStandingList();
-                MatchesChanged(_viewModel.Matches, null);
-            }
+        using var dialog = new ResultDialog(_viewModel.SelectedMatch);
+        if (dialog.ShowDialog(this) == DialogResult.OK)
+        {
+            _viewModel.ProcessResult(dialog.SetResults);
         }
     }
 

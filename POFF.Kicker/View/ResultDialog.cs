@@ -355,19 +355,17 @@ public class ResultDialog : Form
 
     #endregion
 
-    private readonly BindingList<SetResultInput> _setResults = [];
-
     public ResultDialog(Match match) : this()
     {
         Team1Label.Text = match.Team1.Name;
         Team2Label.Text = match.Team2.Name;
-        _setResults.AddRange(match.Result.SetResults.Select(s => new SetResultInput(s)));
-        SetResultDataGrid.DataSource = _setResults;
+        SetResults.AddRange(match.Result.SetResults.Select(s => new SetResultInput(s)));
+        SetResultDataGrid.DataSource = SetResults;
 
         OKButton.Click += (s, e) =>
         {
             match.Result.Clear();
-            foreach (var setResultInput in _setResults)
+            foreach (var setResultInput in SetResults)
             {
                 if (setResultInput.Home.HasValue && setResultInput.Guest.HasValue)
                 {
@@ -376,4 +374,6 @@ public class ResultDialog : Form
             }
         };
     }
+
+    public BindingList<SetResultInput> SetResults { get; } = [];
 }

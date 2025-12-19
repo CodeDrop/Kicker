@@ -691,7 +691,6 @@ public partial class AppWindow
             this.Name = "AppWindow";
             this.Text = "POFF Turnier";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppWindow_FormClosing);
-            this.Load += new System.EventHandler(this.AppWindow_Load);
             this._AppTabControl.ResumeLayout(false);
             this._TeamsTabPage.ResumeLayout(false);
             this._MatchesTabPage.ResumeLayout(false);
