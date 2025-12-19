@@ -357,8 +357,8 @@ public class ResultDialog : Form
     {
         ViewModel = new ResultDialogViewModel(match);
 
-        Team1Label.DataBindings.Add("Text", ViewModel, "Team1");
-        Team2Label.DataBindings.Add("Text", ViewModel, "Team2");
+        Team1Label.Text = match.Team1.ToString();
+        Team2Label.Text = match.Team1.ToString();
         SetResultDataGrid.DataSource = ViewModel.SetResultInputs;
 
         OKButton.Click += (s, e) => ViewModel.FillResult();

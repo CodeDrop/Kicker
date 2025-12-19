@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using POFF.Kicker.Domain;
+using POFF.Kicker.Extensions;
 
 namespace POFF.Kicker.View;
 
@@ -11,20 +13,10 @@ public class ResultDialogViewModel
         if (match is null)
             throw new ArgumentNullException("match");
 
-        Team1 = match.Team1.Name;
-        Team2 = match.Team2.Name;
-
-        foreach (var setResult in match.Result.SetResults)
-            SetResultInputs.Add(new SetResultInput(setResult));
-
-        Result = new Result();
+        SetResultInputs.AddRange(match.Result.SetResults.Select(s => new SetResultInput(s)));
     }
 
-    public string Team1 { get; }
-
-    public string Team2 { get; }
-
-    public Result Result { get; }
+    public Result Result { get; } = new Result();
 
     public BindingList<SetResultInput> SetResultInputs { get; } = [];
 
@@ -33,7 +25,7 @@ public class ResultDialogViewModel
         Result.Clear();
         foreach (var setResultInput in SetResultInputs)
         {
-            if (setResultInput.Home.HasValue & setResultInput.Guest.HasValue)
+            if (setResultInput.Home.HasValue && setResultInput.Guest.HasValue)
             {
                 Result.AddSetResult(new SetResult() { Home = (int)setResultInput.Home, Guest = (int)setResultInput.Guest });
             }
