@@ -12,21 +12,34 @@ public class AppWindowViewModel : ViewModelBase
 {
     public static AppWindowViewModel Instance = new();
     private ITournamentStorage _storage = new FileTournamentStorage();
+    private Tournament _tournament;
 
     private AppWindowViewModel()
     {
         OpenTournament();
     }
 
-    private void OpenTournament()
+    public void Open(string filename)
     {
-        Tournament = _storage.Load();
-        Teams.SetValues(Tournament.Teams);
-        Matches.SetValues(Tournament.Matches);
-        Standings.SetValues(Tournament.GetStandings());
+        _storage = new FileTournamentStorage(filename);
+        OpenTournament();
     }
 
-    public Tournament Tournament { get; private set; }
+    public void Save()
+    {
+        _storage.Save(_tournament);
+        IsDirty = false;
+    }
+
+    private void OpenTournament()
+    {
+        _tournament = _storage.Load();
+        Teams.SetValues(_tournament.Teams);
+        Matches.SetValues(_tournament.Matches);
+        Standings.SetValues(_tournament.GetStandings());
+        IsDirty = false;
+    }
+
 
     public BindingList<Team> Teams { get; } = [];
 
@@ -42,46 +55,34 @@ public class AppWindowViewModel : ViewModelBase
     {
         set
         {
-            var matches= Tournament.Matches.Where(m=> string.IsNullOrEmpty(value) ||
+            var matches= _tournament.Matches.Where(m=> string.IsNullOrEmpty(value) ||
                 m.Team1.Name == value ||
                 m.Team2.Name == value);
             Matches.SetValues(matches);
         }
     }
 
+    public bool IsDirty { get; private set; }
+
     public void AddTeam(TeamInfo teamInfo)
     {
-        Tournament.AddTeam(teamInfo.Team);
+        _tournament.AddTeam(teamInfo.Team);
         Teams.Add(teamInfo.Team);
-        Matches.SetValues(Tournament.Matches);
-        Standings.SetValues(Tournament.GetStandings());
+        Matches.SetValues(_tournament.Matches);
+        Standings.SetValues(_tournament.GetStandings());
+        IsDirty = true;
     }
 
     public void RemoveTeam()
     {
         if (SelectedTeam is not null)
         {
-            Tournament.RemoveTeam(SelectedTeam);
+            _tournament.RemoveTeam(SelectedTeam);
             Teams.Remove(SelectedTeam);
-            Matches.SetValues(Tournament.Matches);
-            Standings.SetValues(Tournament.GetStandings());
+            Matches.SetValues(_tournament.Matches);
+            Standings.SetValues(_tournament.GetStandings());
         }
-    }
-
-    public void Open(string filename)
-    {
-        _storage = new FileTournamentStorage(filename);
-        OpenTournament();
-    }
-
-    public void Save()
-    {
-        _storage.Save(Tournament);
-    }
-
-    public void CopyToClipboard(ExportType exportType)
-    {
-        Tournament.CopyToClipboard(exportType);
+        IsDirty = true;
     }
 
     public void ProcessResult(BindingList<SetResultInput> setResults)
@@ -99,6 +100,22 @@ public class AppWindowViewModel : ViewModelBase
         }
         SelectedMatch.Status = SelectedMatch.Result.SetResults.Any() ? MatchStatus.Finished : MatchStatus.Open;
         Matches.ResetBindings();
-        Standings.SetValues(Tournament.GetStandings());
+        Standings.SetValues(_tournament.GetStandings());
+        IsDirty = true;
+    }
+
+    public void CopyToClipboard(ExportType exportType)
+    {
+        _tournament.CopyToClipboard(exportType);
+    }
+
+    public int TotalMatchCount()
+    {
+        return _tournament.TotalMatchCount();
+    }
+
+    public int PlayedMatchCount()
+    {
+        return _tournament.PlayedMatchCount();
     }
 }

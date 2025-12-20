@@ -34,7 +34,18 @@ public partial class AppWindow : Form
 
     private void AppWindow_FormClosing(object sender, FormClosingEventArgs e)
     {
-        _viewModel.Save();
+        if (_viewModel.IsDirty)
+        {
+            var result = ShowQuestion("Es gibt ungespeicherte Änderungen. Möchten Sie diese speichern?", MessageBoxButtons.YesNoCancel);
+            if (result == DialogResult.Yes)
+            {
+                _viewModel.Save();
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 
     private void ClipboardGamesMenuItem_Click(object sender, EventArgs e)
@@ -115,14 +126,14 @@ public partial class AppWindow : Form
             MatchListView.Items.Add(new MatchListViewItem(match));
         }
 
-        TotalMatchesCountToolStripStatusLabel.Text = _viewModel.Tournament.TotalMatchCount().ToString();
-        PlayedMatchesCountToolStripStatusLabel.Text = _viewModel.Tournament.PlayedMatchCount().ToString();
+        TotalMatchesCountToolStripStatusLabel.Text = _viewModel.TotalMatchCount().ToString();
+        PlayedMatchesCountToolStripStatusLabel.Text = _viewModel.PlayedMatchCount().ToString();
     }
 
     private void StandingsChanged(object sender, ListChangedEventArgs e)
     {
         StandingListView.Items.Clear();
-        foreach (var standing in _viewModel.Tournament.GetStandings())
+        foreach (var standing in _viewModel.Standings)
         {
             StandingListView.Items.Add(new StandingListViewItem(standing));
         }
@@ -142,14 +153,14 @@ public partial class AppWindow : Form
         }
     }
 
-    private DialogResult ShowQuestion(string format, params object[] args)
+    private DialogResult ShowQuestion(string questions, MessageBoxButtons buttons = MessageBoxButtons.YesNo)
     {
-        return MessageBox.Show(string.Format(format, args), Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+        return MessageBox.Show(questions, Application.ProductName, buttons, MessageBoxIcon.Question);
     }
 
     private DialogResult CheckDeleteResults(string format)
     {
-        if (_viewModel.Tournament.PlayedMatchCount() > 0)
+        if (_viewModel.PlayedMatchCount() > 0)
             return ShowQuestion($"{format}{Environment.NewLine}Erfasste Spielergebnisse werden gelöscht.");
         return DialogResult.Yes;
     }
