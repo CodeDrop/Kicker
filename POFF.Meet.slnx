@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
+    <File Path="LICENSE.txt" />
+  </Folder>
+  <Project Path="POFF.Meet.Tests/POFF.Meet.Tests.csproj" Id="1eeb6085-8d22-066c-0abb-4d2b2d65f42a" />
+  <Project Path="POFF.Meet/POFF.Meet.csproj" Id="d73bfe67-5f33-08e2-3fd0-d4fe17392214" />
+</Solution>

@@ -1,0 +1,21 @@
+﻿using System;
+
+namespace POFF.Meet.Domain;
+
+[Serializable()]
+public class SetResult
+{
+    public SetResult()
+    {
+        Home = 0;
+        Guest = 0;
+    }
+
+    public int Home { get; set; }
+    public int Guest { get; set; }
+
+    public override string ToString()
+    {
+        return string.Format("{0}:{1}", Home, Guest);
+    }
+}

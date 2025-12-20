@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D73BFE67-5F33-08E2-3FD0-D4FE17392214}</ProjectGuid>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>Kicker.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>POFF.Meet</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <OptionCompare>Text</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>On</OptionStrict>
+    <RootNamespace>POFF.Meet</RootNamespace>
+    <StartupObject>POFF.Meet.Program</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <SccAuxPath>SAK</SccAuxPath>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(ProjectDir)**\*.vb</DefaultItemExcludes>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>bin\POFF.Meet.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355,1591</NoWarn>
+    <DebugType>full</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>bin\POFF.Meet.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Domain\ScoreModes\IScoreMode.cs" />
+    <Compile Include="Domain\ScoreModes\Win3Equal1Loss0ScoreMode.cs" />
+    <Compile Include="Extensions\BindingListExtensions.cs" />
+    <Compile Include="Infrastructure\ExportType.cs" />
+    <Compile Include="Infrastructure\ITournamentStorage.cs" />
+    <Compile Include="Infrastructure\TournamentFile.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="View\AppWindow.Designer.cs">
+      <DependentUpon>AppWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AppWindowViewModel.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Infrastructure\FileTournamentStorage.cs" />
+    <Compile Include="Infrastructure\HtmlExport.cs" />
+    <Compile Include="View\IConfirmationMessage.cs" />
+    <Compile Include="Domain\Match.cs" />
+    <Compile Include="Domain\PlayModes\RoundRobinPlayMode.cs" />
+    <Compile Include="Domain\PlayModes\IPlayMode.cs" />
+    <Compile Include="Domain\PlayModes\Matchday.cs" />
+    <Compile Include="Domain\PlayModes\MatchdaysPlayMode.cs" />
+    <Compile Include="Domain\PlayModes\Fixture.cs" />
+    <Compile Include="Domain\MatchStatus.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Domain\Result.cs" />
+    <Compile Include="View\ResultDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TeamDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AppWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MatchListViewItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\StandingListViewItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\TeamDialogViewModel.cs" />
+    <Compile Include="View\TeamsScreen.Designer.cs">
+      <DependentUpon>TeamsScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TeamsScreen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Domain\SetResult.cs" />
+    <Compile Include="Domain\ScoreModes\Standing.cs" />
+    <Compile Include="Domain\Team.cs" />
+    <Compile Include="Domain\Tournament.cs" />
+    <Compile Include="View\DefaultConfirmationMessageHandler.cs" />
+    <Compile Include="Domain\MatchInfo.cs" />
+    <Compile Include="View\NotificationObject.cs" />
+    <Compile Include="Domain\SetResultInput.cs" />
+    <Compile Include="Domain\TeamInfo.cs" />
+    <Compile Include="View\ViewModelBase.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ResultDialog.resx">
+      <DependentUpon>ResultDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TeamDialog.resx">
+      <DependentUpon>TeamDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AppWindow.resx">
+      <DependentUpon>AppWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Kicker.ico" />
+    <EmbeddedResource Include="View\TeamsScreen.resx">
+      <DependentUpon>TeamsScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
