@@ -3,10 +3,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("POFF Kicker")]
-[assembly: AssemblyDescription("Turnierauswertung für Tischfußball")]
+[assembly: AssemblyTitle("POFF Turnier")]
+[assembly: AssemblyDescription("Turnierauswertung")]
 [assembly: AssemblyCompany("POFF")]
-[assembly: AssemblyProduct("Kicker")]
+[assembly: AssemblyProduct("Turnier")]
 [assembly: AssemblyCopyright("©2004-2025 Programs Of Free Fantasy")]
 [assembly: CLSCompliant(true)]
 

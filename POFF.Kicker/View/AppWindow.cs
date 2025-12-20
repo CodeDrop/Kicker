@@ -66,7 +66,7 @@ public partial class AppWindow : Form
         if (!CloseTournament()) return;
 
         using var openFileDialog = new OpenFileDialog();
-        openFileDialog.Filter = "POFF Tournament (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
+        openFileDialog.Filter = "POFF Turnier (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
             Settings.Default.RecentFile = openFileDialog.FileName;
@@ -77,7 +77,7 @@ public partial class AppWindow : Form
     private void OpenTournamentFile(string filename)
     {
         _viewModel.Open(filename);
-        Text = $"POFF Kicker - {Path.GetFileNameWithoutExtension(filename)}";
+        Text = $"POFF Turnier - {Path.GetFileNameWithoutExtension(filename)}";
     }
 
     private void SaveMenuItem_Click(object sender, EventArgs e)
