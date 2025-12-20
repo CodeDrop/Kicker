@@ -16,6 +16,8 @@ public class Tournament
     private IPlayMode _playMode = new RoundRobinPlayMode();
     private IScoreMode _scoreMode = new Win3Equal1Loss0ScoreMode();
 
+    public static readonly Tournament Empty = new();
+
     public Tournament() : this([], [])
     { }
 

@@ -12,7 +12,7 @@ public class AppWindowViewModel : ViewModelBase
 {
     public static AppWindowViewModel Instance = new();
     private ITournamentStorage _storage = new FileTournamentStorage();
-    private Tournament _tournament;
+    private Tournament _tournament = Tournament.Empty;
 
     private AppWindowViewModel()
     {
@@ -22,6 +22,7 @@ public class AppWindowViewModel : ViewModelBase
     public void Open(string filename)
     {
         _storage = new FileTournamentStorage(filename);
+        _tournament = _storage.Load();
         OpenTournament();
     }
 
@@ -33,7 +34,6 @@ public class AppWindowViewModel : ViewModelBase
 
     private void OpenTournament()
     {
-        _tournament = _storage.Load();
         Teams.SetValues(_tournament.Teams);
         Matches.SetValues(_tournament.Matches);
         Standings.SetValues(_tournament.GetStandings());

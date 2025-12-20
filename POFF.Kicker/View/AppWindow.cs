@@ -34,47 +34,26 @@ public partial class AppWindow : Form
 
     private void AppWindow_FormClosing(object sender, FormClosingEventArgs e)
     {
-        if (_viewModel.IsDirty)
+        e.Cancel = !CloseTournament();
+    }
+
+    private bool CloseTournament()
+    {
+        if (!_viewModel.IsDirty) return true;
+
+        var dialogResult = ShowQuestion("Es gibt ungespeicherte Änderungen. Möchten Sie diese speichern?", MessageBoxButtons.YesNoCancel);
+        if (dialogResult == DialogResult.Cancel) return false;
+        if (dialogResult == DialogResult.Yes)
         {
-            var result = ShowQuestion("Es gibt ungespeicherte Änderungen. Möchten Sie diese speichern?", MessageBoxButtons.YesNoCancel);
-            if (result == DialogResult.Yes)
-            {
-                _viewModel.Save();
-            }
-            else if (result == DialogResult.Cancel)
-            {
-                e.Cancel = true;
-            }
+            _viewModel.Save();
         }
-    }
-
-    private void ClipboardGamesMenuItem_Click(object sender, EventArgs e)
-    {
-        _viewModel.CopyToClipboard(ExportType.Games);
-    }
-
-    private void ClipboardTableMenuItem_Click(object sender, EventArgs e)
-    {
-        _viewModel.CopyToClipboard(ExportType.Standings);
-    }
-
-    private void ClipboardCopyAllMenuItem_Click(object sender, EventArgs e)
-    {
-        _viewModel.CopyToClipboard(ExportType.Games | ExportType.Standings);
-    }
-
-    private void PlayerFilterDropDownButton_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-    {
-        _viewModel.MatchFilter = e.ClickedItem.Text == _noTeamFilter ? "" : e.ClickedItem.Text;
-    }
-
-    private void ExitMenuItem_Click(object sender, EventArgs e)
-    {
-        Close();
+        return true;
     }
 
     private void OpenMenuItem_Click(object sender, EventArgs e)
     {
+        if (!CloseTournament()) return;
+
         using var openFileDialog = new OpenFileDialog();
         openFileDialog.Filter = "POFF Tournament (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
         if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -108,6 +87,31 @@ public partial class AppWindow : Form
             return;
 
         _viewModel.RemoveTeam();
+    }
+
+    private void ClipboardGamesMenuItem_Click(object sender, EventArgs e)
+    {
+        _viewModel.CopyToClipboard(ExportType.Games);
+    }
+
+    private void ClipboardTableMenuItem_Click(object sender, EventArgs e)
+    {
+        _viewModel.CopyToClipboard(ExportType.Standings);
+    }
+
+    private void ClipboardCopyAllMenuItem_Click(object sender, EventArgs e)
+    {
+        _viewModel.CopyToClipboard(ExportType.Games | ExportType.Standings);
+    }
+
+    private void PlayerFilterDropDownButton_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+    {
+        _viewModel.MatchFilter = e.ClickedItem.Text == _noTeamFilter ? "" : e.ClickedItem.Text;
+    }
+
+    private void ExitMenuItem_Click(object sender, EventArgs e)
+    {
+        Close();
     }
 
     private void TeamsChanged(object sender, ListChangedEventArgs e)
