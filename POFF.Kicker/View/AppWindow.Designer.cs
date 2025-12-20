@@ -339,6 +339,7 @@ public partial class AppWindow
             this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.AddTeamMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveTeamMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._AppToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this._ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClipboardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -352,7 +353,6 @@ public partial class AppWindow
             this._TotalMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._PlayedMatchesToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.PlayedMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.RemoveTeamMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._AppTabControl.SuspendLayout();
             this._TeamsTabPage.SuspendLayout();
             this._MatchesTabPage.SuspendLayout();
@@ -570,6 +570,14 @@ public partial class AppWindow
             this.AddTeamMenuItem.Text = "Mannschaft hinzufügen";
             this.AddTeamMenuItem.Click += new System.EventHandler(this.AddTeamMenuItem_Click);
             // 
+            // RemoveTeamMenuItem
+            // 
+            this.RemoveTeamMenuItem.Name = "RemoveTeamMenuItem";
+            this.RemoveTeamMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.RemoveTeamMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.RemoveTeamMenuItem.Text = "Mannschaft entfernen";
+            this.RemoveTeamMenuItem.Click += new System.EventHandler(this.RemoveTeamMenuItem_Click);
+            // 
             // _AppToolStripMenuItem
             // 
             this._AppToolStripMenuItem.Name = "_AppToolStripMenuItem";
@@ -664,20 +672,12 @@ public partial class AppWindow
             this._PlayedMatchesToolStripStatusLabel.Size = new System.Drawing.Size(52, 17);
             this._PlayedMatchesToolStripStatusLabel.Text = "Gespielt:";
             // 
-            // _PlayedMatchesCountToolStripStatusLabel
+            // PlayedMatchesCountToolStripStatusLabel
             // 
             this.PlayedMatchesCountToolStripStatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenInner;
-            this.PlayedMatchesCountToolStripStatusLabel.Name = "_PlayedMatchesCountToolStripStatusLabel";
+            this.PlayedMatchesCountToolStripStatusLabel.Name = "PlayedMatchesCountToolStripStatusLabel";
             this.PlayedMatchesCountToolStripStatusLabel.Size = new System.Drawing.Size(10, 17);
             this.PlayedMatchesCountToolStripStatusLabel.Text = ".";
-            // 
-            // RemoveTeamMenuItem
-            // 
-            this.RemoveTeamMenuItem.Name = "RemoveTeamMenuItem";
-            this.RemoveTeamMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.RemoveTeamMenuItem.Size = new System.Drawing.Size(239, 22);
-            this.RemoveTeamMenuItem.Text = "Mannschaft entfernen";
-            this.RemoveTeamMenuItem.Click += new System.EventHandler(this.RemoveTeamMenuItem_Click);
             // 
             // AppWindow
             // 
@@ -691,6 +691,7 @@ public partial class AppWindow
             this.Name = "AppWindow";
             this.Text = "POFF Turnier";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppWindow_FormClosing);
+            this.Load += new System.EventHandler(this.AppWindow_Load);
             this._AppTabControl.ResumeLayout(false);
             this._TeamsTabPage.ResumeLayout(false);
             this._MatchesTabPage.ResumeLayout(false);

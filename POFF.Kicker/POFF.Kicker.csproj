@@ -125,6 +125,11 @@
     <Compile Include="Infrastructure\ExportType.cs" />
     <Compile Include="Infrastructure\ITournamentStorage.cs" />
     <Compile Include="Infrastructure\TournamentFile.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="View\AppWindow.Designer.cs">
       <DependentUpon>AppWindow.cs</DependentUpon>
     </Compile>
@@ -199,6 +204,10 @@
       <DependentUpon>TeamsScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

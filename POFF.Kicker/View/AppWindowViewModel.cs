@@ -51,11 +51,11 @@ public class AppWindowViewModel : ViewModelBase
 
     public Match SelectedMatch { get; set; }
 
-    public string MatchFilter 
+    public string MatchFilter
     {
         set
         {
-            var matches= _tournament.Matches.Where(m=> string.IsNullOrEmpty(value) ||
+            var matches = _tournament.Matches.Where(m => string.IsNullOrEmpty(value) ||
                 m.Team1.Name == value ||
                 m.Team2.Name == value);
             Matches.SetValues(matches);

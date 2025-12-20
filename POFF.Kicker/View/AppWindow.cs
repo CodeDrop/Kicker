@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using POFF.Kicker.Infrastructure;
 using POFF.Kicker.Domain;
 using System.ComponentModel;
+using POFF.Kicker.Properties;
 
 namespace POFF.Kicker.View;
 
@@ -32,8 +33,18 @@ public partial class AppWindow : Form
         MatchesChanged(_viewModel.Matches, null);
     }
 
+    private void AppWindow_Load(object sender, EventArgs e)
+    {
+        if (File.Exists(Settings.Default.RecentFile))
+        {
+            var filename = Settings.Default.RecentFile;
+            OpenTournamentFile(filename);
+        }
+    }
+
     private void AppWindow_FormClosing(object sender, FormClosingEventArgs e)
     {
+        Settings.Default.Save();
         e.Cancel = !CloseTournament();
     }
 
@@ -58,9 +69,15 @@ public partial class AppWindow : Form
         openFileDialog.Filter = "POFF Tournament (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
-            _viewModel.Open(openFileDialog.FileName);
-            Text = $"POFF Kicker - {Path.GetFileNameWithoutExtension(openFileDialog.FileName)}";
+            Settings.Default.RecentFile = openFileDialog.FileName;
+            OpenTournamentFile(openFileDialog.FileName);
         }
+    }
+
+    private void OpenTournamentFile(string filename)
+    {
+        _viewModel.Open(filename);
+        Text = $"POFF Kicker - {Path.GetFileNameWithoutExtension(filename)}";
     }
 
     private void SaveMenuItem_Click(object sender, EventArgs e)
