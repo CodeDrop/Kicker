@@ -25,16 +25,12 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
             {
                 switch (setResult.Home.CompareTo(setResult.Guest))
                 {
-                    case var @case when @case > 0:
-                        {
-                            setsWon[0] += 1;
-                            break;
-                        }
-                    case var case1 when case1 < 0:
-                        {
-                            setsWon[1] += 1;
-                            break;
-                        }
+                    case > 0:
+                        setsWon[0] += 1;
+                        break;
+                    case < 0:
+                        setsWon[1] += 1;
+                        break;
                 }
 
                 goals[0] += setResult.Home;
@@ -43,22 +39,16 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
 
             switch (setsWon[0].CompareTo(setsWon[1]))
             {
-                case var case2 when case2 > 0:
-                    {
-                        points[0] += 3;
-                        break;
-                    }
+                case > 0:
+                    points[0] += 3;
+                    break;
                 case 0:
-                    {
-                        points[0] += 1;
-                        points[1] += 1;
-                        break;
-                    }
-                case var case3 when case3 < 0:
-                    {
-                        points[1] += 3;
-                        break;
-                    }
+                    points[0] += 1;
+                    points[1] += 1;
+                    break;
+                case < 0:
+                    points[1] += 3;
+                    break;
             }
 
             var standing1 = list[match.Team1];
