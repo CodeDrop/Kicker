@@ -1,12 +1,13 @@
-﻿using System;
+﻿using POFF.Meet.Domain;
+using POFF.Meet.Infrastructure;
+using POFF.Meet.Properties;
+using System;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using POFF.Meet.Infrastructure;
-using POFF.Meet.Domain;
-using System.ComponentModel;
-using POFF.Meet.Properties;
 
 namespace POFF.Meet.View;
 
@@ -17,18 +18,16 @@ public partial class AppWindow : Form
 
     public AppWindow() : base()
     {
-
         // This call is required by the Windows Form Designer.
         InitializeComponent();
 
         // Add any initialization after the InitializeComponent() call
-
         _viewModel = new AppWindowViewModel();
-        TeamsScreenContent.ViewModel = _viewModel;
         _viewModel.Teams.ListChanged += TeamsChanged;
         _viewModel.Matches.ListChanged += MatchesChanged;
         _viewModel.Standings.ListChanged += StandingsChanged;
 
+        TeamsDataGridView.DataSource = _viewModel.Teams;
         TeamsChanged(_viewModel.Teams, null);
         MatchesChanged(_viewModel.Matches, null);
     }
@@ -184,5 +183,38 @@ public partial class AppWindow : Form
         if (_viewModel.PlayedMatchCount() > 0)
             return ShowQuestion($"{format}{Environment.NewLine}Erfasste Spielergebnisse werden gelöscht.");
         return DialogResult.Yes;
+    }
+
+    private void TeamsDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+    {
+        if (e.ColumnIndex == 0)
+        {
+            e.Value = e.RowIndex + 1;
+        }
+        if (((Team)(TeamsDataGridView.Rows[e.RowIndex].DataBoundItem)).Withdrawn)
+        {
+            e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Strikeout);
+            e.CellStyle.ForeColor = Color.LightGray;
+        }
+    }
+
+    private void TeamsDataGridView_SelectionChanged(object sender, EventArgs e)
+    {
+        _viewModel.SelectedTeam = TeamsDataGridView.SelectedRows.Count == 1 ? (Team)TeamsDataGridView.SelectedRows[0].DataBoundItem : null;
+    }
+
+    private void TeamsDataGridView_DoubleClick(object sender, EventArgs e)
+    {
+        var rows = TeamsDataGridView.SelectedRows;
+        if (rows.Count == 1)
+        {
+            EditTeam((Team)rows[0].DataBoundItem);
+        }
+    }
+
+    private void EditTeam(Team team)
+    {
+        using var dialog = new TeamDialog(new TeamInfo(team));
+        dialog.ShowDialog(this);
     }
 }

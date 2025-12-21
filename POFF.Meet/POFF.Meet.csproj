@@ -170,12 +170,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="View\TeamDialogViewModel.cs" />
-    <Compile Include="View\TeamsScreen.Designer.cs">
-      <DependentUpon>TeamsScreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\TeamsScreen.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Domain\SetResult.cs" />
     <Compile Include="Domain\ScoreModes\Standing.cs" />
     <Compile Include="Domain\Team.cs" />
@@ -200,9 +194,6 @@
       <DependentUpon>AppWindow.cs</DependentUpon>
     </EmbeddedResource>
     <Content Include="Kicker.ico" />
-    <EmbeddedResource Include="View\TeamsScreen.resx">
-      <DependentUpon>TeamsScreen.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
