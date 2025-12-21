@@ -27,7 +27,9 @@ public partial class AppWindow : Form
         _viewModel.Matches.ListChanged += MatchesChanged;
         _viewModel.Standings.ListChanged += StandingsChanged;
 
+        DataBindings.Add(nameof(Text), _viewModel, nameof(_viewModel.Title));
         TeamsDataGridView.DataSource = _viewModel.Teams;
+
         TeamsChanged(_viewModel.Teams, null);
         MatchesChanged(_viewModel.Matches, null);
     }
@@ -89,7 +91,6 @@ public partial class AppWindow : Form
     private void OpenTournamentFile(string filename)
     {
         _viewModel.Open(filename);
-        Text = $"POFF Turnier - {Path.GetFileNameWithoutExtension(filename)}";
     }
 
     private void SaveMenuItem_Click(object sender, EventArgs e)

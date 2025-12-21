@@ -35,6 +35,7 @@ class AppWindowViewModelTests
         // assert
         Assert.That(_filename, Does.Exist);
         Assert.That(new FileInfo(_filename).Length, Is.GreaterThan(0));
+        Assert.That(_sut.Title, Does.Contain(Path.GetFileNameWithoutExtension(_filename)));
     }
 
     [Test]

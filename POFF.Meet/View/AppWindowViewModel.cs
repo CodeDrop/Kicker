@@ -3,8 +3,8 @@ using POFF.Meet.Domain.ScoreModes;
 using POFF.Meet.Extensions;
 using POFF.Meet.Infrastructure;
 using POFF.Meet.View.Model;
-using System;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 
 namespace POFF.Meet.View;
@@ -13,6 +13,7 @@ public class AppWindowViewModel : ViewModelBase
 {
     private ITournamentStorage _storage = new FileTournamentStorage();
     private Tournament _tournament = Tournament.Empty;
+    private string _filename = string.Empty;
 
     public AppWindowViewModel()
     {
@@ -24,22 +25,30 @@ public class AppWindowViewModel : ViewModelBase
         _tournament = new Tournament();
         _storage = new FileTournamentStorage(filename);
         _storage.Save(_tournament);
+        _filename = filename;
         SetTeamsMatchesAndStandings();
-        IsDirty = false;
+        SetTitleAndDirtyFlag(false);
     }
 
     public void Open(string filename)
     {
         _storage = new FileTournamentStorage(filename);
         _tournament = _storage.Load();
+        _filename = filename;
         SetTeamsMatchesAndStandings();
-        IsDirty = false;
+        SetTitleAndDirtyFlag(false);
+    }
+
+    private void SetTitleAndDirtyFlag(bool isDirty = false)
+    {
+        IsDirty = isDirty;
+        Title = $"POFF Meet [{Path.GetFileNameWithoutExtension(_filename)}]" + (IsDirty ? "*" : "");
     }
 
     public void Save()
     {
         _storage.Save(_tournament);
-        IsDirty = false;
+        SetTitleAndDirtyFlag(false);
     }
 
     private void SetTeamsMatchesAndStandings()
@@ -72,13 +81,23 @@ public class AppWindowViewModel : ViewModelBase
 
     public bool IsDirty { get; private set; }
 
+    public string Title
+    {
+        get => field;
+        set
+        {
+            field = value;
+            OnPropertyChanged(nameof(Title));
+        }
+    }
+
     public void AddTeam(TeamInfo teamInfo)
     {
         _tournament.AddTeam(teamInfo.Team);
         Teams.Add(teamInfo.Team);
         Matches.SetValues(_tournament.Matches);
         Standings.SetValues(_tournament.GetStandings());
-        IsDirty = true;
+        SetTitleAndDirtyFlag(true);
     }
 
     public void RemoveTeam()
@@ -89,7 +108,7 @@ public class AppWindowViewModel : ViewModelBase
             Teams.Remove(SelectedTeam);
             Matches.SetValues(_tournament.Matches);
             Standings.SetValues(_tournament.GetStandings());
-            IsDirty = true;
+            SetTitleAndDirtyFlag(true);
         }
     }
 
@@ -109,7 +128,7 @@ public class AppWindowViewModel : ViewModelBase
         SelectedMatch.Status = SelectedMatch.Result.SetResults.Any() ? MatchStatus.Finished : MatchStatus.Open;
         Matches.ResetBindings();
         Standings.SetValues(_tournament.GetStandings());
-        IsDirty = true;
+        SetTitleAndDirtyFlag(true);
     }
 
     public void CopyToClipboard(ExportType exportType)
