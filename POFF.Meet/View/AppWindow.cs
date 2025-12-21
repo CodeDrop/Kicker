@@ -60,6 +60,19 @@ public partial class AppWindow : Form
         return true;
     }
 
+    private void NewMenuItem_Click(object sender, EventArgs e)
+    {
+        if (!CloseTournament()) return;
+
+        using var dialog = new SaveFileDialog();
+        dialog.Filter = "POFF Turnier (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
+        if (dialog.ShowDialog() == DialogResult.OK)
+        {
+            _viewModel.NewTournament(dialog.FileName);
+            Settings.Default.RecentFile = dialog.FileName;
+        }
+    }
+
     private void OpenMenuItem_Click(object sender, EventArgs e)
     {
         if (!CloseTournament()) return;
@@ -68,8 +81,8 @@ public partial class AppWindow : Form
         openFileDialog.Filter = "POFF Turnier (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
-            Settings.Default.RecentFile = openFileDialog.FileName;
             OpenTournamentFile(openFileDialog.FileName);
+            Settings.Default.RecentFile = openFileDialog.FileName;
         }
     }
 

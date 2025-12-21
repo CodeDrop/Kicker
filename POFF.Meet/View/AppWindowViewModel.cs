@@ -3,6 +3,7 @@ using POFF.Meet.Domain.ScoreModes;
 using POFF.Meet.Extensions;
 using POFF.Meet.Infrastructure;
 using POFF.Meet.View.Model;
+using System;
 using System.ComponentModel;
 using System.Linq;
 
@@ -16,6 +17,15 @@ public class AppWindowViewModel : ViewModelBase
     public AppWindowViewModel()
     {
         SetTeamsMatchesAndStandings();
+    }
+
+    public void NewTournament(string filename)
+    {
+        _tournament = new Tournament();
+        _storage = new FileTournamentStorage(filename);
+        _storage.Save(_tournament);
+        SetTeamsMatchesAndStandings();
+        IsDirty = false;
     }
 
     public void Open(string filename)

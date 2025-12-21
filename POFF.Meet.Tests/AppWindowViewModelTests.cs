@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using POFF.Meet.View;
+using System.IO;
 
 namespace POFF.Meet.Tests;
 
@@ -7,11 +8,33 @@ namespace POFF.Meet.Tests;
 class AppWindowViewModelTests
 {
     private AppWindowViewModel _sut;
+    private string _filename;
 
     [OneTimeSetUp]
     public void SetUp()
     {
         _sut = new AppWindowViewModel();
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        if (File.Exists(_filename))
+        {
+            File.Delete(_filename);
+        }
+    }
+
+    [Test]
+    public void New_Tournament_Creates_File()
+    {
+        // arrange
+        _filename = Path.GetTempFileName();
+        // act
+        _sut.NewTournament(_filename);
+        // assert
+        Assert.That(_filename, Does.Exist);
+        Assert.That(new FileInfo(_filename).Length, Is.GreaterThan(0));
     }
 
     [Test]
