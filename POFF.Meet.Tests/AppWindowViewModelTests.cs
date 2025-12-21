@@ -11,7 +11,7 @@ class AppWindowViewModelTests
     [OneTimeSetUp]
     public void SetUp()
     {
-        _sut = AppWindowViewModel.Instance;
+        _sut = new AppWindowViewModel();
     }
 
     [Test]

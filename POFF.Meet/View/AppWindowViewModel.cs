@@ -10,20 +10,20 @@ namespace POFF.Meet.View;
 
 public class AppWindowViewModel : ViewModelBase
 {
-    public static AppWindowViewModel Instance = new();
     private ITournamentStorage _storage = new FileTournamentStorage();
     private Tournament _tournament = Tournament.Empty;
 
-    private AppWindowViewModel()
+    public AppWindowViewModel()
     {
-        OpenTournament();
+        SetTeamsMatchesAndStandings();
     }
 
     public void Open(string filename)
     {
         _storage = new FileTournamentStorage(filename);
         _tournament = _storage.Load();
-        OpenTournament();
+        SetTeamsMatchesAndStandings();
+        IsDirty = false;
     }
 
     public void Save()
@@ -32,14 +32,12 @@ public class AppWindowViewModel : ViewModelBase
         IsDirty = false;
     }
 
-    private void OpenTournament()
+    private void SetTeamsMatchesAndStandings()
     {
         Teams.SetValues(_tournament.Teams);
         Matches.SetValues(_tournament.Matches);
         Standings.SetValues(_tournament.GetStandings());
-        IsDirty = false;
     }
-
 
     public BindingList<Team> Teams { get; } = [];
 

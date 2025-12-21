@@ -23,7 +23,7 @@ public partial class AppWindow : Form
 
         // Add any initialization after the InitializeComponent() call
 
-        _viewModel = AppWindowViewModel.Instance;
+        _viewModel = new AppWindowViewModel();
         _TeamsScreenContent.ViewModel = _viewModel;
         _viewModel.Teams.ListChanged += TeamsChanged;
         _viewModel.Matches.ListChanged += MatchesChanged;
