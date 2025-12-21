@@ -191,7 +191,7 @@ public partial class AppWindow : Form
         {
             e.Value = e.RowIndex + 1;
         }
-        if (((Team)(TeamsDataGridView.Rows[e.RowIndex].DataBoundItem)).Withdrawn)
+        if (((Team)TeamsDataGridView.Rows[e.RowIndex].DataBoundItem).Withdrawn)
         {
             e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Strikeout);
             e.CellStyle.ForeColor = Color.LightGray;

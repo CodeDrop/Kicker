@@ -79,8 +79,8 @@ public class AppWindowViewModel : ViewModelBase
             Teams.Remove(SelectedTeam);
             Matches.SetValues(_tournament.Matches);
             Standings.SetValues(_tournament.GetStandings());
+            IsDirty = true;
         }
-        IsDirty = true;
     }
 
     public void ProcessResult(BindingList<SetResultInput> setResults)
@@ -109,12 +109,12 @@ public class AppWindowViewModel : ViewModelBase
 
     public int TotalMatchCount()
     {
-        return Matches.Count(m => !ContainsWithdrawnTeam(m));
+        return _tournament.Matches.Count(m => !ContainsWithdrawnTeam(m));
     }
 
     public int PlayedMatchCount()
     {
-        return Matches.Count(m => m.Status == MatchStatus.Finished);
+        return _tournament.Matches.Count(m => m.Status == MatchStatus.Finished);
     }
 
     private bool ContainsWithdrawnTeam(Match match)
@@ -124,5 +124,4 @@ public class AppWindowViewModel : ViewModelBase
         var team2 = Teams.Single(t => t.Equals(match.Team2));
         return team1.Withdrawn | team2.Withdrawn;
     }
-
 }
