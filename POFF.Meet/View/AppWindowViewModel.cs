@@ -109,11 +109,20 @@ public class AppWindowViewModel : ViewModelBase
 
     public int TotalMatchCount()
     {
-        return _tournament.TotalMatchCount();
+        return Matches.Count(m => !ContainsWithdrawnTeam(m));
     }
 
     public int PlayedMatchCount()
     {
-        return _tournament.PlayedMatchCount();
+        return Matches.Count(m => m.Status == MatchStatus.Finished);
     }
+
+    private bool ContainsWithdrawnTeam(Match match)
+    {
+        if (!Teams.Any()) return false;
+        var team1 = Teams.Single(t => t.Equals(match.Team1));
+        var team2 = Teams.Single(t => t.Equals(match.Team2));
+        return team1.Withdrawn | team2.Withdrawn;
+    }
+
 }

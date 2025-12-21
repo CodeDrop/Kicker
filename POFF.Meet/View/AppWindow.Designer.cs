@@ -53,6 +53,12 @@ public partial class AppWindow
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppWindow));
             this.AppTabControl = new System.Windows.Forms.TabControl();
             this.TeamsTabPage = new System.Windows.Forms.TabPage();
+            this.TeamsDataGridView = new System.Windows.Forms.DataGridView();
+            this.Nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TeamNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Player1Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Player2Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Zurückgezogen = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MatchesTabPage = new System.Windows.Forms.TabPage();
             this.MatchListView = new System.Windows.Forms.ListView();
             this.MatchStatusColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -89,19 +95,13 @@ public partial class AppWindow
             this.TotalMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.PlayedMatchesToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.PlayedMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.TeamsDataGridView = new System.Windows.Forms.DataGridView();
-            this.Nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TeamNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Player1Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Player2Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Zurückgezogen = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.AppTabControl.SuspendLayout();
             this.TeamsTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TeamsDataGridView)).BeginInit();
             this.MatchesTabPage.SuspendLayout();
             this.ResultsTabPage.SuspendLayout();
             this.AppMainMenuStrip.SuspendLayout();
             this.AppStatusStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TeamsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // AppTabControl
@@ -125,12 +125,79 @@ public partial class AppWindow
             this.TeamsTabPage.TabIndex = 0;
             this.TeamsTabPage.Text = "Mannschaften";
             // 
+            // TeamsDataGridView
+            // 
+            this.TeamsDataGridView.AllowUserToAddRows = false;
+            this.TeamsDataGridView.AllowUserToDeleteRows = false;
+            this.TeamsDataGridView.AllowUserToResizeRows = false;
+            this.TeamsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TeamsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nr,
+            this.TeamNameColumn,
+            this.Player1Column,
+            this.Player2Column,
+            this.Zurückgezogen});
+            this.TeamsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TeamsDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.TeamsDataGridView.MultiSelect = false;
+            this.TeamsDataGridView.Name = "TeamsDataGridView";
+            this.TeamsDataGridView.ReadOnly = true;
+            this.TeamsDataGridView.RowHeadersVisible = false;
+            this.TeamsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.TeamsDataGridView.Size = new System.Drawing.Size(656, 276);
+            this.TeamsDataGridView.TabIndex = 3;
+            this.TeamsDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TeamsDataGridView_CellFormatting);
+            this.TeamsDataGridView.SelectionChanged += new System.EventHandler(this.TeamsDataGridView_SelectionChanged);
+            this.TeamsDataGridView.DoubleClick += new System.EventHandler(this.TeamsDataGridView_DoubleClick);
+            // 
+            // Nr
+            // 
+            this.Nr.HeaderText = "Nr";
+            this.Nr.Name = "Nr";
+            this.Nr.ReadOnly = true;
+            this.Nr.Width = 40;
+            // 
+            // TeamNameColumn
+            // 
+            this.TeamNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TeamNameColumn.DataPropertyName = "Name";
+            this.TeamNameColumn.FillWeight = 50F;
+            this.TeamNameColumn.HeaderText = "Mannschaft";
+            this.TeamNameColumn.Name = "TeamNameColumn";
+            this.TeamNameColumn.ReadOnly = true;
+            // 
+            // Player1Column
+            // 
+            this.Player1Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Player1Column.DataPropertyName = "Player1";
+            this.Player1Column.FillWeight = 25F;
+            this.Player1Column.HeaderText = "Spieler 1";
+            this.Player1Column.Name = "Player1Column";
+            this.Player1Column.ReadOnly = true;
+            // 
+            // Player2Column
+            // 
+            this.Player2Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Player2Column.DataPropertyName = "Player2";
+            this.Player2Column.FillWeight = 25F;
+            this.Player2Column.HeaderText = "Spieler 2";
+            this.Player2Column.Name = "Player2Column";
+            this.Player2Column.ReadOnly = true;
+            // 
+            // Zurückgezogen
+            // 
+            this.Zurückgezogen.DataPropertyName = "Withdrawn";
+            this.Zurückgezogen.HeaderText = "Zurückgezogen";
+            this.Zurückgezogen.Name = "Zurückgezogen";
+            this.Zurückgezogen.ReadOnly = true;
+            this.Zurückgezogen.Visible = false;
+            // 
             // MatchesTabPage
             // 
             this.MatchesTabPage.Controls.Add(this.MatchListView);
-            this.MatchesTabPage.Location = new System.Drawing.Point(4, 22);
+            this.MatchesTabPage.Location = new System.Drawing.Point(4, 27);
             this.MatchesTabPage.Name = "MatchesTabPage";
-            this.MatchesTabPage.Size = new System.Drawing.Size(656, 281);
+            this.MatchesTabPage.Size = new System.Drawing.Size(656, 276);
             this.MatchesTabPage.TabIndex = 1;
             this.MatchesTabPage.Text = "Spiele";
             // 
@@ -149,7 +216,7 @@ public partial class AppWindow
             this.MatchListView.HoverSelection = true;
             this.MatchListView.Location = new System.Drawing.Point(0, 0);
             this.MatchListView.Name = "MatchListView";
-            this.MatchListView.Size = new System.Drawing.Size(656, 281);
+            this.MatchListView.Size = new System.Drawing.Size(656, 276);
             this.MatchListView.SmallImageList = this.MatchImageList;
             this.MatchListView.TabIndex = 2;
             this.MatchListView.UseCompatibleStateImageBehavior = false;
@@ -414,73 +481,6 @@ public partial class AppWindow
             this.PlayedMatchesCountToolStripStatusLabel.Size = new System.Drawing.Size(10, 17);
             this.PlayedMatchesCountToolStripStatusLabel.Text = ".";
             // 
-            // TeamsDataGridView
-            // 
-            this.TeamsDataGridView.AllowUserToAddRows = false;
-            this.TeamsDataGridView.AllowUserToDeleteRows = false;
-            this.TeamsDataGridView.AllowUserToResizeRows = false;
-            this.TeamsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TeamsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nr,
-            this.TeamNameColumn,
-            this.Player1Column,
-            this.Player2Column,
-            this.Zurückgezogen});
-            this.TeamsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TeamsDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.TeamsDataGridView.MultiSelect = false;
-            this.TeamsDataGridView.Name = "TeamsDataGridView";
-            this.TeamsDataGridView.ReadOnly = true;
-            this.TeamsDataGridView.RowHeadersVisible = false;
-            this.TeamsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TeamsDataGridView.Size = new System.Drawing.Size(656, 276);
-            this.TeamsDataGridView.TabIndex = 3;
-            this.TeamsDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TeamsDataGridView_CellFormatting);
-            this.TeamsDataGridView.SelectionChanged += new System.EventHandler(this.TeamsDataGridView_SelectionChanged);
-            this.TeamsDataGridView.DoubleClick += new System.EventHandler(this.TeamsDataGridView_DoubleClick);
-            // 
-            // Nr
-            // 
-            this.Nr.HeaderText = "Nr";
-            this.Nr.Name = "Nr";
-            this.Nr.ReadOnly = true;
-            this.Nr.Width = 40;
-            // 
-            // TeamNameColumn
-            // 
-            this.TeamNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TeamNameColumn.DataPropertyName = "Name";
-            this.TeamNameColumn.FillWeight = 50F;
-            this.TeamNameColumn.HeaderText = "Mannschaft";
-            this.TeamNameColumn.Name = "TeamNameColumn";
-            this.TeamNameColumn.ReadOnly = true;
-            // 
-            // Player1Column
-            // 
-            this.Player1Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Player1Column.DataPropertyName = "Player1";
-            this.Player1Column.FillWeight = 25F;
-            this.Player1Column.HeaderText = "Spieler 1";
-            this.Player1Column.Name = "Player1Column";
-            this.Player1Column.ReadOnly = true;
-            // 
-            // Player2Column
-            // 
-            this.Player2Column.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Player2Column.DataPropertyName = "Player2";
-            this.Player2Column.FillWeight = 25F;
-            this.Player2Column.HeaderText = "Spieler 2";
-            this.Player2Column.Name = "Player2Column";
-            this.Player2Column.ReadOnly = true;
-            // 
-            // Zurückgezogen
-            // 
-            this.Zurückgezogen.DataPropertyName = "Withdrawn";
-            this.Zurückgezogen.HeaderText = "Zurückgezogen";
-            this.Zurückgezogen.Name = "Zurückgezogen";
-            this.Zurückgezogen.ReadOnly = true;
-            this.Zurückgezogen.Visible = false;
-            // 
             // AppWindow
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(8, 24);
@@ -496,13 +496,13 @@ public partial class AppWindow
             this.Load += new System.EventHandler(this.AppWindow_Load);
             this.AppTabControl.ResumeLayout(false);
             this.TeamsTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TeamsDataGridView)).EndInit();
             this.MatchesTabPage.ResumeLayout(false);
             this.ResultsTabPage.ResumeLayout(false);
             this.AppMainMenuStrip.ResumeLayout(false);
             this.AppMainMenuStrip.PerformLayout();
             this.AppStatusStrip.ResumeLayout(false);
             this.AppStatusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TeamsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

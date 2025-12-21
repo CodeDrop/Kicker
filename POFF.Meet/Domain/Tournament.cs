@@ -4,7 +4,6 @@ using POFF.Meet.Domain.ScoreModes;
 using POFF.Meet.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace POFF.Meet.View.Model;
@@ -80,35 +79,12 @@ public class Tournament
 
     public IEnumerable<Standing> GetStandings()
     {
-        return _scoreMode.Evaluate([.. FinishedMatches()]);
-    }
-
-    public IEnumerable<Match> FinishedMatches()
-    {
-        return _matches.Where(m => m.Status == MatchStatus.Finished);
-    }
-
-    public int TotalMatchCount()
-    {
-        return _matches.Count(m => !ContainsWithdrawnTeam(m));
-    }
-
-    public int PlayedMatchCount()
-    {
-        return FinishedMatches().Count();
+        return _scoreMode.Evaluate([.. Matches]);
     }
 
     public void CopyToClipboard(ExportType exportType)
     {
         var export = new HtmlExport(this, exportType);
         Clipboard.SetText(export.ToString());
-    }
-
-    private bool ContainsWithdrawnTeam(Match match)
-    {
-        if (!_teams.Any()) return false;
-        var team1 = _teams.Single(t => t.Equals(match.Team1));
-        var team2 = _teams.Single(t => t.Equals(match.Team2));
-        return team1.Withdrawn | team2.Withdrawn;
     }
 }
