@@ -12,14 +12,18 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
 
         foreach (var match in matches)
         {
-            setsWon = new int[2];
-            points = new int[2];
-            goals = new int[2];
+            if (match.Team1.Withdrawn || match.Team2.Withdrawn) continue;
 
             if (!list.ContainsKey(match.Team1))
                 list.Add(match.Team1, new Standing(match.Team1));
             if (!list.ContainsKey(match.Team2))
                 list.Add(match.Team2, new Standing(match.Team2));
+
+            if (match.Status != MatchStatus.Finished) continue;
+
+            setsWon = new int[2];
+            points = new int[2];
+            goals = new int[2];
 
             foreach (var setResult in match.Result.SetResults)
             {
