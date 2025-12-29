@@ -19,21 +19,23 @@ public class TwigFileInjectionExporter
     public void Export(Tournament tournament)
     {
         var content = File.ReadAllText(_targetFilename);
+
         var ranking = GetRankingHtml(tournament);
-        content = Regex.Replace(content,
-            // capture start tag, inner content (non-greedy, singleline), and end tag
-            "(<-- POFF\\.Meet#Ranking-Start -->)(.*?)(<-- POFF\\.Meet#Ranking-End -->)",
-            m => m.Groups[1].Value + ranking + m.Groups[3].Value,
-            RegexOptions.Singleline, Regex.InfiniteMatchTimeout);
+        content = Inject(content, "POFF\\.Meet#Ranking", ranking);
 
         var games = GetGamesHtml(tournament);
-        content = Regex.Replace(content,
-            // capture start tag, inner content (non-greedy, singleline), and end tag
-            "(<-- POFF\\.Meet#Games-Start -->)(.*?)(<-- POFF\\.Meet#Games-End -->)",
-            m => m.Groups[1].Value + games + m.Groups[3].Value,
-            RegexOptions.Singleline, Regex.InfiniteMatchTimeout);
+        content = Inject(content, "POFF\\.Meet#Games", games);
 
         File.WriteAllText(_targetFilename, content);
+    }
+
+    private static string Inject(string content, string tag, string value)
+    {
+        return Regex.Replace(content,
+            // capture start tag, inner content (non-greedy, singleline), and end tag
+            $"(<-- {tag}-Start -->)(.*?)(<-- {tag}-End -->)",
+            m => m.Groups[1].Value + value + m.Groups[3].Value,
+            RegexOptions.Singleline, Regex.InfiniteMatchTimeout);
     }
 
     private string GetGamesHtml(Tournament tournament)
