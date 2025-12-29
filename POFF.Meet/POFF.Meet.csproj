@@ -125,6 +125,7 @@
     <Compile Include="Infrastructure\ExportType.cs" />
     <Compile Include="Infrastructure\ITournamentStorage.cs" />
     <Compile Include="Infrastructure\TournamentFile.cs" />
+    <Compile Include="Infrastructure\TwigFileInjectionExporter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

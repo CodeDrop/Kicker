@@ -160,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HtmlExportTests.cs" />
+    <Compile Include="Infrastructure\Export_into_twig_file.cs" />
     <Compile Include="PlayModes\RoundRobinPlayModeTests.cs" />
     <Compile Include="Infrastructure\Save_Tournament_File.cs" />
     <Compile Include="Infrastructure\Load_Tournament_from_file.cs" />
@@ -183,6 +184,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Infrastructure\TournamentPage.html.twig">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
