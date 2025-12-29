@@ -44,8 +44,24 @@ class Export_into_twig_file
     }
 
     [Test]
-    [TestCase("<tr><td>1</td><td>Team A</td><td>0</td><td class=\"font-weight-bold\">0</td>")]
-    public void File_contains_ranking(string ranking)
+    [TestCase("<tr><td>1</td><td>Team A</td>")]
+    [TestCase("<tr><td>2</td><td>Team B</td>")]
+    public void File_contains_ranking_HTML(string ranking)
+    {
+        Assert.That(_content, Does.Contain(ranking));
+    }
+
+    [Test]
+    [TestCase("<-- POFF.Meet#Games-Start -->")]
+    [TestCase("<-- POFF.Meet#Games-End -->")]
+    public void File_contains_games_tag(string tag)
+    {
+        Assert.That(_content, Does.Contain(tag));
+    }
+
+    [Test]
+    [TestCase("<tr><td>1</td><td>Team A</td><td>Team B</td><td>3:1</td></tr>")]
+    public void File_contains_game_HTML(string ranking)
     {
         Assert.That(_content, Does.Contain(ranking));
     }

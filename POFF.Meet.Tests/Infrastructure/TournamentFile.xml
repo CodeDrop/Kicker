@@ -25,9 +25,14 @@
         <Name>Team B</Name>
         <Withdrawn>false</Withdrawn>
       </Team2>
-      <Status>Open</Status>
+      <Status>Finished</Status>
       <Result>
-        <SetResults />
+        <SetResults>
+          <SetResult>
+            <Home>3</Home>
+            <Guest>1</Guest>
+          </SetResult>
+        </SetResults>
       </Result>
     </Match>
     <Match>

@@ -25,7 +25,34 @@ public class TwigFileInjectionExporter
             "(<-- POFF\\.Meet#Ranking-Start -->)(.*?)(<-- POFF\\.Meet#Ranking-End -->)",
             m => m.Groups[1].Value + ranking + m.Groups[3].Value,
             RegexOptions.Singleline, Regex.InfiniteMatchTimeout);
+
+        var games = GetGamesHtml(tournament);
+        content = Regex.Replace(content,
+            // capture start tag, inner content (non-greedy, singleline), and end tag
+            "(<-- POFF\\.Meet#Games-Start -->)(.*?)(<-- POFF\\.Meet#Games-End -->)",
+            m => m.Groups[1].Value + games + m.Groups[3].Value,
+            RegexOptions.Singleline, Regex.InfiniteMatchTimeout);
+
         File.WriteAllText(_targetFilename, content);
+    }
+
+    private string GetGamesHtml(Tournament tournament)
+    {
+        var gamesBuilder = new StringBuilder();
+
+        foreach (Domain.Match match in tournament.Matches)
+        {
+            // <tr><td>1</td><td>Spieler 1</td><td>Spieler 2</td><td>3:1</td></tr>
+            gamesBuilder.Append("<tr>");
+            gamesBuilder.Append($"<td>{match.Number}</td>");
+            gamesBuilder.Append($"<td>{match.Team1.Name}</td>");
+            gamesBuilder.Append($"<td>{match.Team2.Name}</td>");
+            gamesBuilder.Append($"<td>{match.Result}</td>");
+            gamesBuilder.Append("</tr>");
+            gamesBuilder.Append(Environment.NewLine);
+        }
+
+       return gamesBuilder.ToString();
     }
 
     private string GetRankingHtml(Tournament tournament)
