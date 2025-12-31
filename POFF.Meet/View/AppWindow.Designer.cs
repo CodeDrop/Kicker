@@ -87,6 +87,9 @@ public partial class AppWindow
             this.PlayedMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.AppSplitContainer = new System.Windows.Forms.SplitContainer();
             this.TeamsRankingSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.GamesGroupBox = new System.Windows.Forms.GroupBox();
+            this.TeamsGroupBox = new System.Windows.Forms.GroupBox();
+            this.RankingGroupBox = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.TeamsDataGridView)).BeginInit();
             this.AppMainMenuStrip.SuspendLayout();
             this.AppStatusStrip.SuspendLayout();
@@ -98,6 +101,9 @@ public partial class AppWindow
             this.TeamsRankingSplitContainer.Panel1.SuspendLayout();
             this.TeamsRankingSplitContainer.Panel2.SuspendLayout();
             this.TeamsRankingSplitContainer.SuspendLayout();
+            this.GamesGroupBox.SuspendLayout();
+            this.TeamsGroupBox.SuspendLayout();
+            this.RankingGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // TeamsDataGridView
@@ -113,13 +119,13 @@ public partial class AppWindow
             this.Player2Column,
             this.Zurückgezogen});
             this.TeamsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TeamsDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.TeamsDataGridView.Location = new System.Drawing.Point(3, 27);
             this.TeamsDataGridView.MultiSelect = false;
             this.TeamsDataGridView.Name = "TeamsDataGridView";
             this.TeamsDataGridView.ReadOnly = true;
             this.TeamsDataGridView.RowHeadersVisible = false;
             this.TeamsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TeamsDataGridView.Size = new System.Drawing.Size(523, 289);
+            this.TeamsDataGridView.Size = new System.Drawing.Size(517, 226);
             this.TeamsDataGridView.TabIndex = 3;
             this.TeamsDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TeamsDataGridView_CellFormatting);
             this.TeamsDataGridView.SelectionChanged += new System.EventHandler(this.TeamsDataGridView_SelectionChanged);
@@ -169,7 +175,7 @@ public partial class AppWindow
             // 
             // MatchListView
             // 
-            this.MatchListView.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.MatchListView.BackColor = System.Drawing.SystemColors.ControlLight;
             this.MatchListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.MatchStatusColumnHeader,
             this.MatchNumberColumnHeader,
@@ -180,9 +186,9 @@ public partial class AppWindow
             this.MatchListView.FullRowSelect = true;
             this.MatchListView.HideSelection = false;
             this.MatchListView.HoverSelection = true;
-            this.MatchListView.Location = new System.Drawing.Point(0, 0);
+            this.MatchListView.Location = new System.Drawing.Point(3, 27);
             this.MatchListView.Name = "MatchListView";
-            this.MatchListView.Size = new System.Drawing.Size(1138, 285);
+            this.MatchListView.Size = new System.Drawing.Size(1132, 223);
             this.MatchListView.SmallImageList = this.MatchImageList;
             this.MatchListView.TabIndex = 2;
             this.MatchListView.UseCompatibleStateImageBehavior = false;
@@ -236,10 +242,10 @@ public partial class AppWindow
             this.StandingListView.FullRowSelect = true;
             this.StandingListView.HideSelection = false;
             this.StandingListView.HoverSelection = true;
-            this.StandingListView.Location = new System.Drawing.Point(0, 0);
+            this.StandingListView.Location = new System.Drawing.Point(3, 27);
             this.StandingListView.MultiSelect = false;
             this.StandingListView.Name = "StandingListView";
-            this.StandingListView.Size = new System.Drawing.Size(611, 289);
+            this.StandingListView.Size = new System.Drawing.Size(605, 226);
             this.StandingListView.TabIndex = 1;
             this.StandingListView.UseCompatibleStateImageBehavior = false;
             this.StandingListView.View = System.Windows.Forms.View.Details;
@@ -410,7 +416,7 @@ public partial class AppWindow
             this.TotalMatchesCountToolStripStatusLabel,
             this.PlayedMatchesToolStripStatusLabel,
             this.PlayedMatchesCountToolStripStatusLabel});
-            this.AppStatusStrip.Location = new System.Drawing.Point(0, 602);
+            this.AppStatusStrip.Location = new System.Drawing.Point(0, 537);
             this.AppStatusStrip.Name = "AppStatusStrip";
             this.AppStatusStrip.Size = new System.Drawing.Size(1138, 22);
             this.AppStatusStrip.TabIndex = 2;
@@ -470,9 +476,9 @@ public partial class AppWindow
             // 
             // AppSplitContainer.Panel2
             // 
-            this.AppSplitContainer.Panel2.Controls.Add(this.MatchListView);
-            this.AppSplitContainer.Size = new System.Drawing.Size(1138, 578);
-            this.AppSplitContainer.SplitterDistance = 289;
+            this.AppSplitContainer.Panel2.Controls.Add(this.GamesGroupBox);
+            this.AppSplitContainer.Size = new System.Drawing.Size(1138, 513);
+            this.AppSplitContainer.SplitterDistance = 256;
             this.AppSplitContainer.TabIndex = 3;
             // 
             // TeamsRankingSplitContainer
@@ -484,19 +490,52 @@ public partial class AppWindow
             // 
             // TeamsRankingSplitContainer.Panel1
             // 
-            this.TeamsRankingSplitContainer.Panel1.Controls.Add(this.TeamsDataGridView);
+            this.TeamsRankingSplitContainer.Panel1.Controls.Add(this.TeamsGroupBox);
             // 
             // TeamsRankingSplitContainer.Panel2
             // 
-            this.TeamsRankingSplitContainer.Panel2.Controls.Add(this.StandingListView);
-            this.TeamsRankingSplitContainer.Size = new System.Drawing.Size(1138, 289);
+            this.TeamsRankingSplitContainer.Panel2.Controls.Add(this.RankingGroupBox);
+            this.TeamsRankingSplitContainer.Size = new System.Drawing.Size(1138, 256);
             this.TeamsRankingSplitContainer.SplitterDistance = 523;
             this.TeamsRankingSplitContainer.TabIndex = 0;
+            // 
+            // GamesGroupBox
+            // 
+            this.GamesGroupBox.Controls.Add(this.MatchListView);
+            this.GamesGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GamesGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.GamesGroupBox.Name = "GamesGroupBox";
+            this.GamesGroupBox.Size = new System.Drawing.Size(1138, 253);
+            this.GamesGroupBox.TabIndex = 3;
+            this.GamesGroupBox.TabStop = false;
+            this.GamesGroupBox.Text = "Games";
+            // 
+            // TeamsGroupBox
+            // 
+            this.TeamsGroupBox.Controls.Add(this.TeamsDataGridView);
+            this.TeamsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TeamsGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.TeamsGroupBox.Name = "TeamsGroupBox";
+            this.TeamsGroupBox.Size = new System.Drawing.Size(523, 256);
+            this.TeamsGroupBox.TabIndex = 4;
+            this.TeamsGroupBox.TabStop = false;
+            this.TeamsGroupBox.Text = "Teams / Players";
+            // 
+            // RankingGroupBox
+            // 
+            this.RankingGroupBox.Controls.Add(this.StandingListView);
+            this.RankingGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RankingGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.RankingGroupBox.Name = "RankingGroupBox";
+            this.RankingGroupBox.Size = new System.Drawing.Size(611, 256);
+            this.RankingGroupBox.TabIndex = 2;
+            this.RankingGroupBox.TabStop = false;
+            this.RankingGroupBox.Text = "Ranking";
             // 
             // AppWindow
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(8, 24);
-            this.ClientSize = new System.Drawing.Size(1138, 624);
+            this.ClientSize = new System.Drawing.Size(1138, 559);
             this.Controls.Add(this.AppSplitContainer);
             this.Controls.Add(this.AppMainMenuStrip);
             this.Controls.Add(this.AppStatusStrip);
@@ -519,6 +558,9 @@ public partial class AppWindow
             this.TeamsRankingSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TeamsRankingSplitContainer)).EndInit();
             this.TeamsRankingSplitContainer.ResumeLayout(false);
+            this.GamesGroupBox.ResumeLayout(false);
+            this.TeamsGroupBox.ResumeLayout(false);
+            this.RankingGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -554,4 +596,7 @@ public partial class AppWindow
     private ToolStripMenuItem ExportMenuItem;
     private SplitContainer AppSplitContainer;
     private SplitContainer TeamsRankingSplitContainer;
+    private GroupBox TeamsGroupBox;
+    private GroupBox RankingGroupBox;
+    private GroupBox GamesGroupBox;
 }
