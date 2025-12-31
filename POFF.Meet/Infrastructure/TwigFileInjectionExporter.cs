@@ -21,10 +21,10 @@ public class TwigFileInjectionExporter
         var content = File.ReadAllText(_targetFilename);
 
         var ranking = GetRankingHtml(tournament);
-        content = Inject(content, "POFF\\.Meet#Ranking", ranking);
+        content = Inject(content, "Meet#Ranking", ranking);
 
         var games = GetGamesHtml(tournament);
-        content = Inject(content, "POFF\\.Meet#Games", games);
+        content = Inject(content, "Meet#Games", games);
 
         File.WriteAllText(_targetFilename, content);
     }

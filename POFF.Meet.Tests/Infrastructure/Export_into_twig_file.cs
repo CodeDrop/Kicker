@@ -36,8 +36,8 @@ class Export_into_twig_file
     }
 
     [Test]
-    [TestCase("<-- POFF.Meet#Ranking-Start -->")]
-    [TestCase("<-- POFF.Meet#Ranking-End -->")]
+    [TestCase("<-- Meet#Ranking-Start -->")]
+    [TestCase("<-- Meet#Ranking-End -->")]
     public void File_contains_ranking_tag(string tag)
     {
         Assert.That(_content, Does.Contain(tag));
@@ -52,8 +52,8 @@ class Export_into_twig_file
     }
 
     [Test]
-    [TestCase("<-- POFF.Meet#Games-Start -->")]
-    [TestCase("<-- POFF.Meet#Games-End -->")]
+    [TestCase("<-- Meet#Games-Start -->")]
+    [TestCase("<-- Meet#Games-End -->")]
     public void File_contains_games_tag(string tag)
     {
         Assert.That(_content, Does.Contain(tag));
