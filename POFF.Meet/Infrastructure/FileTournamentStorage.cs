@@ -1,4 +1,5 @@
 ﻿using POFF.Meet.View.Model;
+using System;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -21,7 +22,9 @@ public class FileTournamentStorage : ITournamentStorage
             var serializer = new XmlSerializer(typeof(TournamentFile));
             var file = (TournamentFile)serializer.Deserialize(reader);
             reader.Close();
-            return new Tournament(file.Teams, file.Matches);
+
+            if (file.Id == Guid.Empty) file.Id = Guid.NewGuid();
+            return new Tournament(file.Id, file.Teams, file.Matches);
         }
         return new Tournament();
     }

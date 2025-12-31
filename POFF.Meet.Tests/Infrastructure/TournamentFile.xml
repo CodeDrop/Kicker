@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TournamentFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Id>2545D2E5-380F-4F42-A46A-2C4ABDCB54AF</Id>
   <Teams>
     <Team>
       <Name>Team A</Name>

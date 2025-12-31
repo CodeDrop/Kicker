@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using POFF.Meet.Infrastructure;
 using POFF.Meet.View.Model;
+using System;
 
 namespace POFF.Meet.Tests.Infrastructure
 {
@@ -14,6 +15,12 @@ namespace POFF.Meet.Tests.Infrastructure
         {
             var storage = new FileTournamentStorage(@"Infrastructure\TournamentFile.xml");
             _sut = storage.Load();
+        }
+
+        [Test]
+        public void File_contains_id()
+        {
+            Assert.That(_sut.Id, Is.Not.EqualTo(Guid.Empty));
         }
 
         [Test]

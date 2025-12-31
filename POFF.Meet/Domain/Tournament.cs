@@ -15,18 +15,26 @@ public class Tournament
     private IPlayMode _playMode = new RoundRobinPlayMode();
     private IScoreMode _scoreMode = new Win3Equal1Loss0ScoreMode();
 
-    public static readonly Tournament Empty = new();
+    public static readonly Tournament Empty = new(Guid.Empty, [], []);
 
-    public Tournament() : this([], [])
+    public Tournament() 
+        : this([], [])
     { }
 
-    public Tournament(IEnumerable<Team> teams, IEnumerable<Match> matches)
+    public Tournament(IEnumerable<Team> teams, IEnumerable<Match> matches) 
+        : this(Guid.NewGuid(), [], [])
+    { }
+
+    public Tournament(Guid id, IEnumerable<Team> teams, IEnumerable<Match> matches)
     {
+        Id = id;
         _teams.AddRange(teams);
         _matches.AddRange(matches);
         _playMode = new RoundRobinPlayMode();
         _scoreMode = new Win3Equal1Loss0ScoreMode();
     }
+
+    public Guid Id { get; }
 
     public IEnumerable<Team> Teams => _teams;
 
@@ -34,9 +42,9 @@ public class Tournament
 
     public IPlayMode PlayMode
     {
-        set 
-        { 
-            _playMode = value ?? throw new ArgumentNullException(nameof(PlayMode)); 
+        set
+        {
+            _playMode = value ?? throw new ArgumentNullException(nameof(PlayMode));
             GenerateMatches();
         }
     }
