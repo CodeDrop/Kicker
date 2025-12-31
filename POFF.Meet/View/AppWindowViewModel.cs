@@ -3,6 +3,7 @@ using POFF.Meet.Domain.ScoreModes;
 using POFF.Meet.Extensions;
 using POFF.Meet.Infrastructure;
 using POFF.Meet.View.Model;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -67,6 +68,8 @@ public class AppWindowViewModel : ViewModelBase
     public Team SelectedTeam { get; set; }
 
     public Match SelectedMatch { get; set; }
+
+    public IEnumerable<Match> SelectedMatches { get; set; }
 
     public string MatchFilter
     {
@@ -152,5 +155,19 @@ public class AppWindowViewModel : ViewModelBase
         var team1 = Teams.Single(t => t.Equals(match.Team1));
         var team2 = Teams.Single(t => t.Equals(match.Team2));
         return team1.Withdrawn | team2.Withdrawn;
+    }
+
+    internal void ExportInto(string fileName)
+    {
+        var exporter = new TwigFileInjectionExporter(fileName);
+        if (SelectedMatches is null || !SelectedMatches.Any())
+        {
+            exporter.Export(_tournament);
+        }
+        else
+        {
+            var matchNumbers = SelectedMatches?.Select(m => m.Number) ?? [];
+            exporter.Export(_tournament, matchNumbers);
+        }
     }
 }

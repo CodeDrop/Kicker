@@ -23,14 +23,14 @@ public class TwigFileInjectionExporter
         Export(tournament, tournament.Matches.Select(m => m.Number));
     }
 
-    public void Export(Tournament tournament, IEnumerable<int> gameNumbers)
+    public void Export(Tournament tournament, IEnumerable<int> matchNumbers)
     {
         var content = File.ReadAllText(_targetFilename);
 
         var ranking = GetRankingHtml(tournament);
         content = Inject(content, $"Meet#{tournament.Id}#Ranking", ranking);
 
-        var games = GetGamesHtml(tournament, gameNumbers);
+        var games = GetGamesHtml(tournament, matchNumbers);
         content = Inject(content, $"Meet#{tournament.Id}#Games", games);
 
         File.WriteAllText(_targetFilename, content);

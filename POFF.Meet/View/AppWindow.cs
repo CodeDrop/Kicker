@@ -173,6 +173,11 @@ public partial class AppWindow : Form
         }
     }
 
+    private void MatchListView_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        _viewModel.SelectedMatches = MatchListView.SelectedItems.Cast<MatchListViewItem>().Select(item => item.Match);
+    }
+
     private void MatchListView_DoubleClick(object sender, EventArgs e)
     {
         if (!(MatchListView.SelectedItems.Count == 1))
@@ -230,5 +235,16 @@ public partial class AppWindow : Form
     {
         using var dialog = new TeamDialog(new TeamInfo(team));
         dialog.ShowDialog(this);
+    }
+
+    private void ExportMenuItem_Click(object sender, EventArgs e)
+    {
+        using var dialog = new SaveFileDialog { OverwritePrompt = false };
+        dialog.Title = "Export into TWIG file";
+        dialog.Filter = "TWIG template (*.html.twig)|*.html.twig";
+        if (dialog.ShowDialog() == DialogResult.OK)
+        {
+            _viewModel.ExportInto(dialog.FileName);
+        }
     }
 }

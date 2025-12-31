@@ -77,6 +77,7 @@ public partial class AppWindow
             this.MatchesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AppMainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.TournamentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.NewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -95,7 +96,7 @@ public partial class AppWindow
             this.TotalMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.PlayedMatchesToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.PlayedMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.NewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppTabControl.SuspendLayout();
             this.TeamsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TeamsDataGridView)).BeginInit();
@@ -196,9 +197,9 @@ public partial class AppWindow
             // MatchesTabPage
             // 
             this.MatchesTabPage.Controls.Add(this.MatchListView);
-            this.MatchesTabPage.Location = new System.Drawing.Point(4, 22);
+            this.MatchesTabPage.Location = new System.Drawing.Point(4, 27);
             this.MatchesTabPage.Name = "MatchesTabPage";
-            this.MatchesTabPage.Size = new System.Drawing.Size(656, 281);
+            this.MatchesTabPage.Size = new System.Drawing.Size(656, 276);
             this.MatchesTabPage.TabIndex = 1;
             this.MatchesTabPage.Text = "Spiele";
             // 
@@ -217,11 +218,12 @@ public partial class AppWindow
             this.MatchListView.HoverSelection = true;
             this.MatchListView.Location = new System.Drawing.Point(0, 0);
             this.MatchListView.Name = "MatchListView";
-            this.MatchListView.Size = new System.Drawing.Size(656, 281);
+            this.MatchListView.Size = new System.Drawing.Size(656, 276);
             this.MatchListView.SmallImageList = this.MatchImageList;
             this.MatchListView.TabIndex = 2;
             this.MatchListView.UseCompatibleStateImageBehavior = false;
             this.MatchListView.View = System.Windows.Forms.View.Details;
+            this.MatchListView.SelectedIndexChanged += new System.EventHandler(this.MatchListView_SelectedIndexChanged);
             this.MatchListView.DoubleClick += new System.EventHandler(this.MatchListView_DoubleClick);
             // 
             // MatchStatusColumnHeader
@@ -336,6 +338,7 @@ public partial class AppWindow
             this.NewMenuItem,
             this.OpenMenuItem,
             this.SaveMenuItem,
+            this.ExportMenuItem,
             this.toolStripMenuItem1,
             this.AddTeamMenuItem,
             this.RemoveTeamMenuItem,
@@ -344,6 +347,14 @@ public partial class AppWindow
             this.TournamentToolStripMenuItem.Name = "TournamentToolStripMenuItem";
             this.TournamentToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.TournamentToolStripMenuItem.Text = "&Turnier";
+            // 
+            // NewMenuItem
+            // 
+            this.NewMenuItem.Name = "NewMenuItem";
+            this.NewMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.NewMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.NewMenuItem.Text = "Neu";
+            this.NewMenuItem.Click += new System.EventHandler(this.NewMenuItem_Click);
             // 
             // OpenMenuItem
             // 
@@ -483,13 +494,13 @@ public partial class AppWindow
             this.PlayedMatchesCountToolStripStatusLabel.Size = new System.Drawing.Size(10, 17);
             this.PlayedMatchesCountToolStripStatusLabel.Text = ".";
             // 
-            // NewMenuItem
+            // ExportMenuItem
             // 
-            this.NewMenuItem.Name = "NewMenuItem";
-            this.NewMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.NewMenuItem.Size = new System.Drawing.Size(239, 22);
-            this.NewMenuItem.Text = "Neu";
-            this.NewMenuItem.Click += new System.EventHandler(this.NewMenuItem_Click);
+            this.ExportMenuItem.Name = "ExportMenuItem";
+            this.ExportMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.ExportMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.ExportMenuItem.Text = "Exportieren...";
+            this.ExportMenuItem.Click += new System.EventHandler(this.ExportMenuItem_Click);
             // 
             // AppWindow
             // 
@@ -545,4 +556,5 @@ public partial class AppWindow
     internal DataGridViewTextBoxColumn Player2Column;
     internal DataGridViewCheckBoxColumn Zurückgezogen;
     private ToolStripMenuItem NewMenuItem;
+    private ToolStripMenuItem ExportMenuItem;
 }
