@@ -119,13 +119,13 @@ public partial class AppWindow
             this.Player2Column,
             this.Zurückgezogen});
             this.TeamsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TeamsDataGridView.Location = new System.Drawing.Point(3, 27);
+            this.TeamsDataGridView.Location = new System.Drawing.Point(3, 23);
             this.TeamsDataGridView.MultiSelect = false;
             this.TeamsDataGridView.Name = "TeamsDataGridView";
             this.TeamsDataGridView.ReadOnly = true;
             this.TeamsDataGridView.RowHeadersVisible = false;
             this.TeamsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TeamsDataGridView.Size = new System.Drawing.Size(517, 226);
+            this.TeamsDataGridView.Size = new System.Drawing.Size(517, 230);
             this.TeamsDataGridView.TabIndex = 3;
             this.TeamsDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TeamsDataGridView_CellFormatting);
             this.TeamsDataGridView.SelectionChanged += new System.EventHandler(this.TeamsDataGridView_SelectionChanged);
@@ -186,9 +186,9 @@ public partial class AppWindow
             this.MatchListView.FullRowSelect = true;
             this.MatchListView.HideSelection = false;
             this.MatchListView.HoverSelection = true;
-            this.MatchListView.Location = new System.Drawing.Point(3, 27);
+            this.MatchListView.Location = new System.Drawing.Point(3, 23);
             this.MatchListView.Name = "MatchListView";
-            this.MatchListView.Size = new System.Drawing.Size(1132, 223);
+            this.MatchListView.Size = new System.Drawing.Size(1132, 227);
             this.MatchListView.SmallImageList = this.MatchImageList;
             this.MatchListView.TabIndex = 2;
             this.MatchListView.UseCompatibleStateImageBehavior = false;
@@ -207,12 +207,12 @@ public partial class AppWindow
             // 
             // Team1ColumnHeader
             // 
-            this.Team1ColumnHeader.Text = "Mannschaft 1";
+            this.Team1ColumnHeader.Text = "Heim";
             this.Team1ColumnHeader.Width = 200;
             // 
             // Team2ColumnHeader
             // 
-            this.Team2ColumnHeader.Text = "Mannschaft 2";
+            this.Team2ColumnHeader.Text = "Gast";
             this.Team2ColumnHeader.Width = 200;
             // 
             // ResultColumnHeader
@@ -234,18 +234,18 @@ public partial class AppWindow
             this.StandingListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.PlaceColumnHeader,
             this.TeamTableColumnHeader,
+            this.MatchesColumnHeader,
             this.PointsColumnHeader,
             this.WonSetsColumnHeader,
-            this.GoalsColumnHeader,
-            this.MatchesColumnHeader});
+            this.GoalsColumnHeader});
             this.StandingListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.StandingListView.FullRowSelect = true;
             this.StandingListView.HideSelection = false;
             this.StandingListView.HoverSelection = true;
-            this.StandingListView.Location = new System.Drawing.Point(3, 27);
+            this.StandingListView.Location = new System.Drawing.Point(3, 23);
             this.StandingListView.MultiSelect = false;
             this.StandingListView.Name = "StandingListView";
-            this.StandingListView.Size = new System.Drawing.Size(605, 226);
+            this.StandingListView.Size = new System.Drawing.Size(605, 230);
             this.StandingListView.TabIndex = 1;
             this.StandingListView.UseCompatibleStateImageBehavior = false;
             this.StandingListView.View = System.Windows.Forms.View.Details;
@@ -534,12 +534,12 @@ public partial class AppWindow
             // 
             // AppWindow
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(8, 24);
+            this.AutoScaleBaseSize = new System.Drawing.Size(7, 20);
             this.ClientSize = new System.Drawing.Size(1138, 559);
             this.Controls.Add(this.AppSplitContainer);
             this.Controls.Add(this.AppMainMenuStrip);
             this.Controls.Add(this.AppStatusStrip);
-            this.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Lucida Sans Unicode", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AppWindow";
             this.Text = "POFF Meet";
