@@ -21,10 +21,10 @@ public class TwigFileInjectionExporter
         var content = File.ReadAllText(_targetFilename);
 
         var ranking = GetRankingHtml(tournament);
-        content = Inject(content, "Meet#Ranking", ranking);
+        content = Inject(content, $"Meet#{tournament.Id}#Ranking", ranking);
 
         var games = GetGamesHtml(tournament);
-        content = Inject(content, "Meet#Games", games);
+        content = Inject(content, $"Meet#{tournament.Id}#Games", games);
 
         File.WriteAllText(_targetFilename, content);
     }
@@ -35,7 +35,7 @@ public class TwigFileInjectionExporter
             // capture start tag, inner content (non-greedy, singleline), and end tag
             $"(<-- {tag}-Start -->)(.*?)(<-- {tag}-End -->)",
             m => m.Groups[1].Value + value + m.Groups[3].Value,
-            RegexOptions.Singleline, Regex.InfiniteMatchTimeout);
+            RegexOptions.Singleline | RegexOptions.IgnoreCase, Regex.InfiniteMatchTimeout);
     }
 
     private string GetGamesHtml(Tournament tournament)
