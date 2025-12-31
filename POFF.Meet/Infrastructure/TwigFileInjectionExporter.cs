@@ -1,7 +1,9 @@
 ﻿using POFF.Meet.Domain.ScoreModes;
 using POFF.Meet.View.Model;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -18,12 +20,17 @@ public class TwigFileInjectionExporter
 
     public void Export(Tournament tournament)
     {
+        Export(tournament, tournament.Matches.Select(m => m.Number));
+    }
+
+    public void Export(Tournament tournament, IEnumerable<int> gameNumbers)
+    {
         var content = File.ReadAllText(_targetFilename);
 
         var ranking = GetRankingHtml(tournament);
         content = Inject(content, $"Meet#{tournament.Id}#Ranking", ranking);
 
-        var games = GetGamesHtml(tournament);
+        var games = GetGamesHtml(tournament, gameNumbers);
         content = Inject(content, $"Meet#{tournament.Id}#Games", games);
 
         File.WriteAllText(_targetFilename, content);
@@ -38,13 +45,16 @@ public class TwigFileInjectionExporter
             RegexOptions.Singleline | RegexOptions.IgnoreCase, Regex.InfiniteMatchTimeout);
     }
 
-    private string GetGamesHtml(Tournament tournament)
+    private string GetGamesHtml(Tournament tournament, IEnumerable<int> gameNumbers)
     {
         var gamesBuilder = new StringBuilder();
 
         foreach (Domain.Match match in tournament.Matches)
         {
+            if (!gameNumbers.Contains(match.Number)) continue;
+
             // <tr><td>1</td><td>Spieler 1</td><td>Spieler 2</td><td>3:1</td></tr>
+            gamesBuilder.Append(Environment.NewLine);
             gamesBuilder.Append("<tr>");
             gamesBuilder.Append($"<td>{match.Number}</td>");
             gamesBuilder.Append($"<td>{match.Team1.Name}</td>");
@@ -54,7 +64,7 @@ public class TwigFileInjectionExporter
             gamesBuilder.Append(Environment.NewLine);
         }
 
-       return gamesBuilder.ToString();
+        return gamesBuilder.ToString();
     }
 
     private string GetRankingHtml(Tournament tournament)
@@ -64,6 +74,7 @@ public class TwigFileInjectionExporter
         foreach (Standing standing in tournament.GetStandings())
         {
             // <tr><td>1.</td><td>Spieler 1</td><td>3</td><td class="font-weight-bold">7</td></td><td>10:2</td></tr>
+            standingsBuilder.Append(Environment.NewLine);
             standingsBuilder.Append("<tr>");
             standingsBuilder.Append($"<td>{standing.Place}</td>");
             standingsBuilder.Append($"<td>{standing.Team.Name}</td>");

@@ -22,7 +22,7 @@ class Export_into_twig_file
         var storage = new FileTournamentStorage(@"Infrastructure\TournamentFile.xml");
         _tournament = storage.Load();
         _sut = new TwigFileInjectionExporter(_targetFile);
-        _sut.Export(_tournament);
+        _sut.Export(_tournament, [1]);
         _content = File.ReadAllText(_targetFile);
     }
 
@@ -60,10 +60,17 @@ class Export_into_twig_file
     }
 
     [Test]
-    [TestCase("<tr><td>1</td><td>Team A</td><td>Team B</td><td>3:1</td></tr>")]
+    [TestCase("<td>1</td><td>Team A</td><td>Team B</td><td>3:0</td>")]
     public void File_contains_game_HTML(string ranking)
     {
         Assert.That(_content, Does.Contain(ranking));
+    }
+
+    [Test]
+    [TestCase("<td>2</td><td>Team B</td><td>Team C</td>")]
+    public void File_does_not_contains_game_HTML(string ranking)
+    {
+        Assert.That(_content, Does.Not.Contain(ranking));
     }
 
     [Test]

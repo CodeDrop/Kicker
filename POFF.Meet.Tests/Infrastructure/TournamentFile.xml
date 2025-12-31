@@ -31,7 +31,7 @@
         <SetResults>
           <SetResult>
             <Home>3</Home>
-            <Guest>1</Guest>
+            <Guest>0</Guest>
           </SetResult>
         </SetResults>
       </Result>
@@ -46,9 +46,14 @@
         <Name>Team C</Name>
         <Withdrawn>false</Withdrawn>
       </Team2>
-      <Status>Open</Status>
+      <Status>Finished</Status>
       <Result>
-        <SetResults />
+        <SetResults>
+          <SetResult>
+            <Home>3</Home>
+            <Guest>2</Guest>
+          </SetResult>
+        </SetResults>
       </Result>
     </Match>
     <Match>
