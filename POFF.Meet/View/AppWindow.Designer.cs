@@ -24,14 +24,6 @@ public partial class AppWindow
 
     // Required by the Windows Form Designer
     private System.ComponentModel.IContainer components;
-
-    // NOTE: The following procedure is required by the Windows Form Designer
-    // It can be modified using the Windows Form Designer.  
-    // Do not modify it using the code editor.
-    private TabPage TeamsTabPage;
-    private TabPage MatchesTabPage;
-    private TabPage ResultsTabPage;
-    private TabControl AppTabControl;
     private ListView MatchListView;
     private ColumnHeader Team1ColumnHeader;
     private ColumnHeader Team2ColumnHeader;
@@ -51,15 +43,12 @@ public partial class AppWindow
     {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppWindow));
-            this.AppTabControl = new System.Windows.Forms.TabControl();
-            this.TeamsTabPage = new System.Windows.Forms.TabPage();
             this.TeamsDataGridView = new System.Windows.Forms.DataGridView();
             this.Nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TeamNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Player1Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Player2Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Zurückgezogen = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.MatchesTabPage = new System.Windows.Forms.TabPage();
             this.MatchListView = new System.Windows.Forms.ListView();
             this.MatchStatusColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MatchNumberColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,7 +56,6 @@ public partial class AppWindow
             this.Team2ColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ResultColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MatchImageList = new System.Windows.Forms.ImageList(this.components);
-            this.ResultsTabPage = new System.Windows.Forms.TabPage();
             this.StandingListView = new System.Windows.Forms.ListView();
             this.PlaceColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeamTableColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -97,35 +85,20 @@ public partial class AppWindow
             this.TotalMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.PlayedMatchesToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.PlayedMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.AppTabControl.SuspendLayout();
-            this.TeamsTabPage.SuspendLayout();
+            this.AppSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.TeamsRankingSplitContainer = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.TeamsDataGridView)).BeginInit();
-            this.MatchesTabPage.SuspendLayout();
-            this.ResultsTabPage.SuspendLayout();
             this.AppMainMenuStrip.SuspendLayout();
             this.AppStatusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AppSplitContainer)).BeginInit();
+            this.AppSplitContainer.Panel1.SuspendLayout();
+            this.AppSplitContainer.Panel2.SuspendLayout();
+            this.AppSplitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TeamsRankingSplitContainer)).BeginInit();
+            this.TeamsRankingSplitContainer.Panel1.SuspendLayout();
+            this.TeamsRankingSplitContainer.Panel2.SuspendLayout();
+            this.TeamsRankingSplitContainer.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // AppTabControl
-            // 
-            this.AppTabControl.Controls.Add(this.TeamsTabPage);
-            this.AppTabControl.Controls.Add(this.MatchesTabPage);
-            this.AppTabControl.Controls.Add(this.ResultsTabPage);
-            this.AppTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AppTabControl.Location = new System.Drawing.Point(0, 24);
-            this.AppTabControl.Name = "AppTabControl";
-            this.AppTabControl.SelectedIndex = 0;
-            this.AppTabControl.Size = new System.Drawing.Size(795, 564);
-            this.AppTabControl.TabIndex = 0;
-            // 
-            // TeamsTabPage
-            // 
-            this.TeamsTabPage.Controls.Add(this.TeamsDataGridView);
-            this.TeamsTabPage.Location = new System.Drawing.Point(4, 27);
-            this.TeamsTabPage.Name = "TeamsTabPage";
-            this.TeamsTabPage.Size = new System.Drawing.Size(787, 533);
-            this.TeamsTabPage.TabIndex = 0;
-            this.TeamsTabPage.Text = "Mannschaften";
             // 
             // TeamsDataGridView
             // 
@@ -146,7 +119,7 @@ public partial class AppWindow
             this.TeamsDataGridView.ReadOnly = true;
             this.TeamsDataGridView.RowHeadersVisible = false;
             this.TeamsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TeamsDataGridView.Size = new System.Drawing.Size(787, 533);
+            this.TeamsDataGridView.Size = new System.Drawing.Size(523, 289);
             this.TeamsDataGridView.TabIndex = 3;
             this.TeamsDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TeamsDataGridView_CellFormatting);
             this.TeamsDataGridView.SelectionChanged += new System.EventHandler(this.TeamsDataGridView_SelectionChanged);
@@ -194,15 +167,6 @@ public partial class AppWindow
             this.Zurückgezogen.ReadOnly = true;
             this.Zurückgezogen.Visible = false;
             // 
-            // MatchesTabPage
-            // 
-            this.MatchesTabPage.Controls.Add(this.MatchListView);
-            this.MatchesTabPage.Location = new System.Drawing.Point(4, 22);
-            this.MatchesTabPage.Name = "MatchesTabPage";
-            this.MatchesTabPage.Size = new System.Drawing.Size(656, 281);
-            this.MatchesTabPage.TabIndex = 1;
-            this.MatchesTabPage.Text = "Spiele";
-            // 
             // MatchListView
             // 
             this.MatchListView.BackColor = System.Drawing.Color.LightSteelBlue;
@@ -218,7 +182,7 @@ public partial class AppWindow
             this.MatchListView.HoverSelection = true;
             this.MatchListView.Location = new System.Drawing.Point(0, 0);
             this.MatchListView.Name = "MatchListView";
-            this.MatchListView.Size = new System.Drawing.Size(656, 281);
+            this.MatchListView.Size = new System.Drawing.Size(1138, 285);
             this.MatchListView.SmallImageList = this.MatchImageList;
             this.MatchListView.TabIndex = 2;
             this.MatchListView.UseCompatibleStateImageBehavior = false;
@@ -258,15 +222,6 @@ public partial class AppWindow
             this.MatchImageList.Images.SetKeyName(1, "");
             this.MatchImageList.Images.SetKeyName(2, "");
             // 
-            // ResultsTabPage
-            // 
-            this.ResultsTabPage.Controls.Add(this.StandingListView);
-            this.ResultsTabPage.Location = new System.Drawing.Point(4, 22);
-            this.ResultsTabPage.Name = "ResultsTabPage";
-            this.ResultsTabPage.Size = new System.Drawing.Size(656, 281);
-            this.ResultsTabPage.TabIndex = 2;
-            this.ResultsTabPage.Text = "Tabelle";
-            // 
             // StandingListView
             // 
             this.StandingListView.BackColor = System.Drawing.Color.LightSteelBlue;
@@ -284,7 +239,7 @@ public partial class AppWindow
             this.StandingListView.Location = new System.Drawing.Point(0, 0);
             this.StandingListView.MultiSelect = false;
             this.StandingListView.Name = "StandingListView";
-            this.StandingListView.Size = new System.Drawing.Size(656, 281);
+            this.StandingListView.Size = new System.Drawing.Size(611, 289);
             this.StandingListView.TabIndex = 1;
             this.StandingListView.UseCompatibleStateImageBehavior = false;
             this.StandingListView.View = System.Windows.Forms.View.Details;
@@ -328,7 +283,7 @@ public partial class AppWindow
             this.ClipboardMenuItem});
             this.AppMainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.AppMainMenuStrip.Name = "AppMainMenuStrip";
-            this.AppMainMenuStrip.Size = new System.Drawing.Size(795, 24);
+            this.AppMainMenuStrip.Size = new System.Drawing.Size(1138, 24);
             this.AppMainMenuStrip.TabIndex = 1;
             this.AppMainMenuStrip.Text = "MenuStrip1";
             // 
@@ -455,9 +410,9 @@ public partial class AppWindow
             this.TotalMatchesCountToolStripStatusLabel,
             this.PlayedMatchesToolStripStatusLabel,
             this.PlayedMatchesCountToolStripStatusLabel});
-            this.AppStatusStrip.Location = new System.Drawing.Point(0, 588);
+            this.AppStatusStrip.Location = new System.Drawing.Point(0, 602);
             this.AppStatusStrip.Name = "AppStatusStrip";
-            this.AppStatusStrip.Size = new System.Drawing.Size(795, 22);
+            this.AppStatusStrip.Size = new System.Drawing.Size(1138, 22);
             this.AppStatusStrip.TabIndex = 2;
             this.AppStatusStrip.Text = "StatusStrip1";
             // 
@@ -474,7 +429,7 @@ public partial class AppWindow
             // SpacerStripStatusLabel
             // 
             this.SpacerStripStatusLabel.Name = "SpacerStripStatusLabel";
-            this.SpacerStripStatusLabel.Size = new System.Drawing.Size(581, 17);
+            this.SpacerStripStatusLabel.Size = new System.Drawing.Size(924, 17);
             this.SpacerStripStatusLabel.Spring = true;
             // 
             // TotalMatchesToolStripStatusLabel
@@ -502,11 +457,47 @@ public partial class AppWindow
             this.PlayedMatchesCountToolStripStatusLabel.Size = new System.Drawing.Size(10, 17);
             this.PlayedMatchesCountToolStripStatusLabel.Text = ".";
             // 
+            // AppSplitContainer
+            // 
+            this.AppSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AppSplitContainer.Location = new System.Drawing.Point(0, 24);
+            this.AppSplitContainer.Name = "AppSplitContainer";
+            this.AppSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // AppSplitContainer.Panel1
+            // 
+            this.AppSplitContainer.Panel1.Controls.Add(this.TeamsRankingSplitContainer);
+            // 
+            // AppSplitContainer.Panel2
+            // 
+            this.AppSplitContainer.Panel2.Controls.Add(this.MatchListView);
+            this.AppSplitContainer.Size = new System.Drawing.Size(1138, 578);
+            this.AppSplitContainer.SplitterDistance = 289;
+            this.AppSplitContainer.TabIndex = 3;
+            // 
+            // TeamsRankingSplitContainer
+            // 
+            this.TeamsRankingSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TeamsRankingSplitContainer.IsSplitterFixed = true;
+            this.TeamsRankingSplitContainer.Location = new System.Drawing.Point(0, 0);
+            this.TeamsRankingSplitContainer.Name = "TeamsRankingSplitContainer";
+            // 
+            // TeamsRankingSplitContainer.Panel1
+            // 
+            this.TeamsRankingSplitContainer.Panel1.Controls.Add(this.TeamsDataGridView);
+            // 
+            // TeamsRankingSplitContainer.Panel2
+            // 
+            this.TeamsRankingSplitContainer.Panel2.Controls.Add(this.StandingListView);
+            this.TeamsRankingSplitContainer.Size = new System.Drawing.Size(1138, 289);
+            this.TeamsRankingSplitContainer.SplitterDistance = 523;
+            this.TeamsRankingSplitContainer.TabIndex = 0;
+            // 
             // AppWindow
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(8, 24);
-            this.ClientSize = new System.Drawing.Size(795, 610);
-            this.Controls.Add(this.AppTabControl);
+            this.ClientSize = new System.Drawing.Size(1138, 624);
+            this.Controls.Add(this.AppSplitContainer);
             this.Controls.Add(this.AppMainMenuStrip);
             this.Controls.Add(this.AppStatusStrip);
             this.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -515,15 +506,19 @@ public partial class AppWindow
             this.Text = "POFF Meet";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppWindow_FormClosing);
             this.Load += new System.EventHandler(this.AppWindow_Load);
-            this.AppTabControl.ResumeLayout(false);
-            this.TeamsTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TeamsDataGridView)).EndInit();
-            this.MatchesTabPage.ResumeLayout(false);
-            this.ResultsTabPage.ResumeLayout(false);
             this.AppMainMenuStrip.ResumeLayout(false);
             this.AppMainMenuStrip.PerformLayout();
             this.AppStatusStrip.ResumeLayout(false);
             this.AppStatusStrip.PerformLayout();
+            this.AppSplitContainer.Panel1.ResumeLayout(false);
+            this.AppSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.AppSplitContainer)).EndInit();
+            this.AppSplitContainer.ResumeLayout(false);
+            this.TeamsRankingSplitContainer.Panel1.ResumeLayout(false);
+            this.TeamsRankingSplitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TeamsRankingSplitContainer)).EndInit();
+            this.TeamsRankingSplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -557,4 +552,6 @@ public partial class AppWindow
     internal DataGridViewCheckBoxColumn Zurückgezogen;
     private ToolStripMenuItem NewMenuItem;
     private ToolStripMenuItem ExportMenuItem;
+    private SplitContainer AppSplitContainer;
+    private SplitContainer TeamsRankingSplitContainer;
 }
