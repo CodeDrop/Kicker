@@ -80,6 +80,7 @@ public partial class AppWindow
             this.NewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.AddTeamMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveTeamMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,7 +97,6 @@ public partial class AppWindow
             this.TotalMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.PlayedMatchesToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.PlayedMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ExportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppTabControl.SuspendLayout();
             this.TeamsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TeamsDataGridView)).BeginInit();
@@ -115,7 +115,7 @@ public partial class AppWindow
             this.AppTabControl.Location = new System.Drawing.Point(0, 24);
             this.AppTabControl.Name = "AppTabControl";
             this.AppTabControl.SelectedIndex = 0;
-            this.AppTabControl.Size = new System.Drawing.Size(664, 307);
+            this.AppTabControl.Size = new System.Drawing.Size(795, 564);
             this.AppTabControl.TabIndex = 0;
             // 
             // TeamsTabPage
@@ -123,7 +123,7 @@ public partial class AppWindow
             this.TeamsTabPage.Controls.Add(this.TeamsDataGridView);
             this.TeamsTabPage.Location = new System.Drawing.Point(4, 27);
             this.TeamsTabPage.Name = "TeamsTabPage";
-            this.TeamsTabPage.Size = new System.Drawing.Size(656, 276);
+            this.TeamsTabPage.Size = new System.Drawing.Size(787, 533);
             this.TeamsTabPage.TabIndex = 0;
             this.TeamsTabPage.Text = "Mannschaften";
             // 
@@ -146,7 +146,7 @@ public partial class AppWindow
             this.TeamsDataGridView.ReadOnly = true;
             this.TeamsDataGridView.RowHeadersVisible = false;
             this.TeamsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.TeamsDataGridView.Size = new System.Drawing.Size(656, 276);
+            this.TeamsDataGridView.Size = new System.Drawing.Size(787, 533);
             this.TeamsDataGridView.TabIndex = 3;
             this.TeamsDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.TeamsDataGridView_CellFormatting);
             this.TeamsDataGridView.SelectionChanged += new System.EventHandler(this.TeamsDataGridView_SelectionChanged);
@@ -197,9 +197,9 @@ public partial class AppWindow
             // MatchesTabPage
             // 
             this.MatchesTabPage.Controls.Add(this.MatchListView);
-            this.MatchesTabPage.Location = new System.Drawing.Point(4, 27);
+            this.MatchesTabPage.Location = new System.Drawing.Point(4, 22);
             this.MatchesTabPage.Name = "MatchesTabPage";
-            this.MatchesTabPage.Size = new System.Drawing.Size(656, 276);
+            this.MatchesTabPage.Size = new System.Drawing.Size(656, 281);
             this.MatchesTabPage.TabIndex = 1;
             this.MatchesTabPage.Text = "Spiele";
             // 
@@ -218,7 +218,7 @@ public partial class AppWindow
             this.MatchListView.HoverSelection = true;
             this.MatchListView.Location = new System.Drawing.Point(0, 0);
             this.MatchListView.Name = "MatchListView";
-            this.MatchListView.Size = new System.Drawing.Size(656, 276);
+            this.MatchListView.Size = new System.Drawing.Size(656, 281);
             this.MatchListView.SmallImageList = this.MatchImageList;
             this.MatchListView.TabIndex = 2;
             this.MatchListView.UseCompatibleStateImageBehavior = false;
@@ -328,7 +328,7 @@ public partial class AppWindow
             this.ClipboardMenuItem});
             this.AppMainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.AppMainMenuStrip.Name = "AppMainMenuStrip";
-            this.AppMainMenuStrip.Size = new System.Drawing.Size(664, 24);
+            this.AppMainMenuStrip.Size = new System.Drawing.Size(795, 24);
             this.AppMainMenuStrip.TabIndex = 1;
             this.AppMainMenuStrip.Text = "MenuStrip1";
             // 
@@ -371,6 +371,14 @@ public partial class AppWindow
             this.SaveMenuItem.Size = new System.Drawing.Size(239, 22);
             this.SaveMenuItem.Text = "&Speichern";
             this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
+            // 
+            // ExportMenuItem
+            // 
+            this.ExportMenuItem.Name = "ExportMenuItem";
+            this.ExportMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.ExportMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.ExportMenuItem.Text = "Exportieren...";
+            this.ExportMenuItem.Click += new System.EventHandler(this.ExportMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -447,9 +455,9 @@ public partial class AppWindow
             this.TotalMatchesCountToolStripStatusLabel,
             this.PlayedMatchesToolStripStatusLabel,
             this.PlayedMatchesCountToolStripStatusLabel});
-            this.AppStatusStrip.Location = new System.Drawing.Point(0, 331);
+            this.AppStatusStrip.Location = new System.Drawing.Point(0, 588);
             this.AppStatusStrip.Name = "AppStatusStrip";
-            this.AppStatusStrip.Size = new System.Drawing.Size(664, 22);
+            this.AppStatusStrip.Size = new System.Drawing.Size(795, 22);
             this.AppStatusStrip.TabIndex = 2;
             this.AppStatusStrip.Text = "StatusStrip1";
             // 
@@ -466,7 +474,7 @@ public partial class AppWindow
             // SpacerStripStatusLabel
             // 
             this.SpacerStripStatusLabel.Name = "SpacerStripStatusLabel";
-            this.SpacerStripStatusLabel.Size = new System.Drawing.Size(450, 17);
+            this.SpacerStripStatusLabel.Size = new System.Drawing.Size(581, 17);
             this.SpacerStripStatusLabel.Spring = true;
             // 
             // TotalMatchesToolStripStatusLabel
@@ -494,25 +502,17 @@ public partial class AppWindow
             this.PlayedMatchesCountToolStripStatusLabel.Size = new System.Drawing.Size(10, 17);
             this.PlayedMatchesCountToolStripStatusLabel.Text = ".";
             // 
-            // ExportMenuItem
-            // 
-            this.ExportMenuItem.Name = "ExportMenuItem";
-            this.ExportMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.ExportMenuItem.Size = new System.Drawing.Size(239, 22);
-            this.ExportMenuItem.Text = "Exportieren...";
-            this.ExportMenuItem.Click += new System.EventHandler(this.ExportMenuItem_Click);
-            // 
             // AppWindow
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(8, 24);
-            this.ClientSize = new System.Drawing.Size(664, 353);
+            this.ClientSize = new System.Drawing.Size(795, 610);
             this.Controls.Add(this.AppTabControl);
             this.Controls.Add(this.AppMainMenuStrip);
             this.Controls.Add(this.AppStatusStrip);
             this.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AppWindow";
-            this.Text = "POFF Turnier";
+            this.Text = "POFF Meet";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AppWindow_FormClosing);
             this.Load += new System.EventHandler(this.AppWindow_Load);
             this.AppTabControl.ResumeLayout(false);

@@ -67,7 +67,7 @@ public partial class AppWindow : Form
         if (!CloseTournament()) return;
 
         using var dialog = new SaveFileDialog();
-        dialog.Filter = "POFF Turnier (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
+        dialog.Filter = "POFF Meet (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
         if (dialog.ShowDialog() == DialogResult.OK)
         {
             _viewModel.NewTournament(dialog.FileName);
@@ -80,7 +80,7 @@ public partial class AppWindow : Form
         if (!CloseTournament()) return;
 
         using var openFileDialog = new OpenFileDialog();
-        openFileDialog.Filter = "POFF Turnier (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
+        openFileDialog.Filter = "POFF Meet (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
             OpenTournamentFile(openFileDialog.FileName);
