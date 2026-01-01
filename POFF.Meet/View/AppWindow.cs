@@ -247,4 +247,10 @@ public partial class AppWindow : Form
             _viewModel.ExportInto(dialog.FileName);
         }
     }
+
+    private void AboutMenuItem_Click(object sender, EventArgs e)
+    {
+        using var dialog = new AboutDialog { MeetingId = _viewModel.TournamentId};
+        dialog.ShowDialog(this);
+    }
 }

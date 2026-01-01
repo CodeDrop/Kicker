@@ -61,6 +61,16 @@ namespace POFF.Meet.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap copy_icon_png {
+            get {
+                object obj = ResourceManager.GetObject("copy-icon.png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die &lt;!-- Spiele --&gt;
         ///
         ///&lt;!-- Tabelle --&gt; ähnelt.
@@ -68,6 +78,16 @@ namespace POFF.Meet.Properties {
         internal static string HtmlExportStandingOnlyTemplate {
             get {
                 return ResourceManager.GetString("HtmlExportStandingOnlyTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap POFF_Meet_jpg {
+            get {
+                object obj = ResourceManager.GetObject("POFF.Meet.jpg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

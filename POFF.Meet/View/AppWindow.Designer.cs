@@ -59,10 +59,10 @@ public partial class AppWindow
             this.StandingListView = new System.Windows.Forms.ListView();
             this.PlaceColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeamTableColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MatchesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PointsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.WonSetsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.GoalsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MatchesColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AppMainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.TournamentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,9 +87,11 @@ public partial class AppWindow
             this.PlayedMatchesCountToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.AppSplitContainer = new System.Windows.Forms.SplitContainer();
             this.TeamsRankingSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.GamesGroupBox = new System.Windows.Forms.GroupBox();
             this.TeamsGroupBox = new System.Windows.Forms.GroupBox();
             this.RankingGroupBox = new System.Windows.Forms.GroupBox();
+            this.GamesGroupBox = new System.Windows.Forms.GroupBox();
+            this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.TeamsDataGridView)).BeginInit();
             this.AppMainMenuStrip.SuspendLayout();
             this.AppStatusStrip.SuspendLayout();
@@ -101,9 +103,9 @@ public partial class AppWindow
             this.TeamsRankingSplitContainer.Panel1.SuspendLayout();
             this.TeamsRankingSplitContainer.Panel2.SuspendLayout();
             this.TeamsRankingSplitContainer.SuspendLayout();
-            this.GamesGroupBox.SuspendLayout();
             this.TeamsGroupBox.SuspendLayout();
             this.RankingGroupBox.SuspendLayout();
+            this.GamesGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // TeamsDataGridView
@@ -260,6 +262,11 @@ public partial class AppWindow
             this.TeamTableColumnHeader.Text = "Mannschaft";
             this.TeamTableColumnHeader.Width = 200;
             // 
+            // MatchesColumnHeader
+            // 
+            this.MatchesColumnHeader.Text = "Spiele";
+            this.MatchesColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // PointsColumnHeader
             // 
             this.PointsColumnHeader.Text = "Punkte";
@@ -277,16 +284,12 @@ public partial class AppWindow
             this.GoalsColumnHeader.Text = "Tore";
             this.GoalsColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // MatchesColumnHeader
-            // 
-            this.MatchesColumnHeader.Text = "Spiele";
-            this.MatchesColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // AppMainMenuStrip
             // 
             this.AppMainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TournamentToolStripMenuItem,
-            this.ClipboardMenuItem});
+            this.ClipboardMenuItem,
+            this.HelpMenuItem});
             this.AppMainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.AppMainMenuStrip.Name = "AppMainMenuStrip";
             this.AppMainMenuStrip.Size = new System.Drawing.Size(1138, 24);
@@ -499,17 +502,6 @@ public partial class AppWindow
             this.TeamsRankingSplitContainer.SplitterDistance = 523;
             this.TeamsRankingSplitContainer.TabIndex = 0;
             // 
-            // GamesGroupBox
-            // 
-            this.GamesGroupBox.Controls.Add(this.MatchListView);
-            this.GamesGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GamesGroupBox.Location = new System.Drawing.Point(0, 0);
-            this.GamesGroupBox.Name = "GamesGroupBox";
-            this.GamesGroupBox.Size = new System.Drawing.Size(1138, 253);
-            this.GamesGroupBox.TabIndex = 3;
-            this.GamesGroupBox.TabStop = false;
-            this.GamesGroupBox.Text = "Games";
-            // 
             // TeamsGroupBox
             // 
             this.TeamsGroupBox.Controls.Add(this.TeamsDataGridView);
@@ -531,6 +523,34 @@ public partial class AppWindow
             this.RankingGroupBox.TabIndex = 2;
             this.RankingGroupBox.TabStop = false;
             this.RankingGroupBox.Text = "Ranking";
+            // 
+            // GamesGroupBox
+            // 
+            this.GamesGroupBox.Controls.Add(this.MatchListView);
+            this.GamesGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GamesGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.GamesGroupBox.Name = "GamesGroupBox";
+            this.GamesGroupBox.Size = new System.Drawing.Size(1138, 253);
+            this.GamesGroupBox.TabIndex = 3;
+            this.GamesGroupBox.TabStop = false;
+            this.GamesGroupBox.Text = "Games";
+            // 
+            // HelpMenuItem
+            // 
+            this.HelpMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.HelpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutMenuItem});
+            this.HelpMenuItem.Name = "HelpMenuItem";
+            this.HelpMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.HelpMenuItem.Text = "&Help";
+            // 
+            // AboutMenuItem
+            // 
+            this.AboutMenuItem.Name = "AboutMenuItem";
+            this.AboutMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.AboutMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AboutMenuItem.Text = "&About";
+            this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
             // AppWindow
             // 
@@ -558,9 +578,9 @@ public partial class AppWindow
             this.TeamsRankingSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TeamsRankingSplitContainer)).EndInit();
             this.TeamsRankingSplitContainer.ResumeLayout(false);
-            this.GamesGroupBox.ResumeLayout(false);
             this.TeamsGroupBox.ResumeLayout(false);
             this.RankingGroupBox.ResumeLayout(false);
+            this.GamesGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -599,4 +619,6 @@ public partial class AppWindow
     private GroupBox TeamsGroupBox;
     private GroupBox RankingGroupBox;
     private GroupBox GamesGroupBox;
+    private ToolStripMenuItem HelpMenuItem;
+    private ToolStripMenuItem AboutMenuItem;
 }

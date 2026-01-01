@@ -94,6 +94,8 @@ public class AppWindowViewModel : ViewModelBase
         }
     }
 
+    public string TournamentId => _tournament.Id.ToString();
+
     public void AddTeam(TeamInfo teamInfo)
     {
         _tournament.AddTeam(teamInfo.Team);
