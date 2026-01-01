@@ -5,52 +5,51 @@ using POFF.Meet.View.Model;
 using System;
 using System.IO;
 
-namespace POFF.Meet.Tests.Infrastructure
+namespace POFF.Meet.Tests.Infrastructure;
+
+[TestFixture]
+class Save_Tournament_File
 {
-    [TestFixture]
-    class Save_Tournament_File
+    private FileTournamentStorage _sut;
+    private Tournament _tournament;
+    private const string FILENAME = "unittest.xml";
+
+    [OneTimeSetUp]
+    public void Setup()
     {
-        private FileTournamentStorage _sut;
-        private Tournament _tournament;
-        private const string FILENAME = "unittest.xml";
+        Team[] teams =
+            [
+                new Team { Name = "Team A" },
+                new Team { Name = "Team B" }
+            ];
 
-        [OneTimeSetUp]
-        public void Setup()
+        Match[] matches = [new Match(1, teams[0], teams[1])];
+
+        _tournament = new Tournament(teams, matches);
+
+        _sut = new FileTournamentStorage(FILENAME);
+        _sut.Save(_tournament);
+    }
+
+    [OneTimeTearDown]
+    public void TearDown()
+    {
+        if (File.Exists(FILENAME))
         {
-            Team[] teams =
-                [
-                    new Team { Name = "Team A" },
-                    new Team { Name = "Team B" }
-                ];
-
-            Match[] matches = [new Match(1, teams[0], teams[1])];
-
-            _tournament = new Tournament(teams, matches);
-
-            _sut = new FileTournamentStorage(FILENAME);
-            _sut.Save(_tournament);
+            File.Delete(FILENAME);
         }
+    }
 
-        [OneTimeTearDown]
-        public void TearDown()
-        {
-            if (File.Exists(FILENAME))
-            {
-                File.Delete(FILENAME);
-            }
-        }
+    [Test]
+    public void Saved_file_exists()
+    {
+        Assert.That(FILENAME, Does.Exist);
+    }
 
-        [Test]
-        public void Saved_file_exists()
-        {
-            Assert.That(FILENAME, Does.Exist);
-        }
-
-        [Test]
-        public void Saved_file_contains_id()
-        {
-            var reloadedTournament = _sut.Load(); 
-            Assert.That(reloadedTournament.Id, Is.EqualTo(_tournament.Id));
-        }
+    [Test]
+    public void Saved_file_contains_id()
+    {
+        var reloadedTournament = _sut.Load(); 
+        Assert.That(reloadedTournament.Id, Is.EqualTo(_tournament.Id));
     }
 }

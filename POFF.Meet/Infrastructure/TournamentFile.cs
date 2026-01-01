@@ -1,13 +1,12 @@
 ﻿using POFF.Meet.Domain;
 using System;
 
-namespace POFF.Meet.Infrastructure
+namespace POFF.Meet.Infrastructure;
+
+[Serializable]
+public class TournamentFile
 {
-    [Serializable]
-    public class TournamentFile
-    {
-        public Guid Id { get; set; } 
-        public Team[] Teams { get; set; } = [];
-        public Match[] Matches { get; set; } = [];
-    }
+    public Guid Id { get; set; } 
+    public Team[] Teams { get; set; } = [];
+    public Match[] Matches { get; set; } = [];
 }
