@@ -27,8 +27,8 @@ class TournamentTests
     {
         // Arrange
         var testClass = new Tournament();
-        var team1 = new Team(1);
-        var team2 = new Team(2);
+        var team1 = new Team {Name = "Team N°1"};
+        var team2 = new Team {Name = "Team N°2"};
         testClass.AddTeam(team1);
         testClass.AddTeam(team2);
         var matchResult = new Result();

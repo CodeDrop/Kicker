@@ -16,9 +16,9 @@ class HtmlExportTests
     {
         // Arrange
         var tournament = new Tournament();
-        var team1 = new Team(1);
-        var team2 = new Team(2);
-        var team3 = new Team(3) { Withdrawn = true };
+        var team1 = new Team { Name = "Team N°1" };
+        var team2 = new Team { Name = "Team N°2" };
+        var team3 = new Team { Name = "Team N°3", Withdrawn = true };
         tournament.AddTeam(team1);
         tournament.AddTeam(team2);
         tournament.AddTeam(team3);

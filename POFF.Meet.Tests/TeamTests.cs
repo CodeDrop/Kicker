@@ -9,13 +9,10 @@ class TeamTests
     [Test]
     public void TeamTest()
     {
-        // Arrange
-        int number = 3;
-
         // Act
-        var result = new Team(number);
+        var result = new Team();
 
         // Assert
-        Assert.That(result.Name, Is.EqualTo("Team N°3"), "Unexpected Name");
+        Assert.That(result.Name, Is.Empty);
     }
 }

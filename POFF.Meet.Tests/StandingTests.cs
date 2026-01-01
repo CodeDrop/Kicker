@@ -11,7 +11,7 @@ class StandingTests
     public void StandingTest()
     {
         // Arrange
-        var team = new Team(1);
+        var team = new Team {Name = "Team N°1"};
 
         // Act
         var result = new Standing(team);

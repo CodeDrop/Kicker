@@ -7,17 +7,7 @@ namespace POFF.Meet.Domain;
 [DebuggerDisplay("{Name}")]
 public class Team
 {
-    public Team()
-    {
-        // Default constructor needed for serialization
-    }
-
-    public Team(int number)
-    {
-        Name = string.Format("Team N°{0}", number);
-    }
-
-    public string Name { get; set; }
+    public string Name { get; set; } = "";
     public string Player1 { get; set; }
     public string Player2 { get; set; }
     public bool Withdrawn { get; set; }

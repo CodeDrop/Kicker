@@ -10,8 +10,8 @@ class MatchTests
     public void MatchTest()
     {
         // Arrange
-        var team1 = new Team(1);
-        var team2 = new Team(2);
+        var team1 = new Team {Name = "Team N°1"};
+        var team2 = new Team {Name = "Team N°2"};
         const int number = 19;
 
         // Act
