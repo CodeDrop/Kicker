@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace POFF.Meet.Infrastructure;
 
-public class TwigFileInjectionExporter
+public class TwigFileInjectionExporter : IExporter
 {
     private readonly string _targetFilename;
 

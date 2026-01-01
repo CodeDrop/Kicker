@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using System.Threading;
 using NUnit.Framework;
 using POFF.Meet.Domain;
 using POFF.Meet.Infrastructure;
@@ -6,7 +7,7 @@ using POFF.Meet.View.Model;
 
 namespace POFF.Meet.Tests;
 
-[TestFixture]
+[TestFixture, RequiresThread(ApartmentState.STA)]
 public class HtmlExportTests
 {
     private static string _result;
@@ -25,10 +26,11 @@ public class HtmlExportTests
         var matchResult = new Result();
         matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
         tournament.SetResult(2, matchResult);
-        var testClass = new HtmlExport(tournament, ExportType.Games | ExportType.Standings);
+        var sut = new ClipboardHtmlExporter(ExportType.Games | ExportType.Standings);
 
         // Act
-        _result = testClass.ToString();
+        sut.Export(tournament);
+        _result = sut.ToString();
     }
 
     [Test]

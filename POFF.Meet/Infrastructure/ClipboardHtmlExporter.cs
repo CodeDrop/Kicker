@@ -3,30 +3,45 @@ using POFF.Meet.Domain.ScoreModes;
 using POFF.Meet.Properties;
 using POFF.Meet.View.Model;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace POFF.Meet.Infrastructure;
 
-public class HtmlExport(Tournament tournament, ExportType exportType)
+public class ClipboardHtmlExporter(ExportType exportType) : IExporter
 {
-    public override string ToString()
+    private Tournament _tournament;
+
+    public void Export(Tournament tournament)
     {
+        Export(tournament, tournament.Matches.Select(m => m.Number));
+    }
+
+    public void Export(Tournament tournament, IEnumerable<int> matchNumbers)
+    {
+        _tournament = tournament;
         var builder = new StringBuilder(Resources.HtmlExportStandingOnlyTemplate);
 
         if ((exportType & ExportType.Games) == ExportType.Games)
-            SetGames(builder);
+            SetGames(builder, matchNumbers);
         if ((exportType & ExportType.Standings) == ExportType.Standings)
             SetStandings(builder);
 
-        return builder.ToString();
+        Clipboard.SetText(builder.ToString());
+    }
+
+    public override string ToString()
+    {
+        return Clipboard.GetText(TextDataFormat.Text);
     }
 
     private void SetStandings(StringBuilder builder)
     {
         var standingsBuilder = new StringBuilder();
 
-        foreach (Standing standing in tournament.GetStandings())
+        foreach (Standing standing in _tournament.GetStandings())
         {
             // <tr><td>1.</td><td>Spieler 1</td><td>3</td><td class="font-weight-bold">7</td></td><td>10:2</td></tr>
             standingsBuilder.Append("<tr>");
@@ -42,13 +57,13 @@ public class HtmlExport(Tournament tournament, ExportType exportType)
         builder.Replace("<!-- Tabelle -->", standingsBuilder.ToString());
     }
 
-    private void SetGames(StringBuilder builder)
+    private void SetGames(StringBuilder builder, IEnumerable<int> matchNumbers)
     {
         var gamesBuilder = new StringBuilder();
 
-        foreach (Match match in tournament.Matches)
+        foreach (Match match in _tournament.Matches)
         {
-            if (ContainsWithdrawnTeam(match))
+            if (ContainsWithdrawnTeam(match) || !matchNumbers.Contains(match.Number))
                 continue;
             // <tr><td>1</td><td>Spieler 1</td><td>Spieler 2</td><td>3:1</td></tr>
             gamesBuilder.Append("<tr>");
@@ -65,9 +80,8 @@ public class HtmlExport(Tournament tournament, ExportType exportType)
 
     private bool ContainsWithdrawnTeam(Match match)
     {
-        var team1 = tournament.Teams.Single(t => t.Equals(match.Team1));
-        var team2 = tournament.Teams.Single(t => t.Equals(match.Team2));
+        var team1 = _tournament.Teams.Single(t => t.Equals(match.Team1));
+        var team2 = _tournament.Teams.Single(t => t.Equals(match.Team2));
         return team1.Withdrawn | team2.Withdrawn;
     }
-
 }

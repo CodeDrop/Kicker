@@ -138,7 +138,8 @@ public class AppWindowViewModel : ViewModelBase
 
     public void CopyToClipboard(ExportType exportType)
     {
-        _tournament.CopyToClipboard(exportType);
+        var exporter = new ClipboardHtmlExporter(exportType);
+        exporter.Export(_tournament);
     }
 
     public int TotalMatchCount()

@@ -1,10 +1,8 @@
 ﻿using POFF.Meet.Domain;
 using POFF.Meet.Domain.PlayModes;
 using POFF.Meet.Domain.ScoreModes;
-using POFF.Meet.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace POFF.Meet.View.Model;
 
@@ -83,11 +81,5 @@ public class Tournament
     public IEnumerable<Standing> GetStandings()
     {
         return _scoreMode.Evaluate([.. Matches]);
-    }
-
-    public void CopyToClipboard(ExportType exportType)
-    {
-        var export = new HtmlExport(this, exportType);
-        Clipboard.SetText(export.ToString());
     }
 }
