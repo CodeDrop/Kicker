@@ -25,7 +25,7 @@ public class Save_Tournament_File
 
         Match[] matches = [new Match(1, teams[0], teams[1])];
 
-        _tournament = new Tournament(teams, matches);
+        _tournament = new Tournament(Guid.NewGuid(), teams, matches);
 
         _sut = new FileTournamentStorage(FILENAME);
         _sut.Save(_tournament);

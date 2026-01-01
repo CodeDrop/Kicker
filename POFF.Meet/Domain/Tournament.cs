@@ -17,12 +17,7 @@ public class Tournament
 
     public static readonly Tournament Empty = new(Guid.Empty, [], []);
 
-    public Tournament() 
-        : this([], [])
-    { }
-
-    public Tournament(IEnumerable<Team> teams, IEnumerable<Match> matches) 
-        : this(Guid.NewGuid(), [], [])
+    public Tournament() : this(Guid.NewGuid(), [], [])
     { }
 
     public Tournament(Guid id, IEnumerable<Team> teams, IEnumerable<Match> matches)
