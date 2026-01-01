@@ -29,6 +29,8 @@ public class Tournament
 
     public Guid Id { get; }
 
+    public string Name { get; set; } 
+
     public IEnumerable<Team> Teams => _teams;
 
     public IEnumerable<Match> Matches => _matches;

@@ -24,22 +24,25 @@ public class FileTournamentStorage : ITournamentStorage
             reader.Close();
 
             if (file.Id == Guid.Empty) file.Id = Guid.NewGuid();
-            return new Tournament(file.Id, file.Teams, file.Matches);
+            Tournament tournament = new(file.Id, file.Teams, file.Matches) { Name = Path.GetFileNameWithoutExtension(_filename) };
+
+            return tournament;
         }
         return new Tournament();
     }
 
     public void Save(Tournament tournament)
     {
-        var tournamentFile = new TournamentFile 
-        { 
+        var tournamentFile = new TournamentFile
+        {
             Id = tournament.Id,
-            Teams = [.. tournament.Teams], 
+            Teams = [.. tournament.Teams],
             Matches = [.. tournament.Matches]
         };
         var writer = new StreamWriter(_filename, false);
         var serializer = new XmlSerializer(typeof(TournamentFile));
         serializer.Serialize(writer, tournamentFile);
         writer.Close();
+        tournament.Name = Path.GetFileNameWithoutExtension(_filename);
     }
 }

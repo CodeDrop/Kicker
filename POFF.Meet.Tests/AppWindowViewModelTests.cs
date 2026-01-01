@@ -26,16 +26,17 @@ public class AppWindowViewModelTests
     }
 
     [Test]
-    public void New_Tournament_Creates_File()
+    public void New_Tournament_Sets_IsNew()
     {
-        // arrange
-        _filename = Path.GetTempFileName();
-        // act
-        _sut.NewTournament(_filename);
-        // assert
-        Assert.That(_filename, Does.Exist);
-        Assert.That(new FileInfo(_filename).Length, Is.GreaterThan(0));
-        Assert.That(_sut.Title, Does.Contain(Path.GetFileNameWithoutExtension(_filename)));
+        _sut.NewTournament();
+        Assert.That(_sut.IsNew, Is.True);
+    }
+
+    [Test]
+    public void New_Tournament_Sets_Title()
+    {
+        _sut.NewTournament();
+        Assert.That(_sut.Title, Does.Contain("New Tournament"));
     }
 
     [Test]

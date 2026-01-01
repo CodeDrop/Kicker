@@ -5,51 +5,47 @@ using POFF.Meet.Infrastructure;
 using POFF.Meet.View.Model;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 
 namespace POFF.Meet.View;
 
 public class AppWindowViewModel : ViewModelBase
 {
-    private ITournamentStorage _storage = new FileTournamentStorage();
     private Tournament _tournament = Tournament.Empty;
-    private string _filename = string.Empty;
 
     public AppWindowViewModel()
     {
         SetTeamsMatchesAndStandings();
     }
 
-    public void NewTournament(string filename)
+    public void NewTournament()
     {
-        _tournament = new Tournament();
-        _storage = new FileTournamentStorage(filename);
-        _storage.Save(_tournament);
-        _filename = filename;
+        _tournament = new Tournament { Name = "New Tournament" };
         SetTeamsMatchesAndStandings();
-        SetTitleAndDirtyFlag(false);
+        SetTitleAndDirtyFlag(true);
+        IsNew = true;
     }
 
-    public void Open(string filename)
+    public void Open()
     {
-        _storage = new FileTournamentStorage(filename);
-        _tournament = _storage.Load();
-        _filename = filename;
+        _tournament = Storage.Load();
         SetTeamsMatchesAndStandings();
         SetTitleAndDirtyFlag(false);
-    }
-
-    private void SetTitleAndDirtyFlag(bool isDirty = false)
-    {
-        IsDirty = isDirty;
-        Title = $"POFF Meet [{Path.GetFileNameWithoutExtension(_filename)}]" + (IsDirty ? "*" : "");
+        IsNew = false;
     }
 
     public void Save()
     {
-        _storage.Save(_tournament);
+        Storage.Save(_tournament);
         SetTitleAndDirtyFlag(false);
+    }
+
+    public ITournamentStorage Storage { get; set; }
+
+    private void SetTitleAndDirtyFlag(bool isDirty = false)
+    {
+        IsDirty = isDirty;
+        Title = $"POFF Meet [{_tournament.Name}]" + (IsDirty ? "*" : "");
     }
 
     private void SetTeamsMatchesAndStandings()
@@ -58,6 +54,8 @@ public class AppWindowViewModel : ViewModelBase
         Matches.SetValues(_tournament.Matches);
         Standings.SetValues(_tournament.GetStandings());
     }
+
+    public bool IsNew { get; private set; }
 
     public BindingList<Team> Teams { get; } = [];
 

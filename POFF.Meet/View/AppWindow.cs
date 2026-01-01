@@ -38,8 +38,8 @@ public partial class AppWindow : Form
     {
         if (File.Exists(Settings.Default.RecentFile))
         {
-            var filename = Settings.Default.RecentFile;
-            OpenTournamentFile(filename);
+            _viewModel.Storage = new FileTournamentStorage(Settings.Default.RecentFile);
+            _viewModel.Open();
         }
     }
 
@@ -65,14 +65,7 @@ public partial class AppWindow : Form
     private void NewMenuItem_Click(object sender, EventArgs e)
     {
         if (!CloseTournament()) return;
-
-        using var dialog = new SaveFileDialog();
-        dialog.Filter = "POFF Meet (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
-        if (dialog.ShowDialog() == DialogResult.OK)
-        {
-            _viewModel.NewTournament(dialog.FileName);
-            Settings.Default.RecentFile = dialog.FileName;
-        }
+        _viewModel.NewTournament();
     }
 
     private void OpenMenuItem_Click(object sender, EventArgs e)
@@ -83,18 +76,25 @@ public partial class AppWindow : Form
         openFileDialog.Filter = "POFF Meet (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
-            OpenTournamentFile(openFileDialog.FileName);
+            _viewModel.Storage = new FileTournamentStorage(openFileDialog.FileName);
+            _viewModel.Open();
             Settings.Default.RecentFile = openFileDialog.FileName;
         }
     }
 
-    private void OpenTournamentFile(string filename)
-    {
-        _viewModel.Open(filename);
-    }
-
     private void SaveMenuItem_Click(object sender, EventArgs e)
     {
+        if (_viewModel.IsNew)
+        {
+            using var dialog = new SaveFileDialog();
+            dialog.Filter = "POFF Meet (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                _viewModel.Storage = new FileTournamentStorage(dialog.FileName);
+                Settings.Default.RecentFile = dialog.FileName;
+            }
+        }
+
         _viewModel.Save();
     }
 
@@ -250,7 +250,7 @@ public partial class AppWindow : Form
 
     private void AboutMenuItem_Click(object sender, EventArgs e)
     {
-        using var dialog = new AboutDialog { MeetingId = _viewModel.TournamentId};
+        using var dialog = new AboutDialog { MeetingId = _viewModel.TournamentId };
         dialog.ShowDialog(this);
     }
 }
