@@ -5,7 +5,7 @@ using System.IO;
 namespace POFF.Meet.Tests;
 
 [TestFixture]
-class AppWindowViewModelTests
+public class AppWindowViewModelTests
 {
     private AppWindowViewModel _sut;
     private string _filename;

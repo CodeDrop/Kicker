@@ -4,7 +4,7 @@ using POFF.Meet.Domain.PlayModes;
 namespace POFF.Meet.Tests;
 
 [TestFixture]
-class MatchIndexPairTests
+public class MatchIndexPairTests
 {
     [Test]
     public void ContainsTeam1OfTest()

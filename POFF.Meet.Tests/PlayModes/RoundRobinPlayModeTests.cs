@@ -5,7 +5,7 @@ using POFF.Meet.Domain.PlayModes;
 namespace POFF.Meet.Tests;
 
 [TestFixture]
-class RoundRobinPlayModeTests
+public class RoundRobinPlayModeTests
 {
     [Test]
     public void Generate2Test()

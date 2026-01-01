@@ -4,7 +4,7 @@ using POFF.Meet.Domain;
 namespace POFF.Meet.Tests;
 
 [TestFixture]
-class ResultTests
+public class ResultTests
 {
     [Test]
     public void AddSetResultTest()

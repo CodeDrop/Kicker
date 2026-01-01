@@ -8,7 +8,7 @@ using System.IO;
 namespace POFF.Meet.Tests.Infrastructure;
 
 [TestFixture]
-class Save_Tournament_File
+public class Save_Tournament_File
 {
     private FileTournamentStorage _sut;
     private Tournament _tournament;

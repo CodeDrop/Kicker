@@ -7,7 +7,7 @@ using System.IO;
 namespace POFF.Meet.Tests.Infrastructure;
 
 [TestFixture]
-class Export_into_twig_file
+public class Export_into_twig_file
 {
     private Tournament _tournament;
     private TwigFileInjectionExporter _sut;

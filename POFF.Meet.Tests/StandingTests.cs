@@ -5,7 +5,7 @@ using POFF.Meet.Domain.ScoreModes;
 namespace POFF.Meet.Tests;
 
 [TestFixture]
-class StandingTests
+public class StandingTests
 {
     [Test]
     public void StandingTest()

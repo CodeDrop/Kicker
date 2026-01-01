@@ -6,7 +6,7 @@ using POFF.Meet.View.Model;
 namespace POFF.Meet.Tests;
 
 [TestFixture]
-class TournamentTests
+public class TournamentTests
 {
     [Test]
     public void TournamentTest()

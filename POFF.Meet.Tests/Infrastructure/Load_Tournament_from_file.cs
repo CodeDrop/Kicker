@@ -6,7 +6,7 @@ using System;
 namespace POFF.Meet.Tests.Infrastructure;
 
 [TestFixture]
-class Load_Tournament_from_file
+public class Load_Tournament_from_file
 {
     private Tournament _sut;
 

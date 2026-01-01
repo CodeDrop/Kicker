@@ -4,7 +4,7 @@ using POFF.Meet.Domain;
 namespace POFF.Meet.Tests;
 
 [TestFixture]
-class MatchInfoTests
+public class MatchInfoTests
 {
     [Test]
     public void MatchInfoTest()

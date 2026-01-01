@@ -7,7 +7,7 @@ using POFF.Meet.View.Model;
 namespace POFF.Meet.Tests;
 
 [TestFixture]
-class HtmlExportTests
+public class HtmlExportTests
 {
     private static string _result;
 
