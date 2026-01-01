@@ -33,6 +33,7 @@ public class FileTournamentStorage : ITournamentStorage
     {
         var tournamentFile = new TournamentFile 
         { 
+            Id = tournament.Id,
             Teams = [.. tournament.Teams], 
             Matches = [.. tournament.Matches]
         };

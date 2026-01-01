@@ -2,6 +2,7 @@
 using POFF.Meet.Domain;
 using POFF.Meet.Infrastructure;
 using POFF.Meet.View.Model;
+using System;
 using System.IO;
 
 namespace POFF.Meet.Tests.Infrastructure
@@ -9,8 +10,9 @@ namespace POFF.Meet.Tests.Infrastructure
     [TestFixture]
     class Save_Tournament_File
     {
-        private const string FILENAME = "unittest.xml";
         private FileTournamentStorage _sut;
+        private Tournament _tournament;
+        private const string FILENAME = "unittest.xml";
 
         [OneTimeSetUp]
         public void Setup()
@@ -23,10 +25,10 @@ namespace POFF.Meet.Tests.Infrastructure
 
             Match[] matches = [new Match(1, teams[0], teams[1])];
 
-            var tournament = new Tournament(teams, matches);
+            _tournament = new Tournament(teams, matches);
 
             _sut = new FileTournamentStorage(FILENAME);
-            _sut.Save(tournament);
+            _sut.Save(_tournament);
         }
 
         [OneTimeTearDown]
@@ -42,6 +44,13 @@ namespace POFF.Meet.Tests.Infrastructure
         public void Saved_file_exists()
         {
             Assert.That(FILENAME, Does.Exist);
+        }
+
+        [Test]
+        public void Saved_file_contains_id()
+        {
+            var reloadedTournament = _sut.Load(); 
+            Assert.That(reloadedTournament.Id, Is.EqualTo(_tournament.Id));
         }
     }
 }
