@@ -78,6 +78,8 @@ public partial class AppWindow
             this.ClipboardGamesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClipboardTableMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClipboardCopyAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppStatusStrip = new System.Windows.Forms.StatusStrip();
             this.PlayerFilterToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.SpacerStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -90,8 +92,6 @@ public partial class AppWindow
             this.TeamsGroupBox = new System.Windows.Forms.GroupBox();
             this.RankingGroupBox = new System.Windows.Forms.GroupBox();
             this.GamesGroupBox = new System.Windows.Forms.GroupBox();
-            this.HelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.TeamsDataGridView)).BeginInit();
             this.AppMainMenuStrip.SuspendLayout();
             this.AppStatusStrip.SuspendLayout();
@@ -410,6 +410,23 @@ public partial class AppWindow
             this.ClipboardCopyAllMenuItem.Text = "Beides (HTML)";
             this.ClipboardCopyAllMenuItem.Click += new System.EventHandler(this.ClipboardCopyAllMenuItem_Click);
             // 
+            // HelpMenuItem
+            // 
+            this.HelpMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.HelpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutMenuItem});
+            this.HelpMenuItem.Name = "HelpMenuItem";
+            this.HelpMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.HelpMenuItem.Text = "&Help";
+            // 
+            // AboutMenuItem
+            // 
+            this.AboutMenuItem.Name = "AboutMenuItem";
+            this.AboutMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.AboutMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AboutMenuItem.Text = "&About";
+            this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
+            // 
             // AppStatusStrip
             // 
             this.AppStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -534,23 +551,6 @@ public partial class AppWindow
             this.GamesGroupBox.TabIndex = 3;
             this.GamesGroupBox.TabStop = false;
             this.GamesGroupBox.Text = "Games";
-            // 
-            // HelpMenuItem
-            // 
-            this.HelpMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.HelpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AboutMenuItem});
-            this.HelpMenuItem.Name = "HelpMenuItem";
-            this.HelpMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.HelpMenuItem.Text = "&Help";
-            // 
-            // AboutMenuItem
-            // 
-            this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.AboutMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.AboutMenuItem.Text = "&About";
-            this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
             // AppWindow
             // 
