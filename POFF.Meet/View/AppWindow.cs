@@ -36,14 +36,9 @@ public partial class AppWindow : Form
 
     private void AppWindow_Load(object sender, EventArgs e)
     {
-        foreach (var filename in Settings.Default.RecentFiles)
-        {
-            RecentFilesMenuItem.DropDown.Items.Add(new ToolStripMenuItem(filename));
-        }
         if (Settings.Default.RecentFiles.Count > 0 && File.Exists(Settings.Default.RecentFiles[0]))
         {
-            _viewModel.Storage = new FileTournamentStorage(Settings.Default.RecentFiles[0]);
-            _viewModel.Open();
+            OpenFileAndUpdateRecentFiles(Settings.Default.RecentFiles[0]);
         }
     }
 
