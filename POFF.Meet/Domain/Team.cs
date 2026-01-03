@@ -14,12 +14,17 @@ public class Team
 
     public override bool Equals(object obj)
     {
-        Team otherTeam = (Team)obj;
+        if (obj is not Team otherTeam) return false;
         return Name.Equals(otherTeam.Name);
     }
 
     public override int GetHashCode()
     {
         return Name.GetHashCode();
+    }
+    
+    public override string ToString()
+    {
+        return Name;
     }
 }

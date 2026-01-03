@@ -15,4 +15,11 @@ public class TeamTests
         // Assert
         Assert.That(result.Name, Is.Empty);
     }
+
+    [Test]
+    public void Team_ToString_returns_name()
+    {
+        var sut = new Team { Name = "Team A" };
+        Assert.That(sut.ToString(), Is.EqualTo("Team A"));
+    }
 }

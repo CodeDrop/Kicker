@@ -2,6 +2,7 @@
 using POFF.Meet.Infrastructure;
 using POFF.Meet.Properties;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -24,14 +25,15 @@ public partial class AppWindow : Form
         // Add any initialization after the InitializeComponent() call
         _viewModel = new AppWindowViewModel();
         _viewModel.Teams.ListChanged += TeamsChanged;
-        _viewModel.Matches.ListChanged += MatchesChanged;
+        _viewModel.Matches.ListChanged += GamesChanged;
         _viewModel.Standings.ListChanged += StandingsChanged;
 
         DataBindings.Add(nameof(Text), _viewModel, nameof(_viewModel.Title));
-        TeamsDataGridView.DataSource = _viewModel.Teams;
+        TeamsGridView.DataSource = _viewModel.Teams;
+        GamesGridView.DataSource = _viewModel.Matches;
 
         TeamsChanged(_viewModel.Teams, null);
-        MatchesChanged(_viewModel.Matches, null);
+        GamesChanged(_viewModel.Matches, null);
     }
 
     private void AppWindow_Load(object sender, EventArgs e)
@@ -100,10 +102,10 @@ public partial class AppWindow : Form
 
         Settings.Default.RecentFiles.Insert(0, filename);
 
-        RecentFilesMenuItem.DropDownItems.Clear();
+        RecentMenuItem.DropDownItems.Clear();
         foreach (var file in Settings.Default.RecentFiles)
         {
-            RecentFilesMenuItem.DropDown.Items.Add(file);
+            RecentMenuItem.DropDown.Items.Add(file);
         }
     }
 
@@ -119,7 +121,7 @@ public partial class AppWindow : Form
                 MessageBoxIcon.Warning
             );
             Settings.Default.RecentFiles.Remove(file);
-            RecentFilesMenuItem.DropDown.Items.Remove(e.ClickedItem);
+            RecentMenuItem.DropDown.Items.Remove(e.ClickedItem);
             return;
         }
 
@@ -197,15 +199,8 @@ public partial class AppWindow : Form
         PlayerFilterToolStripDropDownButton.DropDownItems.AddRange([.. _viewModel.Teams.Select(t => new ToolStripMenuItem(t.Name))]);
     }
 
-    private void MatchesChanged(object sender, ListChangedEventArgs e)
+    private void GamesChanged(object sender, ListChangedEventArgs e)
     {
-        MatchListView.Items.Clear();
-
-        foreach (var match in _viewModel.Matches)
-        {
-            MatchListView.Items.Add(new MatchListViewItem(match));
-        }
-
         TotalMatchesCountToolStripStatusLabel.Text = _viewModel.TotalMatchCount().ToString();
         PlayedMatchesCountToolStripStatusLabel.Text = _viewModel.PlayedMatchCount().ToString();
     }
@@ -219,23 +214,17 @@ public partial class AppWindow : Form
         }
     }
 
-    private void MatchListView_SelectedIndexChanged(object sender, EventArgs e)
+    private void GamesGridView_SelectedRowsChanged(object sender, EventArgs e)
     {
-        _viewModel.SelectedMatches = MatchListView.SelectedItems.Cast<MatchListViewItem>().Select(item => item.Match);
-    }
-
-    private void MatchListView_DoubleClick(object sender, EventArgs e)
-    {
-        if (!(MatchListView.SelectedItems.Count == 1))
-            return;
-
-        _viewModel.SelectedMatch = ((MatchListViewItem)MatchListView.SelectedItems[0]).Match;
-
-        using var dialog = new ResultDialog(_viewModel.SelectedMatch);
-        if (dialog.ShowDialog(this) == DialogResult.OK)
+        var games= new List<Match>();
+        foreach (DataGridViewRow row in GamesGridView.SelectedRows)
         {
-            _viewModel.ProcessResult(dialog.SetResults);
+            if (row.DataBoundItem is Match match)
+            {
+                games.Add(match);
+            }
         }
+        _viewModel.SelectedMatches = games;
     }
 
     private DialogResult ShowQuestion(string questions, MessageBoxButtons buttons = MessageBoxButtons.YesNo)
@@ -256,7 +245,7 @@ public partial class AppWindow : Form
         {
             e.Value = e.RowIndex + 1;
         }
-        if (((Team)TeamsDataGridView.Rows[e.RowIndex].DataBoundItem).Withdrawn)
+        if (((Team)TeamsGridView.Rows[e.RowIndex].DataBoundItem).Withdrawn)
         {
             e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Strikeout);
             e.CellStyle.ForeColor = Color.LightGray;
@@ -265,15 +254,28 @@ public partial class AppWindow : Form
 
     private void TeamsDataGridView_SelectionChanged(object sender, EventArgs e)
     {
-        _viewModel.SelectedTeam = TeamsDataGridView.SelectedRows.Count == 1 ? (Team)TeamsDataGridView.SelectedRows[0].DataBoundItem : null;
+        _viewModel.SelectedTeam = TeamsGridView.SelectedRows.Count == 1 ? (Team)TeamsGridView.SelectedRows[0].DataBoundItem : null;
     }
 
     private void TeamsDataGridView_DoubleClick(object sender, EventArgs e)
     {
-        var rows = TeamsDataGridView.SelectedRows;
+        var rows = TeamsGridView.SelectedRows;
         if (rows.Count == 1)
         {
             EditTeam((Team)rows[0].DataBoundItem);
+        }
+    }
+    private void GamesGridView_DoubleClick(object sender, EventArgs e)
+    {
+        var rows = GamesGridView.SelectedRows;
+        if (rows.Count != 1) return;
+
+        _viewModel.SelectedMatch = (Match)rows[0].DataBoundItem;
+
+        using var dialog = new ResultDialog(_viewModel.SelectedMatch);
+        if (dialog.ShowDialog(this) == DialogResult.OK)
+        {
+            _viewModel.ProcessResult(dialog.SetResults);
         }
     }
 
