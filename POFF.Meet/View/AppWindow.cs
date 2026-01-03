@@ -36,9 +36,9 @@ public partial class AppWindow : Form
 
     private void AppWindow_Load(object sender, EventArgs e)
     {
-        foreach (var file in Settings.Default.RecentFiles)
+        foreach (var filename in Settings.Default.RecentFiles)
         {
-            RecentFilesMenuItem.DropDown.Items.Add(file);
+            RecentFilesMenuItem.DropDown.Items.Add(new ToolStripMenuItem(filename));
         }
         if (Settings.Default.RecentFiles.Count > 0 && File.Exists(Settings.Default.RecentFiles[0]))
         {
@@ -94,10 +94,21 @@ public partial class AppWindow : Form
 
     private void UpdateRecentFiles(string filename)
     {
-        if (!Settings.Default.RecentFiles.Contains(filename))
+        if (Settings.Default.RecentFiles.Contains(filename))
         {
-            RecentFilesMenuItem.DropDown.Items.Insert(0, new ToolStripMenuItem(filename));
-            Settings.Default.RecentFiles.Insert(0, filename);
+            Settings.Default.RecentFiles.Remove(filename);
+        }
+        if (Settings.Default.RecentFiles.Count >= 5)
+        {
+            Settings.Default.RecentFiles.RemoveAt(4);
+        }
+
+        Settings.Default.RecentFiles.Insert(0, filename);
+
+        RecentFilesMenuItem.DropDownItems.Clear();
+        foreach (var file in Settings.Default.RecentFiles)
+        {
+            RecentFilesMenuItem.DropDown.Items.Add(file);
         }
     }
 
@@ -112,6 +123,7 @@ public partial class AppWindow : Form
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning
             );
+            Settings.Default.RecentFiles.Remove(file);
             RecentFilesMenuItem.DropDown.Items.Remove(e.ClickedItem);
             return;
         }
