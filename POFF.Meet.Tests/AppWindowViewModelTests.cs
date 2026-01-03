@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using POFF.Meet.View;
-using System.IO;
 
 namespace POFF.Meet.Tests;
 
@@ -8,21 +7,11 @@ namespace POFF.Meet.Tests;
 public class AppWindowViewModelTests
 {
     private AppWindowViewModel _sut;
-    private string _filename;
 
     [OneTimeSetUp]
     public void SetUp()
     {
         _sut = new AppWindowViewModel();
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        if (File.Exists(_filename))
-        {
-            File.Delete(_filename);
-        }
     }
 
     [Test]

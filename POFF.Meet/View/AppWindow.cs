@@ -36,9 +36,13 @@ public partial class AppWindow : Form
 
     private void AppWindow_Load(object sender, EventArgs e)
     {
-        if (File.Exists(Settings.Default.RecentFile))
+        foreach (var file in Settings.Default.RecentFiles)
         {
-            _viewModel.Storage = new FileTournamentStorage(Settings.Default.RecentFile);
+            RecentFilesMenuItem.DropDown.Items.Add(file);
+        }
+        if (Settings.Default.RecentFiles.Count > 0 && File.Exists(Settings.Default.RecentFiles[0]))
+        {
+            _viewModel.Storage = new FileTournamentStorage(Settings.Default.RecentFiles[0]);
             _viewModel.Open();
         }
     }
@@ -76,10 +80,45 @@ public partial class AppWindow : Form
         openFileDialog.Filter = "POFF Meet (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
-            _viewModel.Storage = new FileTournamentStorage(openFileDialog.FileName);
-            _viewModel.Open();
-            Settings.Default.RecentFile = openFileDialog.FileName;
+            string filename = openFileDialog.FileName;
+            OpenFileAndUpdateRecentFiles(filename);
         }
+    }
+
+    private void OpenFileAndUpdateRecentFiles(string filename)
+    {
+        _viewModel.Storage = new FileTournamentStorage(filename);
+        _viewModel.Open();
+        UpdateRecentFiles(filename);
+    }
+
+    private void UpdateRecentFiles(string filename)
+    {
+        if (!Settings.Default.RecentFiles.Contains(filename))
+        {
+            RecentFilesMenuItem.DropDown.Items.Insert(0, new ToolStripMenuItem(filename));
+            Settings.Default.RecentFiles.Insert(0, filename);
+        }
+    }
+
+    private void RecentFilesMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+    {
+        var file = e.ClickedItem.Text;
+        if (!File.Exists(file))
+        {
+            MessageBox.Show(
+                $"File \"{file}\" does not exist and will be removed from recent list.",
+                "Invalid tournament file",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+            RecentFilesMenuItem.DropDown.Items.Remove(e.ClickedItem);
+            return;
+        }
+
+        if (!CloseTournament()) return;
+
+        OpenFileAndUpdateRecentFiles(file);
     }
 
     private void SaveMenuItem_Click(object sender, EventArgs e)
@@ -91,7 +130,7 @@ public partial class AppWindow : Form
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 _viewModel.Storage = new FileTournamentStorage(dialog.FileName);
-                Settings.Default.RecentFile = dialog.FileName;
+                UpdateRecentFiles(dialog.FileName);
             }
         }
 

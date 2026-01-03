@@ -92,6 +92,7 @@ public partial class AppWindow
             this.TeamsGroupBox = new System.Windows.Forms.GroupBox();
             this.RankingGroupBox = new System.Windows.Forms.GroupBox();
             this.GamesGroupBox = new System.Windows.Forms.GroupBox();
+            this.RecentFilesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.TeamsDataGridView)).BeginInit();
             this.AppMainMenuStrip.SuspendLayout();
             this.AppStatusStrip.SuspendLayout();
@@ -301,6 +302,7 @@ public partial class AppWindow
             this.TournamentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewMenuItem,
             this.OpenMenuItem,
+            this.RecentFilesMenuItem,
             this.SaveMenuItem,
             this.ExportMenuItem,
             this.toolStripMenuItem1,
@@ -316,7 +318,7 @@ public partial class AppWindow
             // 
             this.NewMenuItem.Name = "NewMenuItem";
             this.NewMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.NewMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.NewMenuItem.Size = new System.Drawing.Size(237, 22);
             this.NewMenuItem.Text = "Neu";
             this.NewMenuItem.Click += new System.EventHandler(this.NewMenuItem_Click);
             // 
@@ -324,7 +326,7 @@ public partial class AppWindow
             // 
             this.OpenMenuItem.Name = "OpenMenuItem";
             this.OpenMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.OpenMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.OpenMenuItem.Size = new System.Drawing.Size(237, 22);
             this.OpenMenuItem.Text = "Öffnen";
             this.OpenMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
             // 
@@ -332,7 +334,7 @@ public partial class AppWindow
             // 
             this.SaveMenuItem.Name = "SaveMenuItem";
             this.SaveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.SaveMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.SaveMenuItem.Size = new System.Drawing.Size(237, 22);
             this.SaveMenuItem.Text = "&Speichern";
             this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
             // 
@@ -340,20 +342,20 @@ public partial class AppWindow
             // 
             this.ExportMenuItem.Name = "ExportMenuItem";
             this.ExportMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.ExportMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.ExportMenuItem.Size = new System.Drawing.Size(237, 22);
             this.ExportMenuItem.Text = "Exportieren...";
             this.ExportMenuItem.Click += new System.EventHandler(this.ExportMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(236, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(234, 6);
             // 
             // AddTeamMenuItem
             // 
             this.AddTeamMenuItem.Name = "AddTeamMenuItem";
             this.AddTeamMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.AddTeamMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.AddTeamMenuItem.Size = new System.Drawing.Size(237, 22);
             this.AddTeamMenuItem.Text = "Mannschaft hinzufügen";
             this.AddTeamMenuItem.Click += new System.EventHandler(this.AddTeamMenuItem_Click);
             // 
@@ -361,19 +363,19 @@ public partial class AppWindow
             // 
             this.RemoveTeamMenuItem.Name = "RemoveTeamMenuItem";
             this.RemoveTeamMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.RemoveTeamMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.RemoveTeamMenuItem.Size = new System.Drawing.Size(237, 22);
             this.RemoveTeamMenuItem.Text = "Mannschaft entfernen";
             this.RemoveTeamMenuItem.Click += new System.EventHandler(this.RemoveTeamMenuItem_Click);
             // 
             // AppToolStripMenuItem
             // 
             this.AppToolStripMenuItem.Name = "AppToolStripMenuItem";
-            this.AppToolStripMenuItem.Size = new System.Drawing.Size(236, 6);
+            this.AppToolStripMenuItem.Size = new System.Drawing.Size(234, 6);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(237, 22);
             this.ExitToolStripMenuItem.Text = "Be&enden";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
@@ -390,14 +392,14 @@ public partial class AppWindow
             // ClipboardGamesMenuItem
             // 
             this.ClipboardGamesMenuItem.Name = "ClipboardGamesMenuItem";
-            this.ClipboardGamesMenuItem.Size = new System.Drawing.Size(279, 22);
+            this.ClipboardGamesMenuItem.Size = new System.Drawing.Size(226, 22);
             this.ClipboardGamesMenuItem.Text = "Spiele (HTML)";
             this.ClipboardGamesMenuItem.Click += new System.EventHandler(this.ClipboardGamesMenuItem_Click);
             // 
             // ClipboardTableMenuItem
             // 
             this.ClipboardTableMenuItem.Name = "ClipboardTableMenuItem";
-            this.ClipboardTableMenuItem.Size = new System.Drawing.Size(279, 22);
+            this.ClipboardTableMenuItem.Size = new System.Drawing.Size(226, 22);
             this.ClipboardTableMenuItem.Text = "Tabelle (HTML)";
             this.ClipboardTableMenuItem.Click += new System.EventHandler(this.ClipboardTableMenuItem_Click);
             // 
@@ -406,7 +408,7 @@ public partial class AppWindow
             this.ClipboardCopyAllMenuItem.Name = "ClipboardCopyAllMenuItem";
             this.ClipboardCopyAllMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.C)));
-            this.ClipboardCopyAllMenuItem.Size = new System.Drawing.Size(279, 22);
+            this.ClipboardCopyAllMenuItem.Size = new System.Drawing.Size(226, 22);
             this.ClipboardCopyAllMenuItem.Text = "Beides (HTML)";
             this.ClipboardCopyAllMenuItem.Click += new System.EventHandler(this.ClipboardCopyAllMenuItem_Click);
             // 
@@ -423,7 +425,7 @@ public partial class AppWindow
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
             this.AboutMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.AboutMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AboutMenuItem.Size = new System.Drawing.Size(126, 22);
             this.AboutMenuItem.Text = "&About";
             this.AboutMenuItem.Click += new System.EventHandler(this.AboutMenuItem_Click);
             // 
@@ -552,6 +554,13 @@ public partial class AppWindow
             this.GamesGroupBox.TabStop = false;
             this.GamesGroupBox.Text = "Games";
             // 
+            // RecentFilesMenuItem
+            // 
+            this.RecentFilesMenuItem.Name = "RecentFilesMenuItem";
+            this.RecentFilesMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.RecentFilesMenuItem.Text = "Recent Files";
+            this.RecentFilesMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.RecentFilesMenuItem_DropDownItemClicked);
+            // 
             // AppWindow
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(7, 20);
@@ -621,4 +630,5 @@ public partial class AppWindow
     private GroupBox GamesGroupBox;
     private ToolStripMenuItem HelpMenuItem;
     private ToolStripMenuItem AboutMenuItem;
+    private ToolStripMenuItem RecentFilesMenuItem;
 }
