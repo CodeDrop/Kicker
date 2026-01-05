@@ -175,9 +175,6 @@
     <Compile Include="View\MatchListViewItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\StandingListViewItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="View\TeamDialogViewModel.cs" />
     <Compile Include="Domain\SetResult.cs" />
     <Compile Include="Domain\ScoreModes\Standing.cs" />
