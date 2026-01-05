@@ -492,6 +492,7 @@ public partial class AppWindow
             this.RankingGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.RankingGridView.Size = new System.Drawing.Size(605, 230);
             this.RankingGridView.TabIndex = 2;
+            this.RankingGridView.DoubleClick += new System.EventHandler(this.RankingGridView_DoubleClick);
             // 
             // GamesGroupBox
             // 

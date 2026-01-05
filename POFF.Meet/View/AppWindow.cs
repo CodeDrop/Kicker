@@ -1,4 +1,5 @@
 ﻿using POFF.Meet.Domain;
+using POFF.Meet.Domain.ScoreModes;
 using POFF.Meet.Infrastructure;
 using POFF.Meet.Properties;
 using System;
@@ -259,6 +260,16 @@ public partial class AppWindow : Form
             EditTeam((Team)rows[0].DataBoundItem);
         }
     }
+
+    private void RankingGridView_DoubleClick(object sender, EventArgs e)
+    {
+        var rows = RankingGridView.SelectedRows;
+        if (rows.Count == 1)
+        {
+            EditTeam(((Standing)rows[0].DataBoundItem).Team);
+        }
+    }
+
     private void GamesGridView_DoubleClick(object sender, EventArgs e)
     {
         var rows = GamesGridView.SelectedRows;
