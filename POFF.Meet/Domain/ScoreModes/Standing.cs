@@ -10,7 +10,7 @@ public class Standing : IComparable
     }
 
     public int Place { get; set; }
-    public Team Team { get; set; }
+    public Team Team { get; }
     public int Points { get; set; }
     public int Goals { get; set; }
     public int GoalsAgainst { get; set; }
