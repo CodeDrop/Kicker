@@ -26,7 +26,6 @@ public partial class AppWindow : Form
         _viewModel = new AppWindowViewModel();
         _viewModel.Teams.ListChanged += TeamsChanged;
         _viewModel.Matches.ListChanged += GamesChanged;
-        _viewModel.Standings.ListChanged += StandingsChanged;
 
         DataBindings.Add(nameof(Text), _viewModel, nameof(_viewModel.Title));
         TeamsGridView.DataSource = _viewModel.Teams;
@@ -203,11 +202,6 @@ public partial class AppWindow : Form
     {
         TotalMatchesCountToolStripStatusLabel.Text = _viewModel.TotalMatchCount().ToString();
         PlayedMatchesCountToolStripStatusLabel.Text = _viewModel.PlayedMatchCount().ToString();
-    }
-
-    private void StandingsChanged(object sender, ListChangedEventArgs e)
-    {
-        // No special action needed yet
     }
 
     private void GamesGridView_SelectedRowsChanged(object sender, EventArgs e)
