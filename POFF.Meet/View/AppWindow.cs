@@ -28,8 +28,12 @@ public partial class AppWindow : Form
         _viewModel.Matches.ListChanged += GamesChanged;
 
         DataBindings.Add(nameof(Text), _viewModel, nameof(_viewModel.Title));
+
+        TeamsGridView.AutoGenerateColumns = false;
         TeamsGridView.DataSource = _viewModel.Teams;
+        GamesGridView.AutoGenerateColumns = false;
         GamesGridView.DataSource = _viewModel.Matches;
+        RankingGridView.AutoGenerateColumns = false;
         RankingGridView.DataSource = _viewModel.Standings;
 
         TeamsChanged(_viewModel.Teams, null);

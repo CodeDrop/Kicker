@@ -69,15 +69,15 @@ public partial class AppWindow
             this.TeamsRankingSplitContainer = new System.Windows.Forms.SplitContainer();
             this.TeamsGroupBox = new System.Windows.Forms.GroupBox();
             this.RankingGroupBox = new System.Windows.Forms.GroupBox();
+            this.RankingGridView = new System.Windows.Forms.DataGridView();
+            this.GamesGroupBox = new System.Windows.Forms.GroupBox();
+            this.GamesGridView = new System.Windows.Forms.DataGridView();
             this.RankingPlaceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RankingTeamColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GamesCountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RankingGamesCountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RankingPointsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RankingSetsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RankingGoalsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GamesGroupBox = new System.Windows.Forms.GroupBox();
-            RankingGridView = new System.Windows.Forms.DataGridView();
-            GamesGridView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.TeamsGridView)).BeginInit();
             this.AppMainMenuStrip.SuspendLayout();
             this.AppStatusStrip.SuspendLayout();
@@ -91,9 +91,9 @@ public partial class AppWindow
             this.TeamsRankingSplitContainer.SuspendLayout();
             this.TeamsGroupBox.SuspendLayout();
             this.RankingGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(RankingGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RankingGridView)).BeginInit();
             this.GamesGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(GamesGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GamesGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // StatusColumn
@@ -463,7 +463,7 @@ public partial class AppWindow
             // 
             // RankingGroupBox
             // 
-            this.RankingGroupBox.Controls.Add(RankingGridView);
+            this.RankingGroupBox.Controls.Add(this.RankingGridView);
             this.RankingGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RankingGroupBox.Location = new System.Drawing.Point(0, 0);
             this.RankingGroupBox.Name = "RankingGroupBox";
@@ -474,30 +474,62 @@ public partial class AppWindow
             // 
             // RankingGridView
             // 
-            RankingGridView.AllowUserToAddRows = false;
-            RankingGridView.AllowUserToDeleteRows = false;
-            RankingGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            RankingGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.RankingGridView.AllowUserToAddRows = false;
+            this.RankingGridView.AllowUserToDeleteRows = false;
+            this.RankingGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RankingGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.RankingPlaceColumn,
             this.RankingTeamColumn,
-            this.GamesCountColumn,
+            this.RankingGamesCountColumn,
             this.RankingPointsColumn,
             this.RankingSetsColumn,
             this.RankingGoalsColumn});
-            RankingGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            RankingGridView.AutoGenerateColumns= false;
-            RankingGridView.Location = new System.Drawing.Point(3, 23);
-            RankingGridView.Name = "RankingGridView";
-            RankingGridView.ReadOnly = true;
-            RankingGridView.RowHeadersVisible = false;
-            RankingGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            RankingGridView.Size = new System.Drawing.Size(605, 230);
-            RankingGridView.TabIndex = 2;
+            this.RankingGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RankingGridView.Location = new System.Drawing.Point(3, 23);
+            this.RankingGridView.Name = "RankingGridView";
+            this.RankingGridView.ReadOnly = true;
+            this.RankingGridView.RowHeadersVisible = false;
+            this.RankingGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.RankingGridView.Size = new System.Drawing.Size(605, 230);
+            this.RankingGridView.TabIndex = 2;
+            // 
+            // GamesGroupBox
+            // 
+            this.GamesGroupBox.Controls.Add(this.GamesGridView);
+            this.GamesGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GamesGroupBox.Location = new System.Drawing.Point(0, 0);
+            this.GamesGroupBox.Name = "GamesGroupBox";
+            this.GamesGroupBox.Size = new System.Drawing.Size(1138, 253);
+            this.GamesGroupBox.TabIndex = 3;
+            this.GamesGroupBox.TabStop = false;
+            this.GamesGroupBox.Text = "Games";
+            // 
+            // GamesGridView
+            // 
+            this.GamesGridView.AllowUserToAddRows = false;
+            this.GamesGridView.AllowUserToDeleteRows = false;
+            this.GamesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GamesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.StatusColumn,
+            this.GameNumberColumn,
+            this.HomeColumn,
+            this.GuestColumn,
+            this.ResultColumn});
+            this.GamesGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GamesGridView.Location = new System.Drawing.Point(3, 23);
+            this.GamesGridView.Name = "GamesGridView";
+            this.GamesGridView.ReadOnly = true;
+            this.GamesGridView.RowHeadersVisible = false;
+            this.GamesGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GamesGridView.Size = new System.Drawing.Size(1132, 227);
+            this.GamesGridView.TabIndex = 0;
+            this.GamesGridView.SelectionChanged += new System.EventHandler(this.GamesGridView_SelectedRowsChanged);
+            this.GamesGridView.DoubleClick += new System.EventHandler(this.GamesGridView_DoubleClick);
             // 
             // RankingPlaceColumn
             // 
             this.RankingPlaceColumn.DataPropertyName = "Place";
-            this.RankingPlaceColumn.HeaderText = "Place";
+            this.RankingPlaceColumn.HeaderText = "#";
             this.RankingPlaceColumn.Name = "RankingPlaceColumn";
             this.RankingPlaceColumn.ReadOnly = true;
             // 
@@ -508,12 +540,12 @@ public partial class AppWindow
             this.RankingTeamColumn.Name = "RankingTeamColumn";
             this.RankingTeamColumn.ReadOnly = true;
             // 
-            // GamesCountColumn
+            // RankingGamesCountColumn
             // 
-            this.GamesCountColumn.DataPropertyName = "MatchCount";
-            this.GamesCountColumn.HeaderText = "Games";
-            this.GamesCountColumn.Name = "GamesCountColumn";
-            this.GamesCountColumn.ReadOnly = true;
+            this.RankingGamesCountColumn.DataPropertyName = "MatchCount";
+            this.RankingGamesCountColumn.HeaderText = "Games";
+            this.RankingGamesCountColumn.Name = "RankingGamesCountColumn";
+            this.RankingGamesCountColumn.ReadOnly = true;
             // 
             // RankingPointsColumn
             // 
@@ -535,39 +567,6 @@ public partial class AppWindow
             this.RankingGoalsColumn.HeaderText = "Goals";
             this.RankingGoalsColumn.Name = "RankingGoalsColumn";
             this.RankingGoalsColumn.ReadOnly = true;
-            // 
-            // GamesGroupBox
-            // 
-            this.GamesGroupBox.Controls.Add(GamesGridView);
-            this.GamesGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GamesGroupBox.Location = new System.Drawing.Point(0, 0);
-            this.GamesGroupBox.Name = "GamesGroupBox";
-            this.GamesGroupBox.Size = new System.Drawing.Size(1138, 253);
-            this.GamesGroupBox.TabIndex = 3;
-            this.GamesGroupBox.TabStop = false;
-            this.GamesGroupBox.Text = "Games";
-            // 
-            // GamesGridView
-            // 
-            GamesGridView.AllowUserToAddRows = false;
-            GamesGridView.AllowUserToDeleteRows = false;
-            GamesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            GamesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.StatusColumn,
-            this.GameNumberColumn,
-            this.HomeColumn,
-            this.GuestColumn,
-            this.ResultColumn});
-            GamesGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            GamesGridView.Location = new System.Drawing.Point(3, 23);
-            GamesGridView.Name = "GamesGridView";
-            GamesGridView.ReadOnly = true;
-            GamesGridView.RowHeadersVisible = false;
-            GamesGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            GamesGridView.Size = new System.Drawing.Size(1132, 227);
-            GamesGridView.TabIndex = 0;
-            GamesGridView.SelectionChanged += new System.EventHandler(this.GamesGridView_SelectedRowsChanged);
-            GamesGridView.DoubleClick += new System.EventHandler(this.GamesGridView_DoubleClick);
             // 
             // AppWindow
             // 
@@ -597,9 +596,9 @@ public partial class AppWindow
             this.TeamsRankingSplitContainer.ResumeLayout(false);
             this.TeamsGroupBox.ResumeLayout(false);
             this.RankingGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(RankingGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RankingGridView)).EndInit();
             this.GamesGroupBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(GamesGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GamesGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -645,12 +644,12 @@ public partial class AppWindow
     private DataGridViewTextBoxColumn Player1Column;
     private DataGridViewTextBoxColumn Player2Column;
     private DataGridViewCheckBoxColumn TeamWithdrawnColumn;
+    private DataGridView RankingGridView;
+    private DataGridView GamesGridView;
     private DataGridViewTextBoxColumn RankingPlaceColumn;
     private DataGridViewTextBoxColumn RankingTeamColumn;
-    private DataGridViewTextBoxColumn GamesCountColumn;
+    private DataGridViewTextBoxColumn RankingGamesCountColumn;
     private DataGridViewTextBoxColumn RankingPointsColumn;
     private DataGridViewTextBoxColumn RankingSetsColumn;
     private DataGridViewTextBoxColumn RankingGoalsColumn;
-    private DataGridView RankingGridView;
-    private DataGridView GamesGridView;
 }
