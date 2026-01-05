@@ -14,6 +14,7 @@ public class Standing : IComparable
     public int Points { get; set; }
     public int Goals { get; set; }
     public int GoalsAgainst { get; set; }
+    public int GoalsDifference => Goals - GoalsAgainst;
     public int MatchCount { get; set; }
     public int WonSetCount { get; set; }
 

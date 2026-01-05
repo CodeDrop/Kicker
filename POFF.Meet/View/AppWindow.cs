@@ -31,6 +31,7 @@ public partial class AppWindow : Form
         DataBindings.Add(nameof(Text), _viewModel, nameof(_viewModel.Title));
         TeamsGridView.DataSource = _viewModel.Teams;
         GamesGridView.DataSource = _viewModel.Matches;
+        RankingGridView.DataSource = _viewModel.Standings;
 
         TeamsChanged(_viewModel.Teams, null);
         GamesChanged(_viewModel.Matches, null);
@@ -206,11 +207,7 @@ public partial class AppWindow : Form
 
     private void StandingsChanged(object sender, ListChangedEventArgs e)
     {
-        StandingListView.Items.Clear();
-        foreach (var standing in _viewModel.Standings)
-        {
-            StandingListView.Items.Add(new StandingListViewItem(standing));
-        }
+        // No special action needed yet
     }
 
     private void GamesGridView_SelectedRowsChanged(object sender, EventArgs e)
