@@ -136,11 +136,10 @@ public partial class AppWindow : Form
         {
             using var dialog = new SaveFileDialog();
             dialog.Filter = "POFF Meet (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                _viewModel.Storage = new FileTournamentStorage(dialog.FileName);
-                UpdateRecentFiles(dialog.FileName);
-            }
+            if (dialog.ShowDialog() != DialogResult.OK) return;
+
+            _viewModel.Storage = new FileTournamentStorage(dialog.FileName);
+            UpdateRecentFiles(dialog.FileName);
         }
 
         _viewModel.Save();
@@ -216,7 +215,7 @@ public partial class AppWindow : Form
 
     private void GamesGridView_SelectedRowsChanged(object sender, EventArgs e)
     {
-        var games= new List<Match>();
+        var games = new List<Match>();
         foreach (DataGridViewRow row in GamesGridView.SelectedRows)
         {
             if (row.DataBoundItem is Match match)
