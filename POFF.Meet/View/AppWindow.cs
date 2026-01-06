@@ -257,8 +257,12 @@ public partial class AppWindow : Form
         var rows = TeamsGridView.SelectedRows;
         if (rows.Count == 1)
         {
-            EditTeam((Team)rows[0].DataBoundItem);
+            EditTeam();
         }
+    }
+    private void RankingGridView_SelectionChanged(object sender, EventArgs e)
+    {
+        _viewModel.SelectedTeam = RankingGridView.SelectedRows.Count == 1 ? ((Standing)RankingGridView.SelectedRows[0].DataBoundItem).Team : null;
     }
 
     private void RankingGridView_DoubleClick(object sender, EventArgs e)
@@ -266,7 +270,7 @@ public partial class AppWindow : Form
         var rows = RankingGridView.SelectedRows;
         if (rows.Count == 1)
         {
-            EditTeam(((Standing)rows[0].DataBoundItem).Team);
+            EditTeam();
         }
     }
 
@@ -284,10 +288,13 @@ public partial class AppWindow : Form
         }
     }
 
-    private void EditTeam(Team team)
+    private void EditTeam()
     {
-        using var dialog = new TeamDialog(new TeamInfo(team));
-        dialog.ShowDialog(this);
+        using var dialog = new TeamDialog(new TeamInfo(_viewModel.SelectedTeam));
+        if (dialog.ShowDialog(this) == DialogResult.OK)
+        {
+            _viewModel.UpdateTeam(dialog.TeamInfo);
+        }
     }
 
     private void ExportMenuItem_Click(object sender, EventArgs e)

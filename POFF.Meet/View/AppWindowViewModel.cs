@@ -103,6 +103,15 @@ public class AppWindowViewModel : ViewModelBase
         SetTitleAndDirtyFlag(true);
     }
 
+    public void UpdateTeam(TeamInfo teamInfo)
+    {
+        if (SelectedTeam is null) return;
+        teamInfo.AcceptChanges();
+        Matches.SetValues(_tournament.Matches);
+        Standings.SetValues(_tournament.GetStandings());
+        SetTitleAndDirtyFlag(true);
+    }
+
     public void RemoveTeam()
     {
         if (SelectedTeam is not null)
