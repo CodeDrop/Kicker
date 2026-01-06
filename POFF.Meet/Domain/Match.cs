@@ -9,7 +9,7 @@ public class Match
 {
     internal Match()
     {
-        // 
+        // required for serialization
     }
 
     public Match(int number, Team team1, Team team2)
@@ -26,15 +26,6 @@ public class Match
     public MatchStatus Status { get; set; }
     public Result Result { get; set; }
 
-    public bool HasTeam(Team team)
-    {
-        if (Team1.Equals(team))
-            return true;
-        if (Team2.Equals(team))
-            return true;
-        return false;
-    }
-
     public override string ToString()
     {
         return string.Format("Spiel {0}: {1} vs. {2}", Number, Team1.Name, Team2.Name);
@@ -42,15 +33,12 @@ public class Match
 
     public new bool Equals(object obj)
     {
-        {
-            var otherMatch = (Match)obj;
-            if ((otherMatch.Team1.Name ?? "") != (Team1.Name ?? "") && (otherMatch.Team1.Name ?? "") != (Team2.Name ?? ""))
-                return false;
-            if ((otherMatch.Team2.Name ?? "") != (Team1.Name ?? "") && (otherMatch.Team2.Name ?? "") != (Team2.Name ?? ""))
-                return false;
+        var otherMatch = (Match)obj;
+        if ((otherMatch.Team1.Name ?? "") != (Team1.Name ?? "") && (otherMatch.Team1.Name ?? "") != (Team2.Name ?? ""))
+            return false;
+        if ((otherMatch.Team2.Name ?? "") != (Team1.Name ?? "") && (otherMatch.Team2.Name ?? "") != (Team2.Name ?? ""))
+            return false;
 
-            return true;
-        }
+        return true;
     }
-
 }
