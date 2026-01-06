@@ -3,6 +3,7 @@ using POFF.Meet.Domain.PlayModes;
 using POFF.Meet.Domain.ScoreModes;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace POFF.Meet.View.Model;
 
@@ -82,6 +83,14 @@ public class Tournament
 
     public IEnumerable<Standing> GetStandings()
     {
-        return _scoreMode.Evaluate([.. Matches]);
+        if (Matches.Any())
+        {
+            return _scoreMode.Evaluate([.. Matches]);
+        }
+        else if (Teams.Any())
+        {
+            return [new Standing(Teams.ElementAt(0))];
+        }
+        return [];
     }
 }
