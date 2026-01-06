@@ -153,10 +153,11 @@ public partial class AppWindow : Form
         if (CheckDeleteResults($"Mannschaft hinzufügen?") == DialogResult.No)
             return;
 
-        var dialog = new TeamDialog(new TeamInfo());
+        var teamInfo = new TeamInfo();
+        using var dialog = new TeamDialog(teamInfo);
         if (dialog.ShowDialog() != DialogResult.OK) return;
 
-        _viewModel.AddTeam(dialog.TeamInfo);
+        _viewModel.AddTeam(teamInfo);
     }
 
     private void RemoveTeamMenuItem_Click(object sender, EventArgs e)

@@ -30,7 +30,7 @@ public class Tournament
 
     public Guid Id { get; }
 
-    public string Name { get; set; } 
+    public string Name { get; set; }
 
     public IEnumerable<Team> Teams => _teams;
 
@@ -50,10 +50,17 @@ public class Tournament
         set { _scoreMode = value ?? throw new ArgumentNullException(nameof(ScoreMode)); }
     }
 
-    public void AddTeam(Team team)
+    public Team AddTeam(string teamName)
     {
-        _teams.Add(team ?? throw new ArgumentNullException(nameof(team)));
+        var number = _teams.Any() ? _teams.Max(t => t.Number) + 1 : 1;
+        var newTeam = new Team 
+        {  
+            Number = number,
+            Name = teamName ?? throw new ArgumentNullException(nameof(teamName)) 
+        };
+        _teams.Add(newTeam);
         GenerateMatches();
+        return newTeam;
     }
 
     public void RemoveTeam(Team team)

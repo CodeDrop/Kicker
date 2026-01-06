@@ -96,8 +96,8 @@ public class AppWindowViewModel : ViewModelBase
 
     public void AddTeam(TeamInfo teamInfo)
     {
-        _tournament.AddTeam(teamInfo.Team);
-        Teams.Add(teamInfo.Team);
+        var newTeam = _tournament.AddTeam(teamInfo.Name);
+        Teams.Add(newTeam);
         Matches.SetValues(_tournament.Matches);
         Standings.SetValues(_tournament.GetStandings());
         SetTitleAndDirtyFlag(true);
@@ -106,7 +106,7 @@ public class AppWindowViewModel : ViewModelBase
     public void UpdateTeam(TeamInfo teamInfo)
     {
         if (SelectedTeam is null) return;
-        teamInfo.AcceptChanges();
+        SelectedTeam.Name = teamInfo.Name;
         Matches.SetValues(_tournament.Matches);
         Standings.SetValues(_tournament.GetStandings());
         SetTitleAndDirtyFlag(true);

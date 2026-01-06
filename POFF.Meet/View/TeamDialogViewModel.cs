@@ -3,10 +3,8 @@ using POFF.Meet.Domain;
 
 namespace POFF.Meet.View;
 
-
 public class TeamDialogViewModel
 {
-
     public TeamDialogViewModel(TeamInfo teamInfo)
     {
         // Check parameters
@@ -14,21 +12,15 @@ public class TeamDialogViewModel
             throw new ArgumentNullException("teamInfo");
 
         // Initialize members
-        TeamInfoValue = teamInfo;
+        _teamInfo = teamInfo;
     }
 
-    private readonly TeamInfo TeamInfoValue;
+    private readonly TeamInfo _teamInfo;
     private TeamInfo TeamInfo
     {
         get
         {
-            return TeamInfoValue;
+            return _teamInfo;
         }
     }
-
-    public void AcceptChanges()
-    {
-        TeamInfo.AcceptChanges();
-    }
-
 }

@@ -7,6 +7,7 @@ namespace POFF.Meet.Domain;
 [DebuggerDisplay("{Name}")]
 public class Team
 {
+    public int Number { get; set; } 
     public string Name { get; set; } = "";
     public string Player1 { get; set; }
     public string Player2 { get; set; }
@@ -15,12 +16,12 @@ public class Team
     public override bool Equals(object obj)
     {
         if (obj is not Team otherTeam) return false;
-        return Name.Equals(otherTeam.Name);
+        return Number == otherTeam.Number;
     }
 
     public override int GetHashCode()
     {
-        return Name.GetHashCode();
+        return Number.GetHashCode();
     }
     
     public override string ToString()

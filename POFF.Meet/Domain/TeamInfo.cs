@@ -1,16 +1,13 @@
 ﻿using System;
-using System.ComponentModel;
 using POFF.Meet.View;
 
 namespace POFF.Meet.Domain;
 
-public class TeamInfo : NotificationObject, IChangeTracking
+public class TeamInfo : NotificationObject
 {
-    private Data _current;
-    private readonly Team _team;
-
-    public TeamInfo() : this(new Team() { Name = "New Team" })
+    public TeamInfo()
     {
+        Name = "New Team";
     }
 
     public TeamInfo(Team team)
@@ -20,38 +17,22 @@ public class TeamInfo : NotificationObject, IChangeTracking
             throw new ArgumentNullException("team");
 
         // Initialize members
-        _team = team;
-        _current.Name = team.Name;
-        _current.Player1 = team.Player1;
-        _current.Player2 = team.Player2;
-    }
-
-    private struct Data
-    {
-        public string Name;
-        public string Player1;
-        public string Player2;
-    }
-
-    internal Team Team
-    {
-        get
-        {
-            return _team;
-        }
+        Name = team.Name;
+        Player1 = team.Player1;
+        Player2 = team.Player2;
     }
 
     public string Name
     {
         get
         {
-            return _current.Name;
+            return field;
         }
         set
         {
-            if ((value ?? "") == (_current.Name ?? ""))
+            if ((value ?? "") == (field ?? ""))
                 return;
-            _current.Name = value;
+            field = value;
             OnPropertyChanged();
         }
     }
@@ -60,13 +41,13 @@ public class TeamInfo : NotificationObject, IChangeTracking
     {
         get
         {
-            return _current.Player1;
+            return field;
         }
         set
         {
-            if ((value ?? "") == (_current.Player1 ?? ""))
+            if ((value ?? "") == (field ?? ""))
                 return;
-            _current.Player1 = value;
+            field = value;
             OnPropertyChanged();
         }
     }
@@ -75,29 +56,19 @@ public class TeamInfo : NotificationObject, IChangeTracking
     {
         get
         {
-            return _current.Player2;
+            return field;
         }
         set
         {
-            if ((value ?? "") == (_current.Player2 ?? ""))
+            if ((value ?? "") == (field ?? ""))
                 return;
-            _current.Player2 = value;
+            field = value;
             OnPropertyChanged();
         }
     }
 
     protected override void OnPropertyChanged(string propertyName = "")
     {
-        IsChanged = true;
         base.OnPropertyChanged(propertyName);
     }
-
-    public void AcceptChanges()
-    {
-        Team.Name = _current.Name;
-        Team.Player1 = _current.Player1;
-        Team.Player2 = _current.Player2;
-    }
-
-    public bool IsChanged { get; private set; }
 }

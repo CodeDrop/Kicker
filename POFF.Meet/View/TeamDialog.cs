@@ -273,16 +273,12 @@ public class TeamDialog : Form
         InitializeComponent();
 
         // Add any initialization after the InitializeComponent() call
-        var viewModel = new TeamDialogViewModel(team);
         TeamInfoValue = team;
 
         // View <-> ViewModel
         TeamTextBox.DataBindings.Add("Text", team, "Name", false, DataSourceUpdateMode.OnPropertyChanged);
         Player1TextBox.DataBindings.Add("Text", team, "Player1", false, DataSourceUpdateMode.OnPropertyChanged);
         Player2TextBox.DataBindings.Add("Text", team, "Player2", false, DataSourceUpdateMode.OnPropertyChanged);
-
-        OKButton.Click += (s, e) => viewModel.AcceptChanges();
-
     }
 
     private readonly TeamInfo TeamInfoValue;
