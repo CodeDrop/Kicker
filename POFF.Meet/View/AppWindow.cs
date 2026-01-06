@@ -30,8 +30,6 @@ public partial class AppWindow : Form
 
         DataBindings.Add(nameof(Text), _viewModel, nameof(_viewModel.Title));
 
-        TeamsGridView.AutoGenerateColumns = false;
-        TeamsGridView.DataSource = _viewModel.Teams;
         GamesGridView.AutoGenerateColumns = false;
         GamesGridView.DataSource = _viewModel.Matches;
         RankingGridView.AutoGenerateColumns = false;
@@ -240,26 +238,13 @@ public partial class AppWindow : Form
         {
             e.Value = e.RowIndex + 1;
         }
-        if (((Team)TeamsGridView.Rows[e.RowIndex].DataBoundItem).Withdrawn)
+        if (((Standing)RankingGridView.Rows[e.RowIndex].DataBoundItem).Team.Withdrawn)
         {
             e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Strikeout);
             e.CellStyle.ForeColor = Color.LightGray;
         }
     }
 
-    private void TeamsDataGridView_SelectionChanged(object sender, EventArgs e)
-    {
-        _viewModel.SelectedTeam = TeamsGridView.SelectedRows.Count == 1 ? (Team)TeamsGridView.SelectedRows[0].DataBoundItem : null;
-    }
-
-    private void TeamsDataGridView_DoubleClick(object sender, EventArgs e)
-    {
-        var rows = TeamsGridView.SelectedRows;
-        if (rows.Count == 1)
-        {
-            EditTeam();
-        }
-    }
     private void RankingGridView_SelectionChanged(object sender, EventArgs e)
     {
         _viewModel.SelectedTeam = RankingGridView.SelectedRows.Count == 1 ? ((Standing)RankingGridView.SelectedRows[0].DataBoundItem).Team : null;
@@ -268,9 +253,12 @@ public partial class AppWindow : Form
     private void RankingGridView_DoubleClick(object sender, EventArgs e)
     {
         var rows = RankingGridView.SelectedRows;
-        if (rows.Count == 1)
+        if (rows.Count != 1) return;
+
+        using var dialog = new TeamDialog(new TeamInfo(_viewModel.SelectedTeam));
+        if (dialog.ShowDialog(this) == DialogResult.OK)
         {
-            EditTeam();
+            _viewModel.UpdateTeam(dialog.TeamInfo);
         }
     }
 
@@ -285,15 +273,6 @@ public partial class AppWindow : Form
         if (dialog.ShowDialog(this) == DialogResult.OK)
         {
             _viewModel.ProcessResult(dialog.SetResults);
-        }
-    }
-
-    private void EditTeam()
-    {
-        using var dialog = new TeamDialog(new TeamInfo(_viewModel.SelectedTeam));
-        if (dialog.ShowDialog(this) == DialogResult.OK)
-        {
-            _viewModel.UpdateTeam(dialog.TeamInfo);
         }
     }
 
