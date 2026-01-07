@@ -24,8 +24,6 @@ public class Tournament
         Id = id;
         _teams.AddRange(teams);
         _matches.AddRange(matches);
-        _playMode = new RoundRobinPlayMode();
-        _scoreMode = new Win3Equal1Loss0ScoreMode();
     }
 
     public Guid Id { get; }
