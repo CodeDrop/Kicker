@@ -24,6 +24,8 @@ public class Standing : IComparable
 
         if (Points != standing.Points)
             return standing.Points.CompareTo(Points);
+        if (MatchCount != standing.MatchCount)
+            return standing.MatchCount.CompareTo(MatchCount);
         if (WonSetCount != standing.WonSetCount)
             return standing.WonSetCount.CompareTo(WonSetCount);
         if (Goals != standing.Goals)
