@@ -26,19 +26,14 @@ public class Match
     public MatchStatus Status { get; set; }
     public Result Result { get; set; }
 
-    public override string ToString()
-    {
-        return string.Format("Spiel {0}: {1} vs. {2}", Number, Team1.Name, Team2.Name);
-    }
-
     public new bool Equals(object obj)
     {
         var otherMatch = (Match)obj;
-        if ((otherMatch.Team1.Name ?? "") != (Team1.Name ?? "") && (otherMatch.Team1.Name ?? "") != (Team2.Name ?? ""))
-            return false;
-        if ((otherMatch.Team2.Name ?? "") != (Team1.Name ?? "") && (otherMatch.Team2.Name ?? "") != (Team2.Name ?? ""))
-            return false;
+        if (otherMatch.Team1.Equals(Team1) && otherMatch.Team2.Equals(Team2))
+            return true;
+        if (otherMatch.Team1.Equals(Team2) && otherMatch.Team2.Equals(Team1))
+            return true;
 
-        return true;
+        return false;
     }
 }
