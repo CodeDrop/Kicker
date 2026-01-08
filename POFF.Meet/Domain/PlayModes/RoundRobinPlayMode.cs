@@ -8,6 +8,8 @@ public class RoundRobinPlayMode : IPlayMode
     private readonly List<Fixture> _matches = [];
     private int _teamsCount;
 
+    public string Name => "Round Robin";
+
     public IEnumerable<Fixture> Generate(int teamsCount)
     {
         _teamsCount = teamsCount;

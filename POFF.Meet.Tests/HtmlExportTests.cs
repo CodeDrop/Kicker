@@ -17,12 +17,9 @@ public class HtmlExportTests
     {
         // Arrange
         var tournament = new Tournament();
-        var team1 = new Team { Name = "Team N°1" };
-        var team2 = new Team { Name = "Team N°2" };
-        var team3 = new Team { Name = "Team N°3", Withdrawn = true };
-        tournament.AddTeam(team1);
-        tournament.AddTeam(team2);
-        tournament.AddTeam(team3);
+        tournament.AddTeam("Team N°1");
+        tournament.AddTeam("Team N°2");
+        tournament.AddTeam("Team N°3").Withdrawn = true;
         var matchResult = new Result();
         matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
         tournament.SetResult(2, matchResult);

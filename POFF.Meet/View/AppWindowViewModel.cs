@@ -1,11 +1,15 @@
 ﻿using POFF.Meet.Domain;
+using POFF.Meet.Domain.PlayModes;
 using POFF.Meet.Domain.ScoreModes;
 using POFF.Meet.Extensions;
 using POFF.Meet.Infrastructure;
 using POFF.Meet.View.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
+using System.Security.AccessControl;
 
 namespace POFF.Meet.View;
 
@@ -15,7 +19,24 @@ public class AppWindowViewModel : ViewModelBase
 
     public AppWindowViewModel()
     {
+        SetOptionLists();
         SetTeamsMatchesAndStandings();
+    }
+
+    private void SetOptionLists()
+    {
+        // Use reflection to discover all concrete types implementing IPlayMode in this assembly
+        var playModeTypes = Assembly.GetExecutingAssembly().GetTypes()
+            .Where(t => typeof(IPlayMode).IsAssignableFrom(t)
+                && !t.IsAbstract
+                && !t.IsInterface
+                && t.GetConstructor(Type.EmptyTypes) != null
+            );
+
+        foreach (Type playModeType in playModeTypes)
+        {
+            PlayModes.Add(Activator.CreateInstance(playModeType) as IPlayMode);
+        }
     }
 
     public void NewTournament()
@@ -58,6 +79,8 @@ public class AppWindowViewModel : ViewModelBase
     public bool IsNew { get; private set; }
 
     public BindingList<Team> Teams { get; } = [];
+
+    public BindingList<IPlayMode> PlayModes { get; } = [];
 
     public BindingList<Match> Matches { get; } = [];
 

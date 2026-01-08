@@ -7,27 +7,27 @@ namespace POFF.Meet.Tests;
 [TestFixture]
 public class RoundRobinPlayModeTests
 {
-    [Test]
-    public void Generate2Test()
+    private RoundRobinPlayMode _sut;
+
+    [OneTimeSetUp]
+    public void SetUp()
     {
-        var sut = new RoundRobinPlayMode();
-        var result = sut.Generate(2);
-        Assert.That(result.Count(), Is.EqualTo(1));
+        _sut = new RoundRobinPlayMode();
     }
 
     [Test]
-    public void Generate3Test()
+    [TestCase(2, 1)]
+    [TestCase(3, 3)]
+    [TestCase(5, 10)]
+    public void Generate_returns_expected_number_of_fixtures(int teamCount, int expectedFixtureCount)
     {
-        var sut = new RoundRobinPlayMode();
-        var result = sut.Generate(3);
-        Assert.That(result.Count(), Is.EqualTo(3));
+        var result = _sut.Generate(teamCount);
+        Assert.That(result.Count(), Is.EqualTo(expectedFixtureCount));
     }
 
     [Test]
-    public void Generate5Test()
+    public void Name_is_not_empty()
     {
-        var sut = new RoundRobinPlayMode();
-        var result = sut.Generate(5);
-        Assert.That(result.Count(), Is.EqualTo(10));
+        Assert.That(_sut.Name, Is.Not.Empty);
     }
 }

@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
+using POFF.Meet.Domain.PlayModes;
 using POFF.Meet.View;
+using System.Collections.Generic;
 
 namespace POFF.Meet.Tests;
 
@@ -38,5 +40,12 @@ public class AppWindowViewModelTests
     public void Matches_is_not_null()
     {
         Assert.That(_sut.Teams, Is.Not.Null);
+    }
+
+    [Test]
+    public void PlayModes_are_available()
+    {
+        IList<IPlayMode> playModes = _sut.PlayModes;
+        Assert.That(playModes, Has.Count.EqualTo(2));
     }
 }

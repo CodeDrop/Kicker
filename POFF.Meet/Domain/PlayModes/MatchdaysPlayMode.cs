@@ -9,6 +9,8 @@ public class MatchdaysPlayMode : IPlayMode
     private readonly List<Fixture> _matches = [];
     private readonly List<Matchday> _matchdays = [];
 
+    public string Name => "Match Days";
+
     public IEnumerable<Fixture> Generate(int teamsCount)
     {
         _teamsCount = teamsCount;
@@ -24,7 +26,9 @@ public class MatchdaysPlayMode : IPlayMode
         foreach (var matchday in _matchdays)
         {
             foreach (var matchIndexPair in matchday)
+            {
                 yield return matchIndexPair;
+            }
         }
     }
 
@@ -33,7 +37,9 @@ public class MatchdaysPlayMode : IPlayMode
         for (int i = 1, loopTo = _teamsCount; i <= loopTo; i++)
         {
             for (int j = i + 1, loopTo1 = _teamsCount; j <= loopTo1; j++)
+            {
                 yield return new Fixture(i - 1, j - 1);
+            }
         }
     }
 
@@ -42,7 +48,9 @@ public class MatchdaysPlayMode : IPlayMode
         int blockSize = _teamsCount / 2;
 
         for (int i = 0, loopTo = _teamsCount - 2; i <= loopTo; i++)
+        {
             yield return GenerateMatchday(blockSize);
+        }
     }
 
     private Matchday GenerateMatchday(int blockSize)
@@ -69,8 +77,7 @@ public class MatchdaysPlayMode : IPlayMode
 
     private Fixture GetNextMatch(Matchday matchday)
     {
-        if (_matches.Count == 0)
-            return Fixture.Empty;
+        if (_matches.Count == 0) return Fixture.Empty;
 
         for (int i = 0, loopTo = _matches.Count - 1; i <= loopTo; i++)
         {

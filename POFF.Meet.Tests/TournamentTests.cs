@@ -27,10 +27,8 @@ public class TournamentTests
     {
         // Arrange
         var testClass = new Tournament();
-        var team1 = new Team {Name = "Team N°1"};
-        var team2 = new Team {Name = "Team N°2"};
-        testClass.AddTeam(team1);
-        testClass.AddTeam(team2);
+        testClass.AddTeam("Team N°1");
+        testClass.AddTeam("Team N°2");
         var matchResult = new Result();
         matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
         testClass.SetResult(1, matchResult);

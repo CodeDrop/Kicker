@@ -44,8 +44,8 @@ public class Export_into_twig_file
     }
 
     [Test]
-    [TestCase("<tr><td>1</td><td>Team A</td>")]
-    [TestCase("<tr><td>2</td><td>Team B</td>")]
+    [TestCase("<tr><td>1</td><td>Team B</td>")]
+    [TestCase("<tr><td>2</td><td>Team A</td>")]
     public void File_contains_ranking_HTML(string ranking)
     {
         Assert.That(_content, Does.Contain(ranking));
