@@ -33,10 +33,7 @@ public class AppWindowViewModel : ViewModelBase
                 && t.GetConstructor(Type.EmptyTypes) != null
             );
 
-        foreach (Type playModeType in playModeTypes)
-        {
-            PlayModes.Add(Activator.CreateInstance(playModeType) as IPlayMode);
-        }
+        PlayModes.SetValues(playModeTypes.Select(t => Activator.CreateInstance(t) as IPlayMode));
     }
 
     public void NewTournament()
@@ -81,6 +78,21 @@ public class AppWindowViewModel : ViewModelBase
     public BindingList<Team> Teams { get; } = [];
 
     public BindingList<IPlayMode> PlayModes { get; } = [];
+
+    public IPlayMode PlayMode
+    {
+        get => _tournament.PlayMode;
+        set
+        {
+            if (value != null && value != _tournament.PlayMode)
+            {
+                _tournament.PlayMode = value;
+                Matches.SetValues(_tournament.Matches);
+                Standings.SetValues(_tournament.GetStandings());
+                SetTitleAndDirtyFlag(true);
+            }
+        }
+    }
 
     public BindingList<Match> Matches { get; } = [];
 

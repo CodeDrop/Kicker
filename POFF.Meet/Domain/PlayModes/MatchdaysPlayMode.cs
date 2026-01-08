@@ -13,6 +13,8 @@ public class MatchdaysPlayMode : IPlayMode
 
     public IEnumerable<Fixture> Generate(int teamsCount)
     {
+        if (teamsCount % 2 != 0) return [];
+
         _teamsCount = teamsCount;
         _matches.Clear();
         _matches.AddRange(GenerateMatches());

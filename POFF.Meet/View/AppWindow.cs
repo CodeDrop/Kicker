@@ -1,4 +1,5 @@
 ﻿using POFF.Meet.Domain;
+using POFF.Meet.Domain.PlayModes;
 using POFF.Meet.Domain.ScoreModes;
 using POFF.Meet.Infrastructure;
 using POFF.Meet.Properties;
@@ -25,18 +26,19 @@ public partial class AppWindow : Form
 
         // Add any initialization after the InitializeComponent() call
         _viewModel = new AppWindowViewModel();
-        _viewModel.Teams.ListChanged += TeamsChanged;
+        _viewModel.Standings.ListChanged += RankingChanged;
         _viewModel.Matches.ListChanged += GamesChanged;
 
         DataBindings.Add(nameof(Text), _viewModel, nameof(_viewModel.Title));
 
-        GamesGridView.AutoGenerateColumns = false;
-        GamesGridView.DataSource = _viewModel.Matches;
         RankingGridView.AutoGenerateColumns = false;
         RankingGridView.DataSource = _viewModel.Standings;
 
-        TeamsChanged(_viewModel.Teams, null);
-        GamesChanged(_viewModel.Matches, null);
+        GamesGridView.AutoGenerateColumns = false;
+        GamesGridView.DataSource = _viewModel.Matches;
+
+        PlayModeComboBox.DataSource = _viewModel.PlayModes;
+        PlayModeComboBox.SelectedItem = _viewModel.PlayMode;
     }
 
     private void AppWindow_Load(object sender, EventArgs e)
@@ -156,7 +158,7 @@ public partial class AppWindow : Form
 
     private void AddTeamMenuItem_Click(object sender, EventArgs e)
     {
-        if (CheckDeleteResults($"Mannschaft hinzufügen?") == DialogResult.No)
+        if (CheckDeleteResults($"Add team?") == DialogResult.No)
             return;
 
         var teamInfo = new TeamInfo();
@@ -170,7 +172,7 @@ public partial class AppWindow : Form
     {
         var team = _viewModel.SelectedTeam;
         if (team is null ||
-            CheckDeleteResults($"Mannschaft \"{team.Name}\" löschen?") == DialogResult.No)
+            CheckDeleteResults($"Remove team \"{team.Name}\"?") == DialogResult.No)
             return;
 
         _viewModel.RemoveTeam();
@@ -201,7 +203,7 @@ public partial class AppWindow : Form
         Close();
     }
 
-    private void TeamsChanged(object sender, ListChangedEventArgs e)
+    private void RankingChanged(object sender, ListChangedEventArgs e)
     {
         PlayerFilterToolStripDropDownButton.DropDownItems.Clear();
         PlayerFilterToolStripDropDownButton.DropDownItems.Add(_noTeamFilter);
@@ -298,5 +300,15 @@ public partial class AppWindow : Form
     {
         using var dialog = new AboutDialog { MeetingId = _viewModel.TournamentId };
         dialog.ShowDialog(this);
+    }
+
+    private void PlayModeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (CheckDeleteResults("Change play mode?") == DialogResult.No)
+        {
+            PlayModeComboBox.SelectedItem = _viewModel.PlayMode;
+            return;
+        }
+        _viewModel.PlayMode = (IPlayMode)PlayModeComboBox.SelectedItem;
     }
 }

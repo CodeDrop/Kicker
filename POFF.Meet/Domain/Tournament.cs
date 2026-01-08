@@ -11,7 +11,6 @@ public class Tournament
 {
     private readonly List<Team> _teams = [];
     private readonly List<Match> _matches = [];
-    private IPlayMode _playMode = new RoundRobinPlayMode();
     private IScoreMode _scoreMode = new Win3Equal1Loss0ScoreMode();
 
     public static readonly Tournament Empty = new(Guid.Empty, [], []);
@@ -36,12 +35,13 @@ public class Tournament
 
     public IPlayMode PlayMode
     {
+        get => field;
         set
         {
-            _playMode = value ?? throw new ArgumentNullException(nameof(PlayMode));
+            field = value ?? throw new ArgumentNullException(nameof(PlayMode));
             GenerateMatches();
         }
-    }
+    } = new RoundRobinPlayMode();
 
     public IScoreMode ScoreMode
     {
@@ -71,7 +71,7 @@ public class Tournament
     {
         _matches.Clear();
 
-        foreach (var fixture in _playMode.Generate(_teams.Count))
+        foreach (var fixture in PlayMode.Generate(_teams.Count))
         {
             _matches.Add(new Match(_matches.Count + 1, _teams[fixture.Item1], _teams[fixture.Item2]));
         }
@@ -94,7 +94,7 @@ public class Tournament
         }
         else if (Teams.Any())
         {
-            return [new Standing(Teams.ElementAt(0))];
+            return [.. Teams.Select(team=> new Standing(team))];
         }
         return [];
     }
