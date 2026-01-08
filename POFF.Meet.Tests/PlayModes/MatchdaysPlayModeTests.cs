@@ -6,7 +6,7 @@ using POFF.Meet.Domain.PlayModes;
 namespace POFF.Meet.Tests;
 
 [TestFixture]
-public class MatchdasyPlayModeTests
+public class MatchdaysPlayModeTests
 {
     [Test]
     public void Generate2Test()

@@ -164,7 +164,7 @@
     <Compile Include="PlayModes\RoundRobinPlayModeTests.cs" />
     <Compile Include="Infrastructure\Save_Tournament_File.cs" />
     <Compile Include="Infrastructure\Load_Tournament_from_file.cs" />
-    <Compile Include="PlayModes\MatchdasyPlayModeTests.cs" />
+    <Compile Include="PlayModes\MatchdaysPlayModeTests.cs" />
     <Compile Include="PlayModes\MatchIndexPairTests.cs" />
     <Compile Include="MatchTests.cs" />
     <Compile Include="AppWindowViewModelTests.cs" />
