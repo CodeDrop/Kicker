@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 using POFF.Meet.Domain.PlayModes;
 
@@ -8,37 +7,30 @@ namespace POFF.Meet.Tests;
 [TestFixture]
 public class MatchdaysPlayModeTests
 {
-    [Test]
-    public void Generate2Test()
+    private MatchdaysPlayMode _sut;
+
+    [OneTimeSetUp]
+    public void SetUp()
     {
-        var sut = new MatchdaysPlayMode();
-        var result = sut.Generate(2);
-        Assert.That(result.Count(), Is.EqualTo(1));
+        _sut = new MatchdaysPlayMode();
     }
 
     [Test]
-    public void Generate4Test()
+    [TestCase(0, 0)]
+    [TestCase(1, 0)]
+    [TestCase(2, 1)]
+    [TestCase(3, 0)]
+    [TestCase(4, 6)]
+    [TestCase(5, 0)]
+    [TestCase(6, 0)]
+    [TestCase(8, 28)]
+    [TestCase(10, 45)]
+    [TestCase(12, 66)]
+    [TestCase(14, 91)]
+    [Timeout(250)]
+    public void Generate_returns_expected_number_of_fixtures(int teamCount, int expectedFixtureCount)
     {
-        var sut = new MatchdaysPlayMode();
-        var result = sut.Generate(4);
-        Assert.That(result.Count(), Is.EqualTo(6));
-    }
-
-    [Test]
-    public void Generate10Test()
-    {
-        var sut = new MatchdaysPlayMode();
-        var result = sut.Generate(10);
-        Assert.That(result.Count(), Is.EqualTo(45));
-        Assert.That(result.ElementAt(1), Is.Not.EqualTo(new Tuple<int, int>(0, 2)));
-    }
-
-    [Test]
-    public void GenerateXTest()
-    {
-        var sut = new MatchdaysPlayMode();
-        var result = sut.Generate(14);
-        foreach (var matchIndexPair in result)
-            Console.WriteLine(matchIndexPair);
+        var result = _sut.Generate(teamCount);
+        Assert.That(result.Count(), Is.EqualTo(expectedFixtureCount));
     }
 }

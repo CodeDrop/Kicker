@@ -13,7 +13,7 @@ public class MatchdaysPlayMode : IPlayMode
 
     public IEnumerable<Fixture> Generate(int teamsCount)
     {
-        if (teamsCount % 2 != 0) return [];
+        if (teamsCount % 2 != 0 || teamsCount == 6) return [];
 
         _teamsCount = teamsCount;
         _matches.Clear();
