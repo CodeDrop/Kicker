@@ -61,7 +61,7 @@ public partial class AppWindow : Form
         if (dialogResult == DialogResult.Cancel) return false;
         if (dialogResult == DialogResult.Yes)
         {
-            _viewModel.Save();
+            return Save();
         }
         return true;
     }
@@ -77,7 +77,7 @@ public partial class AppWindow : Form
         if (!CloseTournament()) return;
 
         using var openFileDialog = new OpenFileDialog();
-        openFileDialog.Filter = "POFF Meet (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
+        openFileDialog.Filter = "POFF Meet files (*.xml)|*.xml|All files (*.*)|*.*";
         if (openFileDialog.ShowDialog() == DialogResult.OK)
         {
             string filename = openFileDialog.FileName;
@@ -135,17 +135,23 @@ public partial class AppWindow : Form
 
     private void SaveMenuItem_Click(object sender, EventArgs e)
     {
+        _ = Save();
+    }
+
+    private bool Save()
+    {
         if (_viewModel.IsNew)
         {
             using var dialog = new SaveFileDialog();
             dialog.Filter = "POFF Meet (*.xml)|*.xml|Alle Dateien (*.*)|*.*";
-            if (dialog.ShowDialog() != DialogResult.OK) return;
+            if (dialog.ShowDialog() != DialogResult.OK) return false;
 
             _viewModel.Storage = new FileTournamentStorage(dialog.FileName);
             UpdateRecentFiles(dialog.FileName);
         }
 
         _viewModel.Save();
+        return true;
     }
 
     private void AddTeamMenuItem_Click(object sender, EventArgs e)
