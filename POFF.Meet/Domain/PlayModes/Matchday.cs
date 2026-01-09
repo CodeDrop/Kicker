@@ -6,7 +6,6 @@ namespace POFF.Meet.Domain.PlayModes;
 
 public class Matchday : List<Fixture>
 {
-
     public bool ContainsPlayerIn(Fixture match)
     {
         return this.Any(m => m.Item1 == match.Item1 || m.Item1 == match.Item2 || m.Item2 == match.Item1 || m.Item2 == match.Item2);

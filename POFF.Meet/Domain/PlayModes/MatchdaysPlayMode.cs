@@ -64,9 +64,7 @@ public class MatchdaysPlayMode : IPlayMode
             var nextMatch = GetNextMatch(matchday);
             if (nextMatch.Equals(Fixture.Empty))
             {
-                nextMatch = _matches.Except(invalidatedMatches).FirstOrDefault();
-                if (nextMatch is null)
-                    nextMatch = Fixture.Empty;
+                nextMatch = _matches.Except(invalidatedMatches).FirstOrDefault() ?? Fixture.Empty;
                 invalidatedMatches.AddRange(matchday.MatchesWithPlayersFrom(nextMatch));
                 _matches.AddRange(invalidatedMatches);
                 matchday.RemoveAll(m => invalidatedMatches.Contains(m));
