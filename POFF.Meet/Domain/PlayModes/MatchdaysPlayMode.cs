@@ -5,83 +5,78 @@ namespace POFF.Meet.Domain.PlayModes;
 
 public class MatchdaysPlayMode : IPlayMode
 {
-    private int _teamsCount;
-    private readonly List<Fixture> _matches = [];
-    private readonly List<Matchday> _matchdays = [];
-
     public string Name => "Match Days";
 
     public IEnumerable<Fixture> Generate(int teamsCount)
     {
+        // Only even number of teams except 6 can be distributed in matchdays
         if (teamsCount % 2 != 0 || teamsCount == 6) return [];
 
-        _teamsCount = teamsCount;
-        _matches.Clear();
-        _matches.AddRange(GenerateMatches());
-        _matchdays.Clear();
-        _matchdays.AddRange(GenerateMatchdays());
-        return MatchIndexPairsOrderdByMatchdays();
+        var matchdays = GenerateMatchdays(teamsCount);
+
+        return MatchIndexPairsOrderdByMatchdays(matchdays);
     }
 
-    private IEnumerable<Fixture> MatchIndexPairsOrderdByMatchdays()
+    private static IEnumerable<Fixture> MatchIndexPairsOrderdByMatchdays(IEnumerable<Matchday> matchdays)
     {
-        foreach (var matchday in _matchdays)
+        foreach (var matchday in matchdays)
         {
-            foreach (var matchIndexPair in matchday)
+            foreach (var fixture in matchday)
             {
-                yield return matchIndexPair;
+                yield return fixture;
             }
         }
     }
 
-    private IEnumerable<Fixture> GenerateMatches()
+    private static IEnumerable<Matchday> GenerateMatchdays(int teamsCount)
     {
-        for (int i = 1, loopTo = _teamsCount; i <= loopTo; i++)
+        var matches = new List<Fixture>(GenerateMatches(teamsCount));
+        int matchCountPerMatchDay = teamsCount / 2;
+
+        for (int i = 0, loopTo = teamsCount - 2; i <= loopTo; i++)
         {
-            for (int j = i + 1, loopTo1 = _teamsCount; j <= loopTo1; j++)
+            yield return GenerateMatchday(matches, matchCountPerMatchDay);
+        }
+    }
+
+    private static IEnumerable<Fixture> GenerateMatches(int teamsCount)
+    {
+        for (int i = 1, loopTo = teamsCount; i <= loopTo; i++)
+        {
+            for (int j = i + 1, loopTo1 = teamsCount; j <= loopTo1; j++)
             {
                 yield return new Fixture(i - 1, j - 1);
             }
         }
     }
 
-    private IEnumerable<Matchday> GenerateMatchdays()
-    {
-        int blockSize = _teamsCount / 2;
-
-        for (int i = 0, loopTo = _teamsCount - 2; i <= loopTo; i++)
-        {
-            yield return GenerateMatchday(blockSize);
-        }
-    }
-
-    private Matchday GenerateMatchday(int blockSize)
+    private static Matchday GenerateMatchday(List<Fixture> matches, int matchCountPerMatchDay)
     {
         var matchday = new Matchday();
-        while (matchday.Count < blockSize)
+        while (matchday.Count < matchCountPerMatchDay)
         {
             var invalidatedMatches = new List<Fixture>();
-            var nextMatch = GetNextMatch(matchday);
+            var nextMatch = GetNextMatch(matches, matchday);
             if (nextMatch.Equals(Fixture.Empty))
             {
-                nextMatch = _matches.Except(invalidatedMatches).FirstOrDefault() ?? Fixture.Empty;
+                nextMatch = matches.Except(invalidatedMatches).FirstOrDefault() ?? Fixture.Empty;
                 invalidatedMatches.AddRange(matchday.MatchesWithPlayersFrom(nextMatch));
-                _matches.AddRange(invalidatedMatches);
+                matches.AddRange(invalidatedMatches);
                 matchday.RemoveAll(m => invalidatedMatches.Contains(m));
             }
             matchday.Add(nextMatch);
-            _matches.Remove(nextMatch);
+            matches.Remove(nextMatch);
         }
         return matchday;
     }
 
-    private Fixture GetNextMatch(Matchday matchday)
+    private static Fixture GetNextMatch(List<Fixture> matches, Matchday matchday)
     {
-        if (_matches.Count == 0) return Fixture.Empty;
+        if (matches.Count == 0) return Fixture.Empty;
 
-        for (int i = 0, loopTo = _matches.Count - 1; i <= loopTo; i++)
+        for (int i = 0, loopTo = matches.Count - 1; i <= loopTo; i++)
         {
-            var match = _matches[i];
+            var match = matches[i];
             if (!matchday.ContainsPlayerIn(match))
             {
                 return match;
