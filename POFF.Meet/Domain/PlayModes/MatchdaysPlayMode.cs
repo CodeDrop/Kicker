@@ -32,8 +32,9 @@ public class MatchdaysPlayMode : IPlayMode
     {
         var matches = new List<Fixture>(GenerateMatches(teamsCount));
         int matchCountPerMatchDay = teamsCount / 2;
+        int matchDaysCount = teamsCount - 1;
 
-        for (int i = 0, loopTo = teamsCount - 2; i <= loopTo; i++)
+        for (int i = 1; i <= matchDaysCount; i++)
         {
             yield return GenerateMatchday(matches, matchCountPerMatchDay);
         }
@@ -70,16 +71,15 @@ public class MatchdaysPlayMode : IPlayMode
         return matchday;
     }
 
-    private static Fixture GetNextMatch(List<Fixture> matches, Matchday matchday)
+    private static Fixture GetNextMatch(IEnumerable<Fixture> fixtures, Matchday matchday)
     {
-        if (matches.Count == 0) return Fixture.Empty;
+        if (!fixtures.Any()) return Fixture.Empty;
 
-        for (int i = 0, loopTo = matches.Count - 1; i <= loopTo; i++)
+        foreach (var fixture in fixtures)
         {
-            var match = matches[i];
-            if (!matchday.ContainsPlayerIn(match))
+            if (!matchday.ContainsPlayerIn(fixture))
             {
-                return match;
+                return fixture;
             }
         }
 
