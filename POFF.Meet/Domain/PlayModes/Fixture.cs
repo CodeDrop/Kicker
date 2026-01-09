@@ -10,6 +10,8 @@ public class Fixture : Tuple<int, int>
         : base(team1Index, team2Index)
     { }
 
+    public int Section { get; set; } = -1;
+
     public override int GetHashCode()
     {
         return Item1.GetHashCode() | Item2.GetHashCode();

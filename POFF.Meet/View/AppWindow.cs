@@ -11,6 +11,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Collections.Specialized.BitVector32;
 
 namespace POFF.Meet.View;
 
@@ -241,7 +242,7 @@ public partial class AppWindow : Form
         return DialogResult.Yes;
     }
 
-    private void TeamsDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+    private void RankingGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
     {
         if (e.ColumnIndex == 0)
         {
@@ -268,6 +269,17 @@ public partial class AppWindow : Form
         if (dialog.ShowDialog(this) == DialogResult.OK)
         {
             _viewModel.UpdateTeam(dialog.TeamInfo);
+        }
+    }
+
+    private void GamesGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+    {
+        int section = ((Match)GamesGridView.Rows[e.RowIndex].DataBoundItem).Section;
+
+        // Alternate section coloring
+        if (section > 0 && section % 2 == 0)
+        {
+            e.CellStyle.BackColor = Color.Beige;
         }
     }
 

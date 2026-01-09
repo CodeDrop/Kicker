@@ -21,6 +21,7 @@ public class Match
     }
 
     public int Number { get; set; }
+    public int Section { get; set; } = 0;
     public Team Team1 { get; set; }
     public Team Team2 { get; set; }
     public MatchStatus Status { get; set; }

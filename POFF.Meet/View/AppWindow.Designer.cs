@@ -420,6 +420,7 @@ public partial class AppWindow
             this.GamesGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GamesGridView.Size = new System.Drawing.Size(560, 463);
             this.GamesGridView.TabIndex = 0;
+            this.GamesGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.GamesGridView_CellFormatting);
             this.GamesGridView.SelectionChanged += new System.EventHandler(this.GamesGridView_SelectedRowsChanged);
             this.GamesGridView.DoubleClick += new System.EventHandler(this.GamesGridView_DoubleClick);
             // 

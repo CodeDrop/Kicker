@@ -73,7 +73,9 @@ public class Tournament
 
         foreach (var fixture in PlayMode.Generate(_teams.Count))
         {
-            _matches.Add(new Match(_matches.Count + 1, _teams[fixture.Item1], _teams[fixture.Item2]));
+            var match = new Match(_matches.Count + 1, _teams[fixture.Item1], _teams[fixture.Item2]);
+            match.Section = fixture.Section;
+            _matches.Add(match);
         }
     }
 

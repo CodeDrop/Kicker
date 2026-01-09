@@ -19,10 +19,13 @@ public class MatchdaysPlayMode : IPlayMode
 
     private static IEnumerable<Fixture> MatchIndexPairsOrderdByMatchdays(IEnumerable<Matchday> matchdays)
     {
+        int section = 0;
         foreach (var matchday in matchdays)
         {
+            section++;
             foreach (var fixture in matchday)
             {
+                fixture.Section = section;
                 yield return fixture;
             }
         }
