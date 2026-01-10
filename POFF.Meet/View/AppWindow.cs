@@ -1,5 +1,4 @@
 ﻿using POFF.Meet.Domain;
-using POFF.Meet.Domain.PlayModes;
 using POFF.Meet.Domain.ScoreModes;
 using POFF.Meet.Infrastructure;
 using POFF.Meet.Properties;
@@ -90,7 +89,7 @@ public partial class AppWindow : Form
     private void OpenFileAndUpdateRecentFiles(string filename)
     {
         _viewModel.Storage = new FileTournamentStorage(filename);
-        _viewModel.Open();
+        ExecuteWithoutControlEvents(_viewModel.Open);
         UpdateRecentFiles(filename);
     }
 
@@ -315,11 +314,23 @@ public partial class AppWindow : Form
 
     private void PlayModeComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (CheckDeleteResults("Change play mode?") == DialogResult.No)
+        if (CheckDeleteResults("Change play mode?") == DialogResult.Yes) return;
+
+        // Reset selection back to current play mode
+        ExecuteWithoutControlEvents(() => PlayModeComboBox.SelectedItem = _viewModel.PlayMode);
+    }
+
+    private void ExecuteWithoutControlEvents(Action action)
+    {
+        PlayModeComboBox.SelectedIndexChanged -= PlayModeComboBox_SelectedIndexChanged;
+
+        try
         {
-            PlayModeComboBox.SelectedItem = _viewModel.PlayMode;
-            return;
+            action();
         }
-        _viewModel.PlayMode = (PlayMode)PlayModeComboBox.SelectedItem;
+        finally
+        {
+            PlayModeComboBox.SelectedIndexChanged += PlayModeComboBox_SelectedIndexChanged;
+        }
     }
 }
