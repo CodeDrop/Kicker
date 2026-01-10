@@ -9,4 +9,5 @@ public class TournamentFile
     public Guid Id { get; set; } 
     public Team[] Teams { get; set; } = [];
     public Match[] Matches { get; set; } = [];
+    public string PlayMode { get; set; }
 }

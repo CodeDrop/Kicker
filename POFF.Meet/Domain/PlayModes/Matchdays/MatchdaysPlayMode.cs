@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace POFF.Meet.Domain.PlayModes;
+namespace POFF.Meet.Domain.PlayModes.Matchdays;
 
-public class MatchdaysPlayMode : IPlayMode
+public class MatchdaysPlayMode : PlayMode
 {
-    public string Name => "Match Days";
+    public MatchdaysPlayMode() : base("Match Days")
+    { }
 
-    public IEnumerable<Fixture> Generate(int teamsCount)
+    public override IEnumerable<Fixture> Generate(int teamsCount)
     {
         // Only even number of teams except 6 can be distributed in matchdays
         if (teamsCount % 2 != 0 || teamsCount == 6) return [];

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Linq;
 
-namespace POFF.Meet.Domain.PlayModes;
+namespace POFF.Meet.Domain.PlayModes.Matchdays;
 
 public class Matchday : List<Fixture>
 {

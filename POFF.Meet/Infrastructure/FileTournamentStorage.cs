@@ -1,9 +1,11 @@
 ﻿using POFF.Meet.Domain;
+using POFF.Meet.Domain.PlayModes;
 using POFF.Meet.View.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Xml.Serialization;
 
 namespace POFF.Meet.Infrastructure;
@@ -23,7 +25,8 @@ public class FileTournamentStorage : ITournamentStorage
         {
             Id = tournament.Id,
             Teams = [.. tournament.Teams],
-            Matches = [.. tournament.Matches]
+            Matches = [.. tournament.Matches],
+            PlayMode = tournament.PlayMode.GetType().Name,
         };
         var writer = new StreamWriter(_filename, false);
         var serializer = new XmlSerializer(typeof(TournamentFile));
@@ -44,6 +47,8 @@ public class FileTournamentStorage : ITournamentStorage
             var id = (file.Id != Guid.Empty) ? file.Id : Guid.NewGuid();
             var teams = file.Teams.ToList();
             var matches = file.Matches.ToList();
+            PlayMode playMode = GetPlayMode(file.PlayMode);
+
             if (teams.Any(t => t.Number == 0))
             {
                 FixTeamNumbers(teams, matches);
@@ -54,11 +59,26 @@ public class FileTournamentStorage : ITournamentStorage
                 match.Team2 = teams.Single(t => t.Number == match.Team2.Number);
             }
 
-            Tournament tournament = new(id, teams, matches) { Name = Path.GetFileNameWithoutExtension(_filename) };
+            Tournament tournament = new(id, teams, matches, playMode) { Name = Path.GetFileNameWithoutExtension(_filename) };
 
             return tournament;
         }
         return Tournament.Empty;
+    }
+
+    private PlayMode GetPlayMode(string playModeTypeName)
+    {
+        var playModeType = Assembly.GetExecutingAssembly().GetTypes()
+              .FirstOrDefault(t => t.Name == playModeTypeName
+                  && typeof(PlayMode).IsAssignableFrom(t)
+                  && !t.IsAbstract
+                  && !t.IsInterface
+                  && t.GetConstructor(Type.EmptyTypes) != null
+              );
+        
+        if (playModeType == null) return PlayMode.Empty;
+
+        return Activator.CreateInstance(playModeType) as PlayMode;
     }
 
     private void FixTeamNumbers(List<Team> teams, List<Match> matches)

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using NUnit.Framework;
-using POFF.Meet.Domain.PlayModes;
+using POFF.Meet.Domain.PlayModes.RoundRobin;
 
 namespace POFF.Meet.Tests;
 

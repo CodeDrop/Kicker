@@ -26,13 +26,13 @@ public class AppWindowViewModel : ViewModelBase
     {
         // Use reflection to discover all concrete types implementing IPlayMode in this assembly
         var playModeTypes = Assembly.GetExecutingAssembly().GetTypes()
-            .Where(t => typeof(IPlayMode).IsAssignableFrom(t)
+            .Where(t => typeof(PlayMode).IsAssignableFrom(t)
                 && !t.IsAbstract
                 && !t.IsInterface
                 && t.GetConstructor(Type.EmptyTypes) != null
             );
 
-        PlayModes.SetValues(playModeTypes.Select(t => Activator.CreateInstance(t) as IPlayMode));
+        PlayModes.SetValues(playModeTypes.Select(t => Activator.CreateInstance(t) as PlayMode));
     }
 
     public void NewTournament()
@@ -48,6 +48,7 @@ public class AppWindowViewModel : ViewModelBase
         _tournament = Storage.Load();
         SetTeamsMatchesAndStandings();
         SetTitleAndDirtyFlag(false);
+        OnPropertyChanged(nameof(PlayMode));
         IsNew = false;
     }
 
@@ -76,20 +77,21 @@ public class AppWindowViewModel : ViewModelBase
 
     public BindingList<Team> Teams { get; } = [];
 
-    public BindingList<IPlayMode> PlayModes { get; } = [];
+    public BindingList<PlayMode> PlayModes { get; } = [];
 
-    public IPlayMode PlayMode
+    public PlayMode PlayMode
     {
         get => _tournament.PlayMode;
         set
         {
-            if (value != null && value != _tournament.PlayMode)
+            if (value != null && !value.Equals(_tournament.PlayMode))
             {
                 _tournament.PlayMode = value;
                 Matches.SetValues(_tournament.Matches);
                 Standings.SetValues(_tournament.GetStandings());
                 SetTitleAndDirtyFlag(true);
             }
+            OnPropertyChanged(nameof(PlayMode));
         }
     }
 

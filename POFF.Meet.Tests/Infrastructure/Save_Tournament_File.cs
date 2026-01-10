@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using NSubstitute;
+using NUnit.Framework;
 using POFF.Meet.Domain;
+using POFF.Meet.Domain.PlayModes;
 using POFF.Meet.Infrastructure;
 using POFF.Meet.View.Model;
 using System;
@@ -25,7 +27,7 @@ public class Save_Tournament_File
 
         Match[] matches = [new Match(1, teams[0], teams[1])];
 
-        _tournament = new Tournament(Guid.NewGuid(), teams, matches);
+        _tournament = new Tournament(Guid.NewGuid(), teams, matches, PlayMode.Empty);
 
         _sut = new FileTournamentStorage(FILENAME);
         _sut.Save(_tournament);

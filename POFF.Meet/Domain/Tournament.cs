@@ -1,5 +1,6 @@
 ﻿using POFF.Meet.Domain;
 using POFF.Meet.Domain.PlayModes;
+using POFF.Meet.Domain.PlayModes.RoundRobin;
 using POFF.Meet.Domain.ScoreModes;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,18 @@ public class Tournament
     private readonly List<Team> _teams = [];
     private readonly List<Match> _matches = [];
     private IScoreMode _scoreMode = new Win3Equal1Loss0ScoreMode();
+    private PlayMode _playMode;
+    public static readonly Tournament Empty = new(Guid.Empty, [], [], PlayMode.Empty);
 
-    public static readonly Tournament Empty = new(Guid.Empty, [], []);
-
-    public Tournament() : this(Guid.NewGuid(), [], [])
+    public Tournament() : this(Guid.NewGuid(), [], [], new RoundRobinPlayMode())
     { }
 
-    public Tournament(Guid id, IEnumerable<Team> teams, IEnumerable<Match> matches)
+    public Tournament(Guid id, IEnumerable<Team> teams, IEnumerable<Match> matches, PlayMode playMode)
     {
         Id = id;
         _teams.AddRange(teams);
         _matches.AddRange(matches);
+        _playMode = playMode;
     }
 
     public Guid Id { get; }
@@ -33,15 +35,15 @@ public class Tournament
 
     public IEnumerable<Match> Matches => _matches;
 
-    public IPlayMode PlayMode
+    public PlayMode PlayMode
     {
-        get => field;
+        get => _playMode;
         set
         {
-            field = value ?? throw new ArgumentNullException(nameof(PlayMode));
+            _playMode = value ?? throw new ArgumentNullException(nameof(PlayMode));
             GenerateMatches();
         }
-    } = new RoundRobinPlayMode();
+    }
 
     public IScoreMode ScoreMode
     {

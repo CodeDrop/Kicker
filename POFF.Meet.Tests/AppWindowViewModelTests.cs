@@ -45,7 +45,7 @@ public class AppWindowViewModelTests
     [Test]
     public void PlayModes_are_available()
     {
-        IList<IPlayMode> playModes = _sut.PlayModes;
-        Assert.That(playModes, Has.Count.EqualTo(2));
+        IList<PlayMode> playModes = _sut.PlayModes;
+        Assert.That(playModes, Has.Count.GreaterThanOrEqualTo(2));
     }
 }

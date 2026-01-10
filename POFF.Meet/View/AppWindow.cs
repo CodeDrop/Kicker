@@ -38,7 +38,7 @@ public partial class AppWindow : Form
         GamesGridView.DataSource = _viewModel.Matches;
 
         PlayModeComboBox.DataSource = _viewModel.PlayModes;
-        PlayModeComboBox.SelectedItem = _viewModel.PlayMode;
+        PlayModeComboBox.DataBindings.Add(nameof(ComboBox.SelectedItem), _viewModel, nameof(_viewModel.PlayMode), false, DataSourceUpdateMode.OnPropertyChanged);
     }
 
     private void AppWindow_Load(object sender, EventArgs e)
@@ -320,6 +320,6 @@ public partial class AppWindow : Form
             PlayModeComboBox.SelectedItem = _viewModel.PlayMode;
             return;
         }
-        _viewModel.PlayMode = (IPlayMode)PlayModeComboBox.SelectedItem;
+        _viewModel.PlayMode = (PlayMode)PlayModeComboBox.SelectedItem;
     }
 }

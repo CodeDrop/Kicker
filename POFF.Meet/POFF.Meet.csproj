@@ -96,6 +96,7 @@
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
@@ -155,10 +156,10 @@
     <Compile Include="Infrastructure\ClipboardHtmlExporter.cs" />
     <Compile Include="View\IConfirmationMessage.cs" />
     <Compile Include="Domain\Match.cs" />
-    <Compile Include="Domain\PlayModes\RoundRobinPlayMode.cs" />
-    <Compile Include="Domain\PlayModes\IPlayMode.cs" />
-    <Compile Include="Domain\PlayModes\Matchday.cs" />
-    <Compile Include="Domain\PlayModes\MatchdaysPlayMode.cs" />
+    <Compile Include="Domain\PlayModes\RoundRobin\RoundRobinPlayMode.cs" />
+    <Compile Include="Domain\PlayModes\PlayMode.cs" />
+    <Compile Include="Domain\PlayModes\Matchdays\Matchday.cs" />
+    <Compile Include="Domain\PlayModes\Matchdays\MatchdaysPlayMode.cs" />
     <Compile Include="Domain\PlayModes\Fixture.cs" />
     <Compile Include="Domain\MatchStatus.cs" />
     <Compile Include="Program.cs" />

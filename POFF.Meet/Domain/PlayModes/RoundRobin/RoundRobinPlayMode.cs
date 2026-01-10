@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace POFF.Meet.Domain.PlayModes;
+namespace POFF.Meet.Domain.PlayModes.RoundRobin;
 
-public class RoundRobinPlayMode : IPlayMode
+public class RoundRobinPlayMode : PlayMode
 {
     private readonly List<Fixture> _matches = [];
     private int _teamsCount;
 
-    public string Name => "Round Robin";
+    public RoundRobinPlayMode() : base("Round Robin")
+    { }
 
-    public IEnumerable<Fixture> Generate(int teamsCount)
+    public override IEnumerable<Fixture> Generate(int teamsCount)
     {
         _teamsCount = teamsCount;
         var startIndex = default(int);

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using NUnit.Framework;
-using POFF.Meet.Domain.PlayModes;
+using POFF.Meet.Domain.PlayModes.Matchdays;
 
 namespace POFF.Meet.Tests;
 
