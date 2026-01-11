@@ -10,6 +10,11 @@ public class SwissSystemPlayMode : PlayMode
 
     public override IEnumerable<Fixture> Generate(int teamsCount)
     {
-        return [];
+        if (teamsCount % 2 != 0) yield break;
+
+        for (int i = 1; i < teamsCount; i += 2)
+        {
+            yield return new Fixture(i - 1, i) { Section = 1 };
+        }
     }
 }

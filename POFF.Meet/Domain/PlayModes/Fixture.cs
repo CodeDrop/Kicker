@@ -2,6 +2,9 @@
 
 namespace POFF.Meet.Domain.PlayModes;
 
+/// <summary>
+/// Zero-based index pair representing a fixture between two teams.
+/// </summary>
 public class Fixture : Tuple<int, int>
 {
     public static readonly Fixture Empty = new Fixture(0, 0);
