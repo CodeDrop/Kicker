@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Serialization;
 
-namespace POFF.Meet.Infrastructure;
+namespace POFF.Meet.Infrastructure.Files;
 
 public class FileTournamentStorage : ITournamentStorage
 {
@@ -21,7 +21,7 @@ public class FileTournamentStorage : ITournamentStorage
 
     public void Save(Tournament tournament)
     {
-        var tournamentFile = new TournamentFile
+        var tournamentFile = new XmlMeetFile
         {
             Id = tournament.Id,
             Teams = [.. tournament.Teams],
@@ -29,7 +29,7 @@ public class FileTournamentStorage : ITournamentStorage
             PlayMode = tournament.PlayMode.GetType().Name,
         };
         var writer = new StreamWriter(_filename, false);
-        var serializer = new XmlSerializer(typeof(TournamentFile));
+        var serializer = new XmlSerializer(typeof(XmlMeetFile));
         serializer.Serialize(writer, tournamentFile);
         writer.Close();
         tournament.Name = Path.GetFileNameWithoutExtension(_filename);
@@ -40,8 +40,8 @@ public class FileTournamentStorage : ITournamentStorage
         if (File.Exists(_filename))
         {
             using var reader = new StreamReader(_filename);
-            var serializer = new XmlSerializer(typeof(TournamentFile));
-            var file = (TournamentFile)serializer.Deserialize(reader);
+            var serializer = new XmlSerializer(typeof(XmlMeetFile));
+            var file = (XmlMeetFile)serializer.Deserialize(reader);
             reader.Close();
 
             var id = (file.Id != Guid.Empty) ? file.Id : Guid.NewGuid();

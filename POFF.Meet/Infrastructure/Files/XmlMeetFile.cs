@@ -1,10 +1,12 @@
 ﻿using POFF.Meet.Domain;
 using System;
+using System.Xml.Serialization;
 
-namespace POFF.Meet.Infrastructure;
+namespace POFF.Meet.Infrastructure.Files;
 
 [Serializable]
-public class TournamentFile
+[XmlRoot("TournamentFile")]
+public class XmlMeetFile
 {
     public Guid Id { get; set; } 
     public Team[] Teams { get; set; } = [];

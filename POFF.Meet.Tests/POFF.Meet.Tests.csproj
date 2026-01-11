@@ -184,12 +184,6 @@
     <Compile Include="MatchInfoTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\POFF.Meet\POFF.Meet.csproj">
-      <Project>{d73bfe67-5f33-08e2-3fd0-d4fe17392214}</Project>
-      <Name>POFF.Meet</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="Infrastructure\TournamentPage.html.twig">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -203,6 +197,12 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\NUnit.Analyzers.3.10.0\analyzers\dotnet\cs\nunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\POFF.Meet\POFF.Meet.csproj">
+      <Project>{d73bfe67-5f33-08e2-3fd0-d4fe17392214}</Project>
+      <Name>POFF.Meet</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

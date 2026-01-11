@@ -126,9 +126,10 @@
     <Compile Include="Domain\ScoreModes\Win3Equal1Loss0ScoreMode.cs" />
     <Compile Include="Extensions\BindingListExtensions.cs" />
     <Compile Include="Infrastructure\ExportType.cs" />
+    <Compile Include="Infrastructure\Files\FileTournamentStorage.cs" />
     <Compile Include="Infrastructure\IExporter.cs" />
     <Compile Include="Infrastructure\ITournamentStorage.cs" />
-    <Compile Include="Infrastructure\TournamentFile.cs" />
+    <Compile Include="Infrastructure\Files\XmlMeetFile.cs" />
     <Compile Include="Infrastructure\TwigFileInjectionExporter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -153,7 +154,6 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Infrastructure\FileTournamentStorage.cs" />
     <Compile Include="Infrastructure\ClipboardHtmlExporter.cs" />
     <Compile Include="View\IConfirmationMessage.cs" />
     <Compile Include="Domain\Match.cs" />
