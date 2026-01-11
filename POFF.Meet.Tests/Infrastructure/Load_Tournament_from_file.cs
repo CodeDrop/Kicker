@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using POFF.Meet.Domain;
 using POFF.Meet.Domain.PlayModes;
 using POFF.Meet.Domain.PlayModes.RoundRobin;
 using POFF.Meet.Infrastructure.Files;
@@ -42,6 +43,12 @@ public class Load_Tournament_from_file
     public void File_contains_matches()
     {
         Assert.That(_sut.Matches, Is.Not.Empty);
+    }
+
+    [Test]
+    public void File_contains_match_status()
+    {
+        Assert.That(_sut.Matches.ElementAt(0).Status, Is.EqualTo(MatchStatus.Finished));
     }
 
     [Test]

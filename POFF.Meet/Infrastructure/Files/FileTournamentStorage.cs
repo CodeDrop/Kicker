@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace POFF.Meet.Infrastructure.Files;
@@ -12,18 +13,33 @@ public class FileTournamentStorage(in string filename) : ITournamentStorage
 
     public void Save(Tournament tournament)
     {
-        var file = new MeetFile1
+        var file = new MeetFile2
         {
             Id = tournament.Id,
-            Teams = [.. tournament.Teams],
-            Matches = [.. tournament.Matches],
+            Teams = [.. tournament.Teams.Select(t => new TeamEntry { No = t.Number, Name = t.Name, Withdrawn = t.Withdrawn })],
+            Matches = [.. tournament.Matches.Select(m => new MatchEntry { No = m.Number, HomeNo = m.Team1.Number, GuestNo = m.Team2.Number, Round = m.Section, Status = m.Status })],
+            Results = [.. GetPlayedResults(tournament.Matches)],
             PlayMode = tournament.PlayMode.GetType().Name,
         };
         var writer = new StreamWriter(_filename, false);
-        var serializer = new XmlSerializer(typeof(MeetFile1));
+        var serializer = new XmlSerializer(file.GetType());
         serializer.Serialize(writer, file);
         writer.Close();
         tournament.Name = Path.GetFileNameWithoutExtension(_filename);
+    }
+
+    private IEnumerable<ResultEntry> GetPlayedResults(IEnumerable<Domain.Match> matches)
+    {
+        foreach (var match in matches.Where(m => m.Status != Domain.MatchStatus.Open))
+        {
+            var resultEntry = new ResultEntry
+            {
+                HomeNo = match.Team1.Number,
+                GuestNo = match.Team2.Number,
+                Sets = match.Result.SetResults.Select(s => new SetEntry { Home = s.Home, Guest = s.Guest }).ToList()
+            };
+            yield return resultEntry;
+        }
     }
 
     public Tournament Load()

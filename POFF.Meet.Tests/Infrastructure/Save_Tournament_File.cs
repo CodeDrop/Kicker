@@ -5,6 +5,7 @@ using POFF.Meet.Infrastructure.Files;
 using POFF.Meet.View.Model;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace POFF.Meet.Tests.Infrastructure;
 
@@ -20,11 +21,11 @@ public class Save_Tournament_File
     {
         Team[] teams =
             [
-                new Team { Name = "Team A" },
-                new Team { Name = "Team B" }
+                new Team { Number = 1, Name = "Team A" },
+                new Team { Number = 2, Name = "Team B" }
             ];
 
-        Match[] matches = [new Match(1, teams[0], teams[1])];
+        Match[] matches = [new Match(1, teams[0], teams[1]) { Status = MatchStatus.Finished }];
 
         _tournament = new Tournament(Guid.NewGuid(), teams, matches, PlayMode.Empty);
 
@@ -48,9 +49,14 @@ public class Save_Tournament_File
     }
 
     [Test]
-    public void Saved_file_contains_id()
+    public void Saved_file_can_be_reloaded()
     {
-        var reloadedTournament = _sut.Load(); 
+        var reloadedTournament = _sut.Load();
         Assert.That(reloadedTournament.Id, Is.EqualTo(_tournament.Id));
+        Assert.That(reloadedTournament.PlayMode, Is.InstanceOf<PlayModeEmpty>());
+        Assert.That(reloadedTournament.Name, Is.Not.Empty);
+        Assert.That(reloadedTournament.Teams, Is.Not.Empty);
+        Assert.That(reloadedTournament.Matches, Is.Not.Empty);
+        Assert.That(reloadedTournament.Matches.ElementAt(0).Status, Is.EqualTo(MatchStatus.Finished));
     }
 }
