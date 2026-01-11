@@ -1,5 +1,6 @@
 ﻿using POFF.Meet.View.Model;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -29,10 +30,7 @@ public class FileTournamentStorage(in string filename) : ITournamentStorage
     {
         if (!File.Exists(_filename)) return Tournament.Empty;
 
-        Type type = typeof(MeetFile1);
-        using var stream = File.OpenRead(_filename);
-        var serializer = new XmlSerializer(type);
-        var meetFile = (MeetFile1)serializer.Deserialize(stream);
+        var meetFile = Deserialize([typeof(MeetFile2), typeof(MeetFile1)]);
         var tournament = meetFile.ToTournament();
 
         if (string.IsNullOrWhiteSpace(tournament.Name))
@@ -41,5 +39,27 @@ public class FileTournamentStorage(in string filename) : ITournamentStorage
         }
 
         return tournament;
+    }
+
+    private MeetFileBase Deserialize(IEnumerable<Type> meetFileTypes)
+    {
+        using var stream = File.OpenRead(_filename);
+        foreach (var type in meetFileTypes)
+        {
+            var serializer = new XmlSerializer(type);
+            try
+            {
+                return (MeetFileBase)serializer.Deserialize(stream);
+            }
+            catch (InvalidOperationException)
+            {
+                // Ignore and try next type
+            }
+            finally
+            {
+                stream.Seek(0, SeekOrigin.Begin); // Reset stream position for next attempt
+            }
+        }
+        return null;
     }
 }

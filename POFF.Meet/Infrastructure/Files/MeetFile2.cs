@@ -1,75 +1,113 @@
 using POFF.Meet.Domain;
+using POFF.Meet.View.Model;
+using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
-namespace POFF.Meet.Infrastructure.Files
+namespace POFF.Meet.Infrastructure.Files;
+
+[XmlRoot("Meet")]
+public class MeetFile2 : MeetFileBase
 {
-    [XmlRoot("Meet")]
-    public class MeetFile2
+    [XmlElement("Id")]
+    public Guid Id { get; set; }
+
+    [XmlElement("PlayMode")]
+    public string PlayMode { get; set; }
+
+    [XmlArray("Teams")]
+    [XmlArrayItem("Team")]
+    public List<TeamEntry> Teams { get; set; }
+
+    [XmlArray("Matches")]
+    [XmlArrayItem("Match")]
+    public List<MatchEntry> Matches { get; set; }
+
+    [XmlArray("Results")]
+    [XmlArrayItem("Result")]
+    public List<ResultEntry> Results { get; set; }
+
+    public override Tournament ToTournament()
     {
-        [XmlElement("Id")]
-        public string Id { get; set; }
+        var teams = Teams.Select(t => new Team { Number = t.No, Name = t.Name, Withdrawn=t.Withdrawn }).AsQueryable();
+        
+        var matches = Matches.Select(m => new Match()
+        {
+            Number = m.No,
+            Section = m.Round,
+            Team1 = teams.Single(t => t.Number == m.HomeNo),
+            Team2 = teams.Single(t => t.Number == m.GuestNo),
+            Result = GetResult(m.HomeNo, m.GuestNo),
+            Status = m.Status
+        });
 
-        [XmlArray("Teams")]
-        [XmlArrayItem("Team")]
-        public List<TeamEntry> Teams { get; set; }
+        var playMode = GetPlayMode(PlayMode);
 
-        [XmlArray("Matches")]
-        [XmlArrayItem("Match")]
-        public List<MatchEntry> Matches { get; set; }
-
-        [XmlArray("Results")]
-        [XmlArrayItem("Result")]
-        public List<ResultEntry> Results { get; set; }
+        return new Tournament(Id, teams, matches, playMode);
     }
 
-    public class TeamEntry
+    private Result GetResult(int homeNo, int guestNo)
     {
-        [XmlAttribute("No")]
-        public int No { get; set; }
-
-        [XmlText]
-        public string Name { get; set; }
+        var result = new Result();
+        var resultEntry = Results.SingleOrDefault(r => r.HomeNo == homeNo && r.GuestNo == guestNo);
+        if (resultEntry != null)
+        {
+            result.SetResults = Results.Single(r => r.HomeNo == homeNo && r.GuestNo == guestNo)
+                .Sets.Select(s => new SetResult { Home = s.Home, Guest = s.Guest }).ToArray();
+        }
+        return result;
     }
+}
 
-    public class MatchEntry
-    {
-        [XmlAttribute("No")]
-        public int No { get; set; }
+public class TeamEntry
+{
+    [XmlAttribute("No")]
+    public int No { get; set; }
 
-        [XmlAttribute("Round")]
-        public int Round { get; set; }
+    [XmlAttribute("Withdrawn")]
+    public bool Withdrawn { get; set; }
 
-        [XmlAttribute("HomeNo")]
-        public int HomeNo { get; set; }
+    [XmlText]
+    public string Name { get; set; }
+}
 
-        [XmlAttribute("GuestNo")]
-        public int GuestNo { get; set; }
+public class MatchEntry
+{
+    [XmlAttribute("No")]
+    public int No { get; set; }
 
-        [XmlText]
-        public MatchStatus Status { get; set; }
-    }
+    [XmlAttribute("Round")]
+    public int Round { get; set; }
 
-    public class ResultEntry
-    {
-        [XmlAttribute("HomeNo")]
-        public int HomeNo { get; set; }
+    [XmlAttribute("HomeNo")]
+    public int HomeNo { get; set; }
 
-        [XmlAttribute("GuestNo")]
-        public int GuestNo { get; set; }
+    [XmlAttribute("GuestNo")]
+    public int GuestNo { get; set; }
 
-        [XmlArray("Sets")]
-        [XmlArrayItem("Set")]
-        public List<SetEntry> Sets { get; set; }
-    }
+    [XmlText]
+    public MatchStatus Status { get; set; }
+}
 
-    public class SetEntry
-    {
-        [XmlAttribute("Home")]
-        public int Home { get; set; }
+public class ResultEntry
+{
+    [XmlAttribute("HomeNo")]
+    public int HomeNo { get; set; }
 
-        [XmlAttribute("Guest")]
-        public int Guest { get; set; }
-    }
+    [XmlAttribute("GuestNo")]
+    public int GuestNo { get; set; }
+
+    [XmlArray("Sets")]
+    [XmlArrayItem("Set")]
+    public List<SetEntry> Sets { get; set; }
+}
+
+public class SetEntry
+{
+    [XmlAttribute("Home")]
+    public int Home { get; set; }
+
+    [XmlAttribute("Guest")]
+    public int Guest { get; set; }
 }

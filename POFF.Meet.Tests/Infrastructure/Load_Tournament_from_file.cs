@@ -1,7 +1,10 @@
 ﻿using NUnit.Framework;
+using POFF.Meet.Domain.PlayModes;
+using POFF.Meet.Domain.PlayModes.RoundRobin;
 using POFF.Meet.Infrastructure.Files;
 using POFF.Meet.View.Model;
 using System;
+using System.Linq;
 
 namespace POFF.Meet.Tests.Infrastructure;
 
@@ -13,7 +16,7 @@ public class Load_Tournament_from_file
     [OneTimeSetUp]
     public void Setup()
     {
-        var storage = new FileTournamentStorage(@"Infrastructure\MeetFileV1.xml");
+        var storage = new FileTournamentStorage(@"Infrastructure\MeetFileV2.xml");
         _sut = storage.Load();
     }
 
@@ -21,6 +24,12 @@ public class Load_Tournament_from_file
     public void File_contains_id()
     {
         Assert.That(_sut.Id, Is.Not.EqualTo(Guid.Empty));
+    }
+
+    [Test]
+    public void File_contains_playmode()
+    {
+        Assert.That(_sut.PlayMode, Is.InstanceOf<RoundRobinPlayMode>());
     }
 
     [Test]
@@ -36,6 +45,12 @@ public class Load_Tournament_from_file
     }
 
     [Test]
+    public void File_contains_match_results()
+    {
+        Assert.That(_sut.Matches.ElementAt(0).Result.SetResults, Is.Not.Empty);
+    }
+
+    [Test]
     [TestCase(@"Infrastructure\MeetFileV1.xml")]
     public void File_from_older_version_can_be_loaded(string filename)
     {
@@ -48,5 +63,6 @@ public class Load_Tournament_from_file
         Assert.That(tournament.Name, Is.Not.Empty);
         Assert.That(tournament.Teams, Is.Not.Empty);
         Assert.That(tournament.Matches, Is.Not.Empty);
+        Assert.That(tournament.PlayMode, Is.InstanceOf<PlayModeEmpty>());
     }
 }

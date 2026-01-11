@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Meet xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Id>984ADE2B-A55F-4985-B3B7-876F3EB48371</Id>
+  <PlayMode>RoundRobinPlayMode</PlayMode>
   <Teams>
     <Team No="1">Team A</Team>
     <Team No="2">Team B</Team>
@@ -17,7 +18,7 @@
         <Set Home="3" Guest="0"/>
       </Sets>
     </Result>
-    <Result HomeNo="2" GuestNo="4">
+    <Result HomeNo="2" GuestNo="3">
       <Sets>
         <Set Home="3" Guest="2"/>
       </Sets>

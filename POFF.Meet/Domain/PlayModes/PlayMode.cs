@@ -14,16 +14,9 @@ public abstract class PlayMode(in string name)
     {
         return obj is PlayMode otherPlayMode && otherPlayMode.GetType().Name == GetType().Name;
     }
-    override public int GetHashCode()
+
+    public override int GetHashCode()
     {
         return GetType().Name.GetHashCode();
     }
-}
-
-public class PlayModeEmpty : PlayMode
-{
-    public PlayModeEmpty() : base(string.Empty)
-    { }
-
-    public override IEnumerable<Fixture> Generate(int teamsCount) => [];
 }
