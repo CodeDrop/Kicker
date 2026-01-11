@@ -121,6 +121,7 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\PlayModes\SwissSystem\SwissSystemPlayMode.cs" />
     <Compile Include="Domain\ScoreModes\IScoreMode.cs" />
     <Compile Include="Domain\ScoreModes\Win3Equal1Loss0ScoreMode.cs" />
     <Compile Include="Extensions\BindingListExtensions.cs" />
