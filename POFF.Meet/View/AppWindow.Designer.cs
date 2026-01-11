@@ -478,6 +478,7 @@ public partial class AppWindow
             this.PlayModeComboBox.Location = new System.Drawing.Point(3, 486);
             this.PlayModeComboBox.Name = "PlayModeComboBox";
             this.PlayModeComboBox.Size = new System.Drawing.Size(560, 24);
+            this.PlayModeComboBox.Sorted = true;
             this.PlayModeComboBox.TabIndex = 1;
             this.PlayModeComboBox.SelectedIndexChanged += new System.EventHandler(this.PlayModeComboBox_SelectedIndexChanged);
             // 
