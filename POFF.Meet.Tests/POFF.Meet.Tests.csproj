@@ -191,7 +191,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Infrastructure\TournamentFile.xml">
+    <None Include="Infrastructure\MeetFileV1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -203,6 +203,11 @@
       <Project>{d73bfe67-5f33-08e2-3fd0-d4fe17392214}</Project>
       <Name>POFF.Meet</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Infrastructure\MeetFileV2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

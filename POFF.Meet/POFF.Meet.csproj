@@ -127,9 +127,10 @@
     <Compile Include="Extensions\BindingListExtensions.cs" />
     <Compile Include="Infrastructure\ExportType.cs" />
     <Compile Include="Infrastructure\Files\FileTournamentStorage.cs" />
+    <Compile Include="Infrastructure\Files\MeetFile2.cs" />
     <Compile Include="Infrastructure\IExporter.cs" />
     <Compile Include="Infrastructure\ITournamentStorage.cs" />
-    <Compile Include="Infrastructure\Files\XmlMeetFile.cs" />
+    <Compile Include="Infrastructure\Files\MeetFile1.cs" />
     <Compile Include="Infrastructure\TwigFileInjectionExporter.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

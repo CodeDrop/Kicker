@@ -1,27 +1,17 @@
-﻿using POFF.Meet.Domain;
-using POFF.Meet.Domain.PlayModes;
-using POFF.Meet.View.Model;
+﻿using POFF.Meet.View.Model;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Xml.Serialization;
 
 namespace POFF.Meet.Infrastructure.Files;
 
-public class FileTournamentStorage : ITournamentStorage
+public class FileTournamentStorage(in string filename) : ITournamentStorage
 {
-    private readonly string _filename;
-
-    public FileTournamentStorage(string filename = "Tournament.xml")
-    {
-        _filename = filename;
-    }
+    private readonly string _filename = filename;
 
     public void Save(Tournament tournament)
     {
-        var tournamentFile = new XmlMeetFile
+        var file = new MeetFile1
         {
             Id = tournament.Id,
             Teams = [.. tournament.Teams],
@@ -29,68 +19,27 @@ public class FileTournamentStorage : ITournamentStorage
             PlayMode = tournament.PlayMode.GetType().Name,
         };
         var writer = new StreamWriter(_filename, false);
-        var serializer = new XmlSerializer(typeof(XmlMeetFile));
-        serializer.Serialize(writer, tournamentFile);
+        var serializer = new XmlSerializer(typeof(MeetFile1));
+        serializer.Serialize(writer, file);
         writer.Close();
         tournament.Name = Path.GetFileNameWithoutExtension(_filename);
     }
 
     public Tournament Load()
     {
-        if (File.Exists(_filename))
+        if (!File.Exists(_filename)) return Tournament.Empty;
+
+        Type type = typeof(MeetFile1);
+        using var stream = File.OpenRead(_filename);
+        var serializer = new XmlSerializer(type);
+        var meetFile = (MeetFile1)serializer.Deserialize(stream);
+        var tournament = meetFile.ToTournament();
+
+        if (string.IsNullOrWhiteSpace(tournament.Name))
         {
-            using var reader = new StreamReader(_filename);
-            var serializer = new XmlSerializer(typeof(XmlMeetFile));
-            var file = (XmlMeetFile)serializer.Deserialize(reader);
-            reader.Close();
-
-            var id = (file.Id != Guid.Empty) ? file.Id : Guid.NewGuid();
-            var teams = file.Teams.ToList();
-            var matches = file.Matches.ToList();
-            PlayMode playMode = GetPlayMode(file.PlayMode);
-
-            if (teams.Any(t => t.Number == 0))
-            {
-                FixTeamNumbers(teams, matches);
-            }
-            foreach (var match in matches)
-            {
-                match.Team1 = teams.Single(t => t.Number == match.Team1.Number);
-                match.Team2 = teams.Single(t => t.Number == match.Team2.Number);
-            }
-
-            Tournament tournament = new(id, teams, matches, playMode) { Name = Path.GetFileNameWithoutExtension(_filename) };
-
-            return tournament;
+            tournament.Name = Path.GetFileNameWithoutExtension(_filename);
         }
-        return Tournament.Empty;
-    }
 
-    private PlayMode GetPlayMode(string playModeTypeName)
-    {
-        var playModeType = Assembly.GetExecutingAssembly().GetTypes()
-              .FirstOrDefault(t => t.Name == playModeTypeName
-                  && typeof(PlayMode).IsAssignableFrom(t)
-                  && !t.IsAbstract
-                  && !t.IsInterface
-                  && t.GetConstructor(Type.EmptyTypes) != null
-              );
-        
-        if (playModeType == null) return PlayMode.Empty;
-
-        return Activator.CreateInstance(playModeType) as PlayMode;
-    }
-
-    private void FixTeamNumbers(List<Team> teams, List<Match> matches)
-    {
-        for (int i = 0; i < teams.Count; i++)
-        {
-            teams[i].Number = i + 1;
-        }
-        foreach (var match in matches)
-        {
-            match.Team1 = teams.Single(t => t.Name == match.Team1.Name);
-            match.Team2 = teams.Single(t => t.Name == match.Team2.Name);
-        }
+        return tournament;
     }
 }

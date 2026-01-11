@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Meet xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Id>984ADE2B-A55F-4985-B3B7-876F3EB48371</Id>
+  <Teams>
+    <Team No="1">Team A</Team>
+    <Team No="2">Team B</Team>
+    <Team No="3">Team C</Team>
+  </Teams>
+  <Matches>
+    <Match No="1" Round="1" HomeNo="1" GuestNo="2">Finished</Match>
+    <Match No="2" Round="1" HomeNo="2" GuestNo="3">Finished</Match>
+    <Match No="3" Round="1" HomeNo="1" GuestNo="3">Open</Match>
+  </Matches>
+  <Results>
+    <Result HomeNo="1" GuestNo="2">
+      <Sets>
+        <Set Home="3" Guest="0"/>
+      </Sets>
+    </Result>
+    <Result HomeNo="2" GuestNo="4">
+      <Sets>
+        <Set Home="3" Guest="2"/>
+      </Sets>
+    </Result>
+  </Results>
+</Meet>

@@ -13,7 +13,7 @@ public class Load_Tournament_from_file
     [OneTimeSetUp]
     public void Setup()
     {
-        var storage = new FileTournamentStorage(@"Infrastructure\TournamentFile.xml");
+        var storage = new FileTournamentStorage(@"Infrastructure\MeetFileV1.xml");
         _sut = storage.Load();
     }
 
@@ -33,5 +33,20 @@ public class Load_Tournament_from_file
     public void File_contains_matches()
     {
         Assert.That(_sut.Matches, Is.Not.Empty);
+    }
+
+    [Test]
+    [TestCase(@"Infrastructure\MeetFileV1.xml")]
+    public void File_from_older_version_can_be_loaded(string filename)
+    {
+        // arrange
+        var storage = new FileTournamentStorage(filename);
+        // act
+        var tournament = storage.Load();
+        // assert
+        Assert.That(tournament.Id, Is.Not.EqualTo(Guid.Empty));
+        Assert.That(tournament.Name, Is.Not.Empty);
+        Assert.That(tournament.Teams, Is.Not.Empty);
+        Assert.That(tournament.Matches, Is.Not.Empty);
     }
 }
