@@ -1,4 +1,5 @@
 ﻿using POFF.Meet.Domain;
+using POFF.Meet.Domain.PlayModes;
 using POFF.Meet.Domain.ScoreModes;
 using POFF.Meet.Infrastructure;
 using POFF.Meet.Properties;
@@ -37,7 +38,7 @@ public partial class AppWindow : Form
         GamesGridView.DataSource = _viewModel.Matches;
 
         PlayModeComboBox.DataSource = _viewModel.PlayModes;
-        PlayModeComboBox.DataBindings.Add(nameof(ComboBox.SelectedItem), _viewModel, nameof(_viewModel.PlayMode), false, DataSourceUpdateMode.OnPropertyChanged);
+        PlayModeComboBox.DataBindings.Add(nameof(ComboBox.SelectedItem), _viewModel, nameof(_viewModel.PlayMode), false, DataSourceUpdateMode.Never);
     }
 
     private void AppWindow_Load(object sender, EventArgs e)
@@ -314,10 +315,15 @@ public partial class AppWindow : Form
 
     private void PlayModeComboBox_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (CheckDeleteResults("Change play mode?") == DialogResult.Yes) return;
-
-        // Reset selection back to current play mode
-        ExecuteWithoutControlEvents(() => PlayModeComboBox.SelectedItem = _viewModel.PlayMode);
+        if (CheckDeleteResults("Change play mode?") == DialogResult.Yes)
+        {
+            _viewModel.PlayMode = (PlayMode)PlayModeComboBox.SelectedItem;
+        }
+        else
+        {
+            // Reset selection back to current play mode
+            ExecuteWithoutControlEvents(() => PlayModeComboBox.SelectedItem = _viewModel.PlayMode);
+        }
     }
 
     private void ExecuteWithoutControlEvents(Action action)
