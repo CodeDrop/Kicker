@@ -59,13 +59,13 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
             var standing1 = list[match.Team1];
             standing1.MatchCount += 1;
             standing1.Points += points[0];
-            standing1.WonSetCount += setsWon[0];
+            standing1.Sets = new ScoredConceded(setsWon[0], setsWon[1]);
             standing1.Goals = new ScoredConceded(goals[0], goals[1]);
 
             var standing2 = list[match.Team2];
             standing2.MatchCount += 1;
             standing2.Points += points[1];
-            standing2.WonSetCount += setsWon[1];
+            standing2.Sets = new ScoredConceded(setsWon[1], setsWon[0]);
             standing2.Goals = new ScoredConceded(goals[1], goals[0]);
         }
 

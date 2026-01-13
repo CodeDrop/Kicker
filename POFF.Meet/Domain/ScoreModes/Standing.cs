@@ -12,9 +12,9 @@ public class Standing : IComparable
     public int Place { get; set; }
     public Team Team { get; }
     public int Points { get; set; }
+    public ScoredConceded Sets { get; set; }
     public ScoredConceded Goals { get; set; }
     public int MatchCount { get; set; }
-    public int WonSetCount { get; set; }
 
     public int CompareTo(object obj)
     {
@@ -24,8 +24,8 @@ public class Standing : IComparable
             return standing.Points.CompareTo(Points);
         if (MatchCount != standing.MatchCount)
             return standing.MatchCount.CompareTo(MatchCount);
-        if (WonSetCount != standing.WonSetCount)
-            return standing.WonSetCount.CompareTo(WonSetCount);
+        if (Sets.Scored != standing.Sets.Scored)
+            return standing.Sets.Scored.CompareTo(Sets.Scored);
         if (Goals.Scored != standing.Goals.Scored)
             return standing.Goals.Scored.CompareTo(Goals.Scored);
         if (Goals.Conceded != standing.Goals.Conceded)
