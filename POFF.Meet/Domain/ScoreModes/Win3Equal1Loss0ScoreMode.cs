@@ -21,6 +21,7 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
 
             if (match.Status != MatchStatus.Finished) continue;
 
+            ScoredConceded sets;
             setsWon = new int[2];
             points = new int[2];
             goals = new int[2];
@@ -59,15 +60,13 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
             standing1.MatchCount += 1;
             standing1.Points += points[0];
             standing1.WonSetCount += setsWon[0];
-            standing1.Goals += goals[0];
-            standing1.GoalsAgainst += goals[1];
+            standing1.Goals = new ScoredConceded(goals[0], goals[1]);
 
             var standing2 = list[match.Team2];
             standing2.MatchCount += 1;
             standing2.Points += points[1];
             standing2.WonSetCount += setsWon[1];
-            standing2.Goals += goals[1];
-            standing2.GoalsAgainst += goals[0];
+            standing1.Goals = new ScoredConceded(goals[1], goals[0]);
         }
 
         // Set place numbers 

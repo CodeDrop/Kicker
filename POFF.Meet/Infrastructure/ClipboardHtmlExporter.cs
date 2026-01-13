@@ -49,7 +49,7 @@ public class ClipboardHtmlExporter(ExportType exportType) : IExporter
             standingsBuilder.Append($"<td>{standing.Team.Name}</td>");
             standingsBuilder.Append($"<td>{standing.MatchCount}</td>");
             standingsBuilder.Append($"<td class=\"font-weight-bold\">{standing.Points}</td>");
-            standingsBuilder.Append($"<td>{standing.Goals}:{standing.GoalsAgainst}</td>");
+            standingsBuilder.Append($"<td>{standing.Goals.Scored}:{standing.Goals.Conceded}</td>");
             standingsBuilder.Append("</tr>");
             standingsBuilder.Append(Environment.NewLine);
         }

@@ -177,6 +177,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="PlayModes\SwissSystemPlayModeTests.cs" />
     <Compile Include="ResultTests.cs" />
+    <Compile Include="ScoreModes\ScoredConcededTests.cs" />
     <Compile Include="SetResultTests.cs" />
     <Compile Include="StandingTests.cs" />
     <Compile Include="TeamTests.cs" />
