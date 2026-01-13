@@ -21,11 +21,14 @@ public class ScoredConcededTests
     }
 
     [Test]
-    [TestCase(15, 5, 10)]
-    [TestCase(3, 4, -1)]
-    public void Difference_is_scored_minus_conceded(int scored, int conceded, int expected)
+    [TestCase(8, 1, "8:1")]
+    [TestCase(0, 3, "0:3")]
+    public void ToString_returns_scored_colon_conceded(int scored, int conceded, string expected)
     {
         var sut = new ScoredConceded(scored, conceded);
-        Assert.That(sut.Difference, Is.EqualTo(expected));
+        Assert.That(sut.ToString(), Is.EqualTo(expected));
     }
+
+
+
 }

@@ -66,7 +66,7 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
             standing2.MatchCount += 1;
             standing2.Points += points[1];
             standing2.WonSetCount += setsWon[1];
-            standing1.Goals = new ScoredConceded(goals[1], goals[0]);
+            standing2.Goals = new ScoredConceded(goals[1], goals[0]);
         }
 
         // Set place numbers 

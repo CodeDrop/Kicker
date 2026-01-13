@@ -57,12 +57,6 @@ public partial class AppWindow
             this.AppSplitContainer = new System.Windows.Forms.SplitContainer();
             this.RankingGroupBox = new System.Windows.Forms.GroupBox();
             this.RankingGridView = new System.Windows.Forms.DataGridView();
-            this.RankingPlaceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RankingTeamColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RankingGamesCountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RankingPointsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RankingSetsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RankingGoalsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GamesGroupBox = new System.Windows.Forms.GroupBox();
             this.GamesGridView = new System.Windows.Forms.DataGridView();
             this.StatusColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -71,6 +65,12 @@ public partial class AppWindow
             this.GuestColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ResultColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlayModeComboBox = new System.Windows.Forms.ComboBox();
+            this.RankingPlaceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RankingTeamColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RankingGamesCountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RankingPointsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RankingSetsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RankingGoalsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AppMainMenuStrip.SuspendLayout();
             this.AppStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AppSplitContainer)).BeginInit();
@@ -341,54 +341,6 @@ public partial class AppWindow
             this.RankingGridView.SelectionChanged += new System.EventHandler(this.RankingGridView_SelectionChanged);
             this.RankingGridView.DoubleClick += new System.EventHandler(this.RankingGridView_DoubleClick);
             // 
-            // RankingPlaceColumn
-            // 
-            this.RankingPlaceColumn.DataPropertyName = "Place";
-            this.RankingPlaceColumn.HeaderText = "#";
-            this.RankingPlaceColumn.Name = "RankingPlaceColumn";
-            this.RankingPlaceColumn.ReadOnly = true;
-            this.RankingPlaceColumn.Width = 40;
-            // 
-            // RankingTeamColumn
-            // 
-            this.RankingTeamColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.RankingTeamColumn.DataPropertyName = "Team";
-            this.RankingTeamColumn.HeaderText = "Team";
-            this.RankingTeamColumn.Name = "RankingTeamColumn";
-            this.RankingTeamColumn.ReadOnly = true;
-            // 
-            // RankingGamesCountColumn
-            // 
-            this.RankingGamesCountColumn.DataPropertyName = "MatchCount";
-            this.RankingGamesCountColumn.HeaderText = "Games";
-            this.RankingGamesCountColumn.Name = "RankingGamesCountColumn";
-            this.RankingGamesCountColumn.ReadOnly = true;
-            this.RankingGamesCountColumn.Width = 70;
-            // 
-            // RankingPointsColumn
-            // 
-            this.RankingPointsColumn.DataPropertyName = "Points";
-            this.RankingPointsColumn.HeaderText = "Points";
-            this.RankingPointsColumn.Name = "RankingPointsColumn";
-            this.RankingPointsColumn.ReadOnly = true;
-            this.RankingPointsColumn.Width = 70;
-            // 
-            // RankingSetsColumn
-            // 
-            this.RankingSetsColumn.DataPropertyName = "WonSetCount";
-            this.RankingSetsColumn.HeaderText = "Sets";
-            this.RankingSetsColumn.Name = "RankingSetsColumn";
-            this.RankingSetsColumn.ReadOnly = true;
-            this.RankingSetsColumn.Width = 70;
-            // 
-            // RankingGoalsColumn
-            // 
-            this.RankingGoalsColumn.DataPropertyName = "GoalsDifference";
-            this.RankingGoalsColumn.HeaderText = "Goals";
-            this.RankingGoalsColumn.Name = "RankingGoalsColumn";
-            this.RankingGoalsColumn.ReadOnly = true;
-            this.RankingGoalsColumn.Width = 70;
-            // 
             // GamesGroupBox
             // 
             this.GamesGroupBox.Controls.Add(this.GamesGridView);
@@ -482,6 +434,54 @@ public partial class AppWindow
             this.PlayModeComboBox.TabIndex = 1;
             this.PlayModeComboBox.SelectedIndexChanged += new System.EventHandler(this.PlayModeComboBox_SelectedIndexChanged);
             // 
+            // RankingPlaceColumn
+            // 
+            this.RankingPlaceColumn.DataPropertyName = "Place";
+            this.RankingPlaceColumn.HeaderText = "#";
+            this.RankingPlaceColumn.Name = "RankingPlaceColumn";
+            this.RankingPlaceColumn.ReadOnly = true;
+            this.RankingPlaceColumn.Width = 40;
+            // 
+            // RankingTeamColumn
+            // 
+            this.RankingTeamColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.RankingTeamColumn.DataPropertyName = "Team";
+            this.RankingTeamColumn.HeaderText = "Team";
+            this.RankingTeamColumn.Name = "RankingTeamColumn";
+            this.RankingTeamColumn.ReadOnly = true;
+            // 
+            // RankingGamesCountColumn
+            // 
+            this.RankingGamesCountColumn.DataPropertyName = "MatchCount";
+            this.RankingGamesCountColumn.HeaderText = "Games";
+            this.RankingGamesCountColumn.Name = "RankingGamesCountColumn";
+            this.RankingGamesCountColumn.ReadOnly = true;
+            this.RankingGamesCountColumn.Width = 70;
+            // 
+            // RankingPointsColumn
+            // 
+            this.RankingPointsColumn.DataPropertyName = "Points";
+            this.RankingPointsColumn.HeaderText = "Points";
+            this.RankingPointsColumn.Name = "RankingPointsColumn";
+            this.RankingPointsColumn.ReadOnly = true;
+            this.RankingPointsColumn.Width = 70;
+            // 
+            // RankingSetsColumn
+            // 
+            this.RankingSetsColumn.DataPropertyName = "WonSetCount";
+            this.RankingSetsColumn.HeaderText = "Sets";
+            this.RankingSetsColumn.Name = "RankingSetsColumn";
+            this.RankingSetsColumn.ReadOnly = true;
+            this.RankingSetsColumn.Width = 70;
+            // 
+            // RankingGoalsColumn
+            // 
+            this.RankingGoalsColumn.DataPropertyName = "Goals";
+            this.RankingGoalsColumn.HeaderText = "Goals";
+            this.RankingGoalsColumn.Name = "RankingGoalsColumn";
+            this.RankingGoalsColumn.ReadOnly = true;
+            this.RankingGoalsColumn.Width = 70;
+            // 
             // AppWindow
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(7, 20);
@@ -546,11 +546,11 @@ public partial class AppWindow
     private DataGridViewTextBoxColumn HomeColumn;
     private DataGridViewTextBoxColumn GuestColumn;
     private DataGridViewTextBoxColumn ResultColumn;
+    private ComboBox PlayModeComboBox;
     private DataGridViewTextBoxColumn RankingPlaceColumn;
     private DataGridViewTextBoxColumn RankingTeamColumn;
     private DataGridViewTextBoxColumn RankingGamesCountColumn;
     private DataGridViewTextBoxColumn RankingPointsColumn;
     private DataGridViewTextBoxColumn RankingSetsColumn;
     private DataGridViewTextBoxColumn RankingGoalsColumn;
-    private ComboBox PlayModeComboBox;
 }

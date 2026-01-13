@@ -7,4 +7,9 @@ public struct ScoredConceded(in int scored, in int conceded)
     public int Conceded { get; } = conceded;
 
     public readonly int Difference => Scored - Conceded;
+
+    public override string ToString()
+    {
+        return $"{Scored}:{Conceded}";
+    }
 }
