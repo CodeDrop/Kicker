@@ -18,7 +18,7 @@ public class SwissSystemPlayMode : PlayMode
 
         for (int i = 1; i < teamsCount; i += 2)
         {
-            yield return new Fixture(i - 1, i) { Section = 1 };
+            yield return new Fixture(i - 1, i) { Round = 1 };
         }
     }
 
@@ -29,7 +29,7 @@ public class SwissSystemPlayMode : PlayMode
         // A real implementation would consider the results of playedMatches.
         for (int i = 1; i < teamsCount; i += 2)
         {
-            yield return new Fixture(i - 1, i) { Section = 1 };
+            yield return new Fixture(i - 1, i) { Round = 1 };
         }
     }
 }

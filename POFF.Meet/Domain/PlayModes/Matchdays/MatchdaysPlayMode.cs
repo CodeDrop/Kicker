@@ -26,7 +26,7 @@ public class MatchdaysPlayMode : PlayMode
             section++;
             foreach (var fixture in matchday)
             {
-                fixture.Section = section;
+                fixture.Round = section;
                 yield return fixture;
             }
         }

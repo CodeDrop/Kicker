@@ -42,6 +42,6 @@ public class SwissSystemPlayModeTests
     [Test]
     public void Swiss_System_generates_round_1()
     {
-        Assert.That(_sut.Generate(4).All(f => f.Section == 1), Is.True);
+        Assert.That(_sut.Generate(4).All(f => f.Round == 1), Is.True);
     }
 }
