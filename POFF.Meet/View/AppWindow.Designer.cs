@@ -440,6 +440,7 @@ public partial class AppWindow
             this.RankingPlaceColumn.HeaderText = "#";
             this.RankingPlaceColumn.Name = "RankingPlaceColumn";
             this.RankingPlaceColumn.ReadOnly = true;
+            this.RankingPlaceColumn.Visible = false;
             this.RankingPlaceColumn.Width = 40;
             // 
             // RankingTeamColumn
@@ -453,7 +454,7 @@ public partial class AppWindow
             // RankingGamesCountColumn
             // 
             this.RankingGamesCountColumn.DataPropertyName = "MatchCount";
-            this.RankingGamesCountColumn.HeaderText = "Games";
+            this.RankingGamesCountColumn.HeaderText = "Played";
             this.RankingGamesCountColumn.Name = "RankingGamesCountColumn";
             this.RankingGamesCountColumn.ReadOnly = true;
             this.RankingGamesCountColumn.Width = 70;
@@ -461,7 +462,7 @@ public partial class AppWindow
             // RankingPointsColumn
             // 
             this.RankingPointsColumn.DataPropertyName = "Points";
-            this.RankingPointsColumn.HeaderText = "Points";
+            this.RankingPointsColumn.HeaderText = "Score";
             this.RankingPointsColumn.Name = "RankingPointsColumn";
             this.RankingPointsColumn.ReadOnly = true;
             this.RankingPointsColumn.Width = 70;
@@ -469,7 +470,7 @@ public partial class AppWindow
             // RankingSetsColumn
             // 
             this.RankingSetsColumn.DataPropertyName = "Sets";
-            this.RankingSetsColumn.HeaderText = "Sets";
+            this.RankingSetsColumn.HeaderText = "Frames";
             this.RankingSetsColumn.Name = "RankingSetsColumn";
             this.RankingSetsColumn.ReadOnly = true;
             this.RankingSetsColumn.Width = 70;
@@ -477,9 +478,10 @@ public partial class AppWindow
             // RankingGoalsColumn
             // 
             this.RankingGoalsColumn.DataPropertyName = "Goals";
-            this.RankingGoalsColumn.HeaderText = "Goals";
+            this.RankingGoalsColumn.HeaderText = "Frame Scores";
             this.RankingGoalsColumn.Name = "RankingGoalsColumn";
             this.RankingGoalsColumn.ReadOnly = true;
+            this.RankingGoalsColumn.Visible = false;
             this.RankingGoalsColumn.Width = 70;
             // 
             // AppWindow
