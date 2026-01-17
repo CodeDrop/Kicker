@@ -37,8 +37,8 @@ public class Export_into_twig_file
     }
 
     [Test]
-    [TestCase("<-- Meet#2545D2E5-380F-4F42-A46A-2C4ABDCB54AF#Ranking-Start -->")]
-    [TestCase("<-- Meet#2545D2E5-380F-4F42-A46A-2C4ABDCB54AF#Ranking-End -->")]
+    [TestCase("<!-- Meet#2545D2E5-380F-4F42-A46A-2C4ABDCB54AF#Ranking-Start -->")]
+    [TestCase("<!-- Meet#2545D2E5-380F-4F42-A46A-2C4ABDCB54AF#Ranking-End -->")]
     public void File_contains_ranking_tag(string tag)
     {
         Assert.That(_content, Does.Contain(tag));
@@ -53,8 +53,8 @@ public class Export_into_twig_file
     }
 
     [Test]
-    [TestCase("<-- Meet#2545D2E5-380F-4F42-A46A-2C4ABDCB54AF#Games-Start -->")]
-    [TestCase("<-- Meet#2545D2E5-380F-4F42-A46A-2C4ABDCB54AF#Games-End -->")]
+    [TestCase("<!-- Meet#2545D2E5-380F-4F42-A46A-2C4ABDCB54AF#Games-Start -->")]
+    [TestCase("<!-- Meet#2545D2E5-380F-4F42-A46A-2C4ABDCB54AF#Games-End -->")]
     public void File_contains_games_tag(string tag)
     {
         Assert.That(_content, Does.Contain(tag));

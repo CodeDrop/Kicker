@@ -40,7 +40,7 @@ public class TwigFileInjectionExporter : IExporter
     {
         return Regex.Replace(content,
             // capture start tag, inner content (non-greedy, singleline), and end tag
-            $"(<-- {tag}-Start -->)(.*?)(<-- {tag}-End -->)",
+            $"(<!-- {tag}-Start -->)(.*?)(<!-- {tag}-End -->)",
             m => m.Groups[1].Value + value + m.Groups[3].Value,
             RegexOptions.Singleline | RegexOptions.IgnoreCase, Regex.InfiniteMatchTimeout);
     }
