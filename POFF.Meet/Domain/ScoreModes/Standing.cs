@@ -19,19 +19,7 @@ public class Standing : IComparable
     public int CompareTo(object obj)
     {
         Standing standing = (Standing)obj;
-
-        if (Points != standing.Points)
-            return standing.Points.CompareTo(Points);
-        if (MatchCount != standing.MatchCount)
-            return standing.MatchCount.CompareTo(MatchCount);
-        if (Sets.Scored != standing.Sets.Scored)
-            return standing.Sets.Scored.CompareTo(Sets.Scored);
-        if (Goals.Scored != standing.Goals.Scored)
-            return standing.Goals.Scored.CompareTo(Goals.Scored);
-        if (Goals.Conceded != standing.Goals.Conceded)
-            return Goals.Conceded.CompareTo(standing.Goals.Conceded);
-
-        return 0;
+        return Place.CompareTo(standing.Place);
     }
 
     public bool Equals(Team obj)

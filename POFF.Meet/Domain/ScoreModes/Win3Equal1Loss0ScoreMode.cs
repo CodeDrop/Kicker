@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace POFF.Meet.Domain.ScoreModes;
@@ -51,12 +50,18 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
         }
 
         // Set place numbers 
+        var ranking = list.Values
+            .OrderByDescending(l => l.Points)
+            .ThenByDescending(l => l.MatchCount)
+            .ThenByDescending(l => l.Sets.Difference)
+            .ThenByDescending(l => l.Goals.Difference);
+
         int place = 0;
-        foreach (var standing in list.OrderBy(l => l.Value))
+        foreach (var standing in ranking)
         {
-            standing.Value.Place = ++place;
+            standing.Place = ++place;
         }
 
-        return list.Values.OrderBy(l => l);
+        return ranking;
     }
 }
