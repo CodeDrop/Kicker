@@ -1,6 +1,6 @@
 ﻿namespace POFF.Meet.Domain.ScoreModes;
 
-public struct ScoredConceded(in int scored, in int conceded)
+public readonly struct ScoredConceded(in int scored, in int conceded)
 {
     public int Scored { get; } = scored;
 
