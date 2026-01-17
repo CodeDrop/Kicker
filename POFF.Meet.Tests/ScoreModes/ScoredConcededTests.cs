@@ -21,6 +21,22 @@ public class ScoredConcededTests
     }
 
     [Test]
+    public void Add_operator_sums_scored()
+    {
+        ScoredConceded a = new(5, 3);
+        ScoredConceded b = new(2, 5);
+        Assert.That((a + b).Scored, Is.EqualTo(7));
+    }
+
+    [Test]
+    public void Add_operator_sums_conceded()
+    {
+        ScoredConceded a = new(5, 3);
+        ScoredConceded b = new(2, 5);
+        Assert.That((a + b).Conceded, Is.EqualTo(8));
+    }
+
+    [Test]
     [TestCase(8, 1, "8:1")]
     [TestCase(0, 3, "0:3")]
     public void ToString_returns_scored_colon_conceded(int scored, int conceded, string expected)
