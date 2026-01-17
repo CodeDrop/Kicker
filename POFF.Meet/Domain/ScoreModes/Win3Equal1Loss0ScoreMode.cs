@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace POFF.Meet.Domain.ScoreModes;
 
@@ -50,17 +51,12 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
         }
 
         // Set place numbers 
-        var standings = new Standing[list.Count];
-
-        var tempArray = Array.CreateInstance(typeof(Standing), list.Count);
-        list.Values.CopyTo((Standing[])tempArray, 0);                   // Copy hashtable to array
-        Array.Sort(tempArray);                       // Sort 
-        for (int index = 0, loopTo = tempArray.Length - 1; index <= loopTo; index++)
+        int place = 0;
+        foreach (var standing in list.OrderBy(l => l.Value))
         {
-            standings[index] = (Standing)tempArray.GetValue(index);
-            standings[index].Place = index + 1;      // Set place number
+            standing.Value.Place = ++place;
         }
 
-        return standings;
+        return list.Values.OrderBy(l => l);
     }
 }
