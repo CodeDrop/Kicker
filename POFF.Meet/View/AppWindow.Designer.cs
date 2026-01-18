@@ -29,6 +29,7 @@ public partial class AppWindow
     private void InitializeComponent()
     {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AppWindow));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.AppMainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.TournamentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -437,11 +438,12 @@ public partial class AppWindow
             // RankingPlaceColumn
             // 
             this.RankingPlaceColumn.DataPropertyName = "Place";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.RankingPlaceColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.RankingPlaceColumn.HeaderText = "#";
             this.RankingPlaceColumn.Name = "RankingPlaceColumn";
             this.RankingPlaceColumn.ReadOnly = true;
-            this.RankingPlaceColumn.Visible = false;
-            this.RankingPlaceColumn.Width = 40;
+            this.RankingPlaceColumn.Width = 30;
             // 
             // RankingTeamColumn
             // 
