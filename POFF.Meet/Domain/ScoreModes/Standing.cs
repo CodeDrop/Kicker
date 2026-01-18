@@ -12,7 +12,7 @@ public class Standing : IComparable
     public int Place { get; set; }
     public Team Team { get; }
     public int Points { get; set; }
-    public ScoredConceded Sets { get; set; }
+    public WinDrawLoss Sets { get; set; }
     public ScoredConceded Goals { get; set; }
     public int MatchCount { get; set; }
 

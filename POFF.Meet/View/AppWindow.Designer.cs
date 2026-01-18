@@ -70,6 +70,7 @@ public partial class AppWindow
             this.RankingTeamColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RankingGamesCountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RankingPointsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WinDrawLossCountsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RankingSetsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RankingGoalsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AppMainMenuStrip.SuspendLayout();
@@ -329,6 +330,7 @@ public partial class AppWindow
             this.RankingTeamColumn,
             this.RankingGamesCountColumn,
             this.RankingPointsColumn,
+            this.WinDrawLossCountsColumn,
             this.RankingSetsColumn,
             this.RankingGoalsColumn});
             this.RankingGridView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -469,6 +471,14 @@ public partial class AppWindow
             this.RankingPointsColumn.ReadOnly = true;
             this.RankingPointsColumn.Width = 50;
             // 
+            // WinDrawLossCountsColumn
+            // 
+            this.WinDrawLossCountsColumn.DataPropertyName = "Sets";
+            this.WinDrawLossCountsColumn.HeaderText = "W/D/L";
+            this.WinDrawLossCountsColumn.Name = "WinDrawLossCountsColumn";
+            this.WinDrawLossCountsColumn.ReadOnly = true;
+            this.WinDrawLossCountsColumn.Width = 90;
+            // 
             // RankingSetsColumn
             // 
             this.RankingSetsColumn.DataPropertyName = "Goals";
@@ -555,6 +565,7 @@ public partial class AppWindow
     private DataGridViewTextBoxColumn RankingTeamColumn;
     private DataGridViewTextBoxColumn RankingGamesCountColumn;
     private DataGridViewTextBoxColumn RankingPointsColumn;
+    private DataGridViewTextBoxColumn WinDrawLossCountsColumn;
     private DataGridViewTextBoxColumn RankingSetsColumn;
     private DataGridViewTextBoxColumn RankingGoalsColumn;
 }

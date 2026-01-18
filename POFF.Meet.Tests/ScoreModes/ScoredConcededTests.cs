@@ -37,6 +37,13 @@ public class ScoredConcededTests
     }
 
     [Test]
+    public void Difference_returns_scored_minus_conceded()
+    {
+        ScoredConceded sut = new(5, 3);
+        Assert.That(sut.Difference, Is.EqualTo(2));
+    }
+
+    [Test]
     [TestCase(8, 1, "8:1")]
     [TestCase(0, 3, "0:3")]
     public void ToString_returns_scored_colon_conceded(int scored, int conceded, string expected)
@@ -44,7 +51,4 @@ public class ScoredConcededTests
         var sut = new ScoredConceded(scored, conceded);
         Assert.That(sut.ToString(), Is.EqualTo(expected));
     }
-
-
-
 }

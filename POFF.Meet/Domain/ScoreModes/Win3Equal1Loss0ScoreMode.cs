@@ -19,13 +19,13 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
 
             if (match.Status != MatchStatus.Finished) continue;
 
-            ScoredConceded sets = new();
+            WinDrawLoss sets = new();
             ScoredConceded goals = new();
 
             foreach (var setResult in match.Result.SetResults)
             {
                 var x = setResult.Home.CompareTo(setResult.Guest);
-                sets += new ScoredConceded(x > 0 ? 1 : 0, x < 0 ? 1 : 0);
+                sets += new WinDrawLoss(x > 0 ? 1 : 0, x == 0 ? 1 : 0, x < 0 ? 1 : 0);
                 goals += new ScoredConceded(setResult.Home, setResult.Guest);
             }
 
@@ -45,7 +45,7 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
             var standing2 = list[match.Team2];
             standing2.MatchCount += 1;
             standing2.Points += points.Conceded;
-            standing2.Sets += new ScoredConceded(sets.Conceded, sets.Scored);
+            standing2.Sets += new WinDrawLoss(sets.Losses, sets.Draws, sets.Wins);
             standing2.Goals += new ScoredConceded(goals.Conceded, goals.Scored);
         }
 

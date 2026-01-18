@@ -126,6 +126,7 @@
     <Compile Include="Domain\ScoreModes\IScoreMode.cs" />
     <Compile Include="Domain\ScoreModes\ScoredConceded.cs" />
     <Compile Include="Domain\ScoreModes\Win3Equal1Loss0ScoreMode.cs" />
+    <Compile Include="Domain\ScoreModes\WinDrawLoss.cs" />
     <Compile Include="Extensions\BindingListExtensions.cs" />
     <Compile Include="Infrastructure\ExportType.cs" />
     <Compile Include="Infrastructure\Files\FileTournamentStorage.cs" />

@@ -6,7 +6,7 @@ public readonly struct ScoredConceded(in int scored, in int conceded)
 
     public int Conceded { get; } = conceded;
 
-    public readonly int Difference => Scored - Conceded;
+    public int Difference { get; } = scored - conceded;
 
     public static ScoredConceded operator +(in ScoredConceded a, in ScoredConceded b)
     {
