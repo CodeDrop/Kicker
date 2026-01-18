@@ -19,17 +19,28 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
 
             if (match.Status != MatchStatus.Finished) continue;
 
-            WinDrawLoss sets = new();
-            ScoredConceded goals = new();
+            ScoredConceded frames = new();
 
-            foreach (var setResult in match.Result.SetResults)
+            if (match.Result.SetResults.Count() == 1)
             {
-                var x = setResult.Home.CompareTo(setResult.Guest);
-                sets += new WinDrawLoss(x > 0 ? 1 : 0, x == 0 ? 1 : 0, x < 0 ? 1 : 0);
-                goals += new ScoredConceded(setResult.Home, setResult.Guest);
+                // assume 1 SetResult contains won/lost number of frames
+                var setCounts = match.Result.SetResults.First();
+                frames = new ScoredConceded(setCounts.Home, setCounts.Guest);
+            }
+            else
+            {
+                // assume multiple SetResults contain individual frame results
+                foreach (var setResult in match.Result.SetResults)
+                {
+                    if (setResult.Home == setResult.Guest) continue; // skip drawn sets
+                    var setWonHome = setResult.Home > setResult.Guest;
+                    frames += new ScoredConceded(setWonHome ? 1 : 0, setWonHome ? 0 : 1);
+                }
             }
 
-            var points = sets.Difference switch
+            var x = frames.Difference;
+
+            var points = x switch
             {
                 > 0 => new ScoredConceded(3, 0),
                 0 => new ScoredConceded(1, 1),
@@ -39,14 +50,14 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
             var standing1 = list[match.Team1];
             standing1.MatchCount += 1;
             standing1.Score += points.Scored;
-            standing1.Matches += sets;
-            standing1.Frames += goals;
+            standing1.Matches += new WinDrawLoss(x > 0 ? 1 : 0, x == 0 ? 1 : 0, x < 0 ? 1 : 0);
+            standing1.Frames += frames;
 
             var standing2 = list[match.Team2];
             standing2.MatchCount += 1;
             standing2.Score += points.Conceded;
-            standing2.Matches += new WinDrawLoss(sets.Losses, sets.Draws, sets.Wins);
-            standing2.Frames += new ScoredConceded(goals.Conceded, goals.Scored);
+            standing2.Matches += new WinDrawLoss(x < 0 ? 1 : 0, x == 0 ? 1 : 0, x > 0 ? 1 : 0);
+            standing2.Frames += new ScoredConceded(frames.Conceded, frames.Scored);
         }
 
         // Set place numbers 
