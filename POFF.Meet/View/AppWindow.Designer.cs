@@ -459,7 +459,7 @@ public partial class AppWindow
             this.RankingGamesCountColumn.HeaderText = "Played";
             this.RankingGamesCountColumn.Name = "RankingGamesCountColumn";
             this.RankingGamesCountColumn.ReadOnly = true;
-            this.RankingGamesCountColumn.Width = 70;
+            this.RankingGamesCountColumn.Width = 50;
             // 
             // RankingPointsColumn
             // 
@@ -467,7 +467,7 @@ public partial class AppWindow
             this.RankingPointsColumn.HeaderText = "Score";
             this.RankingPointsColumn.Name = "RankingPointsColumn";
             this.RankingPointsColumn.ReadOnly = true;
-            this.RankingPointsColumn.Width = 70;
+            this.RankingPointsColumn.Width = 50;
             // 
             // RankingSetsColumn
             // 
