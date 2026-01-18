@@ -471,7 +471,7 @@ public partial class AppWindow
             // 
             // RankingSetsColumn
             // 
-            this.RankingSetsColumn.DataPropertyName = "Sets";
+            this.RankingSetsColumn.DataPropertyName = "Goals";
             this.RankingSetsColumn.HeaderText = "Frames";
             this.RankingSetsColumn.Name = "RankingSetsColumn";
             this.RankingSetsColumn.ReadOnly = true;
