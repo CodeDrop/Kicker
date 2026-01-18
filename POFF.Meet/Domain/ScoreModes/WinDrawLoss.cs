@@ -1,6 +1,6 @@
 ﻿namespace POFF.Meet;
 
-public struct WinDrawLoss(in int wins, in int draws, in int losses)
+public readonly struct WinDrawLoss(in int wins, in int draws, in int losses)
 {
     public int Wins { get; } = wins;
     public int Draws { get; } = draws;
