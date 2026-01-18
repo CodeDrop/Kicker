@@ -72,7 +72,6 @@ public partial class AppWindow
             this.RankingPointsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WinDrawLossCountsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RankingSetsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RankingGoalsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AppMainMenuStrip.SuspendLayout();
             this.AppStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AppSplitContainer)).BeginInit();
@@ -331,8 +330,7 @@ public partial class AppWindow
             this.RankingGamesCountColumn,
             this.RankingPointsColumn,
             this.WinDrawLossCountsColumn,
-            this.RankingSetsColumn,
-            this.RankingGoalsColumn});
+            this.RankingSetsColumn});
             this.RankingGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RankingGridView.Location = new System.Drawing.Point(3, 23);
             this.RankingGridView.Name = "RankingGridView";
@@ -465,7 +463,7 @@ public partial class AppWindow
             // 
             // RankingPointsColumn
             // 
-            this.RankingPointsColumn.DataPropertyName = "Points";
+            this.RankingPointsColumn.DataPropertyName = "Score";
             this.RankingPointsColumn.HeaderText = "Score";
             this.RankingPointsColumn.Name = "RankingPointsColumn";
             this.RankingPointsColumn.ReadOnly = true;
@@ -473,7 +471,7 @@ public partial class AppWindow
             // 
             // WinDrawLossCountsColumn
             // 
-            this.WinDrawLossCountsColumn.DataPropertyName = "Sets";
+            this.WinDrawLossCountsColumn.DataPropertyName = "Matches";
             this.WinDrawLossCountsColumn.HeaderText = "W/D/L";
             this.WinDrawLossCountsColumn.Name = "WinDrawLossCountsColumn";
             this.WinDrawLossCountsColumn.ReadOnly = true;
@@ -481,20 +479,11 @@ public partial class AppWindow
             // 
             // RankingSetsColumn
             // 
-            this.RankingSetsColumn.DataPropertyName = "Goals";
+            this.RankingSetsColumn.DataPropertyName = "Frames";
             this.RankingSetsColumn.HeaderText = "Frames";
             this.RankingSetsColumn.Name = "RankingSetsColumn";
             this.RankingSetsColumn.ReadOnly = true;
             this.RankingSetsColumn.Width = 70;
-            // 
-            // RankingGoalsColumn
-            // 
-            this.RankingGoalsColumn.DataPropertyName = "Goals";
-            this.RankingGoalsColumn.HeaderText = "Frame Scores";
-            this.RankingGoalsColumn.Name = "RankingGoalsColumn";
-            this.RankingGoalsColumn.ReadOnly = true;
-            this.RankingGoalsColumn.Visible = false;
-            this.RankingGoalsColumn.Width = 70;
             // 
             // AppWindow
             // 
@@ -567,5 +556,4 @@ public partial class AppWindow
     private DataGridViewTextBoxColumn RankingPointsColumn;
     private DataGridViewTextBoxColumn WinDrawLossCountsColumn;
     private DataGridViewTextBoxColumn RankingSetsColumn;
-    private DataGridViewTextBoxColumn RankingGoalsColumn;
 }

@@ -11,9 +11,9 @@ public class Standing : IComparable
 
     public int Place { get; set; }
     public Team Team { get; }
-    public int Points { get; set; }
-    public WinDrawLoss Sets { get; set; }
-    public ScoredConceded Goals { get; set; }
+    public int Score { get; set; }
+    public WinDrawLoss Matches { get; set; }
+    public ScoredConceded Frames { get; set; }
     public int MatchCount { get; set; }
 
     public int CompareTo(object obj)

@@ -38,23 +38,23 @@ public class Win3Equal1Loss0ScoreMode : IScoreMode
 
             var standing1 = list[match.Team1];
             standing1.MatchCount += 1;
-            standing1.Points += points.Scored;
-            standing1.Sets += sets;
-            standing1.Goals += goals;
+            standing1.Score += points.Scored;
+            standing1.Matches += sets;
+            standing1.Frames += goals;
 
             var standing2 = list[match.Team2];
             standing2.MatchCount += 1;
-            standing2.Points += points.Conceded;
-            standing2.Sets += new WinDrawLoss(sets.Losses, sets.Draws, sets.Wins);
-            standing2.Goals += new ScoredConceded(goals.Conceded, goals.Scored);
+            standing2.Score += points.Conceded;
+            standing2.Matches += new WinDrawLoss(sets.Losses, sets.Draws, sets.Wins);
+            standing2.Frames += new ScoredConceded(goals.Conceded, goals.Scored);
         }
 
         // Set place numbers 
         var ranking = list.Values
-            .OrderByDescending(l => l.Points)
+            .OrderByDescending(l => l.Score)
             .ThenByDescending(l => l.MatchCount)
-            .ThenByDescending(l => l.Sets.Difference)
-            .ThenByDescending(l => l.Goals.Difference);
+            .ThenByDescending(l => l.Matches.Difference)
+            .ThenByDescending(l => l.Frames.Difference);
 
         int place = 0;
         foreach (var standing in ranking)
