@@ -2,7 +2,7 @@
 
 namespace POFF.Meet.Domain;
 
-public class Result
+public class MatchResult
 {
     public SetResult[] SetResults = [];
 

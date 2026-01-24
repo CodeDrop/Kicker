@@ -81,7 +81,7 @@ public class Tournament
         }
     }
 
-    public void SetResult(int matchNo, Result result)
+    public void SetResult(int matchNo, MatchResult result)
     {
         if (matchNo < 1 | matchNo > _matches.Count)
             throw new IndexOutOfRangeException("matchNo may only have values between 1 and number of matches");

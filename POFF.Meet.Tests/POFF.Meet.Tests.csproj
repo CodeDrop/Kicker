@@ -176,7 +176,7 @@
     <Compile Include="AppWindowViewModelTests.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="PlayModes\SwissSystemPlayModeTests.cs" />
-    <Compile Include="ResultTests.cs" />
+    <Compile Include="MatchResultTests.cs" />
     <Compile Include="ScoreModes\WinDrawLossTests.cs" />
     <Compile Include="ScoreModes\ScoredConcededTests.cs" />
     <Compile Include="SetResultTests.cs" />

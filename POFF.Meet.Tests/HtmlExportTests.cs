@@ -20,7 +20,7 @@ public class HtmlExportTests
         tournament.AddTeam("Team N°1");
         tournament.AddTeam("Team N°2");
         tournament.AddTeam("Team N°3").Withdrawn = true;
-        var matchResult = new Result();
+        var matchResult = new MatchResult();
         matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
         tournament.SetResult(2, matchResult);
         var sut = new ClipboardHtmlExporter(ExportType.Games | ExportType.Standings);

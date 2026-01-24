@@ -169,7 +169,7 @@
     <Compile Include="Domain\PlayModes\Fixture.cs" />
     <Compile Include="Domain\MatchStatus.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Domain\Result.cs" />
+    <Compile Include="Domain\MatchResult.cs" />
     <Compile Include="View\ResultDialog.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -47,9 +47,9 @@ public class MeetFile2 : MeetFileBase
         return new Tournament(Id, teams, matches, playMode);
     }
 
-    private Result GetResult(int homeNo, int guestNo)
+    private MatchResult GetResult(int homeNo, int guestNo)
     {
-        var result = new Result();
+        var result = new MatchResult();
         var resultEntry = Results.SingleOrDefault(r => r.HomeNo == homeNo && r.GuestNo == guestNo);
         if (resultEntry != null)
         {

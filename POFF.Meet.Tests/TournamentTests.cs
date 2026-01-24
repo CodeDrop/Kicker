@@ -29,7 +29,7 @@ public class TournamentTests
         var testClass = new Tournament();
         testClass.AddTeam("Team N°1");
         testClass.AddTeam("Team N°2");
-        var matchResult = new Result();
+        var matchResult = new MatchResult();
         matchResult.AddSetResult(new SetResult() { Home = 5, Guest = 3 });
         testClass.SetResult(1, matchResult);
 

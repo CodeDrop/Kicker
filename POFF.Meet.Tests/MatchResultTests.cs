@@ -4,13 +4,13 @@ using POFF.Meet.Domain;
 namespace POFF.Meet.Tests;
 
 [TestFixture]
-public class ResultTests
+public class MatchResultTests
 {
     [Test]
     public void AddSetResultTest()
     {
         // Arrange
-        var result = new Result();
+        var result = new MatchResult();
         var setResult = new SetResult() { Home = 5, Guest = 2 };
 
         // Act

@@ -15,7 +15,7 @@ public class Match
         Number = number;
         Team1 = team1;
         Team2 = team2;
-        Result = new Result();
+        Result = new MatchResult();
     }
 
     public int Number { get; set; }
@@ -23,7 +23,7 @@ public class Match
     public Team Team1 { get; set; }
     public Team Team2 { get; set; }
     public MatchStatus Status { get; set; }
-    public Result Result { get; set; }
+    public MatchResult Result { get; set; }
     
     public new bool Equals(object obj)
     {
