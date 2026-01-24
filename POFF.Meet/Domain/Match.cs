@@ -1,9 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace POFF.Meet.Domain;
 
-[Serializable()]
 [DebuggerDisplay("Match N°{Number}: {Team1} - {Team2}")]
 public class Match
 {
@@ -26,7 +24,7 @@ public class Match
     public Team Team2 { get; set; }
     public MatchStatus Status { get; set; }
     public Result Result { get; set; }
-
+    
     public new bool Equals(object obj)
     {
         var otherMatch = (Match)obj;

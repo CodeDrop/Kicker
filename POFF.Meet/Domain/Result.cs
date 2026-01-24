@@ -2,10 +2,8 @@
 
 namespace POFF.Meet.Domain;
 
-[Serializable()]
 public class Result
 {
-
     public SetResult[] SetResults = [];
 
     public void AddSetResult(SetResult setResult)
@@ -41,5 +39,4 @@ public class Result
 
         return resultString.ToString().Substring(1);
     }
-
 }

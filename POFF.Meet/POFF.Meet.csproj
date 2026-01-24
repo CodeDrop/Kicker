@@ -187,7 +187,6 @@
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Domain\Tournament.cs" />
     <Compile Include="View\DefaultConfirmationMessageHandler.cs" />
-    <Compile Include="Domain\MatchInfo.cs" />
     <Compile Include="View\NotificationObject.cs" />
     <Compile Include="Domain\SetResultInput.cs" />
     <Compile Include="Domain\TeamInfo.cs" />

@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using POFF.Meet.Domain.ScoreModes;
 
 namespace POFF.Meet.Tests.ScoreModes;
 

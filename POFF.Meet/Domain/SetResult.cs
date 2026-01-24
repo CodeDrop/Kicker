@@ -1,8 +1,5 @@
-﻿using System;
+﻿namespace POFF.Meet.Domain;
 
-namespace POFF.Meet.Domain;
-
-[Serializable()]
 public class SetResult
 {
     public SetResult()

@@ -31,7 +31,7 @@ public class MeetFile2 : MeetFileBase
     public override Tournament ToTournament()
     {
         var teams = Teams.Select(t => new Team { Number = t.No, Name = t.Name, Withdrawn=t.Withdrawn }).AsQueryable();
-        
+
         var matches = Matches.Select(m => new Match()
         {
             Number = m.No,
