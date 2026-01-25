@@ -244,14 +244,14 @@ public partial class AppWindow : Form
 
     private void RankingGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
     {
-        if (e.ColumnIndex == 0)
+        if (e.RowIndex % 2 == 0)
         {
-            e.Value = e.RowIndex + 1;
+            e.CellStyle.BackColor = Color.WhiteSmoke;
         }
         if (((Standing)RankingGridView.Rows[e.RowIndex].DataBoundItem).Team.Withdrawn)
         {
             e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Strikeout);
-            e.CellStyle.ForeColor = Color.LightGray;
+            e.CellStyle.ForeColor = Color.SlateGray;
         }
     }
 

@@ -58,6 +58,12 @@ public partial class AppWindow
             this.AppSplitContainer = new System.Windows.Forms.SplitContainer();
             this.RankingGroupBox = new System.Windows.Forms.GroupBox();
             this.RankingGridView = new System.Windows.Forms.DataGridView();
+            this.RankingPlaceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RankingTeamColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RankingGamesCountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RankingPointsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WinDrawLossCountsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RankingSetsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GamesGroupBox = new System.Windows.Forms.GroupBox();
             this.GamesGridView = new System.Windows.Forms.DataGridView();
             this.StatusColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -66,12 +72,6 @@ public partial class AppWindow
             this.GuestColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ResultColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlayModeComboBox = new System.Windows.Forms.ComboBox();
-            this.RankingPlaceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RankingTeamColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RankingGamesCountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RankingPointsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WinDrawLossCountsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RankingSetsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AppMainMenuStrip.SuspendLayout();
             this.AppStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AppSplitContainer)).BeginInit();
@@ -339,8 +339,59 @@ public partial class AppWindow
             this.RankingGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.RankingGridView.Size = new System.Drawing.Size(562, 487);
             this.RankingGridView.TabIndex = 2;
+            this.RankingGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.RankingGridView_CellFormatting);
             this.RankingGridView.SelectionChanged += new System.EventHandler(this.RankingGridView_SelectionChanged);
             this.RankingGridView.DoubleClick += new System.EventHandler(this.RankingGridView_DoubleClick);
+            // 
+            // RankingPlaceColumn
+            // 
+            this.RankingPlaceColumn.DataPropertyName = "Place";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.RankingPlaceColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.RankingPlaceColumn.HeaderText = "#";
+            this.RankingPlaceColumn.Name = "RankingPlaceColumn";
+            this.RankingPlaceColumn.ReadOnly = true;
+            this.RankingPlaceColumn.Width = 30;
+            // 
+            // RankingTeamColumn
+            // 
+            this.RankingTeamColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.RankingTeamColumn.DataPropertyName = "Team";
+            this.RankingTeamColumn.HeaderText = "Team";
+            this.RankingTeamColumn.Name = "RankingTeamColumn";
+            this.RankingTeamColumn.ReadOnly = true;
+            // 
+            // RankingGamesCountColumn
+            // 
+            this.RankingGamesCountColumn.DataPropertyName = "MatchCount";
+            this.RankingGamesCountColumn.HeaderText = "Played";
+            this.RankingGamesCountColumn.Name = "RankingGamesCountColumn";
+            this.RankingGamesCountColumn.ReadOnly = true;
+            this.RankingGamesCountColumn.Width = 50;
+            // 
+            // RankingPointsColumn
+            // 
+            this.RankingPointsColumn.DataPropertyName = "Score";
+            this.RankingPointsColumn.HeaderText = "Score";
+            this.RankingPointsColumn.Name = "RankingPointsColumn";
+            this.RankingPointsColumn.ReadOnly = true;
+            this.RankingPointsColumn.Width = 50;
+            // 
+            // WinDrawLossCountsColumn
+            // 
+            this.WinDrawLossCountsColumn.DataPropertyName = "Matches";
+            this.WinDrawLossCountsColumn.HeaderText = "W/D/L";
+            this.WinDrawLossCountsColumn.Name = "WinDrawLossCountsColumn";
+            this.WinDrawLossCountsColumn.ReadOnly = true;
+            this.WinDrawLossCountsColumn.Width = 90;
+            // 
+            // RankingSetsColumn
+            // 
+            this.RankingSetsColumn.DataPropertyName = "Frames";
+            this.RankingSetsColumn.HeaderText = "Frames";
+            this.RankingSetsColumn.Name = "RankingSetsColumn";
+            this.RankingSetsColumn.ReadOnly = true;
+            this.RankingSetsColumn.Width = 70;
             // 
             // GamesGroupBox
             // 
@@ -434,56 +485,6 @@ public partial class AppWindow
             this.PlayModeComboBox.Sorted = true;
             this.PlayModeComboBox.TabIndex = 1;
             this.PlayModeComboBox.SelectedIndexChanged += new System.EventHandler(this.PlayModeComboBox_SelectedIndexChanged);
-            // 
-            // RankingPlaceColumn
-            // 
-            this.RankingPlaceColumn.DataPropertyName = "Place";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.RankingPlaceColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.RankingPlaceColumn.HeaderText = "#";
-            this.RankingPlaceColumn.Name = "RankingPlaceColumn";
-            this.RankingPlaceColumn.ReadOnly = true;
-            this.RankingPlaceColumn.Width = 30;
-            // 
-            // RankingTeamColumn
-            // 
-            this.RankingTeamColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.RankingTeamColumn.DataPropertyName = "Team";
-            this.RankingTeamColumn.HeaderText = "Team";
-            this.RankingTeamColumn.Name = "RankingTeamColumn";
-            this.RankingTeamColumn.ReadOnly = true;
-            // 
-            // RankingGamesCountColumn
-            // 
-            this.RankingGamesCountColumn.DataPropertyName = "MatchCount";
-            this.RankingGamesCountColumn.HeaderText = "Played";
-            this.RankingGamesCountColumn.Name = "RankingGamesCountColumn";
-            this.RankingGamesCountColumn.ReadOnly = true;
-            this.RankingGamesCountColumn.Width = 50;
-            // 
-            // RankingPointsColumn
-            // 
-            this.RankingPointsColumn.DataPropertyName = "Score";
-            this.RankingPointsColumn.HeaderText = "Score";
-            this.RankingPointsColumn.Name = "RankingPointsColumn";
-            this.RankingPointsColumn.ReadOnly = true;
-            this.RankingPointsColumn.Width = 50;
-            // 
-            // WinDrawLossCountsColumn
-            // 
-            this.WinDrawLossCountsColumn.DataPropertyName = "Matches";
-            this.WinDrawLossCountsColumn.HeaderText = "W/D/L";
-            this.WinDrawLossCountsColumn.Name = "WinDrawLossCountsColumn";
-            this.WinDrawLossCountsColumn.ReadOnly = true;
-            this.WinDrawLossCountsColumn.Width = 90;
-            // 
-            // RankingSetsColumn
-            // 
-            this.RankingSetsColumn.DataPropertyName = "Frames";
-            this.RankingSetsColumn.HeaderText = "Frames";
-            this.RankingSetsColumn.Name = "RankingSetsColumn";
-            this.RankingSetsColumn.ReadOnly = true;
-            this.RankingSetsColumn.Width = 70;
             // 
             // AppWindow
             // 
